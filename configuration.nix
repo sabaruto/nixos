@@ -17,9 +17,6 @@
 
       # Nvidia configuration
       ./nvidia.nix
-
-      # Current Project configuration
-      ./pkgs/ssm-pkgs.nix
     ];
 
   # Bootloader.
@@ -88,9 +85,6 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Install firefox.
-  programs.firefox.enable = true;
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -103,7 +97,7 @@
   # };
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
