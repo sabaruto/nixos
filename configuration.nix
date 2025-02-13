@@ -5,9 +5,21 @@
 { config, pkgs, ... }:
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [ 
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./vscode-pkgs.nix
+
+      # Desktop Environment
+      ./desktop-environment/gnome.nix
+
+      # User configuration
+      ./users/dosia.nix
+
+      # Nvidia configuration
+      ./nvidia.nix
+
+      # Current Project configuration
+      ./pkgs/ssm-pkgs.nix
     ];
 
   # Bootloader.
@@ -45,13 +57,6 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable nvidia video drivers
-  services.xserver.videoDrivers = [ "nvidia" ];
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "gb";
@@ -63,10 +68,6 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  # Enable nvidia package
-  hardware.nvidia.open = true;
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -87,30 +88,11 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  users.users.dosia = {
-    isNormalUser = true;
-    description = "Theodosia Kalu";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      _1password-gui
-      tidal-hifi
-      git
-    ];
-  };
-
-
   # Install firefox.
   programs.firefox.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -119,8 +101,6 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
-  # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
