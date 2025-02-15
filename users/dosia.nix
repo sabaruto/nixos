@@ -1,6 +1,7 @@
 { config, pkgs, appimageTools, fetchurl, ... }:
 let
   username = "dosia";
+  zenApp = import ../derivations/zen.nix { inherit pkgs; };
 in
 {
   users.users.${username} = {
@@ -28,6 +29,9 @@ in
 
       # Chromium Browser
       brave
+      file
+
+      zenApp
     ];
   };
 
