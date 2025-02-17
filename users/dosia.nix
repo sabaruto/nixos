@@ -2,8 +2,24 @@
 let
   username = "dosia";
   zenApp = import ../derivations/zen.nix { inherit pkgs; };
+  googleCursor = import ../desktop-environment/google-cursor.nix {inherit pkgs; };
+  tmux = (import ../apps/tmux.nix) username;
+  git = (import ../apps/git.nix) username;
 in
 {
+  imports = 
+  [
+      # Desktop Environment
+      ../desktop-environment/gnome.nix
+
+      # Steam
+      ../apps/steam.nix
+
+      tmux
+
+      git
+  ];
+
   users.users.${username} = {
     isNormalUser = true;
     description = "Theodosia Kalu";
@@ -17,10 +33,7 @@ in
       spotify
 
       # Development
-      git
-      git-lfs
       vscode
-      tmux
 
       # ZSH Configuration
       zsh
@@ -29,21 +42,18 @@ in
 
       # Chromium Browser
       brave
-      file
 
+      # Current browser
       zenApp
+
+      # Zoom
+      zoom-us
+
+      # Curosr
+      googleCursor
+
+      tree
     ];
-  };
-
-  # This user uses app images
-  programs.appimage.enable = true;
-  programs.appimage.binfmt = true;
-
-  programs.tmux = {
-    enable = true;
-    extraConfig = ''
-      set-option -g default-shell /etc/profiles/per-user/${username}/bin/zsh
-    '';
   };
 
   programs.zsh.enable = true;

@@ -1,5 +1,5 @@
 {
-  description = "A very basic flake";
+  description = "Leano PC Flake";
 
   inputs = {
     nixpkgs.url = github:nixos/nixpkgs?ref=nixos-unstable;
@@ -9,11 +9,19 @@
     nixosConfigurations.leano = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = attrs;
-      modules = [ 
-        # Include the results of the hardware scan.
-        ./hardware-configuration.nix
+      modules = [
+        ({ config, pkgs, ... }: { networking.hostName = "leano"; })
 
-        ./configuration.nix
+        ../base.nix
+
+        # Include the results of the hardware scan.
+        ./hardware.nix
+
+        # Leano uses a nvidia GPU
+        ../gpu/nvidia.nix
+
+        # Adds Dosia as the default user
+        ../../users/dosia.nix
       ];
     };
   };

@@ -7,5 +7,10 @@
   environment.systemPackages = with pkgs.gnomeExtensions; [
     tiling-shell
     coverflow-alt-tab
-  ];
+    blur-my-shell
+    sound-output-device-chooser
+    night-theme-switcher
+  ] ++ (with pkgs; [
+    gnome-tweaks
+  ]);
 }
