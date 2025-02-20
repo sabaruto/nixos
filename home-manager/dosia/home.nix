@@ -31,6 +31,8 @@ in
   home.packages = with pkgs; [
       # Password Manager
       _1password-gui
+
+      _1password-cli
       
       # Music Services
       tidal-hifi
