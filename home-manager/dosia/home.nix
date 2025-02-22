@@ -1,38 +1,46 @@
 { lib, config, pkgs, ... }:
 let
-  zenApp = import ../../derivations/zen.nix { inherit pkgs; };
+  zen = import ../../derivations/zen.nix { inherit pkgs; };
 in
 {
   imports = 
   [
-      # Development
-      ../../apps/zsh.nix
+    # Base manager
+    ../base.nix
 
-      ../../apps/tmux.nix
+    # ------------------------------
+    # Configured programs
+    # ------------------------------
 
-      ../../apps/git.nix
+    # Development
+    ../../apps/zsh.nix
 
-      # ------------------------------
-      # Vscode Packages
-      # ------------------------------
+    ../../apps/tmux.nix
 
-      # default
-      ../../apps/vscode.nix
+    ../../apps/git.nix
 
-      # Themes
-      ../../apps/vscode-extensions/themes.nix
+    ../../apps/kitty.nix
+
+    # ------------------------------
+    # Vscode Packages
+    # ------------------------------
+
+    # default
+    ../../apps/vscode.nix
+
+    # Themes
+    ../../apps/vscode-extensions/themes.nix
   ];
 
   programs.home-manager.enable = true;
 
-  home.username = "dosia";
-  home.homeDirectory = lib.mkDefault "/home/dosia";
+  home = {
+    username = "dosia";
+    homeDirectory = lib.mkDefault "/home/dosia";
   
-  home.packages = with pkgs; [
+    packages = with pkgs; [
       # Password Manager
       _1password-gui
-
-      _1password-cli
       
       # Music Services
       tidal-hifi
@@ -42,21 +50,18 @@ in
       brave
 
       # Current browser
-      zenApp
+      zen
 
       # Zoom
       zoom-us
 
-      # Curosr
+      # Cursor
       google-cursor
+    ];
 
-      tree
-
-      efibootmgr
-  ];
-
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
-  home.stateVersion = "24.11";
+    # You can update Home Manager without changing this value. See
+    # the Home Manager release notes for a list of state version
+    # changes in each release.
+    stateVersion = "24.11";
+  };
 }

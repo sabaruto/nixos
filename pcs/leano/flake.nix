@@ -7,7 +7,12 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@attrs: {
+  outputs = { self, nixpkgs, home-manager, ... }@attrs: 
+  let
+    user = "dosia";
+    environment = "ssm";
+  in
+  {
     nixosConfigurations.leano = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = attrs;
@@ -22,17 +27,28 @@
         # Desktop Environment
         ../../desktop-environment/gnome.nix
 
+        # Dev Environment
+        ../../environments/${environment}/configuration.nix
+
         # Leano uses a nvidia GPU
         ../gpu/nvidia.nix
 
-        ../../home-manager/dosia/configuration.nix
+        ../../home-manager/${user}/configuration.nix
 
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.backupFileExtension = "backup";
-          home-manager.users.dosia = import ../../home-manager/dosia/home.nix;
+          home-manager.users.${user} = (
+            { config, pkgs, ... }:
+            {
+              imports = [
+                ../../home-manager/${user}/home.nix
+                ../../environments/${environment}/home.nix
+              ];
+            }
+          );
         }
       ];
     };

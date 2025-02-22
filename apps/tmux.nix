@@ -20,6 +20,9 @@
     ];
     
     extraConfig = ''
+      # allow clipboard use
+      set -g set-clipboard on
+      
       # split panes using | and -
       # also set the new plane's directory to the origninators
       bind | split-window -h -c '#{pane_current_path}'
