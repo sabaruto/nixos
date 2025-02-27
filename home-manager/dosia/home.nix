@@ -17,6 +17,8 @@ in
 
     ../../apps/tmux.nix
 
+    ../../apps/micro.nix
+
     ../../apps/git.nix
 
     ../../apps/kitty.nix
@@ -48,6 +50,7 @@ in
 
       # Chromium Browser
       brave
+      firefox
 
       # Current browser
       zen

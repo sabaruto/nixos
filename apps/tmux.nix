@@ -4,7 +4,7 @@
     enable = true;
     terminal = "screen-256color";
 
-    # Defualts
+    # Default
     sensibleOnTop = true;
     shell = "${pkgs.zsh}/bin/zsh";
     mouse = true;

@@ -13,5 +13,5 @@
     "CtrlSpace"     : "command:lspcompletion",
     "CtrlUnderscore": "lua:comment.comment",
     "F1"            : "command:cheat",
-    "F6"            : "command-edit:gorename",
+    "F6"            : "command-edit:gorename"
 }
