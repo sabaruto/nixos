@@ -19,6 +19,8 @@ in
 
     ../../apps/micro.nix
 
+    ../../apps/emacs.nix
+
     ../../apps/git.nix
 
     ../../apps/kitty.nix
