@@ -25,7 +25,7 @@
         ./hardware.nix
 
         # Desktop Environment
-        ../../desktop-environment/gnome.nix
+        ../../desktop-environment/kde.nix
 
         # Dev Environment
         ../../environments/${environment}/configuration.nix
