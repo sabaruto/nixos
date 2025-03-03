@@ -1,6 +1,8 @@
-;; -------------------------------------------------------------------
+
 ;; Package Manager
 ;; -------------------------------------------------------------------
+
+;; Straight packager manager
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name
@@ -16,12 +18,18 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
+
 ;; -------------------------------------------------------------------
 ;; Keymap
 ;; -------------------------------------------------------------------
 
-;; Undo
-(keymap-global-set "C-z" 'undo)
+;; Set cut, copy, paste and undo
+(cua-mode)
+(setq select-enable-clipboard t)
+
+;; Exit Emacs
+(keymap-global-unset "C-q")
+(keymap-global-set "C-q" 'save-buffers-kill-terminal)
 
 ;; Save current screen
 (keymap-global-set "C-s" 'save-buffer)
@@ -29,12 +37,34 @@
 ;; Opening files and folders
 (keymap-global-set "C-o" 'find-file)
 
-;; Copy and Paste
-(keymap-global-set "C-c" 'kill-ring-save)
-(keymap-global-set "C-v" 'clipboard-yank)
-
 ;; Searching within window
 (keymap-global-set "C-f" 'isearch-forward)
+
+;; Moving between windows
+(keymap-global-set "C-x <up>" 'windmove-up)
+(keymap-global-set "C-x <down>" 'windmove-down)
+(keymap-global-set "C-x <left>" 'windmove-left)
+(keymap-global-set "C-x <right>" 'windmove-right)
+
+
+;; Swapping lines
+(keymap-global-set "M-<up>"
+		   (lambda ()
+		     (interactive)
+		     (transpose-lines -1)))
+
+(keymap-global-set "M-<down>" 'transpose-lines)
+
+;; -------------------------------------------------------------------
+;; Accessiblity
+;; -------------------------------------------------------------------
+
+;; Enable mouse mode
+(xterm-mouse-mode)
+
+;; Helm: Improved buffer & search packages
+(straight-use-package 'helm)
+(helm-mode 1)
 
 ;; -------------------------------------------------------------------
 ;; Themes
@@ -43,6 +73,7 @@
 (straight-use-package 'catppuccin-theme)
 
 ;; Catppuccin theme
-(load-theme 'catppuccin)
+(load-theme 'catppuccin :no-confirm)
+
 (setq catppuccin-flavor 'latte)
 (catppuccin-reload)
