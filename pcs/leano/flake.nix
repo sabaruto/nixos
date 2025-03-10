@@ -17,7 +17,16 @@
       system = "x86_64-linux";
       specialArgs = attrs;
       modules = [
-        ({ config, pkgs, ... }: { networking.hostName = "leano"; })
+        ({ config, pkgs, ... }: { 
+        	networking.hostName = "leano";
+        	system.stateVersion = "24.11";
+
+			# Environment session Variables
+        	environment.sessionVariables = {
+        		WLR_NO_HARDWARE_CURSORS = "1";
+        		NIXOS_OZONE_WL = "1";
+        	};
+        })
 
         ../base.nix
 

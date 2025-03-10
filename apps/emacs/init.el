@@ -1,3 +1,8 @@
+;;;  -*- lexical-binding: t; -*-
+
+(setq inhibit-startup-message t)
+(setq visible-bell t)
+
 ;; -------------------------------------------------------------------
 ;; Package Manager
 ;; -------------------------------------------------------------------
@@ -24,19 +29,11 @@
 
 ;; set use-package as default
 (use-package straight
+  :ensure t
   :custom
-  (straight-use-package-by-default t))
-
-;; -------------------------------------------------------------------
-;; Auto update packages
-;; -------------------------------------------------------------------
-
-(use-package auto-package-update
-  :init
-  (setq auto-package-update-delete-old-versions t)
-  (setq auto-package-update-hide-results t)
+  (straight-use-package-by-default t)
   :config
-  (auto-package-update-maybe))
+  (setq straight-use-package-by-default t))
 
 ;; -------------------------------------------------------------------
 ;; Language Server Protocol
@@ -45,43 +42,41 @@
 ;; Configuration -----------------
 (use-package lsp-mode
   :init (setq lsp-keymap-prefix "C-l")
-  :hook (
-	 ;; Python
-	 (python-mode . lsp)
-         ;; if you want which-key integration
-         (lsp-mode . lsp-enable-which-key-integration))
+  :hook ((python-mode nix-mode elisp-mode) . lsp)
+  :config
+  (lsp-enable-which-key-integration t)
   :commands lsp)
 
 ;; UI Mode
-(use-package lsp-ui :commands lsp-ui-mode)
+(use-package lsp-ui
+  :config
+  (setq lsp-ui-doc-enable nil)
+  (setq lsp-ui-doc-header t)
+  (setq lsp-ui-doc-include-signature t)
+  (setq lsp-ui-doc-border (face-foreground 'default))
+  (setq lsp-ui-sideline-show-code-actions t)
+  (setq lsp-ui-sideline-delay 0.05)
+  :commands lsp-ui-mode)
 
 ;; helm symbol
 (use-package helm-lsp :commands helm-lsp-workspace-symbol)
 
 (use-package which-key
-    :config
-    (which-key-mode))
+  :config
+  (which-key-mode))
 
 ;; -------------------------------------------------------------------
 ;; Packages
 ;; -------------------------------------------------------------------
 
+;; -------------------- Command log mode
+(use-package command-log-mode)
+
 ;; -------------------- General: Better keybinding management
-(use-package general)
-
-;; -------------------- Projectile
-(use-package projectile
+(use-package general
   :ensure t
-  :init
-  (setq projectile-cleanup-known-projects t)
-  (setq projectile-auto-discover t)
-  :bind (("C-p" . projectile-command-map))
   :config
-  (projectile-mode +1))
-
-(use-package helm-projectile
-  :config
-  (helm-projectile-on))
+  (general-auto-unbind-keys))
 
 ;; -------------------- hydra
 (use-package hydra)
@@ -115,6 +110,45 @@
 	 ("<tab>" . helm-next-line)
 	 ("<backtab>" . helm-previous-line)))
 
+;; -------------------- Projectile
+(use-package projectile
+  :init
+  (setq projectile-cleanup-known-projects t)
+  (setq projectile-auto-discover t)
+  :bind (("C-p" . projectile-command-map))
+  :config
+  (projectile-mode +1))
+
+(use-package helm-projectile
+  :config
+  (helm-projectile-on))
+
+;; -------------------- nix-mode
+(use-package nix-mode
+  :mode ("\\.nix\\'" "\\.nix.in\\'"))
+(use-package nix-drv-mode
+  :ensure nix-mode
+  :mode "\\.drv\\'")
+(use-package nix-shell
+  :ensure nix-mode
+  :commands (nix-shell-unpack nix-shell-configure nix-shell-build))
+(use-package nix-repl
+  :ensure nix-mode
+  :commands (nix-repl))
+
+(use-package lsp-nix
+  :ensure lsp-mode
+  :after (lsp-mode)
+  :demand t
+  :custom
+  (lsp-nix-nil-formatter ["nixfmt"]))
+
+;; -------------------- magit
+(use-package magit
+  :commands (magit-status magit-get-current-branch)
+  :custom
+  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
 ;; -------------------------------------------------------------------
 ;; Keymap
 ;; -------------------------------------------------------------------
@@ -124,26 +158,27 @@
 (setq select-enable-clipboard t)
 
 (general-define-key
-  "C-q" 'save-buffers-kill-terminal ; exit emacs
-  "C-s" 'save-buffer ; save current screen
+ "C-q" 'save-buffers-kill-terminal ; exit emacs
+ "C-s" 'save-buffer ; save current screen
+ "C-a" "C-x h" ; select the whole buffer
+ "C-Z" 'redo
 
-  ;; Swapping lines
-  "M-<up>" '(lambda () (interactive) (transpose-lines -1))
-  "M-<down>" 'transpose-lines)
+ ;; Swapping lines
+ "M-<up>" '(lambda () (interactive) (transpose-lines -1))
+ "M-<down>" 'transpose-lines)
 
 ;; Moving between windows
 (general-define-key
-  :prefix "C-x"
-  "<up>"    'windmove-up
-  "<down>"  'windmove-down
-  "<left>"  'windmove-left
-  "<right>" 'windmove-right)
+ :prefix "C-x"
+ "<up>"    'windmove-up
+ "<down>"  'windmove-down
+ "<left>"  'windmove-left
+ "<right>" 'windmove-right)
 
 ;; Moving around text
 (general-define-key
-  "C-<right>" '(lambda () (interactive) (forward-same-syntax 1))
-  "C-<left>"  '(lambda () (interactive) (forward-same-syntax -1))
- )
+ "C-<right>" '(lambda () (interactive) (forward-same-syntax 1))
+ "C-<left>"  '(lambda () (interactive) (forward-same-syntax -1)))
 
 ;; -------------------------------------------------------------------
 ;; Accessiblity
@@ -152,12 +187,28 @@
 ;; Enable mouse mode
 (xterm-mouse-mode)
 
+;; -------------------- Line numbers
+
+(column-number-mode)
+(global-display-line-numbers-mode t)
+
+;; Disable line numbers for some modes
+(dolist (mode '(org-mode-hook
+                term-mode-hook
+                eshell-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
+;; -------------------- Rainbow Delimiters
+
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+
 ;; -------------------------------------------------------------------
 ;; Themes
 ;; -------------------------------------------------------------------
 
 (use-package catppuccin-theme
-  :init (setq catppuccin-flavor 'latte)
+  :init (setq catppuccin-flavor 'macchiato)
   :config
   (load-theme 'catppuccin :no-confirm)
   (catppuccin-reload))
@@ -167,7 +218,7 @@
 ;; -------------------------------------------------------------------
 
 (dir-locals-set-class-variables 'agent-performance
-   '((nil . ((pyvenv-activate . "~/go/src/repo.jazzdev.io/jazz/agent-performance/.venv")))))
+				'((nil . ((pyvenv-activate . "~/go/src/repo.jazzdev.io/jazz/agent-performance/.venv")))))
 
 (dir-locals-set-directory-class
-   "~/go/src/repo.jazzdev.io/jazz/agent-performance" 'agent-performance)
+ "~/go/src/repo.jazzdev.io/jazz/agent-performance" 'agent-performance)

@@ -1,0 +1,7 @@
+run ${pkgs.micro}/bin/micro -plugin install aspell
+run ${pkgs.micro}/bin/micro -plugin install autofmt
+run ${pkgs.micro}/bin/micro -plugin install filemanager
+run ${pkgs.micro}/bin/micro -plugin install go
+run ${pkgs.micro}/bin/micro -plugin install lsp
+run ${pkgs.micro}/bin/micro -plugin install quoter
+run ${pkgs.micro}/bin/micro -plugin update

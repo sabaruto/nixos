@@ -1,17 +1,25 @@
-{ config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
+
+with lib;
+
+let
+	cfg = config.localModules;
+in
 {
-  services = {
-    xserver.enable = true;
-    desktopManager = {
-      plasma6.enable = true;
-    };
+  config = mkIf (cfg.desktopEnvironment == "kde") {
+  	services = {
+  	  xserver.enable = true;
+  	  desktopManager = {
+  	    plasma6.enable = true;
+  	  };
 
-    displayManager = {
-      defaultSession = "plasma";
+  	  displayManager = {
+  	    defaultSession = "plasma";
 
-      sddm = {
-        wayland.enable = true;
-      };
-    };
+  	    sddm = {
+  	      wayland.enable = true;
+  	    };
+  	  };
+  	};
   };
 }

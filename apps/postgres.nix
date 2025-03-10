@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   config.services.postgresql = {
     enable = true;
     enableTCPIP = true;
