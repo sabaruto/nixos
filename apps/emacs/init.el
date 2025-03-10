@@ -1,7 +1,21 @@
 ;;;  -*- lexical-binding: t; -*-
 
+;; -------------------------------------------------------------------
+;; Package sources
+;; -------------------------------------------------------------------
+
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/") t)
+
+;; -------------------------------------------------------------------
+;; Cleanup startup
+;; -------------------------------------------------------------------
+
 (setq inhibit-startup-message t)
 (setq visible-bell t)
+
+'(lsp-disabled-clients '(pylsp))
 
 ;; -------------------------------------------------------------------
 ;; Package Manager
@@ -18,22 +32,16 @@
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
         (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         "https://radian-software.github.io/straight.el/install.el"
          'silent 'inhibit-cookies)
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
 ;; use-package using straight-use-package
-(straight-use-package 'use-package)
+(setq straight-use-package-by-default t)
 
-;; set use-package as default
-(use-package straight
-  :ensure t
-  :custom
-  (straight-use-package-by-default t)
-  :config
-  (setq straight-use-package-by-default t))
+(straight-use-package 'use-package)
 
 ;; -------------------------------------------------------------------
 ;; Language Server Protocol
@@ -42,15 +50,18 @@
 ;; Configuration -----------------
 (use-package lsp-mode
   :init (setq lsp-keymap-prefix "C-l")
-  :hook ((python-mode nix-mode elisp-mode) . lsp)
+  :hook ((nix-mode elisp-mode) . lsp)
   :config
   (lsp-enable-which-key-integration t)
-  :commands lsp)
+  :commands lsp
+  :general
+  (:keymaps 'override
+	    "<f2>" 'lsp-rename))
 
 ;; UI Mode
 (use-package lsp-ui
   :config
-  (setq lsp-ui-doc-enable nil)
+  (setq lsp-ui-doc-enable t)
   (setq lsp-ui-doc-header t)
   (setq lsp-ui-doc-include-signature t)
   (setq lsp-ui-doc-border (face-foreground 'default))
@@ -65,6 +76,13 @@
   :config
   (which-key-mode))
 
+;; Languages
+
+(use-package lsp-pyright
+  :ensure t
+  :custom (lsp-pyright-langserver-command "pyright") ;; or basedpyright
+  :hook (python-mode . lsp))  ; or lsp-deferred
+
 ;; -------------------------------------------------------------------
 ;; Packages
 ;; -------------------------------------------------------------------
@@ -76,7 +94,8 @@
 (use-package general
   :ensure t
   :config
-  (general-auto-unbind-keys))
+  (general-auto-unbind-keys)
+  (general-override-mode t))
 
 ;; -------------------- hydra
 (use-package hydra)
@@ -86,8 +105,8 @@
   :ensure t
   :config
   (pyvenv-mode 1))
-
 ;; -------------------- Sublimity
+
 (use-package sublimity
   :config
   (sublimity-mode 1))
@@ -123,31 +142,44 @@
   :config
   (helm-projectile-on))
 
-;; -------------------- nix-mode
-(use-package nix-mode
-  :mode ("\\.nix\\'" "\\.nix.in\\'"))
-(use-package nix-drv-mode
-  :ensure nix-mode
-  :mode "\\.drv\\'")
-(use-package nix-shell
-  :ensure nix-mode
-  :commands (nix-shell-unpack nix-shell-configure nix-shell-build))
-(use-package nix-repl
-  :ensure nix-mode
-  :commands (nix-repl))
+(use-package helm-projectile-grep)
 
-(use-package lsp-nix
-  :ensure lsp-mode
-  :after (lsp-mode)
-  :demand t
-  :custom
-  (lsp-nix-nil-formatter ["nixfmt"]))
+;; -------------------- nix-mode
+;; (use-package nix-mode
+;;   :mode ("\\.nix\\'" "\\.nix.in\\'"))
+;; (use-package nix-drv-mode
+;;   :ensure nix-mode
+;;   :mode "\\.drv\\'")
+
+;; (use-package nix-shell
+;;   :ensure nix-mode
+;;   :commands (nix-shell-unpack nix-shell-configure nix-shell-build))
+;; (use-package nix-repl
+;;   :ensure nix-mode
+;;   :commands (nix-repl))
+
+;; (use-package lsp-nix
+;;   :ensure lsp-mode
+;;   :after (lsp-mode)
+;;   :demand t
+;;   :custom
+;;   (lsp-nix-nil-formatter ["nixfmt"]))
 
 ;; -------------------- magit
 (use-package magit
   :commands (magit-status magit-get-current-branch)
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
+;; -------------------- backwards-forwards
+(use-package backward-forward
+  :config
+  (backward-forward-mode t)
+  (unbind-key "C-<left>" backward-forward-mode-map)
+  (unbind-key "C-<right>" backward-forward-mode-map)
+  :bind (:map backward-forward-mode-map
+	      ("M-<left>" . 'backward-forward-previous-location)
+	      ("M-<right>" . 'backward-forward-next-location)))
 
 ;; -------------------------------------------------------------------
 ;; Keymap
@@ -157,29 +189,46 @@
 (cua-mode)
 (setq select-enable-clipboard t)
 
+(setq set-mark-command-repeat-pop t)
+
+(defun backward-same-syntax (arg)
+  (interactive "^p")
+  (forward-same-syntax (- arg)))
+
+(general-unbind backwar
+ )
+
 (general-define-key
- "C-q" 'save-buffers-kill-terminal ; exit emacs
- "C-s" 'save-buffer ; save current screen
- "C-a" "C-x h" ; select the whole buffer
- "C-Z" 'redo
+ :keymaps  'local
+ "C-q"     'save-buffers-kill-terminal ; exit emacs
+ "C-s"     'save-buffer ; save current screen
+ "C-a"     "C-x h" ; select the whole buffer
+ "C-y"     'undo-redo
+ "C-z"     'undo-only
 
  ;; Swapping lines
  "M-<up>" '(lambda () (interactive) (transpose-lines -1))
- "M-<down>" 'transpose-lines)
+ "M-<down>" 'transpose-lines
 
-;; Moving between windows
+  ;; Moving around text
+ "C-<right>" 'forward-same-syntax
+ "C-<left>"  'backward-same-syntax
+
+ ;; Moving between local marks
+ "C-M-<SPC>" 'helm-all-mark-rings
+ 
+ ;; Moving between buffers
+ "M-<S-left>"  'previous-buffer
+ "M-<S-right>" 'next-buffer)
+
 (general-define-key
- :prefix "C-x"
+ ;; Moving between windows
+ :keymaps  'local
+ :prefix   "C-x"
  "<up>"    'windmove-up
  "<down>"  'windmove-down
  "<left>"  'windmove-left
  "<right>" 'windmove-right)
-
-;; Moving around text
-(general-define-key
- "C-<right>" '(lambda () (interactive) (forward-same-syntax 1))
- "C-<left>"  '(lambda () (interactive) (forward-same-syntax -1)))
-
 ;; -------------------------------------------------------------------
 ;; Accessiblity
 ;; -------------------------------------------------------------------
@@ -208,7 +257,6 @@
 ;; -------------------------------------------------------------------
 
 (use-package catppuccin-theme
-  :init (setq catppuccin-flavor 'macchiato)
   :config
   (load-theme 'catppuccin :no-confirm)
   (catppuccin-reload))
