@@ -8,8 +8,11 @@ in {
     ./options.nix
 
     ./emacs/configuration.nix
+    ./steam/configuration.nix
   ];
 
-  config.localModules.apps =
-    mkIf cfg.development.enable { emacs.enable = true; };
+  config.localModules.apps = mkMerge [
+      (mkIf cfg.development.enable { emacs.enable = true; })
+      (mkIf cfg.gaming.enable { steam.enable = true; })
+    ];
 }

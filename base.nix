@@ -14,11 +14,12 @@ in {
     # home configuration arguments
     (./pcs + "/${hostname}/home-configuration.nix")
 
-
     # hardware arguments
     (./pcs + "/${hostname}/hardware-configuration.nix")
 
   	./desktop-environment/base.nix
+
+		./gpu/base.nix
 
   	./derivations/base.nix
 

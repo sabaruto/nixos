@@ -29,6 +29,7 @@
 
       # browsers
       brave
+      firefox
 
       # zoom
       zoom-us

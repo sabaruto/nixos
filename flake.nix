@@ -9,32 +9,62 @@
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs: {
-    nixosConfigurations.zalu = nixpkgs.lib.nixosSystem rec {
-      system = "x86_64-linux";
+    nixosConfigurations = {
+      zalu = nixpkgs.lib.nixosSystem rec {
+        system = "x86_64-linux";
 
-      specialArgs = {
-        inherit inputs;
-        username = "dosia";
-        hostname = "zalu";
-        stateVersion = "25.05";
+        specialArgs = {
+          inherit inputs;
+          username = "dosia";
+          hostname = "zalu";
+          stateVersion = "25.05";
+        };
+
+        modules = [
+          # configurations entrypoint
+          ./base.nix
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users."${specialArgs.username}" = import ./home.nix;
+
+              backupFileExtension = "backup";
+              extraSpecialArgs = specialArgs;
+            };
+          }
+        ];
       };
 
-      modules = [
-        # configurations entrypoint
-        ./base.nix
+      leano = nixpkgs.lib.nixosSystem rec {
+        system = "x86_64-linux";
 
-        home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users."${specialArgs.username}" = import ./home.nix;
+        specialArgs = {
+          inherit inputs;
+          username = "dosia";
+          hostname = "leano";
+          stateVersion = "24.11";
+        };
 
-            backupFileExtension = "backup";
-            extraSpecialArgs = specialArgs;
-          };
-        }
-      ];
+        modules = [
+          # configurations entrypoint
+          ./base.nix
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users."${specialArgs.username}" = import ./home.nix;
+
+              backupFileExtension = "backup";
+              extraSpecialArgs = specialArgs;
+            };
+          }
+        ];
+      };
     };
   };
 }

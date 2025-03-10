@@ -2,7 +2,7 @@
 
 {
     localModules = {
-        swapSize = 10 * 1024;
+        swapSize = 16 * 1024;
 
         system.kernel = {                                                                                                                              
             enable = true;                                                                                                                         
