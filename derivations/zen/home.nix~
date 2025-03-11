@@ -1,6 +1,7 @@
 { pkgs, ... }: 
 
-pkgs.appimageTools.wrapType2 {
+{
+  
   pname = "zen";
   version = "1.7.6b";
 

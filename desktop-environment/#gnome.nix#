@@ -14,6 +14,8 @@ in {
     # gnome's low level configuration system
     programs.dconf.enable = true;
 
+    
+
     environment.systemPackages = with pkgs.gnomeExtensions;
       [
         tiling-shell

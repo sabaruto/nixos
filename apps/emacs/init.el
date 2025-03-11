@@ -49,8 +49,9 @@
 
 ;; Configuration -----------------
 (use-package lsp-mode
+  :ensure t
   :init (setq lsp-keymap-prefix "C-l")
-  :hook ((nix-mode elisp-mode) . lsp)
+  :hook (elisp-mode . lsp)
   :config
   (lsp-enable-which-key-integration t)
   :commands lsp
@@ -82,6 +83,16 @@
   :ensure t
   :custom (lsp-pyright-langserver-command "pyright") ;; or basedpyright
   :hook (python-mode . lsp))  ; or lsp-deferred
+
+;; (use-package lsp-nix
+;;   :ensure lsp-mode
+;;   :after (lsp-mode)
+;;   :custom
+;;   (lsp-nix-nil-formatter ["nixfmt"]))
+
+;; (use-package nix-mode
+;;   :hook (nix-mode . lsp)
+;;   :ensure t)
 
 ;; -------------------------------------------------------------------
 ;; Packages
@@ -142,10 +153,6 @@
   :config
   (helm-projectile-on))
 
-;; -------------------- nix-mode
-(use-package nix-mode
-  :mode ("\\.nix\\'" "\\.nix.in\\'"))
-
 ;; -------------------- magit
 (use-package magit
   :commands (magit-status magit-get-current-branch)
@@ -177,7 +184,7 @@
   (forward-same-syntax (- arg)))
 
 (general-define-key
- :keymaps  'local
+ :keymaps  'override
  "C-q"     'save-buffers-kill-terminal ; exit emacs
  "C-s"     'save-buffer ; save current screen
  "C-a"     "C-x h" ; select the whole buffer
@@ -201,7 +208,7 @@
 
 (general-define-key
  ;; Moving between windows
- :keymaps  'local
+ :keymaps  'override
  :prefix   "C-x"
  "<up>"    'windmove-up
  "<down>"  'windmove-down

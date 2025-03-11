@@ -5,12 +5,18 @@
     # local configuration
     (./pcs + "/${hostname}/home-configuration.nix")
 
+    # configuration used for both system and user
+    (./pcs + "/${hostname}/global-configuration.nix")   
+
     # environments
     ./environments/home.nix
 
     # apps
     ./apps/home.nix
     ./apps/options.nix
+
+    # packaged apps
+    ./derivations/home.nix
   ];
 
   home = {

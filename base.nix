@@ -11,8 +11,8 @@ in {
     # configuration arguments
     (./pcs + "/${hostname}/configuration.nix")
 
-    # home configuration arguments
-    (./pcs + "/${hostname}/home-configuration.nix")
+    # configurations used for both system and home-manager
+    (./pcs + "/${hostname}/global-configuration.nix")
 
     # hardware arguments
     (./pcs + "/${hostname}/hardware-configuration.nix")
