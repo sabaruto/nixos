@@ -56,7 +56,7 @@
   :commands lsp
   :general
   (:keymaps 'override
-	    "<f2>" 'lsp-rename))
+            "<f2>" 'lsp-rename))
 
 ;; UI Mode
 (use-package lsp-ui
@@ -125,9 +125,9 @@
 ;; -------------------- swiper-helm
 (use-package swiper-helm
   :bind (("C-f" . swiper-helm)
-	 :map swiper-helm-keymap
-	 ("<tab>" . helm-next-line)
-	 ("<backtab>" . helm-previous-line)))
+         :map swiper-helm-keymap
+         ("<tab>" . helm-next-line)
+         ("<backtab>" . helm-previous-line)))
 
 ;; -------------------- Projectile
 (use-package projectile
@@ -159,8 +159,8 @@
   (unbind-key "C-<left>" backward-forward-mode-map)
   (unbind-key "C-<right>" backward-forward-mode-map)
   :bind (:map backward-forward-mode-map
-	      ("M-<left>" . 'backward-forward-previous-location)
-	      ("M-<right>" . 'backward-forward-next-location)))
+              ("M-<left>" . 'backward-forward-previous-location)
+              ("M-<right>" . 'backward-forward-next-location)))
 
 ;; -------------------------------------------------------------------
 ;; Keymap
@@ -176,9 +176,6 @@
   (interactive "^p")
   (forward-same-syntax (- arg)))
 
-(general-unbind backwar
- )
-
 (general-define-key
  :keymaps  'local
  "C-q"     'save-buffers-kill-terminal ; exit emacs
@@ -191,13 +188,13 @@
  "M-<up>" '(lambda () (interactive) (transpose-lines -1))
  "M-<down>" 'transpose-lines
 
-  ;; Moving around text
+ ;; Moving around text
  "C-<right>" 'forward-same-syntax
  "C-<left>"  'backward-same-syntax
 
  ;; Moving between local marks
  "C-M-<SPC>" 'helm-all-mark-rings
- 
+
  ;; Moving between buffers
  "M-<S-left>"  'previous-buffer
  "M-<S-right>" 'next-buffer)
@@ -247,7 +244,7 @@
 ;; -------------------------------------------------------------------
 
 (dir-locals-set-class-variables 'agent-performance
-				'((nil . ((pyvenv-activate . "~/go/src/repo.jazzdev.io/jazz/agent-performance/.venv")))))
+                                '((nil . ((pyvenv-activate . "~/go/src/repo.jazzdev.io/jazz/agent-performance/.venv")))))
 
 (dir-locals-set-directory-class
  "~/go/src/repo.jazzdev.io/jazz/agent-performance" 'agent-performance)
