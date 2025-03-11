@@ -8,6 +8,6 @@ with lib;
   ];
 
   options.localModules.gpu = mkOption {
-    type = with types; nullOr (enum [ "nvidia" ]);
+    type = with types; nullOr (enum [ "none" "nvidia" ]);
   };
 }

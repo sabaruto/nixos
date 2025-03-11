@@ -2,7 +2,8 @@
 
 {
     localModules = {
-        swapSize = 16 * 1024;
+      swapSize = 16 * 1024;
+      gpu = "none";
 
         system.kernel = {                                                                                                                              
             enable = true;                                                                                                                         
@@ -11,10 +12,6 @@
             url = "https://github.com/torvalds/linux/archive/refs/tags/v6.14-rc5.tar.gz";                                                          
             hash = "sha256-KjLn0ghiOtQm3izH/L+27htXBcl8ledOh1/6Kopw0s0=";                                                                          
         };                                                                                                                                                            
-        desktopEnvironment = "gnome";          
-
-        development = {
-            enable = true;
-        };                                                                                           
+        desktopEnvironment = "gnome";                                                                                 
     };         
 }

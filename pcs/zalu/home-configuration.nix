@@ -1,8 +1,1 @@
-{ lib, config, pkgs, ... }:
-
-{
-    localModules.development = {
-        enable = true;
-        languages = ["nix"];
-    };
-}
+{ ... }: { localModules.browsers.enable = true; }
