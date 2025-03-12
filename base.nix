@@ -19,7 +19,7 @@ in {
 
   	./desktop-environment/base.nix
 
-		./gpu/base.nix
+	./gpu/base.nix
 
   	./derivations/base.nix
 

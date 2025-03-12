@@ -11,8 +11,8 @@ in {
     ./steam/configuration.nix
   ];
 
-  config.localModules.apps = mkMerge [
-      (mkIf cfg.development.enable { emacs.enable = true; })
-      (mkIf cfg.gaming.enable { steam.enable = true; })
-    ];
+  config.localModules.apps = {
+      emacs = mkIf cfg.development.enable { enable = true; };
+      steam = mkIf cfg.gaming.enable { enable = true; };
+    };
 }

@@ -11,17 +11,6 @@ in {
 
     nixpkgs.overlays = [ (import inputs.emacs-overlay) ];
 
-    environment.systemPackages = [
-      (pkgs.emacsWithPackagesFromUsePackage {
-        package = pkgs.emacs-git;
-        config = ./init.el;
-
-        extraEmacsPackages = epkgs: [ epkgs.use-package ];
-
-        defaultInitFile = true;
-
-        alwaysEnsure = true;
-      })
-    ];
+    environment.systemPackages = with pkgs; [ emacs ];
   };
 }
