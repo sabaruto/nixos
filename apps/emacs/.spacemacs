@@ -672,7 +672,7 @@ before packages are loaded."
               ("C-."   . lsp-find-definition)
               ("C->" . lsp-find-references))
   ;; Mark Ring movement
-  (bind-keys* :map backward-forward-mode-map
+  (bind-keys* :map evil-emacs-state-map
               ("M-<right>" . backward-forward-next-location)
               ("M-<left>"  . backward-forward-previous-location))
 
@@ -703,9 +703,9 @@ before packages are loaded."
               ("2"  . winum-select-window-2)
               ("3"  . winum-select-window-3)
               ("4"  . winum-select-window-4)
+              ("7"  . winum-select-window-7)
               ("5"  . winum-select-window-5)
               ("6"  . winum-select-window-6)
-              ("7"  . winum-select-window-7)
               ("8"  . winum-select-window-8)
               ("9"  . winum-select-window-9)))
 
