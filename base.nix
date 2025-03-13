@@ -4,8 +4,7 @@
 
 with lib;
 
-let
- 	cfg = config.localModules;
+let cfg = config.localModules;
 in {
   imports = [
     # configuration arguments
@@ -17,146 +16,143 @@ in {
     # hardware arguments
     (./pcs + "/${hostname}/hardware-configuration.nix")
 
-  	./desktop-environment/base.nix
+    ./desktop-environment/base.nix
 
-	./gpu/base.nix
+    ./gpu/base.nix
 
-  	./derivations/base.nix
+    ./derivations/base.nix
 
-  	./environments/base.nix
+    ./environments/base.nix
 
-  	./apps/base.nix
+    ./apps/base.nix
   ];
-  
+
   options.localModules = {
     name = mkOption {
-    	type = types.str;
-    	default = "dosia";
-    	description = "Name of the default user";
+      type = types.str;
+      default = "dosia";
+      description = "Name of the default user";
     };
 
     hostname = mkOption {
-    	type = types.str;
-    	default = "nixos";
-    	description = "hostname of the current system";
+      type = types.str;
+      default = "nixos";
+      description = "hostname of the current system";
     };
-    
-  	stateVersion = mkOption {
-  	  type = types.str;
-  	  default = "24.11";
-  	  description = "Initial system to create the nixOS system";
-  	};
 
-  	linuxVersion = mkOption {
-  		type = types.nullOr types.raw;
-  		default = null;
-  		description = "Which linux kernel is run";
-  	};
+    stateVersion = mkOption {
+      type = types.str;
+      default = "24.11";
+      description = "Initial system to create the nixOS system";
+    };
 
-  	swapSize = mkOption {
-  		type = types.nullOr types.int;
-  		default = null;
-  		description = "size of the swap file";
-  	};
+    linuxVersion = mkOption {
+      type = types.nullOr types.raw;
+      default = null;
+      description = "Which linux kernel is run";
+    };
+
+    swapSize = mkOption {
+      type = types.nullOr types.int;
+      default = null;
+      description = "size of the swap file";
+    };
   };
 
   config = {
-  	networking.hostName = hostname;
-  	system.stateVersion = stateVersion;
+    networking.hostName = hostname;
+    system.stateVersion = stateVersion;
 
-  	boot.kernelPackages = mkIf (cfg.linuxVersion != null) cfg.linuxVersion;
+    boot.kernelPackages = mkIf (cfg.linuxVersion != null) cfg.linuxVersion;
 
-  	users.users."${username}" = {
-  		isNormalUser = true;
-  		description = "Theodosia Kalu";
-  		extraGroups = [ "networkmanager" "wheel" ];
-  	};
-	  
-  	swapDevices = mkIf (cfg.swapSize != null) [{
-  		device = "/swapfile";
-  		size = cfg.swapSize;
-  	}];
+    users.users."${username}" = {
+      isNormalUser = true;
+      description = "Theodosia Kalu";
+      extraGroups = [ "networkmanager" "wheel" ];
+    };
 
-  	environment.systemPackages = with pkgs; [
-	    # nixos configuration applications
-  		git
-  		micro
+    swapDevices = mkIf (cfg.swapSize != null) [{
+      device = "/swapfile";
+      size = cfg.swapSize;
+    }];
 
-  		# System configurations checkers
-  		fwupd
-  		rPackages.pcutils
-  	];
+    environment.systemPackages = with pkgs; [
+      # nixos configuration applications
+      git
+      micro
 
-  	nix.settings.experimental-features = [
-  	  "nix-command"
-  	  "flakes"
-  	];
+      # System configurations checkers
+      fwupd
+      rPackages.pcutils
+    ];
 
-  	# Limit the number of generations to keep
-  	boot.loader.systemd-boot.configurationLimit = 10;
+    nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  	# Perform garbage collection weekly to maintain low disk usage
-  	nix.gc = {
-  	  automatic = true;
-  	  dates = "weekly";
-  	  options = "--delete-older-than 1w";
-  	};
+    # Limit the number of generations to keep
+    boot.loader.systemd-boot.configurationLimit = 10;
 
-  	# Optimise storage
-  	nix.settings.auto-optimise-store = true;
-  	
-  	# Bootloader.
-  	boot.loader.systemd-boot.enable = true;
-  	boot.loader.efi.canTouchEfiVariables = true;
+    # Perform garbage collection weekly to maintain low disk usage
+    nix.gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 1w";
+    };
 
-  	# Enable networking
-  	networking.networkmanager.enable = true;
+    # Optimise storage
+    nix.settings.auto-optimise-store = true;
 
-  	# Set your time zone.
-  	time.timeZone = "Europe/London";
+    # Bootloader.
+    boot.loader.systemd-boot.enable = true;
+    boot.loader.efi.canTouchEfiVariables = true;
 
-  	# Select internationalisation properties.
-  	i18n.defaultLocale = "en_GB.UTF-8";
+    # Enable networking
+    networking.networkmanager.enable = true;
 
-  	i18n.extraLocaleSettings = {
-  	  LC_ADDRESS = "en_GB.UTF-8";
-  	  LC_IDENTIFICATION = "en_GB.UTF-8";
-  	  LC_MEASUREMENT = "en_GB.UTF-8";
-  	  LC_MONETARY = "en_GB.UTF-8";
-  	  LC_NAME = "en_GB.UTF-8";
-  	  LC_NUMERIC = "en_GB.UTF-8";
-  	  LC_PAPER = "en_GB.UTF-8";
-  	  LC_TELEPHONE = "en_GB.UTF-8";
-  	  LC_TIME = "en_GB.UTF-8";
-  	};
+    # Set your time zone.
+    time.timeZone = "Europe/London";
 
-  	# Configure keymap in X11
-  	services.xserver.xkb = {
-  	  layout = "gb";
-  	  variant = "";
-  	};
+    # Select internationalisation properties.
+    i18n.defaultLocale = "en_GB.UTF-8";
 
-  	# Configure console keymap
-  	console.keyMap = "uk";
+    i18n.extraLocaleSettings = {
+      LC_ADDRESS = "en_GB.UTF-8";
+      LC_IDENTIFICATION = "en_GB.UTF-8";
+      LC_MEASUREMENT = "en_GB.UTF-8";
+      LC_MONETARY = "en_GB.UTF-8";
+      LC_NAME = "en_GB.UTF-8";
+      LC_NUMERIC = "en_GB.UTF-8";
+      LC_PAPER = "en_GB.UTF-8";
+      LC_TELEPHONE = "en_GB.UTF-8";
+      LC_TIME = "en_GB.UTF-8";
+    };
 
-  	# Enable CUPS to print documents.
-  	services.printing.enable = true;
+    # Configure keymap in X11
+    services.xserver.xkb = {
+      layout = "gb";
+      variant = "";
+    };
 
-  	# Enable sound with pipewire.
-  	services.pulseaudio.enable = false;
-  	security.rtkit.enable = true;
-  	services.pipewire = {
-  	  enable = true;
-  	  alsa.enable = true;
-  	  alsa.support32Bit = true;
-  	  pulse.enable = true;
-  	  jack.enable = true;
-  	};
+    # Configure console keymap
+    console.keyMap = "uk";
 
-  	# Allow unfree packages
-  	nixpkgs.config.allowUnfree = true;
+    # Enable CUPS to print documents.
+    services.printing.enable = true;
 
-  	# Enable the OpenSSH daemon.
-  	services.openssh.enable = true;
+    # Enable sound with pipewire.
+    services.pulseaudio.enable = false;
+    security.rtkit.enable = true;
+    services.pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
+
+    # Allow unfree packages
+    nixpkgs.config.allowUnfree = true;
+
+    # Enable the OpenSSH daemon.
+    services.openssh.enable = true;
   };
 }

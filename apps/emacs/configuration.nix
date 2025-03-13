@@ -4,7 +4,16 @@ with lib;
 
 let cfg = config.localModules.apps;
 in {
-  options.localModules.apps.emacs.enable = mkEnableOption "emacs";
+  imports = [ ./options.nix ];
 
-  config = mkIf cfg.emacs.enable { nixpkgs.overlays = [ (import inputs.emacs-overlay) ]; };
+  config = mkIf cfg.emacs.enable {
+    nixpkgs.overlays = [ (import inputs.emacs-overlay) ];
+    environment.systemPackages = with pkgs; [
+      libtool
+      cmake
+      gnumake
+      gcc
+      automake
+    ];
+  };
 }
