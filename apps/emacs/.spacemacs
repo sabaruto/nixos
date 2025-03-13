@@ -42,22 +42,38 @@ This function should only modify configuration layer settings."
      better-defaults
      emacs-lisp
      git
+     (go :variables
+         go-backend 'lsp
+         go-format-on-save t)
      helm
      lsp
      markdown
      multiple-cursors
+     (nixos :variables
+            nix-backend 'lsp
+            nixos-format-on-save t)
      ;; org
+     protobuf
+     (python :variables
+             python-backend 'lsp
+             python-lsp-server 'pyright
+             python-formatter 'black
+             python-format-on-save t)
+     react
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
-     (python :variables
-             python-backend 'lsp
-             python-lsp-server 'pyright)
+     shell-scripts
+     sql
      spell-checking
      syntax-checking
+     typescript
+     windows-scripts
      version-control
-     treemacs)
-
+     treemacs
+     (yaml :variables
+           yaml-enable-lsp t)
+     unicode-fonts)
 
    ;; List of additional packages that will be installed without being wrapped
    ;; in a layer (generally the packages are installed only and should still be
@@ -147,7 +163,7 @@ It should only modify the values of Spacemacs settings."
    ;; when the current branch is not `develop'. Note that checking for
    ;; new versions works via git commands, thus it calls GitHub services
    ;; whenever you start Emacs. (default nil)
-   dotspacemacs-check-for-update nil
+   dotspacemacs-check-for-update t
 
    ;; If non-nil, a form that evaluates to a package directory. For example, to
    ;; use different package directories for different Emacs versions, set this
@@ -440,7 +456,7 @@ It should only modify the values of Spacemacs settings."
    ;;   :size-limit-kb 1000)
    ;; When used in a plist, `visual' takes precedence over `relative'.
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers t
 
    ;; Code folding method. Possible values are `evil', `origami' and `vimish'.
    ;; (default 'evil)
@@ -531,7 +547,7 @@ It should only modify the values of Spacemacs settings."
    ;; which major modes have whitespace cleanup enabled or disabled
    ;; by default.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup nil
+   dotspacemacs-whitespace-cleanup 'all
 
    ;; If non-nil activate `clean-aindent-mode' which tries to correct
    ;; virtual indentation of simple modes. This can interfere with mode specific
@@ -581,7 +597,8 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  )
+  (setq-default
+   helm-follow-mode-persistent t))
 
 
 (defun dotspacemacs/user-load ()
@@ -598,14 +615,17 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-
-  ;; ---------------------- Keybindings
+  ;; ---------------------- Variables
   (cua-mode)
 
-  (define-key evil-emacs-state-map (kbd "C-q") 'save-buffers-kill-emacs)
-  (define-key evil-emacs-state-map (kbd "C-s") 'save-buffer)
-  (define-key evil-emacs-state-map (kbd "C-z") 'undo-only)
-  (define-key evil-emacs-state-map (kbd "C-y") 'undo-redo)
+  (setq-default
+   backward-forward-mode t
+   windmove-mode t)
+
+  ;; ---------------------- Functions
+  (defun sync-layers-and-config ()
+    (interactive)
+    (dotspacemacs/sync-configuration-layers ()))
 
   (defun reverse-transpose-lines (arg)
     (interactive "^p")
@@ -615,13 +635,24 @@ before packages are loaded."
     (interactive "^p")
     (forward-same-syntax (- arg)))
 
+  (defun reset-home ()
+    (interactive)
+    (spacemacs/home-delete-other-windows)
+    (spacemacs/kill-other-buffers))
+
+  ;; ---------------------- Keybindings
+
   (bind-keys* :map evil-emacs-state-map
               ;; Basic actions
-              ("C-q" . save-buffers-kill-emacs)
-              ("C-s" . save-buffer)
-              ("C-z" . undo-only)
-              ("C-y" . undo-redo)
-              ("C-f" . )
+              ("C-q"    . save-buffers-kill-emacs)
+              ("C-s"    . save-buffer)
+              ("C-z"    . undo-only)
+              ("C-y"    . undo-redo)
+              ("C-S-z"  . undo-redo)
+              ("<f5>"   . sync-layers-and-config) ; syncs layers and user configuration
+              ("C-w"    . kill-this-buffer)
+              ("C-`"    . spacemacs/switch-to-minibuffer-window)
+              ("<f2>"   . lsp-rename)
 
               ;; Simple text editing
               ("M-<up>"   . reverse-transpose-lines)
@@ -631,20 +662,52 @@ before packages are loaded."
               ("C-<left>"  . backward-same-syntax)
 
               ;; Navigating files
-              ("C-o" . helm-find-files)
-              ("C-p" . projectile-command-map)
-              ("C-l" . lsp-keymap-prefix))
+              ("C-o"   . helm-find-files)
+              ("C-p"   . projectile-command-map)
+              ("C-l"   . lsp-keymap-prefix)
+              ("C-f"   . helm-swoop)
+              ("C-S-f" . spacemacs/helm-project-do-Ag)
 
+              ;; lsp
+              ("C-."   . lsp-find-definition)
+              ("C->" . lsp-find-references))
   ;; Mark Ring movement
   (bind-keys* :map backward-forward-mode-map
-              ("M-<right>" . 'backward-forward-next-location)
-              ("M-<left>"  . 'backward-forward-previous-location))
+              ("M-<right>" . backward-forward-next-location)
+              ("M-<left>"  . backward-forward-previous-location))
 
-  ;; ---------------------- Configuration
-  ;; Python
-  (setq-default dotspacemacs-configuration-layers
-                '(
-                  (python :variables python-formatter 'yapf))))
+  ;; Ctrl-k setup
+  (bind-keys* :prefix-map vscode-prefix-map
+              :prefix "C-k"
+              ("C-t" . load-theme)
+              ("C-s" . helm-descbinds)
+              ("C-w" . reset-home))
+  ;; Windows
+  (bind-keys* :prefix-map local-windows-map
+              :prefix "C-x"
+              ("<left>"  . windmove-left)
+              ("<right>" . windmove-right)
+              ("<up>"    . windmove-up)
+              ("<down>"  . windmove-down)
+
+              ("<SPC>"   . delete-other-windows)
+              ("C-w"     . delete-window)
+
+              ("C-<right>" . split-window-right)
+              ("C-<left>"  . split-window-right-and-focus)
+              ("C-<up>"    . split-window-below)
+              ("C-<down>"  . split-window-below-and-focus)
+
+              ("0"  . winum-select-window-0)
+              ("1"  . winum-select-window-1)
+              ("2"  . winum-select-window-2)
+              ("3"  . winum-select-window-3)
+              ("4"  . winum-select-window-4)
+              ("5"  . winum-select-window-5)
+              ("6"  . winum-select-window-6)
+              ("7"  . winum-select-window-7)
+              ("8"  . winum-select-window-8)
+              ("9"  . winum-select-window-9)))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -661,7 +724,7 @@ This function is called at the very end of Spacemacs initialization."
    '(custom-safe-themes
      '("bbb13492a15c3258f29c21d251da1e62f1abb8bbd492386a673dcfab474186af" default))
    '(package-selected-packages
-     '(lsp-pyright code-cells cython-mode helm-pydoc live-py-mode pip-requirements pipenv load-env-vars pippel poetry py-isort pydoc pyenv-mode pythonic pylookup pytest pyvenv sphinx-doc mwim unfill backward-forward auto-yasnippet browse-at-remote code-review emojify deferred a diff-hl eat edit-indirect esh-help eshell-prompt-extras eshell-z flycheck-elsa flycheck-package package-lint flycheck-pos-tip pos-tip flycheck flyspell-correct-helm flyspell-correct forge yaml ghub closql emacsql treepy gh-md git-link git-messenger git-modes git-timemachine gitignore-templates helm-c-yasnippet helm-company company helm-git-grep helm-ls-git helm-lsp lsp-origami origami lsp-treemacs lsp-ui lsp-mode markdown-toc markdown-mode multi-term multi-vterm xref shell-pop smeargle terminal-here treemacs-magit magit with-editor transient magit-section llama vterm yasnippet-snippets yasnippet ws-butler writeroom-mode winum which-key wgrep vundo volatile-highlights vim-powerline vi-tilde-fringe uuidgen undo-fu-session undo-fu treemacs-projectile treemacs-persp treemacs-icons-dired toc-org term-cursor symon symbol-overlay string-inflection string-edit-at-point spacemacs-whitespace-cleanup spacemacs-purpose-popwin spaceline space-doc restart-emacs request rainbow-delimiters quickrun popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nerd-icons nameless multi-line macrostep lorem-ipsum link-hint inspector info+ indent-guide hybrid-mode hungry-delete holy-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-descbinds helm-comint helm-ag google-translate golden-ratio flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-evilified-state evil-escape evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav elisp-demos elisp-def editorconfig dumb-jump drag-stuff dotenv-mode disable-mouse dired-quick-sort diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile all-the-icons aggressive-indent ace-link ace-jump-helm-line)))
+     '(protobuf-mode json-mode json-navigator json-reformat json-snatcher bm company-nixos-options go-eldoc go-fill-struct go-gen-test go-guru go-impl go-rename go-tag go-mode godoctor helm-nixos-options js-doc js2-refactor multiple-cursors livid-mode nix-mode nixos-options nodejs-repl npm-mode prettier-js rjsx-mode skewer-mode js2-mode simple-httpd sql-indent typescript-mode unicode-fonts ucs-utils font-utils persistent-soft pcache web-beautify blacken bmx-mode company-shell fish-mode flycheck-bashate insert-shebang powershell shfmt reformatter yaml-mode yapfify yasnippet-snippets ws-butler writeroom-mode winum which-key wgrep vundo volatile-highlights vim-powerline vi-tilde-fringe unfill undo-fu-session undo-fu treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired toc-org terminal-here term-cursor symon symbol-overlay string-inflection string-edit-at-point sphinx-doc spacemacs-whitespace-cleanup spacemacs-purpose-popwin spaceline space-doc smeargle shell-pop restart-emacs request rainbow-delimiters quickrun pytest pylookup pyenv-mode pydoc py-isort popwin poetry pippel pipenv pip-requirements pcre2el password-generator paradox overseer org-superstar open-junk-file nerd-icons nameless mwim multi-vterm multi-term multi-line markdown-toc macrostep lsp-ui lsp-treemacs lsp-pyright lsp-origami lorem-ipsum live-py-mode link-hint inspector info+ indent-guide hybrid-mode hungry-delete holy-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-git-grep helm-descbinds helm-company helm-comint helm-c-yasnippet helm-ag google-translate golden-ratio gitignore-templates git-timemachine git-modes git-messenger git-link gh-md flyspell-correct-helm flycheck-pos-tip flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-evilified-state evil-escape evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emr elisp-slime-nav elisp-demos elisp-def editorconfig edit-indirect eat dumb-jump drag-stuff dotenv-mode disable-mouse dired-quick-sort diminish diff-hl devdocs define-word cython-mode column-enforce-mode code-review code-cells clean-aindent-mode centered-cursor-mode browse-at-remote backward-forward auto-yasnippet auto-highlight-symbol auto-compile all-the-icons aggressive-indent ace-link ace-jump-helm-line)))
   (custom-set-faces
    ;; custom-set-faces was added by Custom.
    ;; If you edit it by hand, you could mess it up, so be careful.
