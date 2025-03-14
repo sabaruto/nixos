@@ -14,6 +14,7 @@ in {
       gnumake
       gcc
       automake
+      ispell
     ];
   };
 }

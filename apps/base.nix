@@ -8,11 +8,17 @@ in {
     ./options.nix
 
     ./emacs/configuration.nix
+    ./tmux/configuration.nix
     ./steam/configuration.nix
+    ./zsh/configuration.nix
   ];
 
-  config.localModules.apps = {
-      emacs = mkIf cfg.development.enable { enable = true; };
-      steam = mkIf cfg.gaming.enable { enable = true; };
-    };
+  config.localModules.apps = mkMerge [
+    (mkIf cfg.development.enable {
+      emacs.enable = true;
+      tmux.enable = true;
+      zsh.enable = true;
+    })
+    (mkIf cfg.gaming.enable { steam.enable = true; })
+  ];
 }

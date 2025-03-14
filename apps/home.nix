@@ -25,8 +25,6 @@ in {
   ];
 
   config.localModules.apps = mkIf cfg.development.enable {
-    zsh.enable = true;
-    tmux.enable = true;
     micro.enable = true;
     emacs.enable = true;
     git.enable = true;

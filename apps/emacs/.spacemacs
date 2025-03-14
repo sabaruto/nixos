@@ -362,7 +362,7 @@ It should only modify the values of Spacemacs settings."
    ;; another same-purpose window is available. If non-nil, `switch-to-buffer'
    ;; displays the buffer in a same-purpose window even if the buffer can be
    ;; displayed in the current window. (default nil)
-   dotspacemacs-switch-to-buffer-prefers-purpose nil
+   dotspacemacs-switch-to-buffer-prefers-purpose t
 
    ;; Whether side windows (such as those created by treemacs or neotree)
    ;; are kept or minimized by `spacemacs/toggle-maximize-window' (SPC w m).
@@ -666,7 +666,7 @@ before packages are loaded."
               ("C-p"   . projectile-command-map)
               ("C-l"   . lsp-keymap-prefix)
               ("C-f"   . helm-swoop)
-              ("C-S-f" . spacemacs/helm-project-do-Ag)
+              ("C-S-f" . spacemacs/helm-project-do-ag)
 
               ;; lsp
               ("C-."   . lsp-find-definition)
