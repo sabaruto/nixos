@@ -1,12 +1,15 @@
-{ config, pkgs, ... }:
-{
-  imports = [
-    ../../apps/vscode-extensions/golang.nix
-  ];
+{ lib, config, pkgs, ... }:
+let cfg = config.localModules.environments;
+in {
+  imports = [ ./options.nix ];
 
-  home.packages = with pkgs; [
-    # Golang packages
-    goose
-    buf
-  ];
+  config = {
+    home.packages = with pkgs;
+      lib.mkIf cfg.ssm.enable [
+        # Golang packages
+        goose
+        buf
+        gopls
+      ];
+  };
 }

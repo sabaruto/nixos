@@ -8,6 +8,7 @@ in {
     ./options.nix
 
     ./emacs/configuration.nix
+    ./postgres/configuration.nix
     ./tmux/configuration.nix
     ./steam/configuration.nix
     ./zsh/configuration.nix

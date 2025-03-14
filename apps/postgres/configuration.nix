@@ -1,5 +1,9 @@
-{ config, pkgs, ... }: {
-  config.services.postgresql = {
+{ lib, config, pkgs, ... }:
+let cfg = config.localModules.apps;
+in with lib; {
+  options.localModules.apps.postgres.enable = mkEnableOption "Postgres";
+
+  config.services.postgresql = mkIf cfg.postgres.enable {
     enable = true;
     enableTCPIP = true;
     settings.ssl = true;
