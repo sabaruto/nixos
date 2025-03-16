@@ -252,7 +252,9 @@ It should only modify the values of Spacemacs settings."
    ;; `:location' to download the theme package, refer the themes section in
    ;; DOCUMENTATION.org for the full theme specifications.
    dotspacemacs-themes '(spacemacs-dark
-                         spacemacs-light)
+                         spacemacs-light
+                         tango
+                         tango-dark)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
@@ -640,7 +642,7 @@ before packages are loaded."
     (spacemacs/home-delete-other-windows)
     (spacemacs/kill-other-buffers))
 
-  ;; ---------------------- Keybindings
+  ;; ---------------------- Key bindings
 
   (bind-keys* :map evil-emacs-state-map
               ;; Basic actions
@@ -649,8 +651,9 @@ before packages are loaded."
               ("C-z"    . undo-only)
               ("C-y"    . undo-redo)
               ("C-S-z"  . undo-redo)
+              ("C-a"    . mark-whole-buffer)
               ("<f5>"   . sync-layers-and-config) ; syncs layers and user configuration
-              ("C-w"    . kill-this-buffer)
+              ("C-w"    . kill-current-buffer)
               ("C-`"    . spacemacs/switch-to-minibuffer-window)
               ("<f2>"   . lsp-rename)
 
@@ -707,7 +710,11 @@ before packages are loaded."
               ("5"  . winum-select-window-5)
               ("6"  . winum-select-window-6)
               ("8"  . winum-select-window-8)
-              ("9"  . winum-select-window-9)))
+              ("9"  . winum-select-window-9))
+
+  ;; Terminal (vterm)
+  (bind-keys* :map vterm-mode-map
+              ("C-M-v" . vterm-yank)))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.

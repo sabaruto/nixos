@@ -8,6 +8,10 @@ in {
 
   config = mkIf cfg.emacs.enable {
     nixpkgs.overlays = [ (import inputs.emacs-overlay) ];
+    services.emacs = {
+      enable = true;
+      package = pkgs.emacs-unstable;
+    };
     environment.systemPackages = with pkgs; [
       libtool
       cmake
