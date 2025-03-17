@@ -2,7 +2,8 @@
   localModules = {
     development = {
       enable = true;
-      languages = ["nix"];
+      languages = [ "nix" ];
     };
+    environments.ssm.enable = true;
   };
 }

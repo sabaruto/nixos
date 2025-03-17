@@ -44,9 +44,12 @@ This function should only modify configuration layer settings."
      git
      (go :variables
          go-backend 'lsp
-         go-format-on-save t)
+         go-format-on-save t
+         go-tab-width 4)
      helm
-     lsp
+     (lsp :variables
+          lsp-headerline-breadcrumb-enable nil
+          lsp-lens-enable t)
      markdown
      multiple-cursors
      (nixos :variables
@@ -309,7 +312,7 @@ It should only modify the values of Spacemacs settings."
    ;; and TAB or `C-m' and `RET'.
    ;; In the terminal, these pairs are generally indistinguishable, so this only
    ;; works in the GUI. (default nil)
-   dotspacemacs-distinguish-gui-tab nil
+   dotspacemacs-distinguish-gui-tab t
 
    ;; Name of the default layout (default "Default")
    dotspacemacs-default-layout-name "Default"
@@ -467,7 +470,7 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil and `dotspacemacs-activate-smartparens-mode' is also non-nil,
    ;; `smartparens-strict-mode' will be enabled in programming modes.
    ;; (default nil)
-   dotspacemacs-smartparens-strict-mode nil
+   dotspacemacs-smartparens-strict-mode t
 
    ;; If non-nil smartparens-mode will be enabled in programming modes.
    ;; (default t)
@@ -485,7 +488,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil, start an Emacs server if one is not already running.
    ;; (default nil)
-   dotspacemacs-enable-server nil
+   dotspacemacs-enable-server t
 
    ;; Set the emacs server socket location.
    ;; If nil, uses whatever the Emacs default is, otherwise a directory path
@@ -530,7 +533,7 @@ It should only modify the values of Spacemacs settings."
    ;; performance issues, instead of calculating the frame title by
    ;; `spacemacs/title-prepare' all the time.
    ;; (default "%I@%S")
-   dotspacemacs-frame-title-format "%I@%S"
+   dotspacemacs-frame-title-format "%a"
 
    ;; Format specification for setting the icon title format
    ;; (default nil - same as frame-title-format)
@@ -622,7 +625,12 @@ before packages are loaded."
 
   (setq-default
    backward-forward-mode t
-   windmove-mode t)
+   windmove-mode t
+   tab-width 4
+
+   ;; Move window data to the top
+   header-line-format '(:eval (spaceline-ml-main))
+   mode-line-format nil)
 
   ;; ---------------------- Functions
   (defun sync-layers-and-config ()

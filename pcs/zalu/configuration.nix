@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{ ... }: {
   localModules = {
     swapSize = 16 * 1024;
     gpu = "none";
