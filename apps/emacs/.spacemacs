@@ -50,8 +50,7 @@ This function should only modify configuration layer settings."
      (helm :variables
            helm-no-header t)
      (lsp :variables
-          lsp-headerline-breadcrumb-enable nil
-          lsp-lens-enable t)
+          lsp-headerline-breadcrumb-enable nil)
      markdown
      multiple-cursors
      (nixos :variables
@@ -472,7 +471,7 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil and `dotspacemacs-activate-smartparens-mode' is also non-nil,
    ;; `smartparens-strict-mode' will be enabled in programming modes.
    ;; (default nil)
-   dotspacemacs-smartparens-strict-mode t
+   dotspacemacs-smartparens-strict-mode nil
 
    ;; If non-nil smartparens-mode will be enabled in programming modes.
    ;; (default t)
@@ -595,6 +594,7 @@ default it calls `spacemacs/load-spacemacs-env' which loads the environment
 variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
 See the header of this file for more information."
   (spacemacs/load-spacemacs-env)
+  (setenv "LSP_USE_PLISTS" "true")
   )
 
 (defun dotspacemacs/user-init ()
@@ -744,7 +744,7 @@ This function is called at the very end of Spacemacs initialization."
    ;; Your init file should contain only one such instance.
    ;; If there is more than one, they won't work right.
    '(custom-safe-themes
-     '("bbb13492a15c3258f29c21d251da1e62f1abb8bbd492386a673dcfab474186af" default))
+     '("7fd8b914e340283c189980cd1883dbdef67080ad1a3a9cc3df864ca53bdc89cf" "bbb13492a15c3258f29c21d251da1e62f1abb8bbd492386a673dcfab474186af" default))
    '(package-selected-packages
      '(protobuf-mode json-mode json-navigator json-reformat json-snatcher bm company-nixos-options go-eldoc go-fill-struct go-gen-test go-guru go-impl go-rename go-tag go-mode godoctor helm-nixos-options js-doc js2-refactor multiple-cursors livid-mode nix-mode nixos-options nodejs-repl npm-mode prettier-js rjsx-mode skewer-mode js2-mode simple-httpd sql-indent typescript-mode unicode-fonts ucs-utils font-utils persistent-soft pcache web-beautify blacken bmx-mode company-shell fish-mode flycheck-bashate insert-shebang powershell shfmt reformatter yaml-mode yapfify yasnippet-snippets ws-butler writeroom-mode winum which-key wgrep vundo volatile-highlights vim-powerline vi-tilde-fringe unfill undo-fu-session undo-fu treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired toc-org terminal-here term-cursor symon symbol-overlay string-inflection string-edit-at-point sphinx-doc spacemacs-whitespace-cleanup spacemacs-purpose-popwin spaceline space-doc smeargle shell-pop restart-emacs request rainbow-delimiters quickrun pytest pylookup pyenv-mode pydoc py-isort popwin poetry pippel pipenv pip-requirements pcre2el password-generator paradox overseer org-superstar open-junk-file nerd-icons nameless mwim multi-vterm multi-term multi-line markdown-toc macrostep lsp-ui lsp-treemacs lsp-pyright lsp-origami lorem-ipsum live-py-mode link-hint inspector info+ indent-guide hybrid-mode hungry-delete holy-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-git-grep helm-descbinds helm-company helm-comint helm-c-yasnippet helm-ag google-translate golden-ratio gitignore-templates git-timemachine git-modes git-messenger git-link gh-md flyspell-correct-helm flycheck-pos-tip flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-evilified-state evil-escape evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emr elisp-slime-nav elisp-demos elisp-def editorconfig edit-indirect eat dumb-jump drag-stuff dotenv-mode disable-mouse dired-quick-sort diminish diff-hl devdocs define-word cython-mode column-enforce-mode code-review code-cells clean-aindent-mode centered-cursor-mode browse-at-remote backward-forward auto-yasnippet auto-highlight-symbol auto-compile all-the-icons aggressive-indent ace-link ace-jump-helm-line)))
   (custom-set-faces
