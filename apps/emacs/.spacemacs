@@ -46,7 +46,9 @@ This function should only modify configuration layer settings."
          go-backend 'lsp
          go-format-on-save t
          go-tab-width 4)
-     helm
+     helpful
+     (helm :variables
+           helm-no-header t)
      (lsp :variables
           lsp-headerline-breadcrumb-enable nil
           lsp-lens-enable t)
@@ -86,7 +88,7 @@ This function should only modify configuration layer settings."
    ;; `dotspacemacs/user-config'. To use a local version of a package, use the
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '( backward-forward )
+   dotspacemacs-additional-packages '()
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -149,7 +151,7 @@ It should only modify the values of Spacemacs settings."
    ;; Setting this >= 1 MB should increase performance for lsp servers
    ;; in emacs 27.
    ;; (default (* 1024 1024))
-   dotspacemacs-read-process-output-max (* 1024 1024)
+   dotspacemacs-read-process-output-max (* (* 1024 1024) 4)
 
    ;; If non-nil then Spacelpa repository is the primary source to install
    ;; a locked version of packages. If nil then Spacemacs will install the
@@ -360,7 +362,7 @@ It should only modify the values of Spacemacs settings."
    ;; `top-center', `bottom-center', `top-left-corner', `top-right-corner',
    ;; `top-right-corner', `bottom-left-corner' or `bottom-right-corner'
    ;; (default 'bottom)
-   dotspacemacs-which-key-position 'bottom
+   dotspacemacs-which-key-position '(posframe . center)
 
    ;; Control where `switch-to-buffer' displays the buffer. If nil,
    ;; `switch-to-buffer' displays the buffer in the current window even if
@@ -441,7 +443,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Show the scroll bar while scrolling. The auto hide time can be configured
    ;; by setting this variable to a number. (default t)
-   dotspacemacs-scroll-bar-while-scrolling t
+   dotspacemacs-scroll-bar-while-scrolling nil
 
    ;; Control line numbers activation.
    ;; If set to `t', `relative' or `visual' then line numbers are enabled in all
@@ -586,7 +588,6 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil then byte-compile some of Spacemacs files.
    dotspacemacs-byte-compile nil))
-
 (defun dotspacemacs/user-env ()
   "Environment variables setup.
 This function defines the environment variables for your Emacs session. By
@@ -611,7 +612,8 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 This function is called only while dumping Spacemacs configuration. You can
 `require' or `load' the libraries of your choice that will be included in the
 dump."
-  )
+  (add-to-list 'load-path "~/nixos/apps/emacs/packages/")
+  (require 'which-key-posframe))
 
 
 (defun dotspacemacs/user-config ()
@@ -622,15 +624,18 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   ;; ---------------------- Variables
   (cua-mode)
+  (which-key-posframe-mode)
 
   (setq-default
-   backward-forward-mode t
    windmove-mode t
    tab-width 4
 
    ;; Move window data to the top
    header-line-format '(:eval (spaceline-ml-main))
-   mode-line-format nil)
+   mode-line-format nil
+
+   ;; Move minibuffer to the top
+   1on1-minibuffer-frame-top/bottom 1)
 
   ;; ---------------------- Functions
   (defun sync-layers-and-config ()
@@ -651,7 +656,6 @@ before packages are loaded."
     (spacemacs/kill-other-buffers))
 
   ;; ---------------------- Key bindings
-
   (bind-keys* :map evil-emacs-state-map
               ;; Basic actions
               ("C-q"    . save-buffers-kill-emacs)
@@ -668,6 +672,7 @@ before packages are loaded."
               ;; Simple text editing
               ("M-<up>"   . reverse-transpose-lines)
               ("M-<down>" . transpose-lines)
+              ("C-/"      . comment-or-uncomment-region)
 
               ("C-<right>" . forward-same-syntax)
               ("C-<left>"  . backward-same-syntax)
@@ -677,15 +682,16 @@ before packages are loaded."
               ("C-p"   . projectile-command-map)
               ("C-l"   . lsp-keymap-prefix)
               ("C-f"   . helm-swoop)
-              ("C-S-f" . spacemacs/helm-project-do-ag)
+              ("C-S-f" . spacemacs/helm-project-smart-do-search)
 
               ;; lsp
               ("C-."   . lsp-find-definition)
-              ("C->" . lsp-find-references))
+              ("C->"   . lsp-find-references))
+
   ;; Mark Ring movement
   (bind-keys* :map evil-emacs-state-map
-              ("M-<right>" . backward-forward-next-location)
-              ("M-<left>"  . backward-forward-previous-location))
+              ("M-<right>" . evil-jump-forward)
+              ("M-<left>"  . evil-jump-backward))
 
   ;; Ctrl-k setup
   (bind-keys* :prefix-map vscode-prefix-map
@@ -693,6 +699,7 @@ before packages are loaded."
               ("C-t" . load-theme)
               ("C-s" . helm-descbinds)
               ("C-w" . reset-home))
+
   ;; Windows
   (bind-keys* :prefix-map local-windows-map
               :prefix "C-x"
