@@ -32,7 +32,7 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(html
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -75,6 +75,7 @@ This function should only modify configuration layer settings."
      windows-scripts
      version-control
      treemacs
+     themes-megapack
      (yaml :variables
            yaml-enable-lsp t)
      unicode-fonts)
@@ -150,7 +151,7 @@ It should only modify the values of Spacemacs settings."
    ;; Setting this >= 1 MB should increase performance for lsp servers
    ;; in emacs 27.
    ;; (default (* 1024 1024))
-   dotspacemacs-read-process-output-max (* (* 1024 1024) 4)
+   dotspacemacs-read-process-output-max (* (* 1024 1024) 32)
 
    ;; If non-nil then Spacelpa repository is the primary source to install
    ;; a locked version of packages. If nil then Spacemacs will install the
@@ -295,6 +296,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; The leader key accessible in `emacs state' and `insert state'
    ;; (default "M-m")
+
    dotspacemacs-emacs-leader-key "M-m"
 
    ;; Major mode leader key is a shortcut key which is the equivalent of
@@ -320,7 +322,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil the default layout name is displayed in the mode-line.
    ;; (default nil)
-   dotspacemacs-display-default-layout nil
+   dotspacemacs-display-default-layout t
 
    ;; If non-nil then the last auto saved layouts are resumed automatically upon
    ;; start. (default nil)
@@ -333,7 +335,7 @@ It should only modify the values of Spacemacs settings."
    ;; Size (in MB) above which spacemacs will prompt to open the large file
    ;; literally to avoid performance issues. Opening a file literally means that
    ;; no major mode or minor modes are active. (default is 1)
-   dotspacemacs-large-file-size 1
+   dotspacemacs-large-file-size 4
 
    ;; Location where to auto-save files. Possible values are `original' to
    ;; auto-save the file in-place, `cache' to auto-save the file to another
@@ -604,7 +606,8 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq-default
-   helm-follow-mode-persistent t))
+   helm-follow-mode-persistent t
+   lsp-pyright-langserver-command "basedpyright"))
 
 
 (defun dotspacemacs/user-load ()
@@ -612,9 +615,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 This function is called only while dumping Spacemacs configuration. You can
 `require' or `load' the libraries of your choice that will be included in the
 dump."
-  (add-to-list 'load-path "~/nixos/apps/emacs/packages/")
   (require 'which-key-posframe))
-
 
 (defun dotspacemacs/user-config ()
   "Configuration for user code:
@@ -625,17 +626,19 @@ before packages are loaded."
   ;; ---------------------- Variables
   (cua-mode)
   (which-key-posframe-mode)
+  (auto-save-mode)
 
   (setq-default
    windmove-mode t
    tab-width 4
 
+
    ;; Move window data to the top
    header-line-format '(:eval (spaceline-ml-main))
    mode-line-format nil
 
-   ;; Move minibuffer to the top
-   1on1-minibuffer-frame-top/bottom 1)
+   ;; Final newline
+   require-final-newline t)
 
   ;; ---------------------- Functions
   (defun sync-layers-and-config ()
@@ -645,10 +648,6 @@ before packages are loaded."
   (defun reverse-transpose-lines (arg)
     (interactive "^p")
     (transpose-lines (- arg)))
-
-  (defun backward-same-syntax (arg)
-    (interactive "^p")
-    (forward-same-syntax (- arg)))
 
   (defun reset-home ()
     (interactive)
@@ -670,12 +669,10 @@ before packages are loaded."
               ("<f2>"   . lsp-rename)
 
               ;; Simple text editing
-              ("M-<up>"   . reverse-transpose-lines)
-              ("M-<down>" . transpose-lines)
               ("C-/"      . comment-or-uncomment-region)
 
-              ("C-<right>" . forward-same-syntax)
-              ("C-<left>"  . backward-same-syntax)
+              ("C-<left>"  . backward-word)
+              ("C-<right>" . forward-word)
 
               ;; Navigating files
               ("C-o"   . helm-find-files)
@@ -686,14 +683,15 @@ before packages are loaded."
 
               ;; lsp
               ("C-."   . lsp-find-definition)
-              ("C->"   . lsp-find-references))
+              ("C->"   . lsp-find-references)
 
-  ;; Mark Ring movement
-  (bind-keys* :map evil-emacs-state-map
-              ("M-<right>" . evil-jump-forward)
-              ("M-<left>"  . evil-jump-backward))
+              ;; mark ring movement
+              ("M-<right>" . forward-sexp)
+              ("M-<left>"  . backward-sexp)
+              ("M-<up>"    . sp-up-sexp)
+              ("M-<down>"  . sp-backward-down-sexp))
 
-  ;; Ctrl-k setup
+  ;; Ctrl-k setdown
   (bind-keys* :prefix-map vscode-prefix-map
               :prefix "C-k"
               ("C-t" . load-theme)
@@ -727,9 +725,18 @@ before packages are loaded."
               ("8"  . winum-select-window-8)
               ("9"  . winum-select-window-9))
 
-  ;; Terminal (vterm)
-  (bind-keys* :map vterm-mode-map
-              ("C-M-v" . vterm-yank)))
+  (unbind-key "M-v" cua--cua-keys-keymap)
+  (bind-keys* :prefix-map local-movement-map
+              :prefix "M-v"
+              ("a"    . sp-backward-parallel-sexp)
+              ("f"    . sp-forward-parallel-sexp)
+              ("d"    . sp-down-sexp)
+              ("s"    . sp-backward-up-sexp)))
+
+
+;; Terminal (vterm)
+;; (bind-keys* :map vterm-mode-map
+;;             ("C-M-v" . vterm-yank)))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -746,11 +753,11 @@ This function is called at the very end of Spacemacs initialization."
    '(custom-safe-themes
      '("7fd8b914e340283c189980cd1883dbdef67080ad1a3a9cc3df864ca53bdc89cf" "bbb13492a15c3258f29c21d251da1e62f1abb8bbd492386a673dcfab474186af" default))
    '(package-selected-packages
-     '(protobuf-mode json-mode json-navigator json-reformat json-snatcher bm company-nixos-options go-eldoc go-fill-struct go-gen-test go-guru go-impl go-rename go-tag go-mode godoctor helm-nixos-options js-doc js2-refactor multiple-cursors livid-mode nix-mode nixos-options nodejs-repl npm-mode prettier-js rjsx-mode skewer-mode js2-mode simple-httpd sql-indent typescript-mode unicode-fonts ucs-utils font-utils persistent-soft pcache web-beautify blacken bmx-mode company-shell fish-mode flycheck-bashate insert-shebang powershell shfmt reformatter yaml-mode yapfify yasnippet-snippets ws-butler writeroom-mode winum which-key wgrep vundo volatile-highlights vim-powerline vi-tilde-fringe unfill undo-fu-session undo-fu treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired toc-org terminal-here term-cursor symon symbol-overlay string-inflection string-edit-at-point sphinx-doc spacemacs-whitespace-cleanup spacemacs-purpose-popwin spaceline space-doc smeargle shell-pop restart-emacs request rainbow-delimiters quickrun pytest pylookup pyenv-mode pydoc py-isort popwin poetry pippel pipenv pip-requirements pcre2el password-generator paradox overseer org-superstar open-junk-file nerd-icons nameless mwim multi-vterm multi-term multi-line markdown-toc macrostep lsp-ui lsp-treemacs lsp-pyright lsp-origami lorem-ipsum live-py-mode link-hint inspector info+ indent-guide hybrid-mode hungry-delete holy-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-git-grep helm-descbinds helm-company helm-comint helm-c-yasnippet helm-ag google-translate golden-ratio gitignore-templates git-timemachine git-modes git-messenger git-link gh-md flyspell-correct-helm flycheck-pos-tip flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-evilified-state evil-escape evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emr elisp-slime-nav elisp-demos elisp-def editorconfig edit-indirect eat dumb-jump drag-stuff dotenv-mode disable-mouse dired-quick-sort diminish diff-hl devdocs define-word cython-mode column-enforce-mode code-review code-cells clean-aindent-mode centered-cursor-mode browse-at-remote backward-forward auto-yasnippet auto-highlight-symbol auto-compile all-the-icons aggressive-indent ace-link ace-jump-helm-line)))
+     '(add-node-modules-path company-web web-completion-data counsel-css counsel swiper ivy emmet-mode helm-css-scss impatient-mode htmlize pug-mode sass-mode haml-mode scss-mode slim-mode tagedit web-mode afternoon-theme alect-themes ample-theme ample-zen-theme anti-zenburn-theme apropospriate-theme badwolf-theme birds-of-paradise-plus-theme bubbleberry-theme busybee-theme cherry-blossom-theme chocolate-theme clues-theme color-theme-sanityinc-solarized color-theme-sanityinc-tomorrow cyberpunk-theme dakrone-theme darkmine-theme darkokai-theme darktooth-theme django-theme doom-themes dracula-theme ef-themes espresso-theme exotica-theme eziam-themes farmhouse-themes flatland-theme flatui-theme gandalf-theme gotham-theme grandshell-theme gruber-darker-theme gruvbox-theme hc-zenburn-theme hemisu-theme heroku-theme inkpot-theme ir-black-theme jazz-theme jbeans-theme kaolin-themes light-soap-theme lush-theme madhat2r-theme material-theme minimal-theme modus-themes moe-theme molokai-theme monochrome-theme monokai-theme mustang-theme naquadah-theme noctilux-theme obsidian-theme occidental-theme oldlace-theme omtose-phellack-themes organic-green-theme phoenix-dark-mono-theme phoenix-dark-pink-theme planet-theme professional-theme purple-haze-theme railscasts-theme rebecca-theme reverse-theme seti-theme smyx-theme soft-charcoal-theme soft-morning-theme soft-stone-theme solarized-theme soothe-theme autothemer spacegray-theme subatomic-theme subatomic256-theme sublime-themes sunny-day-theme tango-2-theme tango-plus-theme tangotango-theme tao-theme toxi-theme twilight-anti-bright-theme twilight-bright-theme twilight-theme ujelly-theme underwater-theme white-sand-theme zen-and-art-theme zenburn-theme zonokai-emacs protobuf-mode json-mode json-navigator json-reformat json-snatcher bm company-nixos-options go-eldoc go-fill-struct go-gen-test go-guru go-impl go-rename go-tag go-mode godoctor helm-nixos-options js-doc js2-refactor multiple-cursors livid-mode nix-mode nixos-options nodejs-repl npm-mode prettier-js rjsx-mode skewer-mode js2-mode simple-httpd sql-indent typescript-mode unicode-fonts ucs-utils font-utils persistent-soft pcache web-beautify blacken bmx-mode company-shell fish-mode flycheck-bashate insert-shebang powershell shfmt reformatter yaml-mode yapfify yasnippet-snippets ws-butler writeroom-mode winum which-key wgrep vundo volatile-highlights vim-powerline vi-tilde-fringe unfill undo-fu-session undo-fu treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired toc-org terminal-here term-cursor symon symbol-overlay string-inflection string-edit-at-point sphinx-doc spacemacs-whitespace-cleandown spacemacs-purpose-popwin spaceline space-doc smeargle shell-pop restart-emacs request rainbow-delimiters quickrun pytest pylookdown pyenv-mode pydoc py-isort popwin poetry pippel pipenv pip-requirements pcre2el password-generator paradox overseer org-sdownerstar open-junk-file nerd-icons nameless mwim multi-vterm multi-term multi-line markdown-toc macrostep lsp-ui lsp-treemacs lsp-pyright lsp-origami lorem-ipsum live-py-mode link-hint inspector info+ indent-guide hybrid-mode hungry-delete holy-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-git-grep helm-descbinds helm-company helm-comint helm-c-yasnippet helm-ag google-translate golden-ratio gitignore-templates git-timemachine git-modes git-messenger git-link gh-md flyspell-correct-helm flycheck-pos-tip flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-evilified-state evil-escape evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emr elisp-slime-nav elisp-demos elisp-def editorconfig edit-indirect eat dumb-jump drag-stuff dotenv-mode disable-mouse dired-quick-sort diminish diff-hl devdocs define-word cython-mode column-enforce-mode code-review code-cells clean-aindent-mode centered-cursor-mode browse-at-remote backward-forward auto-yasnippet auto-highlight-symbol auto-compile all-the-icons aggressive-indent ace-link ace-jump-helm-line)))
   (custom-set-faces
    ;; custom-set-faces was added by Custom.
    ;; If you edit it by hand, you could mess it up, so be careful.
    ;; Your init file should contain only one such instance.
    ;; If there is more than one, they won't work right.
-   )
+   '(default ((t (:background nil)))))
   )
