@@ -6,6 +6,6 @@ in {
 
   config = lib.mkIf config.localModules.environments.ssm.enable {
     localModules.apps.postgres.enable = true;
-    environment.systemPackages = with pkgs; [ go grpcurl gnumake xo ];
+    environment.systemPackages = with pkgs; [ go grpcurl gnumake xo sqls ];
   };
 }

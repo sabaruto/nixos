@@ -64,6 +64,7 @@ This function should only modify configuration layer settings."
              python-formatter 'black
              python-format-on-save t)
      react
+     restclient
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)

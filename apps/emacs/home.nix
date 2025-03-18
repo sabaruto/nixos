@@ -12,5 +12,9 @@ in {
       package = pkgs.emacs-unstable;
     };
     home.file = { ".spacemacs".source = ./.spacemacs; };
+
+    spacemacsActivation = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      run ln -s $VERBOSE_ARG ${toPath ./.spacemacs} $HOME
+    '';
   };
 }
