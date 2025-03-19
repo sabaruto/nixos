@@ -11,10 +11,14 @@ in {
       enable = true;
       package = pkgs.emacs-unstable;
     };
-    home.file = { ".spacemacs".source = ./.spacemacs; };
+    # home.file = { ".spacemacs".source = ./.spacemacs; };
 
-    spacemacsActivation = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      run ln -s $VERBOSE_ARG ${toPath ./.spacemacs} $HOME
-    '';
+    home.activation = {
+      spacemacsActivation = hm.dag.entryAfter [ "writeBoundary" ] ''
+        run ln -fs $VERBOSE_ARG ${builtins.toPath ./.spacemacs} $HOME
+        run ln -fs $VERBOSE_ARG ${builtins.toPath ./spacemacs/.} $HOME/.emacs.d/
+
+      '';
+    };
   };
 }
