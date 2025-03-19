@@ -2,10 +2,10 @@
   description = "Local configuration flake";
 
   inputs = {
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 

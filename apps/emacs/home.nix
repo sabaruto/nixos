@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ inputs, lib, config, pkgs, ... }:
 
 with lib;
 
@@ -11,13 +11,13 @@ in {
       enable = true;
       package = pkgs.emacs-unstable;
     };
-    # home.file = { ".spacemacs".source = ./.spacemacs; };
 
     home.activation = {
       spacemacsActivation = hm.dag.entryAfter [ "writeBoundary" ] ''
-        run ln -fs $VERBOSE_ARG ${builtins.toPath ./.spacemacs} $HOME
-        run ln -fs $VERBOSE_ARG ${builtins.toPath ./spacemacs/.} $HOME/.emacs.d/
+        ln -sf ~/nixos/apps/emacs/.spacemacs ~/.spacemacs
 
+        run ${pkgs.git}/bin/git clone https://github.com/syl20bnr/spacemacs /tmp/spacemacs || pushd /tmp/spacemacs; ${pkgs.git}/bin/git pull; popd
+        run ${pkgs.rsync}/bin/rsync -ar /tmp/spacemacs/ ~/.emacs.d/
       '';
     };
   };

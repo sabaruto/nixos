@@ -19,6 +19,7 @@ in {
       gcc
       automake
       ispell
+      rsync
     ];
   };
 }

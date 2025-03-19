@@ -646,10 +646,6 @@ before packages are loaded."
     (interactive)
     (dotspacemacs/sync-configuration-layers ()))
 
-  (defun reverse-transpose-lines (arg)
-    (interactive "^p")
-    (transpose-lines (- arg)))
-
   (defun reset-home ()
     (interactive)
     (spacemacs/home-delete-other-windows)
