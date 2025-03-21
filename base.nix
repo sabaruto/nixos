@@ -84,7 +84,16 @@ in {
       # System configurations checkers
       fwupd
       rPackages.pcutils
+      wget
+      gnupg
+      guix
     ];
+
+    services.guix = {
+      enable = true;
+      gc.enable = true;
+      publish.enable = true;
+    };
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

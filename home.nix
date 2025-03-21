@@ -6,7 +6,7 @@
     (./pcs + "/${hostname}/home-configuration.nix")
 
     # configuration used for both system and user
-    (./pcs + "/${hostname}/global-configuration.nix")   
+    (./pcs + "/${hostname}/global-configuration.nix")
 
     # environments
     ./environments/home.nix
