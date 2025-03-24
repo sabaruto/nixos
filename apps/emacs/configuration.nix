@@ -1,9 +1,17 @@
-{ lib, inputs, config, pkgs, ... }:
+{
+  lib,
+  inputs,
+  config,
+  pkgs,
+  ...
+}:
 
 with lib;
 
-let cfg = config.localModules.apps;
-in {
+let
+  cfg = config.localModules.apps;
+in
+{
   imports = [ ./options.nix ];
 
   config = mkIf cfg.emacs.enable {

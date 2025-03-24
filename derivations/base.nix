@@ -1,7 +1,6 @@
-{ ... }: 
-
+{ ... }:
 {
-	imports = [
-		./kernel.nix
-	];
+  imports = [
+    ./kernel.nix
+  ];
 }
