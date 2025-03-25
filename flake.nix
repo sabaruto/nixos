@@ -85,5 +85,15 @@
           ];
         };
       };
+
+      homeConftions = {
+        theodore = home-manager.lib.homeManagerConfiguration {
+          inherit nixpkgs inputs;
+
+          modules = [
+            ./home-manager/theodore/home.nix
+          ];
+        };
+      };
     };
 }
