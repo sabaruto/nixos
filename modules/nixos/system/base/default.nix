@@ -1,30 +1,13 @@
 # The base configuration for all machines
 
-{ lib, username, hostname, stateVersion, config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 
 with lib;
 
 let cfg = config.localModules;
 in {
   imports = [
-    # configuration arguments
-    (./pcs + "/${hostname}/configuration.nix")
-
-    # configurations used for both system and home-manager
-    (./pcs + "/${hostname}/global-configuration.nix")
-
-    # hardware arguments
-    (./pcs + "/${hostname}/hardware-configuration.nix")
-
-    ./desktop-environment/base.nix
-
-    ./gpu/base.nix
-
-    ./derivations/base.nix
-
-    ./environments/base.nix
-
-    ./apps/base.nix
+    ./modules/nixos
   ];
 
   options.localModules = {
@@ -60,8 +43,8 @@ in {
   };
 
   config = {
-    networking.hostName = hostname;
-    system.stateVersion = stateVersion;
+    networking.hostName = cfg.hostname;
+    system.stateVersion = cfg.stateVersion;
 
     boot.kernelPackages = mkIf (cfg.linuxVersion != null) cfg.linuxVersion;
 
@@ -86,18 +69,8 @@ in {
       rPackages.pcutils
       wget
       gnupg
-      guix
       usbutils
-      alvr
     ];
-
-    services.guix = {
-      enable = true;
-      gc.enable = true;
-      publish.enable = true;
-    };
-
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
     # Limit the number of generations to keep
     boot.loader.systemd-boot.configurationLimit = 10;

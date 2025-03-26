@@ -18,7 +18,7 @@ in {
 
     # text editors
     ./micro/home.nix
-    ./emacs/home.nix
+#    ./emacs/home.nix
 
     # language specific
     ./nix/home.nix
@@ -26,7 +26,7 @@ in {
 
   config.localModules.apps = mkIf cfg.development.enable {
     micro.enable = true;
-    emacs.enable = true;
+#    emacs.enable = true;
     git.enable = true;
     kitty.enable = true;
 

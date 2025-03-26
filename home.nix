@@ -1,28 +1,10 @@
-{ lib, username, hostname, stateVersion, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 
 {
-  imports = [
-    # local configuration
-    (./pcs + "/${hostname}/home-configuration.nix")
-
-    # configuration used for both system and user
-    (./pcs + "/${hostname}/global-configuration.nix")
-
-    # environments
-    ./environments/home.nix
-
-    # apps
-    ./apps/home.nix
-    ./apps/options.nix
-
-    # packaged apps
-    ./derivations/home.nix
-  ];
-
   home = {
-    username = username;
-    homeDirectory = lib.mkDefault "/home/${username}";
-    inherit stateVersion;
+    username = "dosia";
+    homeDirectory = lib.mkDefault "/home/dosia";
+    stateVersion = config.localModules.stateVersion;
 
     packages = with pkgs; [
       # Password manager
@@ -50,6 +32,15 @@
       tree
       openssl
     ];
+
+    localModules = {
+      environments.ssm.enable = true;
+
+      development = {
+        enable = true;
+        languages = [ "nix" ];
+      };
+    };
   };
   programs.home-manager.enable = true;
 }

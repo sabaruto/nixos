@@ -7,7 +7,7 @@ in {
   imports = [
     ./options.nix
 
-    ./emacs/configuration.nix
+#    ./emacs/configuration.nix
     ./postgres/configuration.nix
     ./tmux/configuration.nix
     ./steam/configuration.nix
@@ -16,7 +16,7 @@ in {
 
   config.localModules.apps = mkMerge [
     (mkIf cfg.development.enable {
-      emacs.enable = true;
+      # emacs.enable = true;
       tmux.enable = true;
       zsh.enable = true;
     })

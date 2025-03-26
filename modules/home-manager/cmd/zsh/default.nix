@@ -15,7 +15,7 @@ in {
 
       oh-my-zsh = {
         enable = true;
-        plugins = [ "git" "dotenv" "bitwarden" ];
+        plugins = [ "git" "dotenv" "1password" ];
 
         theme = "robbyrussell";
       };
