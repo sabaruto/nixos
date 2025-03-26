@@ -35,6 +35,7 @@
 
     localModules = {
       environments.ssm.enable = true;
+      apps.nvim.enable = true;
 
       development = {
         enable = true;

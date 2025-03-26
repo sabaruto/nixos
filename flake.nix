@@ -15,6 +15,7 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nixd = {
       url = "github:nix-community/nixd";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,8 +27,10 @@
       self,
       nixpkgs,
       home-manager,
+      nixvim,
       ...
     }@inputs:
+    let inherit (self) outputs; in
     {
       nixosModules = import ./modules/nixos;
       homeManagerModules = import ./modules/home-manager;
@@ -62,6 +65,7 @@
 
         leano = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs = { inherit inputs outputs; };
 
           modules = [
             # configurations entrypoint
@@ -71,7 +75,22 @@
         };
       };
       homeConfigurations = {
-        dosia = {};
+        theodore = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          modules = [
+            nixvim.homeManagerModules.nixvim
+            ../packages/nvim.nix
+           ./home.nix
+          ];
+        };
+
+        dosia = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x68_64-linux;
+          modules = [
+            nixvim.homeManagerModules.nixvim
+            ./home-manager/dosia/home.nix
+          ];
+        };
       };
     };
 }

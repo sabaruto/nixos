@@ -6,10 +6,6 @@ with lib;
 
 let cfg = config.localModules;
 in {
-  imports = [
-    ./modules/nixos
-  ];
-
   options.localModules = {
     name = mkOption {
       type = types.str;
@@ -48,7 +44,7 @@ in {
 
     boot.kernelPackages = mkIf (cfg.linuxVersion != null) cfg.linuxVersion;
 
-    users.users."${username}" = {
+    users.users."${cfg.name}" = {
       isNormalUser = true;
       description = "Theodosia Kalu";
       extraGroups = [ "networkmanager" "wheel" ];
@@ -70,6 +66,7 @@ in {
       wget
       gnupg
       usbutils
+      home-manager
     ];
 
     # Limit the number of generations to keep

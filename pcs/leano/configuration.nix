@@ -1,8 +1,12 @@
-{ ... }:
+{ outputs, ... }:
 
 {
+  imports = [ 
+    outputs.nixosModules
+    ./hardware-configuration.nix
+  ];
   localModules = {
-    username = "dosia";
+    name = "dosia";
     hostname = "leano";
     stateVersion = "24.11";
     
@@ -13,7 +17,6 @@
 
     apps = {
       steam.enable = true;
-      nvim.enable = true;
     };
   };
 }
