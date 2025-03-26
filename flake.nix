@@ -85,7 +85,9 @@
         };
 
         dosia = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x68_64-linux;
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+
           modules = [
             nixvim.homeManagerModules.nixvim
             ./home-manager/dosia/home.nix

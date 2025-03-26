@@ -79,6 +79,13 @@ in {
       options = "--delete-older-than 1w";
     };
 
+    nix = {
+      package = pkgs.nixVersions.git;
+      extraOptions = ''
+        experimental-features = nix-command flakes
+      '';
+    };
+
     # Optimise storage
     nix.settings.auto-optimise-store = true;
 

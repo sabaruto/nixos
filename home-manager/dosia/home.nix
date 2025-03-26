@@ -1,10 +1,14 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, outputs, ... }:
 
 {
+  imports = [
+    outputs.homeManagerModules
+  ];
   home = {
     username = "dosia";
     homeDirectory = lib.mkDefault "/home/dosia";
-    stateVersion = config.localModules.stateVersion;
+    stateVersion = "24.11";
+    
 
     packages = with pkgs; [
       # Password manager
@@ -32,16 +36,21 @@
       tree
       openssl
     ];
+  };
+  localModules = {
+    apps = { 
+      nvim.enable = true;
+      kitty.enable = true;
+      zsh.enable = true;
+      git.enable = true;
+    };
 
-    localModules = {
-      environments.ssm.enable = true;
-      apps.nvim.enable = true;
-
-      development = {
-        enable = true;
-        languages = [ "nix" ];
-      };
+    development = {
+      enable = true;
+      languages = [ "nix" ];
     };
   };
+
+  nixpkgs.config.allowUnfree = true;
   programs.home-manager.enable = true;
 }

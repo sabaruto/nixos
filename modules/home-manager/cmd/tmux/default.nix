@@ -4,7 +4,6 @@ with lib;
 
 let cfg = config.localModules.apps;
 in {
-  imports = [ ./options.nix ];
 
   options.localModules.apps.tmux.enable = mkEnableOption "tmux";
 

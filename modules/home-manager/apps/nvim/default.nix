@@ -7,12 +7,12 @@
 with lib;
 
 let
-  cfg = config.localModules.apps.nvim;
+  cfg = config.localModules.apps;
 in
 {
   options.localModules.apps.nvim.enable = mkEnableOption "nvim";
 
-  config = config.mkIf cfg.nvim.enable {
+  config = mkIf cfg.nvim.enable {
   home.packages = with pkgs; [
     # creating packages from URLs
     nix-init
@@ -47,9 +47,6 @@ in
       noice.enable = true;
       barbecue.enable = true;
       project-nvim.enable = true;
-
-      # Formatting keymaps for zmk and qmk
-      qmk.enable = true;
 
       snacks = {
         enable = true;
