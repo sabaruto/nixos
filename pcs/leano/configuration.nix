@@ -17,7 +17,6 @@
 
     apps = {
       steam.enable = true;
-      zen.enable = true;
     };
   };
 }

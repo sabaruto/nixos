@@ -43,6 +43,7 @@
       kitty.enable = true;
       zsh.enable = true;
       git.enable = true;
+      zen.enable = true;
     };
 
     development = {
