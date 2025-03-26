@@ -13,154 +13,205 @@ in
   options.localModules.apps.nvim.enable = mkEnableOption "nvim";
 
   config = mkIf cfg.nvim.enable {
-  home.packages = with pkgs; [
-    # creating packages from URLs
-    nix-init
+    home.packages = with pkgs; [
+      # creating packages from URLs
+      nix-init
 
-    # find hash of packages
-    nix-prefetch
+      # find hash of packages
+      nix-prefetch
 
-    # nix formatter
-    nixfmt-rfc-style
-    nixd
+      # nix formatter
+      nixfmt-rfc-style
+      nixd
 
-    # fuzzy search
-    fzf
-    fd
+      # lua language server
+      lua
+      lua-language-server
 
-    # grep improvement
-    ripgrep
-  ];
+      # fuzzy search
+      fzf
+      fd
 
-  programs.nixvim = {
-    enable = true;
+      # grep improvement
+      ripgrep
 
-    clipboard.register="unnamedplus";
+      # fonts
+      nerd-fonts.fira-code
+      nerd-fonts.droid-sans-mono
 
-    plugins = {
-      lualine.enable = true;
-      nix.enable = true;
-      web-devicons.enable = true;
-      mini.enable = true;
-      nvim-surround.enable = true;
-      precognition.enable = true;
-      noice.enable = true;
-      barbecue.enable = true;
-      project-nvim.enable = true;
+      # Obsidian
+      obsidian
 
-      snacks = {
-        enable = true;
+    ];
 
-        settings = {
-          words.enabled = true;
-          notifier.enabled = true;
+    fonts.fontconfig.enable = true;
+    programs.nixvim = {
+      enable = true;
+
+      clipboard.providers.xclip.enable = true;
+
+      plugins = {
+        nix.enable = true;
+        nvim-surround.enable = true;
+        project-nvim.enable = true;
+
+        # UI
+        noice = {
+          enable = true;
+
+          settings = {
+            lsp.override = {
+              "cmp.entry.get_documentation" = true;
+              "vim.lsp.util.convert_input_to_markdown_lines" = true;
+              "vim.lsp.util.nixfmt-rfc-style" = true;
+            };
+            popupmenu.backend = "cmp";
+          };
+        };
+        web-devicons.enable = true;
+        lualine.enable = true;
+        notify.enable = true;
+
+        neoconf.enable = true;
+
+        telescope = {
+          enable = true;
+
+          extensions = {
+            fzf-native.enable = true;
+            ui-select.enable = true;
+          };
+        };
+
+        treesitter = {
+          enable = true;
+          settings = {
+            auto_install = true;
+            hightlight.enable = true;
+          };
+        };
+
+        treesitter-context = {
+          enable = true;
+          settings = {
+            line_numbers = true;
+          };
+        };
+
+        which-key = {
+          enable = true;
+          autoLoad = true;
+        };
+        cmp = {
+          enable = true;
+          autoEnableSources = true;
+
+          settings = {
+
+            mapping = {
+              "<C-Down>" = "cmp.mapping.scroll_docs(-4)";
+              "<C-Up>" = "cmp.mapping.scroll_docs(4)";
+
+              "<Down>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+              "<Up>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+
+              "<Esc>" = "cmp.mapping.close()";
+              "<CR>" = "cmp.mapping.confirm({ select = true })";
+
+              "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+              "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+            };
+
+            sources = [
+              { name = "nvim_lsp"; }
+              { name = "nvim_lsp_document_symbol"; }
+              { name = "nvim_lsp_signature_help"; }
+
+              { name = "dictionary"; }
+              { name = "path"; }
+              { name = "buffer"; }
+              { name = "git"; }
+              { name = "vimwiki"; }
+            ];
+          };
+        };
+
+        lsp = {
+          enable = true;
+
+          servers = {
+            # Typescript
+            ts_ls.enable = true;
+
+            # Nix
+            nixd.enable = true;
+
+            # python
+            basedpyright.enable = true;
+
+            # lua
+            lua_ls.enable = true;
+          };
+        };
+
+        lsp-format = {
+          enable = true;
+
+          settings = {
+            go.sync = true;
+            python.sync = true;
+            nix.sync = true;
+          };
+        };
+
+        lspsaga = {
+          enable = true;
+
+          beacon.enable = true;
+          lightbulb.enable = true;
+          implement.enable = true;
+          symbolInWinbar.enable = true;
+
+          outline = {
+            layout = "float";
+          };
         };
       };
 
-      telescope = {
-        enable = true;
-        extensions = {
-          project.enable = true;
+      colorschemes = {
+        catppuccin = {
+          enable = true;
+          settings.background = {
+            dark = "macchiato";
+            light = "latte";
+          };
         };
       };
 
-      treesitter = {
-        enable = true;
-        settings = {
-          auto_install = true;
-          hightlight.enable = true;
+      extraFiles = {
+        "plugin/keymaps/default.lua" = {
+          enable = true;
+          source = ./keymaps/default.lua;
+        };
+
+        "plugin/keymaps/telescope.lua" = {
+          enable = true;
+          source = ./keymaps/telescope.lua;
+        };
+
+        "plugin/keymaps/lspsaga.lua" = {
+          enable = true;
+          source = ./keymaps/lspsaga.lua;
         };
       };
 
-      which-key = {
+      performance.byteCompileLua = {
         enable = true;
-        autoLoad = true;
+        configs = true;
+        initLua = true;
+        nvimRuntime = true;
+        plugins = true;
       };
-
-      cmp = {
-        autoEnableSources = true;
-        settings.sources = [
-          { name = "nvim_lsp"; }
-          { name = "nvim_lsp_document_symbol"; }
-          { name = "nvim_lsp_signature_help"; }
-
-          { name = "dictionary"; }
-          { name = "path"; }
-          { name = "buffer"; }
-          { name = "git"; }
-          { name = "treesitter"; }
-        ];
-      };
-
-      lsp = {
-        enable = true;
-        inlayHints = true;
-
-        servers = {
-          # Typescript
-          ts_ls.enable = true;
-
-          # Nix
-          nixd.enable = true;
-
-          # python
-          pyright.enable = true;
-        };
-      };
-
-      lspsaga = {
-        enable = true;
-
-        beacon.enable = true;
-        lightbulb.enable = true;
-        implement.enable = true;
-        symbolInWinbar.enable = true;
-      };
-    };
-
-    colorschemes = {
-      catppuccin = {
-        enable = true;
-        settings.background = {
-          dark = "macchiato";
-          light = "latte";
-        };
-      };
-    };
-
-    keymaps = [
-      {
-        key = "<Space>";
-        action = ":";
-      }
-
-      # ---------- Telescope mapping
-      {
-        mode = "n";
-        key = "<leader>ff";
-        action = "<cmd>Telescope find_files<cr>";
-      }
-      {
-        mode = "n";
-        key = "<leader>fg";
-        action = "<cmd>Telescope live_grep<cr>";
-      }
-      {
-        mode = "n";
-        key = "<leader>fb";
-        action = "<cmd>Telescope buffers<cr>";
-      }
-      {
-        mode = "n";
-        key = "<leader>fh";
-        action = "<cmd>Telescope help_tags<cr>";
-     }
-       {
-          mode = "n";
-          key = "<leader>fp";
-          action = "<cmd>Telescope projects<cr>";
-       }
-      ];
     };
   };
 }

@@ -78,12 +78,12 @@
         };
       };
       homeConfigurations = {
-        theodore = home-manager.lib.homeManagerConfiguration {
+        theodore = home-manager.lib.homeManagerConfiguration { 
+          extraSpecialArgs = { inherit inputs outputs; };
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
             nixvim.homeManagerModules.nixvim
-            ../packages/nvim.nix
-           ./home.nix
+           ./home-manager/theodore/home.nix
           ];
         };
 

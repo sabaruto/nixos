@@ -53,5 +53,8 @@
   };
 
   nixpkgs.config.allowUnfree = true;
+
+  home.sessionVariables = {};
+
   programs.home-manager.enable = true;
 }
