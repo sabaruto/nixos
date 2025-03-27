@@ -24,13 +24,18 @@ in
       nixfmt-rfc-style
       nixd
 
-      # lua language server
+      # language servers
       lua
       lua-language-server
+      vscode-langservers-extracted
 
       # fuzzy search
       fzf
       fd
+
+      # golang
+      go
+      gopls
 
       # grep improvement
       ripgrep
@@ -41,7 +46,6 @@ in
 
       # Obsidian
       obsidian
-
     ];
 
     fonts.fontconfig.enable = true;
@@ -54,6 +58,14 @@ in
         nix.enable = true;
         nvim-surround.enable = true;
         project-nvim.enable = true;
+        web-devicons.enable = true;
+        lualine.enable = true;
+        notify.enable = true;
+        neoconf.enable = true;
+        lazydev.enable = true;
+
+        nui.enable = true;
+        dashboard.enable = true;
 
         # UI
         noice = {
@@ -64,15 +76,10 @@ in
               "cmp.entry.get_documentation" = true;
               "vim.lsp.util.convert_input_to_markdown_lines" = true;
               "vim.lsp.util.nixfmt-rfc-style" = true;
+              "vim.lsp.util.stylize_markdown" = true;
             };
-            popupmenu.backend = "cmp";
           };
         };
-        web-devicons.enable = true;
-        lualine.enable = true;
-        notify.enable = true;
-
-        neoconf.enable = true;
 
         telescope = {
           enable = true;
@@ -151,6 +158,12 @@ in
 
             # lua
             lua_ls.enable = true;
+
+            # jsonls
+            jsonls.enable = true;
+
+            # golang
+            gopls.enable = true;
           };
         };
 
@@ -168,9 +181,13 @@ in
           enable = true;
 
           beacon.enable = true;
-          lightbulb.enable = true;
           implement.enable = true;
           symbolInWinbar.enable = true;
+
+          lightbulb = {
+            enable = true;
+            sign = false;
+          };
 
           outline = {
             layout = "float";

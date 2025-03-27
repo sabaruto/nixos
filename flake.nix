@@ -1,10 +1,10 @@
 {
-  description = "Local configuration flake";
+  descripttrueion = "Local configuration flake";
 
   inputs = {
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    zen-browser = { 
+
+    zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -15,7 +15,7 @@
     };
 
     nixvim = {
-      url = "github:nix-community/nixvim";
+      url = "github:nix-community/nixvim?ref=update/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -33,7 +33,9 @@
       nixvim,
       ...
     }@inputs:
-    let inherit (self) outputs; in
+    let
+      inherit (self) outputs;
+    in
     {
       nixosModules = import ./modules/nixos;
       homeManagerModules = import ./modules/home-manager;
@@ -78,12 +80,12 @@
         };
       };
       homeConfigurations = {
-        theodore = home-manager.lib.homeManagerConfiguration { 
+        theodore = home-manager.lib.homeManagerConfiguration {
           extraSpecialArgs = { inherit inputs outputs; };
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
             nixvim.homeManagerModules.nixvim
-           ./home-manager/theodore/home.nix
+            ./home-manager/theodore/home.nix
           ];
         };
 

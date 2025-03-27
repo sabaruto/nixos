@@ -1,16 +1,27 @@
-{ config, lib, options, pkgs, ... }:
+{
+  config,
+  lib,
+  options,
+  pkgs,
+  ...
+}:
 
 with lib;
 
 {
-	imports = [
-		./gnome.nix
-		./kde.nix
-	];
+  imports = [
+    ./gnome.nix
+    ./kde.nix
+  ];
 
-	options.localModules = {
-		desktopEnvironment = mkOption {
-			type = with types; nullOr (enum [ "gnome" "kde" ]);
-		};
-	};
+  options.localModules = {
+    desktopEnvironment = mkOption {
+      type =
+        with types;
+        nullOr (enum [
+          "gnome"
+          "kde"
+        ]);
+    };
+  };
 }
