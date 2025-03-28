@@ -1,5 +1,5 @@
 {
-  descripttrueion = "Local configuration flake";
+  description = "Local configuration flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";

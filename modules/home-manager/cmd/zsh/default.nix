@@ -2,8 +2,10 @@
 
 with lib;
 
-let cfg = config.localModules.apps;
-in {
+let
+  cfg = config.localModules.apps;
+in
+{
   options.localModules.apps.zsh.enable = mkEnableOption "zsh";
 
   config = mkIf cfg.zsh.enable {
@@ -15,10 +17,16 @@ in {
 
       oh-my-zsh = {
         enable = true;
-        plugins = [ "git" "dotenv" "1password" ];
+        plugins = [
+          "git"
+          "dotenv"
+          "1password"
+        ];
 
         theme = "robbyrussell";
       };
+
+      envExtra = "source ~/.aliases";
     };
   };
 }

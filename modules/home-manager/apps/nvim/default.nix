@@ -59,7 +59,6 @@ in
         nvim-surround.enable = true;
         project-nvim.enable = true;
         web-devicons.enable = true;
-        lualine.enable = true;
         notify.enable = true;
         neoconf.enable = true;
         lazydev.enable = true;
@@ -92,9 +91,15 @@ in
 
         treesitter = {
           enable = true;
+
           settings = {
             auto_install = true;
-            hightlight.enable = true;
+            indent.enable = true;
+
+            hightlight = {
+              enable = true;
+              additional_vim_regex_highlighting = true;
+            };
           };
         };
 
@@ -109,12 +114,12 @@ in
           enable = true;
           autoLoad = true;
         };
+
         cmp = {
           enable = true;
           autoEnableSources = true;
 
           settings = {
-
             mapping = {
               "<C-Down>" = "cmp.mapping.scroll_docs(-4)";
               "<C-Up>" = "cmp.mapping.scroll_docs(4)";
@@ -143,6 +148,13 @@ in
           };
         };
 
+        comment.enable = true;
+
+        comment-box = {
+          enable = true;
+
+        };
+
         lsp = {
           enable = true;
 
@@ -167,27 +179,12 @@ in
           };
         };
 
-        lsp-format = {
-          enable = true;
-
-          settings = {
-            go.sync = true;
-            python.sync = true;
-            nix.sync = true;
-          };
-        };
-
         lspsaga = {
           enable = true;
 
           beacon.enable = true;
           implement.enable = true;
           symbolInWinbar.enable = true;
-
-          lightbulb = {
-            enable = true;
-            sign = false;
-          };
 
           outline = {
             layout = "float";
@@ -198,14 +195,28 @@ in
       colorschemes = {
         catppuccin = {
           enable = true;
-          settings.background = {
-            dark = "macchiato";
-            light = "latte";
-          };
+
+          settings = {
+            integrations = {
+              cmp = true;
+              treesitter = true;
+              notify = true;
+            };
+
+            background = {
+              dark = "macchiato";
+              light = "latte";
+            };
+          }; 
         };
       };
 
       extraFiles = {
+        "plugin/config.lua" = {
+          enable = true;
+          source = ./config.lua;
+        };
+
         "plugin/keymaps/default.lua" = {
           enable = true;
           source = ./keymaps/default.lua;
