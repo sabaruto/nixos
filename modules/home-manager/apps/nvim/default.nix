@@ -60,23 +60,38 @@ in
         project-nvim.enable = true;
         web-devicons.enable = true;
         notify.enable = true;
-        neoconf.enable = true;
-        lazydev.enable = true;
-
+        leap.enable = true;
         nui.enable = true;
-        dashboard.enable = true;
+        lazy.enable = true;
 
         # UI
-        noice = {
+        snacks = {
           enable = true;
 
           settings = {
-            lsp.override = {
-              "cmp.entry.get_documentation" = true;
-              "vim.lsp.util.convert_input_to_markdown_lines" = true;
-              "vim.lsp.util.nixfmt-rfc-style" = true;
-              "vim.lsp.util.stylize_markdown" = true;
+            animate.enable = true;
+            dashboard.enable = true;
+            bigfile.enable = true;
+            notifier.enable = true;
+            notify.enable = true;
+            profiler.enable = true;
+            input.enable = true;
+            toggle.enable = true;
+
+            statuscolumn = {
+              enable = true;
+
+              left = [
+                "mark"
+                "fold"
+              ];
+
+              right = [
+                "git"
+                "sign"
+              ];
             };
+
           };
         };
 
@@ -110,11 +125,6 @@ in
           };
         };
 
-        which-key = {
-          enable = true;
-          autoLoad = true;
-        };
-
         cmp = {
           enable = true;
           autoEnableSources = true;
@@ -140,19 +150,13 @@ in
               { name = "nvim_lsp_signature_help"; }
 
               { name = "dictionary"; }
+
               { name = "path"; }
               { name = "buffer"; }
               { name = "git"; }
               { name = "vimwiki"; }
             ];
           };
-        };
-
-        comment.enable = true;
-
-        comment-box = {
-          enable = true;
-
         };
 
         lsp = {
@@ -179,17 +183,7 @@ in
           };
         };
 
-        lspsaga = {
-          enable = true;
-
-          beacon.enable = true;
-          implement.enable = true;
-          symbolInWinbar.enable = true;
-
-          outline = {
-            layout = "float";
-          };
-        };
+        which-key.enable = true;
       };
 
       colorschemes = {
@@ -225,11 +219,6 @@ in
         "plugin/keymaps/telescope.lua" = {
           enable = true;
           source = ./keymaps/telescope.lua;
-        };
-
-        "plugin/keymaps/lspsaga.lua" = {
-          enable = true;
-          source = ./keymaps/lspsaga.lua;
         };
       };
 

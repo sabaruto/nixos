@@ -1,5 +1,15 @@
-{ ... }: {
+{ outputs, ... }: 
+{
+  imports = [ 
+    outputs.nixosModules
+    ./hardware-configuration.nix
+  ];
+
   localModules = {
+    name = "dosia";
+    hostname = "zalu";
+    stateVersion = "24.11";
+
     swapSize = 16 * 1024;
     gpu = "none";
 
@@ -11,6 +21,11 @@
         "https://github.com/torvalds/linux/archive/refs/tags/v6.14-rc5.tar.gz";
       hash = "sha256-KjLn0ghiOtQm3izH/L+27htXBcl8ledOh1/6Kopw0s0=";
     };
+
     desktopEnvironment = "gnome";
+
+    apps = {
+      steam.enable = true;
+    };
   };
 }

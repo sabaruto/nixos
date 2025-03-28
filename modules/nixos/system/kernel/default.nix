@@ -42,17 +42,15 @@ in
 	
 	config = mkIf cfg.kernel.enable {
 		boot.kernelPackages = let                                                                                                                
-			linux_sgx_pkg = { fetchurl, buildLinux, ... } @ args:                                                                                
+			linux_sgx_pkg = { fetchurl, buildLinux, ... } @ args:           
                                                                                                                                              
 				 buildLinux (args // rec {                                                                                                          
 					version = cfg.kernel.version;                                                                                                          
-					modDirVersion = version;                                                                                                         
-                                                                                                                                               
-					src = fetchurl {                                                                                                                 
+					modDirVersion = version;                                                     					src = fetchurl {                                                                                                                 
 						url = cfg.kernel.url;                                                  
 						hash = cfg.kernel.hash;                                                                  
 					};                                                                                                                               
-					kernelPatches = [];                                                                                                              
+				kernelPatches = [];                                                                                                              
                                                                                                                                                
 					extraMeta.branch = cfg.kernel.altVersion;                                                                                                       
 				} // (args.argsOverride or {}));                                                                                                   

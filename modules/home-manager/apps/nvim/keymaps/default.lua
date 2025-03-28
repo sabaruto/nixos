@@ -1,6 +1,5 @@
 local wk = require('which-key')
 
-vim.g.mapleader = ' '
 wk.add({
   { '<leader>s', '<cmd>write<cr>', desc = 'Save buffer' },
   { '<leader>j', ':' }

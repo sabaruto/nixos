@@ -41,30 +41,11 @@
       homeManagerModules = import ./modules/home-manager;
 
       nixosConfigurations = {
-        zalu = nixpkgs.lib.nixosSystem rec {
+        zalu = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-
-          specialArgs = {
-            inherit inputs;
-            username = "dosia";
-            hostname = "zalu";
-            stateVersion = "25.05";
-          };
-
+          specialArgs = { inherit inputs outputs; };
           modules = [
-            # configurations entrypoint
-            ./base.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users."${specialArgs.username}" = import ./home.nix;
-
-                backupFileExtension = "backup";
-                extraSpecialArgs = specialArgs;
-              };
-            }
+            ./pcs/zalu/configuration.nix
           ];
         };
 
@@ -73,12 +54,11 @@
           specialArgs = { inherit inputs outputs; };
 
           modules = [
-            # configurations entrypoint
             ./pcs/leano/configuration.nix
-            ./pcs/leano/global-configuration.nix
           ];
         };
       };
+
       homeConfigurations = {
         theodore = home-manager.lib.homeManagerConfiguration {
           extraSpecialArgs = { inherit inputs outputs; };
