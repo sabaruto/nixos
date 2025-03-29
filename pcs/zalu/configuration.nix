@@ -15,11 +15,11 @@
 
     system.kernel = {
       enable = true;
-      version = "6.14.0-rc5";
+      version = "6.14.0";
       altVersion = "6.14";
       url =
-        "https://github.com/torvalds/linux/archive/refs/tags/v6.14-rc5.tar.gz";
-      hash = "sha256-KjLn0ghiOtQm3izH/L+27htXBcl8ledOh1/6Kopw0s0=";
+        "https://github.com/torvalds/linux/archive/refs/tags/v6.14.tar.gz";
+      hash = "sha256-fXlg1s4nd0Ppbb2NlPzpPxN5mmm9mj6YQe6//eSr5sI=";
     };
 
     desktopEnvironment = "gnome";

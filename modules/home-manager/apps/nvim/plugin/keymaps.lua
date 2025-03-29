@@ -1,7 +1,7 @@
 local wk = require('which-key')
 
 wk.add({
-  { '<leader>s', '<cmd>write<cr>', desc = 'Save buffer' },
+  { '<leader>w', '<cmd>write<cr>', desc = 'Save buffer' },
   { '<leader>j', ':' }
 })
 

@@ -46,6 +46,7 @@ in
 
       # Obsidian
       obsidian
+
     ];
 
     fonts.fontconfig.enable = true;
@@ -53,7 +54,6 @@ in
       enable = true;
 
       clipboard.providers.xclip.enable = true;
-
       plugins = {
         nix.enable = true;
         nvim-surround.enable = true;
@@ -62,39 +62,29 @@ in
         notify.enable = true;
         leap.enable = true;
         nui.enable = true;
-        lazy.enable = true;
+        dashboard.enable = true;
+        barbecue.enable = true;
+        bufferline.enable = true;
 
-        # UI
-        snacks = {
+        markview.enable = true;
+        lualine.enable = true;
+
+        noice = {
           enable = true;
-
           settings = {
-            animate.enable = true;
-            dashboard.enable = true;
-            bigfile.enable = true;
-            notifier.enable = true;
-            notify.enable = true;
-            profiler.enable = true;
-            input.enable = true;
-            toggle.enable = true;
-
-            statuscolumn = {
-              enable = true;
-
-              left = [
-                "mark"
-                "fold"
-              ];
-
-              right = [
-                "git"
-                "sign"
-              ];
+            bottom_search = true;
+            command_palette = true;
+            inc_rename = true;
+            lsp_doc_border = true;
+            lsp.override = {
+              "cmp.entry.get_documentation" = true;
+              "vim.lsp.util.convert_input_to_markdown_lines" = true;
+              "vim.lsp.util.stylize_markdown" = true;
             };
-
           };
         };
 
+        # UI
         telescope = {
           enable = true;
 
@@ -183,6 +173,8 @@ in
           };
         };
 
+        lsp-format.enable = true;
+
         which-key.enable = true;
       };
 
@@ -201,24 +193,24 @@ in
               dark = "macchiato";
               light = "latte";
             };
-          }; 
+          };
         };
       };
 
       extraFiles = {
         "plugin/config.lua" = {
           enable = true;
-          source = ./config.lua;
+          source = ./plugin/config.lua;
         };
 
-        "plugin/keymaps/default.lua" = {
+        "plugin/keymaps.lua" = {
           enable = true;
-          source = ./keymaps/default.lua;
+          source = ./plugin/keymaps.lua;
         };
 
-        "plugin/keymaps/telescope.lua" = {
+        "plugin/telescope/keymaps.lua" = {
           enable = true;
-          source = ./keymaps/telescope.lua;
+          source = ./plugin/telescope/keymaps.lua;
         };
       };
 
