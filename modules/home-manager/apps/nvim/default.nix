@@ -53,8 +53,10 @@ in
 
     programs.nixvim = {
       enable = true;
-
       clipboard.providers.xclip.enable = true;
+
+      extraConfigLua = (readFile ./plugin/config.lua) + (readFile ./plugin/keymaps.lua);
+
       plugins = {
         nix.enable = true;
         nvim-surround.enable = true;
@@ -67,6 +69,7 @@ in
         markview.enable = true;
         lualine.enable = true;
         lz-n.enable = true;
+        notify.enable = true;
 
         noice = {
           enable = true;
@@ -78,15 +81,28 @@ in
               lsp_doc_border = true;
             };
 
-            lsp.override = {
-              "cmp.entry.get_documentation" = true;
-              "vim.lsp.util.convert_input_to_markdown_lines" = true;
-              "vim.lsp.util.stylize_markdown" = true;
+            lsp = {
+
+              signature.view = "hover";
+
+              override = {
+                "cmp.entry.get_documentation" = true;
+                "vim.lsp.util.convert_input_to_markdown_lines" = true;
+                "vim.lsp.util.stylize_markdown" = true;
+              };
             };
           };
         };
 
-        notify.enable = true;
+        nvim-ufo = {
+          enable = true;
+          settings.provider_selector = ''
+            function(bufnr, filetype, buftype)
+                    return {'treesitter', 'indent'}
+                end
+          '';
+          luaConfig.post = readFile ./plugin/ufo/config.lua;
+        };
 
         # UI
         telescope = {
@@ -97,52 +113,29 @@ in
             ui-select.enable = true;
           };
 
-          settings = {
-            pickers = {
-              find_files = {
+          settings.pickers =
+            genAttrs
+              [
+                "find_files"
+                "git_files"
+                "grep_string"
+                "live_grep"
+                "registers"
+                "buffers"
+                "current_buffer_fuzzy_find"
+                "projects"
+                "lsp_definitions"
+                "lsp_implementations"
+                "lsp_references"
+                "lsp_type_references"
+                "lsp_document_symbols"
+                "lsp_workspace_symbols"
+              ]
+              (name: {
                 theme = "dropdown";
-              };
-              git_files = {
-                theme = "dropdown";
-              };
-              grep_string = {
-                theme = "dropdown";
-              };
-              live_grep = {
-                theme = "dropdown";
-              };
-              registers = {
-                theme = "dropdown";
-              };
-              buffers = {
-                theme = "dropdown";
-              };
-              current_buffer_fuzzy_find = {
-                theme = "dropdown";
-              };
-              projects = {
-                theme = "dropdown";
-              };
-              lsp_definitions = {
-                theme = "dropdown";
-              };
-              lsp_implementations = {
-                theme = "dropdown";
-              };
-              lsp_references = {
-                theme = "dropdown";
-              };
-              lsp_type_references = {
-                theme = "dropdown";
-              };
-              lsp_document_symbols = {
-                theme = "cursor";
-              };
-              lsp_workspace_symbols = {
-                theme = "dropdown";
-              };
-            };
-          };
+              });
+
+          luaConfig.post = readFile ./plugin/telescope/keymaps.lua;
         };
 
         treesitter = {
@@ -156,13 +149,85 @@ in
               enable = true;
               additional_vim_regex_highlighting = true;
             };
+
+            incremental_selection = {
+              enable = true;
+            };
           };
         };
 
         treesitter-context = {
           enable = true;
+
           settings = {
             line_numbers = true;
+          };
+        };
+
+        treesitter-textobjects = {
+          enable = true;
+
+          select = {
+            enable = true;
+
+            keymaps = {
+              "af" = "@function.outer";
+              "if" = "@function.inner";
+              "ac" = "@class.outer";
+              "ic" = "@class.inner";
+              "as" = "@local.scope";
+            };
+          };
+
+          swap = {
+            enable = true;
+
+            swapNext."<leader>a" = "@parameter.inner";
+            swapPrevious."<leader>A" = "@parameter.inner";
+          };
+
+          move = {
+            enable = true;
+
+            gotoNext."]d" = "@conditional.outer";
+            gotoPrevious."[d" = "@conditional.outer";
+
+            gotoNextStart = {
+              "]m" = "@function.outer";
+              "]]" = "@class.outer";
+              "]o" = "@loop.*";
+
+              "]s" = {
+                query = "@local.scope";
+                queryGroup = "locals";
+                desc = "Next scope";
+              };
+
+              "]z" = {
+                query = "@fold";
+                queryGroup = "folds";
+                desc = "Next fold";
+              };
+            };
+
+            gotoNextEnd = {
+              "]M" = "@function.outer";
+              "][" = "@function.outer";
+            };
+
+            gotoPreviousStart = {
+              "[m" = "@function.outer";
+              "[[" = "@class.outer";
+            };
+          };
+
+          lspInterop = {
+            enable = true;
+
+            peekDefinitionCode = {
+              "<leader>df" = "@function.outer";
+              "<leader>dF" = "@class.outer";
+            };
           };
         };
 
@@ -239,9 +304,7 @@ in
       colorscheme = "rose-pine";
 
       colorschemes = {
-        melange = {
-          enable = true;
-        };
+        melange.enable = true;
 
         catppuccin = {
           enable = true;
@@ -265,23 +328,6 @@ in
           enable = true;
           lazyLoad.enable = true;
           settings.dark_variant = "moon";
-        };
-      };
-
-      extraFiles = {
-        "plugin/config.lua" = {
-          enable = true;
-          source = ./plugin/config.lua;
-        };
-
-        "plugin/keymaps.lua" = {
-          enable = true;
-          source = ./plugin/keymaps.lua;
-        };
-
-        "plugin/telescope/keymaps.lua" = {
-          enable = true;
-          source = ./plugin/telescope/keymaps.lua;
         };
       };
 
