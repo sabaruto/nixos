@@ -1,9 +1,7 @@
 local wk = require('which-key')
 
-wk.add({
-  { '<leader>w', '<cmd>write<cr>', desc = 'Save buffer' },
-  { '<leader>j', ':' }
-})
+vim.keymap.set({ 'n', 'v' }, '<leader>w', '<cmd>write<cr>', { desc = 'Save buffer' })
+vim.keymap.set({ 'n', 'v' }, '<leader>j', ':', { remap = true, desc = 'Set command line' })
 
 wk.add({
   { '<leader>q',  group = 'Quit' },

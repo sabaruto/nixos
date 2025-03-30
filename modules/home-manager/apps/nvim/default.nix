@@ -50,6 +50,7 @@ in
     ];
 
     fonts.fontconfig.enable = true;
+
     programs.nixvim = {
       enable = true;
 
@@ -59,15 +60,13 @@ in
         nvim-surround.enable = true;
         project-nvim.enable = true;
         web-devicons.enable = true;
-        notify.enable = true;
         leap.enable = true;
         nui.enable = true;
         dashboard.enable = true;
         barbecue.enable = true;
-        bufferline.enable = true;
-
         markview.enable = true;
         lualine.enable = true;
+        lz-n.enable = true;
 
         noice = {
           enable = true;
@@ -84,6 +83,8 @@ in
           };
         };
 
+        notify.enable = true;
+
         # UI
         telescope = {
           enable = true;
@@ -91,6 +92,10 @@ in
           extensions = {
             fzf-native.enable = true;
             ui-select.enable = true;
+          };
+
+          keymaps = {
+
           };
         };
 
@@ -175,12 +180,25 @@ in
 
         lsp-format.enable = true;
 
-        which-key.enable = true;
+        which-key = {
+          enable = true;
+
+          settings = {
+            preset = "modern";
+          };
+        };
       };
 
+      colorscheme = "melange";
+
       colorschemes = {
+        melange = {
+          enable = true;
+        };
+
         catppuccin = {
           enable = true;
+          lazyLoad.enable = true;
 
           settings = {
             integrations = {
@@ -194,6 +212,12 @@ in
               light = "latte";
             };
           };
+        };
+
+        rose-pine = {
+          enable = true;
+          lazyLoad.enable = true;
+          settings.dark_variant = "moon";
         };
       };
 
