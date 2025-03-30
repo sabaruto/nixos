@@ -71,10 +71,13 @@ in
         noice = {
           enable = true;
           settings = {
-            bottom_search = true;
-            command_palette = true;
-            inc_rename = true;
-            lsp_doc_border = true;
+
+            preset = {
+              command_palette = true;
+              inc_rename = true;
+              lsp_doc_border = true;
+            };
+
             lsp.override = {
               "cmp.entry.get_documentation" = true;
               "vim.lsp.util.convert_input_to_markdown_lines" = true;
@@ -94,8 +97,51 @@ in
             ui-select.enable = true;
           };
 
-          keymaps = {
-
+          settings = {
+            pickers = {
+              find_files = {
+                theme = "dropdown";
+              };
+              git_files = {
+                theme = "dropdown";
+              };
+              grep_string = {
+                theme = "dropdown";
+              };
+              live_grep = {
+                theme = "dropdown";
+              };
+              registers = {
+                theme = "dropdown";
+              };
+              buffers = {
+                theme = "dropdown";
+              };
+              current_buffer_fuzzy_find = {
+                theme = "dropdown";
+              };
+              projects = {
+                theme = "dropdown";
+              };
+              lsp_definitions = {
+                theme = "dropdown";
+              };
+              lsp_implementations = {
+                theme = "dropdown";
+              };
+              lsp_references = {
+                theme = "dropdown";
+              };
+              lsp_type_references = {
+                theme = "dropdown";
+              };
+              lsp_document_symbols = {
+                theme = "cursor";
+              };
+              lsp_workspace_symbols = {
+                theme = "dropdown";
+              };
+            };
           };
         };
 
@@ -185,11 +231,12 @@ in
 
           settings = {
             preset = "modern";
+            win.row = 50;
           };
         };
       };
 
-      colorscheme = "melange";
+      colorscheme = "rose-pine";
 
       colorschemes = {
         melange = {

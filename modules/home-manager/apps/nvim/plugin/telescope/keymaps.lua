@@ -1,13 +1,30 @@
-local builtin = require('telescope.builtin')
+local teleBuiltIn = require('telescope.builtin')
 local wk = require('which-key')
+local projects = require('telescope').extensions.projects
 
 -- LSP
-vim.keymap.set('n', '<leader>lr', builtin.lsp_references, { desc = 'Telescope lsp references' })
-vim.keymap.set('n', '<leader>lci', builtin.lsp_incoming_calls, { desc = 'Telescope lsp incoming calls' })
-vim.keymap.set('n', '<leader>lco', builtin.lsp_outgoing_calls, { desc = 'Telescope lsp outgoing calls' })
-vim.keymap.set('n', '<leader>lsf', builtin.lsp_document_symbols, { desc = 'Telescope lsp symbols in file' })
-vim.keymap.set('n', '<leader>lsp', builtin.lsp_workspace_symbols, { desc = 'Telescope lsp symbols in workspace' })
-vim.keymap.set('n', '<leader>li', builtin.lsp_implementations, { desc = 'Telescope lsp implementations' })
-vim.keymap.set('n', '<leader>ldd', builtin.lsp_definitions, { desc = 'Telescope lsp definitions' })
-vim.keymap.set('n', '<leader>ldt', builtin.lsp_type_definitions, { desc = 'Telescope lsp type definitions' })
-vim.keymap.set('n', '<leader>le', builtin.diagnostics, { desc = 'Telescope lsp diagnosis' })
+
+wk.add({
+	mode = { "n" },
+	{
+		-- goto
+		{ "gd",  function() teleBuiltIn.lsp_definitions() end,       desc = "Goto Definitions" },
+		{ "gI",  function() teleBuiltIn.lsp_implementations() end,   desc = "Goto Implementations" },
+		{ "grr", function() teleBuiltIn.lsp_references() end,        desc = "Goto References" },
+		{ "grt", function() teleBuiltIn.lsp_type_references() end,   desc = "Goto type [R]eferences" },
+		{ "gs",  function() teleBuiltIn.lsp_document_symbols() end,  desc = "Goto workspace symbols" },
+		{ "gS",  function() teleBuiltIn.lsp_workspace_symbols() end, desc = "Goto workspace symbols" }
+	},
+	{
+		-- find
+		{ "<leader>f",  group = "Find" },
+		{ "<leader>ff", function() teleBuiltIn.find_files() end,                desc = "Find files" },
+		{ "<leader>fg", function() teleBuiltIn.git_files() end,                 desc = "Find git files" },
+		{ "<leader>fw", function() teleBuiltIn.grep_string() end,               desc = "Find files with word under cursor" },
+		{ "<leader>fs", function() teleBuiltIn.live_grep() end,                 desc = "Find files by grep" },
+		{ "<leader>fr", function() teleBuiltIn.registers() end,                 desc = "Find registers" },
+		{ "<leader>fb", function() teleBuiltIn.buffers() end,                   desc = "Find buffers" },
+		{ "<leader>fB", function() teleBuiltIn.current_buffer_fuzzy_find() end, desc = "Find buffers with fuzzy find" },
+		{ "<leader>fp", function() projects.projects {} end,                    desc = "Find buffers with fuzzy find" }
+	}
+})
