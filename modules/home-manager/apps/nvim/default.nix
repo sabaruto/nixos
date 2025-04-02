@@ -71,6 +71,70 @@ in
         lz-n.enable = true;
         notify.enable = true;
 
+        tmux-navigator = {
+          enable = true;
+          settings.no_mappings = 1;
+
+          keymaps = [
+            {
+              action = "left";
+              key = "<C-Space><Left>";
+            }
+            {
+              action = "right";
+              key = "<C-Space><Right>";
+            }
+            {
+              action = "up";
+              key = "<C-Space><Up>";
+            }
+            {
+              action = "down";
+              key = "<C-Space><Down>";
+            }
+            {
+              action = "previous";
+              key = "<C-Space><\\>";
+            }
+          ];
+        };
+
+        trouble = {
+          enable = true;
+
+          settings = {
+
+            modes = {
+              diagnostics_buffer = {
+                mode = "diagnostics";
+                filter = {
+                  buf = 0;
+                };
+
+                win = {
+                  type = "float";
+                  position.__raw = "{0, -3}";
+                  relative = "editor";
+                  border = "rounded";
+
+                  size = {
+                    width = 0.3;
+                    height = 0.3;
+                  };
+                  zindex = 200;
+                };
+
+                auto_close = true;
+                auto_open = true;
+                auto_jump = true;
+
+              };
+            };
+
+            luaConfig.post = readFile ./plugin/trouble/config.lua;
+          };
+        };
+
         noice = {
           enable = true;
           settings = {

@@ -1,4 +1,8 @@
-{ lib, pkgs, outputs, ... }:
+{
+  pkgs,
+  outputs,
+  ...
+}:
 
 {
   imports = [
@@ -7,22 +11,22 @@
 
   home.username = "theodore";
   home.homeDirectory = "/home/theodore";
-  home.stateVersion = "24.11"; 
+  home.stateVersion = "24.11";
   home.packages = with pkgs; [
-      # Password manager
-      bitwarden-desktop
-      bitwarden-cli
+    # Password manager
+    bitwarden-desktop
+    bitwarden-cli
 
-      # music services
-      tidal-hifi
-      spotify
+    # music services
+    tidal-hifi
+    spotify
 
-      # zoom
-      zoom-us
+    # zoom
+    zoom-us
 
-      # cli apps
-      tree
-      openssl
+    # cli apps
+    tree
+    openssl
   ];
   home.file = {
   };
@@ -34,9 +38,9 @@
   };
 
   localModules = {
-    apps = { 
+    apps = {
       nvim.enable = true;
-      kitty.enable = true;
+      # kitty.enable = true;
       zsh.enable = true;
       zen.enable = true;
       tmux.enable = true;
