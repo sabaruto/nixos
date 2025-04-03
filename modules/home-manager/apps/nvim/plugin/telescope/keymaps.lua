@@ -12,7 +12,7 @@ wk.add({
 		{ "gI",  function() teleBuiltIn.lsp_implementations() end,   desc = "Goto Implementations" },
 		{ "grr", function() teleBuiltIn.lsp_references() end,        desc = "Goto References" },
 		{ "grt", function() teleBuiltIn.lsp_type_references() end,   desc = "Goto type [R]eferences" },
-		{ "gs",  function() teleBuiltIn.lsp_document_symbols() end,  desc = "Goto workspace symbols" },
+		{ "gs",  function() teleBuiltIn.lsp_document_symbols() end,  desc = "Goto document symbols" },
 		{ "gS",  function() teleBuiltIn.lsp_workspace_symbols() end, desc = "Goto workspace symbols" }
 	},
 	{
@@ -26,5 +26,10 @@ wk.add({
 		{ "<leader>fb", function() teleBuiltIn.buffers() end,                   desc = "Find buffers" },
 		{ "<leader>fB", function() teleBuiltIn.current_buffer_fuzzy_find() end, desc = "Find buffers with fuzzy find" },
 		{ "<leader>fp", function() projects.projects {} end,                    desc = "Find buffers with fuzzy find" }
+	},
+	{
+		-- peek
+		{ "<leader>p",  group = "Peek" },
+		{ "<leader>ps", function() teleBuiltIn.lsp_workspace_symbols() end, desc = "Peek workspace symbols" },
 	}
 })

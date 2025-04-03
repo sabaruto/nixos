@@ -43,10 +43,6 @@ in
       # fonts
       nerd-fonts.fira-code
       nerd-fonts.droid-sans-mono
-
-      # Obsidian
-      obsidian
-
     ];
 
     fonts.fontconfig.enable = true;
@@ -65,11 +61,19 @@ in
         leap.enable = true;
         nui.enable = true;
         dashboard.enable = true;
-        barbecue.enable = true;
+        dropbar.enable = true;
         markview.enable = true;
         lualine.enable = true;
         lz-n.enable = true;
         notify.enable = true;
+
+        easyescape = {
+          enable = true;
+          settings.chars = {
+            j = 1;
+            k = 1;
+          };
+        };
 
         tmux-navigator = {
           enable = true;
@@ -103,7 +107,6 @@ in
           enable = true;
 
           settings = {
-
             modes = {
               diagnostics_buffer = {
                 mode = "diagnostics";
@@ -112,19 +115,15 @@ in
                 };
 
                 win = {
-                  type = "float";
-                  position.__raw = "{0, -3}";
-                  relative = "editor";
-                  border = "rounded";
+                  type = "split";
+                  position = "top";
+                  relative = "win";
 
                   size = {
-                    width = 0.3;
-                    height = 0.3;
+                    height = 0.2;
                   };
-                  zindex = 200;
                 };
 
-                auto_close = true;
                 auto_open = true;
                 auto_jump = true;
 
@@ -137,8 +136,8 @@ in
 
         noice = {
           enable = true;
-          settings = {
 
+          settings = {
             preset = {
               command_palette = true;
               inc_rename = true;
@@ -146,7 +145,6 @@ in
             };
 
             lsp = {
-
               signature.view = "hover";
 
               override = {
@@ -177,8 +175,8 @@ in
             ui-select.enable = true;
           };
 
-          settings.pickers =
-            genAttrs
+          settings.pickers = mkMerge [
+            (genAttrs
               [
                 "find_files"
                 "git_files"
@@ -194,10 +192,17 @@ in
                 "lsp_type_references"
                 "lsp_document_symbols"
                 "lsp_workspace_symbols"
+                "projects"
               ]
               (name: {
                 theme = "dropdown";
-              });
+              })
+            )
+
+            (genAttrs [ "diagnostics" ] (name: {
+              theme = "cursor";
+            }))
+          ];
 
           luaConfig.post = readFile ./plugin/telescope/keymaps.lua;
         };
@@ -217,14 +222,6 @@ in
             incremental_selection = {
               enable = true;
             };
-          };
-        };
-
-        treesitter-context = {
-          enable = true;
-
-          settings = {
-            line_numbers = true;
           };
         };
 
@@ -298,8 +295,9 @@ in
         cmp = {
           enable = true;
           autoEnableSources = true;
-
           settings = {
+            preselect = "cmp.PreselectMode.None";
+
             mapping = {
               "<C-Down>" = "cmp.mapping.scroll_docs(-4)";
               "<C-Up>" = "cmp.mapping.scroll_docs(4)";
@@ -307,10 +305,10 @@ in
               "<Down>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
               "<Up>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
 
-              "<Esc>" = "cmp.mapping.close()";
-              "<CR>" = "cmp.mapping.confirm({ select = true })";
+              "<Esc>" = "cmp.mapping.abort()";
+              "<Right>" = "cmp.mapping.confirm({ select = false })";
+              "<CR>" = "cmp.mapping.abort()";
 
-              "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
               "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
             };
 
@@ -318,6 +316,7 @@ in
               { name = "nvim_lsp"; }
               { name = "nvim_lsp_document_symbol"; }
               { name = "nvim_lsp_signature_help"; }
+              { name = "orgmode"; }
 
               { name = "dictionary"; }
 
@@ -353,7 +352,36 @@ in
           };
         };
 
-        lsp-format.enable = true;
+        conform-nvim = {
+          enable = true;
+
+          settings = {
+            formatters_by_ft = {
+              lua = [ "stylua" ];
+
+              go = [ "gofmt" ];
+
+              python = [
+                "isort"
+                "black"
+              ];
+
+              "*" = [ "codespell" ];
+            };
+
+            format_on_save = {
+              timeout_ms = 500;
+              lsp_fallback = true;
+            };
+          };
+        };
+
+        dap = {
+          enable = true;
+        };
+
+        dap-go.enable = true;
+        dap-python.enable = true;
 
         which-key = {
           enable = true;

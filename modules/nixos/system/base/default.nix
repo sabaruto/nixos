@@ -1,11 +1,18 @@
 # The base configuration for all machines
 
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 with lib;
 
-let cfg = config.localModules;
-in {
+let
+  cfg = config.localModules;
+in
+{
   options.localModules = {
     name = mkOption {
       type = types.str;
@@ -47,13 +54,18 @@ in {
     users.users."${cfg.name}" = {
       isNormalUser = true;
       description = "Theodosia Kalu";
-      extraGroups = [ "networkmanager" "wheel" ];
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+      ];
     };
 
-    swapDevices = mkIf (cfg.swapSize != null) [{
-      device = "/swapfile";
-      size = cfg.swapSize;
-    }];
+    swapDevices = mkIf (cfg.swapSize != null) [
+      {
+        device = "/swapfile";
+        size = cfg.swapSize;
+      }
+    ];
 
     environment.systemPackages = with pkgs; [
       # nixos configuration applications
@@ -67,6 +79,9 @@ in {
       gnupg
       usbutils
       home-manager
+
+      # Note taking
+      obsidian
     ];
 
     # Limit the number of generations to keep
