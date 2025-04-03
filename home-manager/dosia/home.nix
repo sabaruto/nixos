@@ -1,4 +1,9 @@
-{ lib, pkgs, outputs, ... }:
+{
+  lib,
+  pkgs,
+  outputs,
+  ...
+}:
 
 {
   imports = [
@@ -8,7 +13,6 @@
     username = "dosia";
     homeDirectory = lib.mkDefault "/home/dosia";
     stateVersion = "24.11";
-    
 
     packages = with pkgs; [
       # Password manager
@@ -35,10 +39,19 @@
       # cli apps
       tree
       openssl
+
+      # miracast
+      gnome-network-displays
+      openh264
+      x264
+      faac
+      dnsmasq
+
+      syncthing
     ];
   };
   localModules = {
-    apps = { 
+    apps = {
       nvim.enable = true;
       kitty.enable = true;
       zsh.enable = true;
@@ -54,7 +67,7 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  home.sessionVariables = {};
+  home.sessionVariables = { };
 
   programs.home-manager.enable = true;
 }

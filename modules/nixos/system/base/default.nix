@@ -95,7 +95,7 @@ in
     };
 
     nix = {
-      package = pkgs.nixVersions.git;
+      package = pkgs.nixVersions.latest;
       extraOptions = ''
         experimental-features = nix-command flakes
       '';

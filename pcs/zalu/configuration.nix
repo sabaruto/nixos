@@ -1,6 +1,6 @@
-{ outputs, ... }: 
+{ outputs, pkgs, ... }:
 {
-  imports = [ 
+  imports = [
     outputs.nixosModules
     ./hardware-configuration.nix
   ];
@@ -17,8 +17,7 @@
       enable = true;
       version = "6.14.0";
       altVersion = "6.14";
-      url =
-        "https://github.com/torvalds/linux/archive/refs/tags/v6.14.tar.gz";
+      url = "https://github.com/torvalds/linux/archive/refs/tags/v6.14.tar.gz";
       hash = "sha256-fXlg1s4nd0Ppbb2NlPzpPxN5mmm9mj6YQe6//eSr5sI=";
     };
 

@@ -75,6 +75,29 @@ in
           };
         };
 
+        obsidian = {
+          enable = true;
+
+          settings = {
+            ui.enable = true;
+            picker.name = "telescope.nvim";
+            new_notes_location = "notes_subdir";
+            notes_subdir = "~/My Vaults/Scratch/";
+            daily_notes.folder = "~/My Vaults/Personal/daily_notes/";
+
+            workspaces = [
+              {
+                name = "scratch";
+                path = "~/My Vaults/Scratch/";
+              }
+              {
+                name = "Personal";
+                path = "~/My Vaults/Personal/";
+              }
+            ];
+          };
+        };
+
         tmux-navigator = {
           enable = true;
           settings.no_mappings = 1;
