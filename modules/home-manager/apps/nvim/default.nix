@@ -51,7 +51,10 @@ in
       enable = true;
       clipboard.providers.xclip.enable = true;
 
-      extraConfigLua = (readFile ./plugin/config.lua) + (readFile ./plugin/keymaps.lua);
+      extraConfigLua =
+        (readFile ./plugin/config.lua)
+        + (readFile ./plugin/keymaps.lua)
+        + (readFile ./plugin/vimwiki/config.lua);
 
       plugins = {
         nix.enable = true;
@@ -75,24 +78,21 @@ in
           };
         };
 
-        obsidian = {
+        vimwiki = {
           enable = true;
 
           settings = {
-            ui.enable = true;
-            picker.name = "telescope.nvim";
-            new_notes_location = "notes_subdir";
-            notes_subdir = "~/My Vaults/Scratch/";
-            daily_notes.folder = "~/My Vaults/Personal/daily_notes/";
+            key_mappings = {
+              all_maps = 1;
+              global = 1;
+              headers = 1;
+            };
 
-            workspaces = [
+            list = [
               {
-                name = "scratch";
-                path = "~/My Vaults/Scratch/";
-              }
-              {
-                name = "Personal";
-                path = "~/My Vaults/Personal/";
+                ext = ".md";
+                path = "~/docs/notes/";
+                syntax = "markdown";
               }
             ];
           };
@@ -236,6 +236,19 @@ in
           settings = {
             auto_install = true;
             indent.enable = true;
+
+            ensure_installed = [
+              "c"
+              "lua"
+              "vim"
+              "bash"
+              "regex"
+              "vimdoc"
+              "query"
+              "markdown"
+              "markdown_inline"
+
+            ];
 
             hightlight = {
               enable = true;
