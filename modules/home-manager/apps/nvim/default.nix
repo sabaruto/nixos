@@ -106,9 +106,10 @@ in
           enable = true;
 
           settings = {
-
             ui.enable = false;
             picker.name = "telescope.nvim";
+            notes_subdir = "notes";
+            new_notes_location = "notes_subdir";
 
             completion = {
               nvim_cmp = true;
@@ -116,10 +117,19 @@ in
 
             workspaces = [
               {
-                path = "~/docs/notes/";
-                name = "work";
+                path = "~/docs/";
+                name = "general";
+              }
+              {
+                path = "~/docs/personal/";
+                name = "Personal";
               }
             ];
+
+            daily_notes = {
+              folder = "notes/dailies";
+            };
+
           };
         };
 
@@ -130,23 +140,23 @@ in
           keymaps = [
             {
               action = "left";
-              key = "<C-Space><Left>";
+              key = "<M-Left>";
             }
             {
               action = "right";
-              key = "<C-Space><Right>";
+              key = "<M-Right>";
             }
             {
               action = "up";
-              key = "<C-Space><Up>";
+              key = "<M-Up>";
             }
             {
               action = "down";
-              key = "<C-Space><Down>";
+              key = "<M-Down>";
             }
             {
               action = "previous";
-              key = "<C-Space><\\>";
+              key = "<M-\\>";
             }
           ];
         };
