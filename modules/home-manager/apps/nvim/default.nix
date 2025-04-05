@@ -96,8 +96,8 @@ in
           enable = true;
 
           settings = {
-            markdown.headings.__raw = "require(\"markview.presets\").headings.arrowed";
-            horizontal_rules.__raw = "require(\"markview.presets\").horizontal_rules.arrowed";
+            markdown.headings.__raw = "require(\"markview.presets\").headings.marker";
+            horizontal_rules.__raw = "require(\"markview.presets\").horizontal_rules.thin";
             code_blocks.style = "simple";
           };
         };
@@ -378,7 +378,7 @@ in
 
               "<Esc>" = "cmp.mapping.abort()";
               "<Right>" = "cmp.mapping.confirm({ select = false })";
-              "<CR>" = "cmp.mapping.abort()";
+              "<CR>" = "cmp.mapping.confirm({ select = false })";
 
               "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
             };
