@@ -51,10 +51,7 @@ in
       enable = true;
       clipboard.providers.xclip.enable = true;
 
-      extraConfigLua =
-        (readFile ./plugin/config.lua)
-        + (readFile ./plugin/keymaps.lua)
-        + (readFile ./plugin/vimwiki/config.lua);
+      extraConfigLua = (readFile ./plugin/config.lua) + (readFile ./plugin/keymaps.lua);
 
       plugins = {
         nix.enable = true;
@@ -65,10 +62,27 @@ in
         nui.enable = true;
         dashboard.enable = true;
         dropbar.enable = true;
-        markview.enable = true;
         lualine.enable = true;
         lz-n.enable = true;
         notify.enable = true;
+        rainbow-delimiters.enable = true;
+        image.enable = true;
+
+        diagram = {
+          enable = true;
+
+          settings = {
+            renderer_options = {
+              mermaid.theme = "forest";
+            };
+
+            integrations = [
+              {
+                __raw = "require('diagram.integrations.markdown')";
+              }
+            ];
+          };
+        };
 
         easyescape = {
           enable = true;
@@ -78,21 +92,32 @@ in
           };
         };
 
-        vimwiki = {
+        markview = {
           enable = true;
 
           settings = {
-            key_mappings = {
-              all_maps = 1;
-              global = 1;
-              headers = 1;
+            markdown.headings.__raw = "require(\"markview.presets\").headings.arrowed";
+            horizontal_rules.__raw = "require(\"markview.presets\").horizontal_rules.arrowed";
+            code_blocks.style = "simple";
+          };
+        };
+
+        obsidian = {
+          enable = true;
+
+          settings = {
+
+            ui.enable = false;
+            picker.name = "telescope.nvim";
+
+            completion = {
+              nvim_cmp = true;
             };
 
-            list = [
+            workspaces = [
               {
-                ext = ".md";
                 path = "~/docs/notes/";
-                syntax = "markdown";
+                name = "work";
               }
             ];
           };
@@ -401,13 +426,17 @@ in
                 "isort"
                 "black"
               ];
-
-              "*" = [ "codespell" ];
             };
+
+            "*" = [ "codespell" ];
 
             format_on_save = {
               timeout_ms = 500;
               lsp_fallback = true;
+            };
+
+            default_format_opts = {
+              lsp_format = "fallback";
             };
           };
         };
@@ -429,20 +458,30 @@ in
         };
       };
 
-      colorscheme = "rose-pine";
+      colorscheme = "catppuccin";
 
       colorschemes = {
         melange.enable = true;
 
         catppuccin = {
           enable = true;
-          lazyLoad.enable = true;
 
           settings = {
             integrations = {
               cmp = true;
               treesitter = true;
               notify = true;
+              which_key = true;
+              lsp_trouble = true;
+              noice = true;
+              nvim_surround = true;
+              dap = true;
+
+              dropbar = {
+                enabled = true;
+                color_mode = true;
+              };
+
             };
 
             background = {
@@ -453,7 +492,7 @@ in
         };
 
         rose-pine = {
-          enable = true;
+          enable = false;
           lazyLoad.enable = true;
           settings.dark_variant = "moon";
         };
