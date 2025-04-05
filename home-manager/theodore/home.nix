@@ -39,11 +39,21 @@
 
   localModules = {
     apps = {
-      nvim.enable = true;
       # kitty.enable = true;
       zsh.enable = true;
       zen.enable = true;
       tmux.enable = true;
+
+      nvim = {
+        enable = true;
+
+        obsidian.workspaces = [
+          {
+            path = "~/docs/";
+            name = "general";
+          }
+        ];
+      };
     };
   };
 

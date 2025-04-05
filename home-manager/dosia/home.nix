@@ -52,11 +52,25 @@
   };
   localModules = {
     apps = {
-      nvim.enable = true;
       kitty.enable = true;
       zsh.enable = true;
       git.enable = true;
       zen.enable = true;
+
+      nvim = {
+        enable = true;
+
+        obsidian.workspaces = [
+          {
+            path = "~/docs/";
+            name = "general";
+          }
+          {
+            path = "~/docs/personal/";
+            name = "Personal";
+          }
+        ];
+      };
     };
 
     development = {
