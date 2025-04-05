@@ -10,9 +10,21 @@ let
   cfg = config.localModules.apps;
 in
 {
+  imports = [
+    ./plugin/treesitter-textobjects
+    ./plugin/telescope
+    ./plugin/obsidian
+  ];
+
   options.localModules.apps.nvim.enable = mkEnableOption "nvim";
 
   config = mkIf cfg.nvim.enable {
+    localModules.apps.nvim = {
+      treesitter-textobjects.enable = true;
+      telescope.enable = true;
+      obsidian.enable = true;
+    };
+
     home.packages = with pkgs; [
       # creating packages from URLs
       nix-init
@@ -102,37 +114,6 @@ in
           };
         };
 
-        obsidian = {
-          enable = true;
-
-          settings = {
-            ui.enable = false;
-            picker.name = "telescope.nvim";
-            notes_subdir = "notes";
-            new_notes_location = "notes_subdir";
-
-            completion = {
-              nvim_cmp = true;
-            };
-
-            workspaces = [
-              {
-                path = "~/docs/";
-                name = "general";
-              }
-              {
-                path = "~/docs/personal/";
-                name = "Personal";
-              }
-            ];
-
-            daily_notes = {
-              folder = "notes/dailies";
-            };
-
-          };
-        };
-
         tmux-navigator = {
           enable = true;
           settings.no_mappings = 1;
@@ -159,37 +140,6 @@ in
               key = "<M-\\>";
             }
           ];
-        };
-
-        trouble = {
-          enable = true;
-
-          settings = {
-            modes = {
-              diagnostics_buffer = {
-                mode = "diagnostics";
-                filter = {
-                  buf = 0;
-                };
-
-                win = {
-                  type = "split";
-                  position = "top";
-                  relative = "win";
-
-                  size = {
-                    height = 0.2;
-                  };
-                };
-
-                auto_open = true;
-                auto_jump = true;
-
-              };
-            };
-
-            luaConfig.post = readFile ./plugin/trouble/config.lua;
-          };
         };
 
         noice = {
@@ -224,47 +174,6 @@ in
           luaConfig.post = readFile ./plugin/ufo/config.lua;
         };
 
-        # UI
-        telescope = {
-          enable = true;
-
-          extensions = {
-            fzf-native.enable = true;
-            ui-select.enable = true;
-          };
-
-          settings.pickers = mkMerge [
-            (genAttrs
-              [
-                "find_files"
-                "git_files"
-                "grep_string"
-                "live_grep"
-                "registers"
-                "buffers"
-                "current_buffer_fuzzy_find"
-                "projects"
-                "lsp_definitions"
-                "lsp_implementations"
-                "lsp_references"
-                "lsp_type_references"
-                "lsp_document_symbols"
-                "lsp_workspace_symbols"
-                "projects"
-              ]
-              (name: {
-                theme = "dropdown";
-              })
-            )
-
-            (genAttrs [ "diagnostics" ] (name: {
-              theme = "cursor";
-            }))
-          ];
-
-          luaConfig.post = readFile ./plugin/telescope/keymaps.lua;
-        };
-
         treesitter = {
           enable = true;
 
@@ -292,73 +201,6 @@ in
 
             incremental_selection = {
               enable = true;
-            };
-          };
-        };
-
-        treesitter-textobjects = {
-          enable = true;
-
-          select = {
-            enable = true;
-
-            keymaps = {
-              "af" = "@function.outer";
-              "if" = "@function.inner";
-              "ac" = "@class.outer";
-              "ic" = "@class.inner";
-              "as" = "@local.scope";
-            };
-          };
-
-          swap = {
-            enable = true;
-
-            swapNext."<leader>a" = "@parameter.inner";
-            swapPrevious."<leader>A" = "@parameter.inner";
-          };
-
-          move = {
-            enable = true;
-
-            gotoNext."]d" = "@conditional.outer";
-            gotoPrevious."[d" = "@conditional.outer";
-
-            gotoNextStart = {
-              "]m" = "@function.outer";
-              "]]" = "@class.outer";
-              "]o" = "@loop.*";
-
-              "]s" = {
-                query = "@local.scope";
-                queryGroup = "locals";
-                desc = "Next scope";
-              };
-
-              "]z" = {
-                query = "@fold";
-                queryGroup = "folds";
-                desc = "Next fold";
-              };
-            };
-
-            gotoNextEnd = {
-              "]M" = "@function.outer";
-              "][" = "@function.outer";
-            };
-
-            gotoPreviousStart = {
-              "[m" = "@function.outer";
-              "[[" = "@class.outer";
-            };
-          };
-
-          lspInterop = {
-            enable = true;
-
-            peekDefinitionCode = {
-              "<leader>df" = "@function.outer";
-              "<leader>dF" = "@class.outer";
             };
           };
         };
