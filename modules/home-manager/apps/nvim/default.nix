@@ -103,6 +103,11 @@ in
         image.enable = true;
         friendly-snippets.enable = true;
 
+        rest = {
+          enable = true;
+          enableTelescope = true;
+        };
+
         diagram = {
           enable = true;
 
