@@ -3,13 +3,22 @@
 with lib;
 
 {
-  imports = [ ./zen ./nvim ];
+  imports = [
+    ./zen
+    ./nvim
+  ];
 
   options.localModules = {
     development = {
       enable = mkEnableOption "Development";
       languages = mkOption {
-        type = with types; listOf (enum [ "golang" "typescript" "nix" ]);
+        type =
+          with types;
+          listOf (enum [
+            "golang"
+            "typescript"
+            "nix"
+          ]);
       };
     };
 

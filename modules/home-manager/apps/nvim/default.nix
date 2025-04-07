@@ -12,17 +12,35 @@ in
 {
   imports = [
     ./plugin/treesitter-textobjects
+    ./plugin/treesitter
     ./plugin/telescope
     ./plugin/obsidian
+    ./plugin/cmp
+    ./plugin/lsp
+    ./plugin/conform-nvim
+    ./plugin/tmux-navigator
+    ./plugin/trouble
+    ./plugin/dap
+    ./plugin/noice
   ];
 
   options.localModules.apps.nvim.enable = mkEnableOption "nvim";
 
   config = mkIf cfg.nvim.enable {
+
     localModules.apps.nvim = {
+      treesitter.enable = true;
       treesitter-textobjects.enable = true;
+
+      tmux-navigator.enable = true;
+      conform-nvim.enable = true;
       telescope.enable = true;
       obsidian.enable = true;
+      trouble.enable = true;
+      noice.enable = true;
+      dap.enable = true;
+      cmp.enable = true;
+      lsp.enable = true;
     };
 
     home.packages = with pkgs; [
@@ -48,6 +66,10 @@ in
       # golang
       go
       gopls
+      delve
+
+      # python
+      python312Packages.debugpy
 
       # grep improvement
       ripgrep
@@ -79,6 +101,7 @@ in
         notify.enable = true;
         rainbow-delimiters.enable = true;
         image.enable = true;
+        friendly-snippets.enable = true;
 
         diagram = {
           enable = true;
@@ -108,59 +131,11 @@ in
           enable = true;
 
           settings = {
-            markdown.headings.__raw = "require(\"markview.presets\").headings.marker";
-            horizontal_rules.__raw = "require(\"markview.presets\").horizontal_rules.thin";
+            markdown = {
+              headings.__raw = "require(\"markview.presets\").headings.marker";
+              horizontal_rules.__raw = "require(\"markview.presets\").horizontal_rules.thin";
+            };
             code_blocks.style = "simple";
-          };
-        };
-
-        tmux-navigator = {
-          enable = true;
-          settings.no_mappings = 1;
-
-          keymaps = [
-            {
-              action = "left";
-              key = "<M-Left>";
-            }
-            {
-              action = "right";
-              key = "<M-Right>";
-            }
-            {
-              action = "up";
-              key = "<M-Up>";
-            }
-            {
-              action = "down";
-              key = "<M-Down>";
-            }
-            {
-              action = "previous";
-              key = "<M-\\>";
-            }
-          ];
-        };
-
-        noice = {
-          enable = true;
-
-          settings = {
-            preset = {
-              command_palette = true;
-              inc_rename = true;
-              lsp_doc_border = true;
-            };
-
-            lsp = {
-              signature.view = "hover";
-
-              override = {
-                "cmp.entry.get_documentation" = true;
-                "vim.lsp.util.convert_input_to_markdown_lines" = true;
-                "vim.lsp.util.stylize_markdown" = true;
-              };
-            };
           };
         };
 
@@ -173,132 +148,6 @@ in
           '';
           luaConfig.post = readFile ./plugin/ufo/config.lua;
         };
-
-        treesitter = {
-          enable = true;
-
-          settings = {
-            auto_install = true;
-            indent.enable = true;
-
-            ensure_installed = [
-              "c"
-              "lua"
-              "vim"
-              "bash"
-              "regex"
-              "vimdoc"
-              "query"
-              "markdown"
-              "markdown_inline"
-
-            ];
-
-            hightlight = {
-              enable = true;
-              additional_vim_regex_highlighting = true;
-            };
-
-            incremental_selection = {
-              enable = true;
-            };
-          };
-        };
-
-        cmp = {
-          enable = true;
-          autoEnableSources = true;
-          settings = {
-            preselect = "cmp.PreselectMode.None";
-
-            mapping = {
-              "<C-Down>" = "cmp.mapping.scroll_docs(-4)";
-              "<C-Up>" = "cmp.mapping.scroll_docs(4)";
-
-              "<Down>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-              "<Up>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
-
-              "<Esc>" = "cmp.mapping.abort()";
-              "<Right>" = "cmp.mapping.confirm({ select = false })";
-              "<CR>" = "cmp.mapping.confirm({ select = false })";
-
-              "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-            };
-
-            sources = [
-              { name = "nvim_lsp"; }
-              { name = "nvim_lsp_document_symbol"; }
-              { name = "nvim_lsp_signature_help"; }
-              { name = "orgmode"; }
-
-              { name = "dictionary"; }
-
-              { name = "path"; }
-              { name = "buffer"; }
-              { name = "git"; }
-              { name = "vimwiki"; }
-            ];
-          };
-        };
-
-        lsp = {
-          enable = true;
-
-          servers = {
-            # Typescript
-            ts_ls.enable = true;
-
-            # Nix
-            nixd.enable = true;
-
-            # python
-            basedpyright.enable = true;
-
-            # lua
-            lua_ls.enable = true;
-
-            # jsonls
-            jsonls.enable = true;
-
-            # golang
-            gopls.enable = true;
-          };
-        };
-
-        conform-nvim = {
-          enable = true;
-
-          settings = {
-            formatters_by_ft = {
-              lua = [ "stylua" ];
-
-              go = [ "gofmt" ];
-
-              python = [
-                "isort"
-                "black"
-              ];
-            };
-
-            "*" = [ "codespell" ];
-
-            format_on_save = {
-              timeout_ms = 500;
-              lsp_fallback = true;
-            };
-
-            default_format_opts = {
-              lsp_format = "fallback";
-            };
-          };
-        };
-
-        dap = {
-          enable = true;
-        };
-
-        dap-go.enable = true;
-        dap-python.enable = true;
 
         which-key = {
           enable = true;

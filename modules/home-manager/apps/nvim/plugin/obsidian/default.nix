@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 with lib;
@@ -18,7 +17,7 @@ in
 
       type = types.listOf (
         types.submodule (
-          { config, ... }:
+          { ... }:
           {
             options = {
               path = mkOption {

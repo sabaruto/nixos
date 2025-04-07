@@ -72,8 +72,8 @@ in
       enable = true;
 
       peekDefinitionCode = {
-        "<leader>df" = "@function.outer";
-        "<leader>dF" = "@class.outer";
+        "<leader>pf" = "@function.outer";
+        "<leader>pc" = "@class.outer";
       };
     };
   };
