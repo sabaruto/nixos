@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 with lib;
@@ -38,7 +37,8 @@ in
         };
       };
 
-      luaConfig.post = readFile ./config.lua;
     };
+
+    luaConfig.post = readFile ./config.lua;
   };
 }

@@ -64,7 +64,6 @@ in
       fd
 
       # golang
-      go
       gopls
       delve
 
