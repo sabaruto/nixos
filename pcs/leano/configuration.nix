@@ -1,7 +1,7 @@
-{ outputs, ... }:
+{ pkgs, outputs, ... }:
 
 {
-  imports = [ 
+  imports = [
     outputs.nixosModules
     ./hardware-configuration.nix
   ];
@@ -9,7 +9,7 @@
     name = "dosia";
     hostname = "leano";
     stateVersion = "24.11";
-    
+
     swapSize = 32 * 1024;
     gpu = "nvidia";
 
@@ -18,5 +18,7 @@
     apps = {
       steam.enable = true;
     };
+
+    users.defaultUserShell = pkgs.zsh;
   };
 }

@@ -12,6 +12,7 @@ in
 {
   imports = [
     ./plugin/treesitter-textobjects
+    ./plugin/treesitter-refactor
     ./plugin/treesitter
     ./plugin/telescope
     ./plugin/obsidian
@@ -30,6 +31,7 @@ in
 
     localModules.apps.nvim = {
       treesitter.enable = true;
+      treesitter-refactor.enable = true;
       treesitter-textobjects.enable = true;
 
       tmux-navigator.enable = true;
@@ -44,31 +46,12 @@ in
     };
 
     home.packages = with pkgs; [
-      # creating packages from URLs
-      nix-init
-
-      # find hash of packages
-      nix-prefetch
-
-      # nix formatter
-      nixfmt-rfc-style
-      nixd
-
       # language servers
-      lua
-      lua-language-server
       vscode-langservers-extracted
 
       # fuzzy search
       fzf
       fd
-
-      # golang
-      gopls
-      delve
-
-      # python
-      python312Packages.debugpy
 
       # grep improvement
       ripgrep
@@ -94,13 +77,61 @@ in
         leap.enable = true;
         nui.enable = true;
         dashboard.enable = true;
-        dropbar.enable = true;
-        lualine.enable = true;
         lz-n.enable = true;
         notify.enable = true;
         rainbow-delimiters.enable = true;
         image.enable = true;
         friendly-snippets.enable = true;
+        scope.enable = true;
+
+        lualine = {
+          enable = true;
+
+          settings = {
+            sections = {
+              lualine_a = null;
+              lualine_b = null;
+              lualine_c = null;
+              lualine_x = null;
+              lualine_y = null;
+              lualine_z = null;
+            };
+
+            inactive_winbar = {
+              lualine_c = [ "filename" ];
+              lualine_x = [ "location" ];
+            };
+
+            winbar = {
+              lualine_a = [ "mode" ];
+              lualine_b = [
+                "branch"
+                "diff"
+                "diagnostics"
+              ];
+              lualine_c = [ "filename" ];
+              lualine_x = [
+                "encoding"
+                "fileformat"
+                "filetype"
+              ];
+              lualine_y = [ "progress" ];
+              lualine_z = [ "location" ];
+            };
+          };
+        };
+
+        bufferline = {
+          enable = true;
+
+          settings.options = {
+            mode = "tabs";
+            separator_style = "slant";
+            always_show_bufferline = true;
+            diagnostics = "nvim_lsp";
+
+          };
+        };
 
         rest = {
           enable = true;
@@ -116,9 +147,7 @@ in
             };
 
             integrations = [
-              {
-                __raw = "require('diagram.integrations.markdown')";
-              }
+              { __raw = ''require('diagram.integrations.markdown')''; }
             ];
           };
         };

@@ -34,7 +34,7 @@
   nixpkgs.config.allowUnfree = true;
 
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "nvim";
   };
 
   localModules = {
@@ -54,6 +54,16 @@
           }
         ];
       };
+    };
+
+    development = {
+      enable = true;
+      languages = [
+        "nix"
+        "python"
+        "lua"
+        "golang"
+      ];
     };
   };
 

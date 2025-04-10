@@ -22,6 +22,7 @@ in
         ];
       }
     ];
+
     plugins.treesitter = {
       enable = true;
 

@@ -6,12 +6,15 @@
 with lib;
 let
   cfg = config.localModules.apps.nvim;
+  langcfg = config.localModules.development;
+  helpers = config.lib.nixvim;
 in
 {
   options.localModules.apps.nvim.lsp.enable = mkEnableOption "lsp";
-
   config.programs.nixvim.plugins = {
+
     lsp = mkIf cfg.lsp.enable {
+
       enable = true;
 
       servers = {
@@ -19,13 +22,13 @@ in
         gitlab_ci_ls.enable = true;
 
         # Typescript
-        ts_ls.enable = true;
+        ts_ls = mkIf (elem "typescript" langcfg.languages) { enable = true; };
 
         # Nix
-        nixd.enable = true;
+        nixd = mkIf (elem "nix" langcfg.languages) { enable = true; };
 
         # python
-        basedpyright.enable = true;
+        basedpyright = mkIf (elem "python" langcfg.languages) { enable = true; };
 
         # lua
         lua_ls.enable = true;
@@ -34,15 +37,24 @@ in
         jsonls.enable = true;
 
         # golang
-        gopls.enable = true;
+        gopls = mkIf (elem "golang" langcfg.languages) { enable = true; };
       };
     };
 
     lint = {
       enable = true;
+      lintersByFt = mkIf (elem "golang" langcfg.languages) { go = [ "golangcilint" ]; };
 
-      lintersByFt = {
-        go = [ "golangcilint" ];
+      autoCmd = {
+        callback = helpers.mkRaw ''
+          function()
+              require('lint').try_lint()
+          end
+        '';
+        pattern = [ "*" ];
+        event = [
+          "bufwritepost"
+        ];
       };
     };
   };

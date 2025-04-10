@@ -15,23 +15,31 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nixvim, ... }@inputs: {
-    homeConfigurations = {
-      theodore = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        modules = [
-          nixvim.homeManagerModules.nixvim
-          ../packages/nvim.nix
-          ./home.nix
-        ];
-      };
-      dosia = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x68_64-linux;
-        modules = [
-          nixvim.homeManagerModules.nixvim
-          ./home.nix
-        ];
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      nixvim,
+      ...
+    }@inputs:
+    {
+      homeConfigurations = {
+        theodore = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          modules = [
+            nixvim.homeManagerModules.nixvim
+            ../packages/nvim.nix
+            ./home.nix
+          ];
+        };
+        dosia = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x68_64-linux;
+          modules = [
+            nixvim.homeManagerModules.nixvim
+            ./home.nix
+          ];
+        };
       };
     };
-  };
 }

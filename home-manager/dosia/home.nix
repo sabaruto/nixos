@@ -75,13 +75,22 @@
 
     development = {
       enable = true;
-      languages = [ "nix" ];
+      installOnNixos = true;
+      languages = [
+        "nix"
+        "lua"
+        "java"
+        "golang"
+        "typescript"
+      ];
     };
   };
 
   nixpkgs.config.allowUnfree = true;
 
-  home.sessionVariables = { };
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
 
   programs.home-manager.enable = true;
 }
