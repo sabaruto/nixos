@@ -16,6 +16,7 @@ in
     ./plugin/treesitter
     ./plugin/telescope
     ./plugin/obsidian
+    ./plugin/lualine
     ./plugin/cmp
     ./plugin/lsp
     ./plugin/conform-nvim
@@ -39,6 +40,7 @@ in
       telescope.enable = true;
       obsidian.enable = true;
       trouble.enable = true;
+      lualine.enable = true;
       noice.enable = true;
       dap.enable = true;
       cmp.enable = true;
@@ -83,55 +85,6 @@ in
         image.enable = true;
         friendly-snippets.enable = true;
         scope.enable = true;
-
-        lualine = {
-          enable = true;
-
-          settings = {
-            sections = {
-              lualine_a = null;
-              lualine_b = null;
-              lualine_c = null;
-              lualine_x = null;
-              lualine_y = null;
-              lualine_z = null;
-            };
-
-            inactive_winbar = {
-              lualine_c = [ "filename" ];
-              lualine_x = [ "location" ];
-            };
-
-            winbar = {
-              lualine_a = [ "mode" ];
-              lualine_b = [
-                "branch"
-                "diff"
-                "diagnostics"
-              ];
-              lualine_c = [ "filename" ];
-              lualine_x = [
-                "encoding"
-                "fileformat"
-                "filetype"
-              ];
-              lualine_y = [ "progress" ];
-              lualine_z = [ "location" ];
-            };
-          };
-        };
-
-        bufferline = {
-          enable = true;
-
-          settings.options = {
-            mode = "tabs";
-            separator_style = "slant";
-            always_show_bufferline = true;
-            diagnostics = "nvim_lsp";
-
-          };
-        };
 
         rest = {
           enable = true;
