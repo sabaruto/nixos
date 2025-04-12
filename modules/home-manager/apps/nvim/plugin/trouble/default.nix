@@ -35,8 +35,16 @@ in
           auto_jump = true;
 
         };
-      };
 
+        diagnostics_hover = {
+          mode = "diagnostics";
+          type = "float";
+          relative = "cursor";
+          filer = {
+            buf = 0;
+          };
+        };
+      };
     };
 
     luaConfig.post = readFile ./config.lua;
