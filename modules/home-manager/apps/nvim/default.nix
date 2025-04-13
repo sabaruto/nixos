@@ -33,7 +33,7 @@ in
     localModules.apps.nvim = {
       treesitter.enable = true;
       treesitter-refactor.enable = true;
-      treesitter-textobjects.enable = true;
+      treesitter-textobjects.enable = false;
 
       tmux-navigator.enable = true;
       conform-nvim.enable = true;
@@ -55,12 +55,18 @@ in
       fzf
       fd
 
+      # tree-sitter exe
+      tree-sitter
+
       # grep improvement
       ripgrep
 
       # fonts
       nerd-fonts.fira-code
       nerd-fonts.droid-sans-mono
+
+      nodejs
+      gcc
     ];
 
     fonts.fontconfig.enable = true;

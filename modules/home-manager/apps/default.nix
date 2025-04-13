@@ -13,6 +13,7 @@ in
   imports = [
     ./zen
     ./nvim
+    ./neovim
   ];
 
   options.localModules = {

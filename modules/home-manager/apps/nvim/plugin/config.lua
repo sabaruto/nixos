@@ -1,4 +1,4 @@
-vim.g.mapleader = ' '
+vim.g.mapleader = " "
 
 -- Visual settings
 vim.opt.smarttab = true

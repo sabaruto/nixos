@@ -12,8 +12,6 @@ in
 
   config.programs.nixvim.plugins.treesitter-refactor = mkIf cfg.treesitter-refactor.enable {
     enable = true;
-    highlightCurrentScope.enable = true;
     highlightDefinitions.enable = true;
-    smartRename.enable = true;
   };
 }

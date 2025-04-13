@@ -32,10 +32,6 @@ in
         action = "down";
         key = "<M-Down>";
       }
-      {
-        action = "previous";
-        key = "<M-\\>";
-      }
     ];
   };
 }

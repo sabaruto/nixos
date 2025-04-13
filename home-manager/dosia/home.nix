@@ -56,6 +56,7 @@
       zsh.enable = true;
       git.enable = true;
       zen.enable = true;
+      neovim.enable = false;
 
       nvim = {
         enable = true;
