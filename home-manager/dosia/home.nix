@@ -56,10 +56,10 @@
       zsh.enable = true;
       git.enable = true;
       zen.enable = true;
-      neovim.enable = false;
+      neovim.enable = true;
 
       nvim = {
-        enable = true;
+        enable = false;
 
         obsidian.workspaces = [
           {

@@ -67,6 +67,7 @@ in
 
       nodejs
       gcc
+      cmake
     ];
 
     fonts.fontconfig.enable = true;
