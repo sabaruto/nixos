@@ -43,9 +43,10 @@
       zsh.enable = true;
       zen.enable = true;
       tmux.enable = true;
+      neovim.enable = true;
 
       nvim = {
-        enable = true;
+        enable = false;
 
         obsidian.workspaces = [
           {
