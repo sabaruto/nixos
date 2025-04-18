@@ -37,9 +37,4 @@ vim.keymap.set({ "n" }, "<leader><tab><left>", ":-tabnext<cr>", { desc = "prev t
 vim.keymap.set({ "n" }, "<leader><tab><right>", ":+tabnext<cr>", { desc = "next tab" })
 vim.keymap.set({ "n" }, "<leader><tab>d", ":tabclose<CR>", { desc = "[D]elete tab" })
 
--- LSP
-vim.keymap.set({ "n", "v" }, "<leader>pd", function()
-	vim.diagnostic.open_float(nil, { focus = false })
-end, { desc = "Peek [D]iagnostics under line" })
-
 require("config.lazy")

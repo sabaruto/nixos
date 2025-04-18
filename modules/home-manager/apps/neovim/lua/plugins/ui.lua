@@ -27,9 +27,9 @@ return {
 			},
 			-- you can enable a preset for easier configuration
 			presets = {
-				command_palette = true, -- position the cmdline and popupmenu together
-				long_message_to_split = true, -- long messages will be sent to a split
-				inc_rename = true, -- enables an input dialog for inc-rename.nvim
+				command_palette = false,
+				long_message_to_split = true,
+				inc_rename = true,
 			},
 		},
 	},
