@@ -190,6 +190,13 @@ return {
 		},
 		config = function()
 			local cmp = require("cmp")
+			local mappings = {
+				["<C-Down>"] = cmp.mapping.scroll_docs(-4),
+				["<C-Up>"] = cmp.mapping.scroll_docs(4),
+				["<C-e>"] = cmp.mapping.abort(),
+				["<CR>"] = cmp.mapping.confirm({ select = false }),
+				["<Right>"] = cmp.mapping.confirm({ select = false }),
+			}
 
 			require("cmp").setup({
 				snippet = {
@@ -201,13 +208,7 @@ return {
 					completion = cmp.config.window.bordered(),
 					documentation = cmp.config.window.bordered(),
 				},
-				mapping = cmp.mapping.preset.insert({
-					["<C-Down>"] = cmp.mapping.scroll_docs(-4),
-					["<C-Up>"] = cmp.mapping.scroll_docs(4),
-					["<C-e>"] = cmp.mapping.abort(),
-					["<CR>"] = cmp.mapping.confirm({ select = false }),
-					["<Right>"] = cmp.mapping.confirm({ select = false }),
-				}),
+				mapping = cmp.mapping.preset.insert(mappings),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
 					{ name = "nvim_lsp_document_symbol" },
@@ -224,14 +225,14 @@ return {
 			})
 
 			cmp.setup.cmdline({ "/", "?" }, {
-				mapping = cmp.mapping.preset.cmdline(),
+				mapping = cmp.mapping.preset.insert(mappings),
 				sources = {
 					{ name = "buffer" },
 				},
 			})
 
 			cmp.setup.cmdline(":", {
-				mapping = cmp.mapping.preset.cmdline(),
+				mapping = cmp.mapping.preset.insert(mappings),
 				sources = cmp.config.sources({
 					{ name = "path" },
 				}, {
