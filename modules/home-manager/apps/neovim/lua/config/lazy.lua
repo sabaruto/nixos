@@ -4,6 +4,7 @@ require("lazy").setup({
 		-- import your plugins
 		{ import = "plugins" },
 		{ import = "plugins/cmp" },
+		{ import = "plugins/dap" },
 		{ import = "plugins/telescope" },
 	},
 	-- Configure any other settings here. See the documentation for more details.

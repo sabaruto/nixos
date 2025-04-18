@@ -1,7 +1,3 @@
--- Make sure to setup `mapleader` and `maplocalleader` before
--- loading lazy.nvim so that mappings are correct.
--- This is also a good place to setup other settings (vim.opt)
-
 vim.g.mapleader = " "
 vim.g.maplocalleader = "<BS>"
 
@@ -36,5 +32,4 @@ vim.keymap.set({ "n" }, "<leader><tab>a", ":tabnew<CR>", { desc = "[A]dd new tab
 vim.keymap.set({ "n" }, "<leader><tab><left>", ":-tabnext<cr>", { desc = "prev tab" })
 vim.keymap.set({ "n" }, "<leader><tab><right>", ":+tabnext<cr>", { desc = "next tab" })
 vim.keymap.set({ "n" }, "<leader><tab>d", ":tabclose<CR>", { desc = "[D]elete tab" })
-
 require("config.lazy")

@@ -53,47 +53,6 @@ return {
 		end,
 	},
 	{
-		"akinsho/bufferline.nvim",
-		event = "VeryLazy",
-		keys = {
-			{ "<leader>bp",  "<Cmd>BufferLineTogglePin<CR>",            desc = "Toggle Pin" },
-			{ "<leader>bP",  "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete Non-Pinned Buffers" },
-			{ "<leader>brd", "<Cmd>BufferLineCloseRight<CR>",           desc = "Delete Buffers to the Right" },
-			{ "<leader>bld", "<Cmd>BufferLineCloseLeft<CR>",            desc = "Delete Buffers to the Left" },
-			{ "<S-left>",    "<cmd>BufferLineCyclePrev<cr>",            desc = "Prev Buffer" },
-			{ "<S-right>",   "<cmd>BufferLineCycleNext<cr>",            desc = "Next Buffer" },
-			{ "[b",          "<cmd>BufferLineCyclePrev<cr>",            desc = "Prev Buffer" },
-			{ "]b",          "<cmd>BufferLineCycleNext<cr>",            desc = "Next Buffer" },
-			{ "[B",          "<cmd>BufferLineMovePrev<cr>",             desc = "Move buffer prev" },
-			{ "]B",          "<cmd>BufferLineMoveNext<cr>",             desc = "Move buffer next" },
-		},
-		opts = {
-			options = {
-				diagnostics = "nvim_lsp",
-				always_show_bufferline = false,
-				offsets = {
-					{
-						filetype = "neo-tree",
-						text = "Neo-tree",
-						highlight = "Directory",
-						text_align = "left",
-					},
-				},
-			},
-		},
-		config = function(_, opts)
-			require("bufferline").setup(opts)
-			-- Fix bufferline when restoring a session
-			vim.api.nvim_create_autocmd({ "BufAdd", "BufDelete" }, {
-				callback = function()
-					vim.schedule(function()
-						pcall(nvim_bufferline)
-					end)
-				end,
-			})
-		end,
-	},
-	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {
@@ -142,7 +101,14 @@ return {
 				lualine_z = {},
 			},
 
-			extensions = {},
+			extensions = {
+				"fzf",
+				"lazy",
+				"neo-tree",
+				"quickfix",
+				"toggleterm"
+			},
+
 		},
 	},
 	{
@@ -253,34 +219,6 @@ return {
 				end,
 			})
 		end,
-	},
-	{
-		"folke/todo-comments.nvim",
-		cmd = { "TodoTrouble", "TodoTelescope" },
-		opts = {},
-		keys = {
-			{
-				"]t",
-				function()
-					require("todo-comments").jump_next()
-				end,
-				desc = "Next Todo Comment",
-			},
-			{
-				"[t",
-				function()
-					require("todo-comments").jump_prev()
-				end,
-				desc = "Previous Todo Comment",
-			},
-			{
-				"<leader>dT",
-				"<cmd>Trouble todo toggle filter = {tag = {TODO,FIX,FIXME}}<cr>",
-				desc = "Todo/Fix/Fixme (Trouble)",
-			},
-			{ "<leader>st", "<cmd>TodoTelescope<cr>",                         desc = "Todo" },
-			{ "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme" },
-		},
 	},
 	{
 		"lewis6991/gitsigns.nvim",

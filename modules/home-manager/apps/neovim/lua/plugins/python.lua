@@ -10,20 +10,8 @@ return {
 		lazy = false,
 		branch = "regexp", -- This is the regexp branch, use this for the new version
 		keys = {
-			{ ",v", "<cmd>VenvSelect<cr>" },
+			{ "<leader>tp",  "",                    desc = "+python" },
+			{ "<leader>tpv", "<cmd>VenvSelect<cr>", desc = "Select python environment" },
 		},
-		---@type venv-selector.Config
-		opts = {
-			-- Your settings go here
-		},
-	},
-	{
-		"mfussenegger/nvim-dap-python",
-		dependencies = {
-			"mfussenegger/nvim-dap",
-		},
-		config = function()
-			require("dap-python").setup("python3")
-		end,
 	},
 }

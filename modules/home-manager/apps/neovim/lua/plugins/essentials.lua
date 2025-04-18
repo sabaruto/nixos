@@ -84,11 +84,6 @@ return {
 	{
 		"folke/flash.nvim",
 		opts = {
-			modes = {
-				search = {
-					enabled = true,
-				}
-			},
 			prompt = {
 				win_config = {
 					row = -100,
