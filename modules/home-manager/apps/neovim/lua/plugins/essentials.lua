@@ -219,7 +219,6 @@ return {
 					{ name = "path" },
 					{ name = "git" },
 					{ name = "vimwiki" },
-				}, {
 					{ name = "buffer" },
 				}),
 			})
@@ -235,7 +234,6 @@ return {
 				mapping = cmp.mapping.preset.insert(mappings),
 				sources = cmp.config.sources({
 					{ name = "path" },
-				}, {
 					{ name = "cmdline" },
 				}),
 				matching = { disallow_symbol_nonprefix_matching = false },
@@ -243,8 +241,8 @@ return {
 		end,
 	},
 	{ "hrsh7th/cmp-nvim-lsp", lazy = true },
-	{ "hrsh7th/cmp-buffer", lazy = true },
-	{ "hrsh7th/cmp-path", lazy = true },
+	{ "hrsh7th/cmp-buffer",   lazy = true },
+	{ "hrsh7th/cmp-path",     lazy = true },
 	{
 		"MagicDuck/grug-far.nvim",
 		opts = { headerMaxWidth = 80 },
@@ -296,7 +294,7 @@ return {
 				desc = "Notification History"
 			},
 			{ "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
-			{ "<leader>bq", function() Snacks.bufdelete() end,     desc = "Delete buffer" }
+			{ "<leader>bd", function() Snacks.bufdelete() end,     desc = "Delete buffer" }
 		},
 	},
 	{
@@ -327,16 +325,16 @@ return {
 			},
 		},
 		keys = {
-			{ "<leader>dx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
+			{ "<leader>dx", "<cmd>Trouble diagnostics toggle<cr>",              desc = "Diagnostics (Trouble)" },
 			{ "<leader>dX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },
-			{ "<leader>cs", "<cmd>Trouble symbols toggle<cr>", desc = "Symbols (Trouble)" },
+			{ "<leader>cs", "<cmd>Trouble symbols toggle<cr>",                  desc = "Symbols (Trouble)" },
 			{
 				"<leader>cS",
 				"<cmd>Trouble lsp toggle<cr>",
 				desc = "LSP references/definitions/... (Trouble)",
 			},
 			{ "<leader>tL", "<cmd>Trouble loclist toggle<cr>", desc = "Location List (Trouble)" },
-			{ "<leader>tQ", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix List (Trouble)" },
+			{ "<leader>tQ", "<cmd>Trouble qflist toggle<cr>",  desc = "Quickfix List (Trouble)" },
 			{
 				"[q",
 				function()
@@ -420,9 +418,9 @@ return {
 		"echasnovski/mini.surround",
 
 		mappings = {
-			add = "gsa", -- Add surrounding in Normal and Visual modes
+			add = "gsa",   -- Add surrounding in Normal and Visual modes
 			delete = "gsd", -- Delete surrounding
-			find = "gsf", -- Find surrounding (to the right)
+			find = "gsf",  -- Find surrounding (to the right)
 			find_left = "gsF", -- Find surrounding (to the left)
 			highlight = "gsh", -- Highlight surrounding
 			replace = "gsr", -- Replace surrounding

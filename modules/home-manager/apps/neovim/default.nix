@@ -33,6 +33,7 @@ in
 
         nodejs
         gcc
+        gnumake
       ];
 
       file.".config/nvim/lua" = {

@@ -29,7 +29,13 @@ vim.keymap.set({ "n", "v" }, "<leader>x-", ":split<CR>", { desc = "Horizontal Sp
 vim.keymap.set({ "n", "v" }, "<leader>x|", ":vsplit<CR>", { desc = "Vertical Split" })
 vim.keymap.set({ "n", "v" }, "<leader>xh", ":split<CR>", { desc = "[H]orizontal Split" })
 vim.keymap.set({ "n", "v" }, "<leader>xv", ":vsplit<CR>", { desc = "[V]ertical Split" })
-vim.keymap.set({ "n", "v" }, "<leader>xq", ":quit<CR>", { desc = "[Q]uit Window" })
+vim.keymap.set({ "n", "v" }, "<leader>xd", ":quit<CR>", { desc = "[D]elete Window" })
+
+-- Tabs
+vim.keymap.set({ "n" }, "<leader><tab>a", ":tabnew<CR>", { desc = "[A]dd new tab" })
+vim.keymap.set({ "n" }, "<leader><tab><left>", ":-tabnext<cr>", { desc = "prev tab" })
+vim.keymap.set({ "n" }, "<leader><tab><right>", ":+tabnext<cr>", { desc = "next tab" })
+vim.keymap.set({ "n" }, "<leader><tab>d", ":tabclose<CR>", { desc = "[D]elete tab" })
 
 -- LSP
 vim.keymap.set({ "n", "v" }, "<leader>pd", function()

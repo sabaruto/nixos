@@ -241,8 +241,8 @@ return {
 			local dap = require("dap")
 			return {
 				{ "<leader>tb", dap.toggle_breakpoint, desc = "Toggle Breakpoint" },
-				{ "<leader>dc", dap.continue, desc = "Continue" },
-				{ "<leader>dq", dap.terminate, desc = "Terminate Debugger" },
+				{ "<leader>dc", dap.continue,          desc = "Continue" },
+				{ "<leader>dq", dap.terminate,         desc = "Terminate Debugger" },
 			}
 		end,
 	},

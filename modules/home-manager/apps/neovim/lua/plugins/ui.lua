@@ -10,8 +10,8 @@ return {
 		dependencies = { { "nvim-tree/nvim-web-devicons" } },
 	},
 	{ "nvim-tree/nvim-web-devicons", lazy = true },
-	{ "MunifTanjim/nui.nvim", lazy = true },
-	{ "rcarriga/nvim-notify", lazy = true },
+	{ "MunifTanjim/nui.nvim",        lazy = true },
+	{ "rcarriga/nvim-notify",        lazy = true },
 	{
 		"folke/noice.nvim",
 		dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
@@ -56,16 +56,16 @@ return {
 		"akinsho/bufferline.nvim",
 		event = "VeryLazy",
 		keys = {
-			{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle Pin" },
-			{ "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete Non-Pinned Buffers" },
-			{ "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "Delete Buffers to the Right" },
-			{ "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "Delete Buffers to the Left" },
-			{ "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
-			{ "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
-			{ "[b", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
-			{ "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
-			{ "[B", "<cmd>BufferLineMovePrev<cr>", desc = "Move buffer prev" },
-			{ "]B", "<cmd>BufferLineMoveNext<cr>", desc = "Move buffer next" },
+			{ "<leader>bp",  "<Cmd>BufferLineTogglePin<CR>",            desc = "Toggle Pin" },
+			{ "<leader>bP",  "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete Non-Pinned Buffers" },
+			{ "<leader>brd", "<Cmd>BufferLineCloseRight<CR>",           desc = "Delete Buffers to the Right" },
+			{ "<leader>bld", "<Cmd>BufferLineCloseLeft<CR>",            desc = "Delete Buffers to the Left" },
+			{ "<S-left>",    "<cmd>BufferLineCyclePrev<cr>",            desc = "Prev Buffer" },
+			{ "<S-right>",   "<cmd>BufferLineCycleNext<cr>",            desc = "Next Buffer" },
+			{ "[b",          "<cmd>BufferLineCyclePrev<cr>",            desc = "Prev Buffer" },
+			{ "]b",          "<cmd>BufferLineCycleNext<cr>",            desc = "Next Buffer" },
+			{ "[B",          "<cmd>BufferLineMovePrev<cr>",             desc = "Move buffer prev" },
+			{ "]B",          "<cmd>BufferLineMoveNext<cr>",             desc = "Move buffer next" },
 		},
 		opts = {
 			options = {
@@ -100,30 +100,46 @@ return {
 			sections = {
 				lualine_a = {},
 				lualine_b = {},
-				lualine_c = {},
-				lualine_x = {},
-				lualine_y = {},
+				lualine_c = { { "filename", path = 1 } },
+				lualine_x = { "filesize" },
+				lualine_y = { "branch" },
+				lualine_z = {},
+			},
+
+			inactive_sections = {
+				lualine_a = {},
+				lualine_b = {},
+				lualine_c = { { "filename", path = 1 } },
+				lualine_x = { "filesize" },
+				lualine_y = { "branch" },
 				lualine_z = {},
 			},
 
 			tabline = {
 				lualine_a = { "mode" },
 				lualine_b = { { "buffers", mode = 2 } },
-				lualine_x = { "lsp_status", "searchcount", "selectioncount" },
-				lualine_z = { "tabs" },
+				lualine_c = {},
+				lualine_x = {},
+				lualine_y = {},
+				lualine_z = { { "tabs", mode = 2 } },
 			},
 
 			winbar = {
-				lualine_b = { "branch", "diff", "diagnostics" },
-				lualine_c = { { "filename", path = 1 } },
-				lualine_x = { "encoding", "fileformat", "filetype" },
-				lualine_y = { "progress" },
-				lualine_z = { "location" },
+				lualine_a = { { "filename", path = 4 } },
+				lualine_b = { "diff", "diagnostics" },
+				lualine_c = {},
+				lualine_x = { "filetype" },
+				lualine_y = { "progress", "location" },
+				lualine_z = { "lsp_status" },
 			},
 
 			inactive_winbar = {
-				lualine_c = { "filename" },
-				lualine_x = { "location" },
+				lualine_a = { { "filename", path = 4 } },
+				lualine_b = {},
+				lualine_c = {},
+				lualine_x = { "filetype" },
+				lualine_y = {},
+				lualine_z = {},
 			},
 
 			extensions = {},
@@ -262,7 +278,7 @@ return {
 				"<cmd>Trouble todo toggle filter = {tag = {TODO,FIX,FIXME}}<cr>",
 				desc = "Todo/Fix/Fixme (Trouble)",
 			},
-			{ "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo" },
+			{ "<leader>st", "<cmd>TodoTelescope<cr>",                         desc = "Todo" },
 			{ "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme" },
 		},
 	},
@@ -292,34 +308,34 @@ return {
 					vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
 				end
 
-      -- stylua: ignore start
-      map("n", "]h", function()
-        if vim.wo.diff then
-          vim.cmd.normal({ "]c", bang = true })
-        else
-          gs.nav_hunk("next")
-        end
-      end, "Next Hunk")
-      map("n", "[h", function()
-        if vim.wo.diff then
-          vim.cmd.normal({ "[c", bang = true })
-        else
-          gs.nav_hunk("prev")
-        end
-      end, "Prev Hunk")
-      map("n", "]H", function() gs.nav_hunk("last") end, "Last Hunk")
-      map("n", "[H", function() gs.nav_hunk("first") end, "First Hunk")
-      map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
-      map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
-      map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
-      map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
-      map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
-      map("n", "<leader>ghp", gs.preview_hunk_inline, "Preview Hunk Inline")
-      map("n", "<leader>ghb", function() gs.blame_line({ full = true }) end, "Blame Line")
-      map("n", "<leader>ghB", function() gs.blame() end, "Blame Buffer")
-      map("n", "<leader>ghd", gs.diffthis, "Diff This")
-      map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
-      map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
+				-- stylua: ignore start
+				map("n", "]h", function()
+					if vim.wo.diff then
+						vim.cmd.normal({ "]c", bang = true })
+					else
+						gs.nav_hunk("next")
+					end
+				end, "Next Hunk")
+				map("n", "[h", function()
+					if vim.wo.diff then
+						vim.cmd.normal({ "[c", bang = true })
+					else
+						gs.nav_hunk("prev")
+					end
+				end, "Prev Hunk")
+				map("n", "]H", function() gs.nav_hunk("last") end, "Last Hunk")
+				map("n", "[H", function() gs.nav_hunk("first") end, "First Hunk")
+				map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
+				map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
+				map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
+				map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
+				map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
+				map("n", "<leader>ghp", gs.preview_hunk_inline, "Preview Hunk Inline")
+				map("n", "<leader>ghb", function() gs.blame_line({ full = true }) end, "Blame Line")
+				map("n", "<leader>ghB", function() gs.blame() end, "Blame Buffer")
+				map("n", "<leader>ghd", gs.diffthis, "Diff This")
+				map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
+				map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
 			end,
 		},
 	},
