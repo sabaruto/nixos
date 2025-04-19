@@ -35,6 +35,9 @@ in
         waybar
         libnotify
 
+        # network manager applet
+        networkmanagerapplet
+
         # wallpaper daemon
         swww
 
