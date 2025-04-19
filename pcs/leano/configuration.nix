@@ -18,7 +18,7 @@
     apps = {
       steam.enable = true;
     };
-
-    users.defaultUserShell = pkgs.zsh;
   };
+
+  users.defaultUserShell = pkgs.zsh;
 }
