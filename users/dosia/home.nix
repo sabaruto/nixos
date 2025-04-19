@@ -55,21 +55,6 @@
       git.enable = true;
       zen.enable = true;
       neovim.enable = true;
-
-      nvim = {
-        enable = false;
-
-        obsidian.workspaces = [
-          {
-            path = "~/docs/";
-            name = "general";
-          }
-          {
-            path = "~/docs/personal/";
-            name = "Personal";
-          }
-        ];
-      };
     };
 
     development = {

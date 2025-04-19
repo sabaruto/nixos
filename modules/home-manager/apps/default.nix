@@ -12,7 +12,6 @@ in
 {
   imports = [
     ./zen
-    ./nvim
     ./neovim
   ];
 

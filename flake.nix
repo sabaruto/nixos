@@ -14,11 +14,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixd = {
       url = "github:nix-community/nixd";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,7 +25,6 @@
       self,
       nixpkgs,
       home-manager,
-      nixvim,
       ...
     }@inputs:
     let
@@ -64,8 +58,7 @@
           extraSpecialArgs = { inherit inputs outputs; };
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
-            nixvim.homeManagerModules.nixvim
-            ./home-manager/theodore/home.nix
+            ./users/theodore/home.nix
           ];
         };
 
@@ -74,8 +67,7 @@
           extraSpecialArgs = { inherit inputs outputs; };
 
           modules = [
-            nixvim.homeManagerModules.nixvim
-            ./home-manager/dosia/home.nix
+            ./users/dosia/home.nix
           ];
         };
       };

@@ -44,17 +44,6 @@
       zen.enable = true;
       tmux.enable = true;
       neovim.enable = true;
-
-      nvim = {
-        enable = false;
-
-        obsidian.workspaces = [
-          {
-            path = "~/docs/";
-            name = "general";
-          }
-        ];
-      };
     };
 
     development = {
