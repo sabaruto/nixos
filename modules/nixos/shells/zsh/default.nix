@@ -28,5 +28,7 @@ in
 
       shellInit = "source ~/.aliases";
     };
+
+    system.userActivationScripts.zshrc = "touch .zshrc";
   };
 }

@@ -62,6 +62,26 @@
           ];
         };
 
+        "dosia@leano" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+
+          modules = [
+            ./pcs/leano/home.nix
+            ./users/dosia/home.nix
+          ];
+        };
+
+        "dosia@zalu" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+
+          modules = [
+            ./pcs/zalu/home.nix
+            ./users/dosia/home.nix
+          ];
+        };
+
         dosia = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };

@@ -41,6 +41,10 @@ in
         # wallpaper daemon
         swww
 
+        # audio
+        pulseaudio
+        pamixer
+
         # app launcher
         rofi-wayland
 

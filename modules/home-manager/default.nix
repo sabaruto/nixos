@@ -3,12 +3,6 @@
   imports = [
     ./apps
     ./cmd
+    ./dotfiles
   ];
-
-  config = {
-    home.file.".config" = {
-      source = ./config;
-      recursive = true;
-    };
-  };
 }
