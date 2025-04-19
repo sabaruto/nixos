@@ -24,8 +24,8 @@
       spotify
 
       # browsers
-      brave
       firefox
+      vivaldi
 
       # zoom
       zoom-us

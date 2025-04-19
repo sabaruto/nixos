@@ -1,5 +1,11 @@
-{ lib, config, pkgs, ... }: {
-imports = [ ./ssm/configuration.nix ];
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
+  imports = [ ./ssm/configuration.nix ];
 
   options = { };
 

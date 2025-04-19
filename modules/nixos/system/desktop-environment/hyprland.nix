@@ -48,6 +48,9 @@ in
         # app launcher
         rofi-wayland
 
+        # GTK settings editor
+        nwg-look
+
         (waybar.overrideAttrs (oldAttrs: {
           mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
         }))

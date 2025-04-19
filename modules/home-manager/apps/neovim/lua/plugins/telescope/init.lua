@@ -22,110 +22,114 @@ return {
 				diagnostics = { theme = "dropdown" },
 			},
 		},
-		keys = {
-			-- goto
-			{
-				"gd",
-				function()
-					require("telescope.builtin").lsp_definitions()
-				end,
-				desc = "Goto Definitions",
-			},
-			{
-				"gI",
-				function()
-					require("telescope.builtin").lsp_implementations()
-				end,
-				desc = "Goto Implementations",
-			},
-			{
-				"grr",
-				function()
-					require("telescope.builtin").lsp_references()
-				end,
-				desc = "Goto References",
-			},
-			{
-				"grt",
-				function()
-					require("telescope.builtin").lsp_type_references()
-				end,
-				desc = "Goto type [R]eferences",
-			},
-			{
-				"gs",
-				function()
-					require("telescope.builtin").lsp_document_symbols()
-				end,
-				desc = "Goto document symbols",
-			},
-			{
-				"gS",
-				function()
-					require("telescope.builtin").lsp_workspace_symbols()
-				end,
-				desc = "Goto workspace symbols",
-			},
+		keys = function()
+			local telescope = require("telescope.builtin")
+			return {
+				-- goto
+				{ "gd", function() telescope.lsp_definitions() end,     desc = "Goto Definitions" },
+				{ "gi", function() telescope.lsp_implementations() end, desc = "Goto Implementations" },
+				{
+					"gr",
+					function()
+						telescope.lsp_references()
+					end,
+					desc = "Goto References",
+				},
+				{
+					"gt",
+					function()
+						telescope.lsp_type_definitions()
+					end,
+					desc = "Goto type [R]eferences",
+				},
+				{
+					"gps",
+					function()
+						telescope.lsp_workspace_symbols()
+					end,
+					desc = "Goto workspace symbols",
+				},
 
-			-- find
-			{
-				"<leader>sf",
-				function()
-					require("telescope.builtin").find_files()
-				end,
-				desc = "Find files",
-			},
-			{
-				"<leader>sg",
-				function()
-					require("telescope.builtin").git_files()
-				end,
-				desc = "Find git files",
-			},
-			{
-				"<leader>sw",
-				function()
-					require("telescope.builtin").grep_string()
-				end,
-				desc = "Find files with word under cursor",
-			},
-			{
-				"<leader>ss",
-				function()
-					require("telescope.builtin").live_grep()
-				end,
-				desc = "Find files by grep",
-			},
-			{
-				"<leader>sr",
-				function()
-					require("telescope.builtin").registers()
-				end,
-				desc = "Find registers",
-			},
-			{
-				"<leader>sb",
-				function()
-					require("telescope.builtin").buffers()
-				end,
-				desc = "Find buffers",
-			},
-			{
-				"<leader>sB",
-				function()
-					require("telescope.builtin").current_buffer_fuzzy_find()
-				end,
-				desc = "Find buffers with fuzzy find",
-			},
-			-- peek
-			{
-				"<leader>ps",
-				function()
-					require("telescope.builtin").lsp_workspace_symbols()
-				end,
-				desc = "Peek workspace symbols",
-			},
-		},
+				-- find
+				{
+					"<leader>sf",
+					function()
+						telescope.find_files()
+					end,
+					desc = "Find files",
+				},
+				{
+					"<leader>sg",
+					function()
+						telescope.git_files()
+					end,
+					desc = "Find git files",
+				},
+				{
+					"<leader>sw",
+					function()
+						telescope.grep_string()
+					end,
+					desc = "Find files with word under cursor",
+				},
+				{
+					"<leader>fs",
+					function()
+						telescope.lsp_document_symbols()
+					end,
+					desc = "Find document symbols",
+				},
+				{
+					"<leader>ss",
+					function()
+						telescope.live_grep()
+					end,
+					desc = "Find files by grep",
+				},
+				{
+					"<leader>sr",
+					function()
+						telescope.registers()
+					end,
+					desc = "Find registers",
+				},
+				{
+					"<leader>sb",
+					function()
+						telescope.buffers()
+					end,
+					desc = "Find buffers",
+				},
+				{
+					"<leader>so",
+					function()
+						telescope.oldfiles()
+					end,
+					desc = "Find recent files",
+				},
+				{
+					"<leader>sB",
+					function()
+						telescope.current_buffer_fuzzy_find()
+					end,
+					desc = "Find buffers with fuzzy find",
+				},
+				{
+					"<leader>sk",
+					function()
+						telescope.keymaps()
+					end,
+					desc = "Find keymaps",
+				},
+				{
+					"<leader>sc",
+					function()
+						telescope.colorscheme()
+					end,
+					desc = "Find colorschemes"
+				},
+			}
+		end,
 	},
 
 }
