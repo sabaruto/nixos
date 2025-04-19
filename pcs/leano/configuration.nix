@@ -18,6 +18,8 @@
     apps = {
       steam.enable = true;
     };
+
+    shells.zsh.enable = true;
   };
 
   users.defaultUserShell = pkgs.zsh;

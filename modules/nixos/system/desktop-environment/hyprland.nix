@@ -11,13 +11,12 @@ in
 {
   config = mkIf (cfg.desktopEnvironment == "hyprland") {
     hardware = {
-      opengl.enable = true;
+      graphics.enable = true;
       nvidia.modesetting.enable = true;
     };
 
     programs.hyprland = {
       enable = true;
-      nvidiaPatches = true;
       xwayland.enable = true;
     };
 

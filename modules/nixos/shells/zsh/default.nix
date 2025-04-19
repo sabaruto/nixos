@@ -3,19 +3,19 @@
 with lib;
 
 let
-  cfg = config.localModules.apps;
+  cfg = config.localModules.shells;
 in
 {
-  options.localModules.apps.zsh.enable = mkEnableOption "zsh";
+  options.localModules.shells.zsh.enable = mkEnableOption "zsh";
 
   config = mkIf cfg.zsh.enable {
     programs.zsh = {
       enable = true;
       enableCompletion = true;
-      autosuggestion.enable = true;
+      autosuggestions.enable = true;
       syntaxHighlighting.enable = true;
 
-      oh-my-zsh = {
+      ohMyZsh = {
         enable = true;
         plugins = [
           "git"
@@ -26,7 +26,7 @@ in
         theme = "robbyrussell";
       };
 
-      envExtra = "source ~/.aliases";
+      shellInit = "source ~/.aliases";
     };
   };
 }

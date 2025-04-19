@@ -9,6 +9,7 @@ with lib;
   imports = [
     ./gnome.nix
     ./kde.nix
+    ./hyprland.nix
   ];
 
   options.localModules = {
@@ -18,6 +19,7 @@ with lib;
         nullOr (enum [
           "gnome"
           "kde"
+          "hyprland"
         ]);
     };
   };
