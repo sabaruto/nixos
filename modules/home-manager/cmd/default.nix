@@ -11,7 +11,6 @@ in
     ./git
     ./kitty
     ./tmux
-    ./zsh
   ];
   config.localModules.apps = mkIf cfg.development.enable {
     kitty.enable = true;

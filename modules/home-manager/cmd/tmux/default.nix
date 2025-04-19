@@ -1,9 +1,16 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 with lib;
 
-let cfg = config.localModules.apps;
-in {
+let
+  cfg = config.localModules.apps;
+in
+{
 
   options.localModules.apps.tmux.enable = mkEnableOption "tmux";
 
@@ -14,16 +21,17 @@ in {
 
       # Default
       sensibleOnTop = true;
-      shell = "${pkgs.zsh}/bin/zsh";
       mouse = true;
 
       # prefix key
       prefix = "C-Space";
 
-      plugins = with pkgs.tmuxPlugins; [{
-        plugin = catppuccin;
-        extraConfig = "set -g @catppuccin_flavour 'latte'";
-      }];
+      plugins = with pkgs.tmuxPlugins; [
+        {
+          plugin = catppuccin;
+          extraConfig = "set -g @catppuccin_flavour 'latte'";
+        }
+      ];
       extraConfig = lib.readFile ./tmux.conf;
     };
   };
