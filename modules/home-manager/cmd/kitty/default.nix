@@ -8,6 +8,7 @@
 with lib;
 
 let
+  # TODO: Switch to cmd
   cfg = config.localModules.apps;
 in
 {

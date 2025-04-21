@@ -7,6 +7,7 @@
 with lib;
 let
   cfg = config.localModules.apps.neovim;
+  path = "${config.home.homeDirectory}/nixos/modules/home-manager/apps/neovim";
 in
 {
   options.localModules.apps.neovim.enable = mkEnableOption "neovim";
@@ -36,22 +37,17 @@ in
         gnumake
       ];
 
-      file.".config/nvim/lua" = {
-        source = ./lua;
-        recursive = true;
+      # TODO: Add dotfile path as a home-manager module
+      activation = {
+        directlink = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+          $DRY_RUN_CMD ln -sfvn  ${path}/lua /home/dosia/.config/nvim
+          $DRY_RUN_CMD ln -sfvn  ${path}/init.lua /home/dosia/.config/nvim
+        '';
       };
     };
     programs.neovim = {
       enable = true;
       defaultEditor = true;
-
-      plugins = with pkgs.vimPlugins; [
-        {
-          plugin = lazy-nvim;
-        }
-      ];
-
-      extraLuaConfig = readFile ./init.lua;
     };
   };
 }

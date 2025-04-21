@@ -7,7 +7,7 @@
 
 {
   imports = [
-    outputs.homeManagerModules
+    outputs.homeManagerModules.default
   ];
   home = {
     username = "dosia";
@@ -55,6 +55,10 @@
       git.enable = true;
       zen.enable = true;
       neovim.enable = true;
+    };
+
+    cmd = {
+      direnv.enable = true;
     };
 
     development = {

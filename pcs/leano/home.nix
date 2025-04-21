@@ -1,11 +1,15 @@
 { ... }:
 {
-  localModules.dotfiles = {
-    hyprland = {
-      enable = true;
-      monitors = "alienware";
-    };
+  localModules = {
+    cronjobs.theme-switching.enable = true;
 
-    waybar.enable = true;
+    dotfiles = {
+      waybar.enable = true;
+
+      hyprland = {
+        enable = true;
+        monitors = "alienware";
+      };
+    };
   };
 }

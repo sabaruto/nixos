@@ -31,8 +31,8 @@
       inherit (self) outputs;
     in
     {
-      nixosModules = import ./modules/nixos;
-      homeManagerModules = import ./modules/home-manager;
+      nixosModules.default = import ./modules/nixos;
+      homeManagerModules.default = import ./modules/home-manager;
 
       nixosConfigurations = {
         zalu = nixpkgs.lib.nixosSystem {
@@ -91,5 +91,11 @@
           ];
         };
       };
+
+      devShells."x86_64-linux".ssm = (
+        import ./dev-shells/streaming-service-merger.nix {
+          pkgs = import nixpkgs { system = "x86_64-linux"; };
+        }
+      );
     };
 }

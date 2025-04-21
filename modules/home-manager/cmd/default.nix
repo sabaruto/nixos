@@ -10,6 +10,7 @@ in
   imports = [
     ./git
     ./kitty
+    ./direnv
     ./tmux
   ];
   config.localModules.apps = mkIf cfg.development.enable {

@@ -1,7 +1,7 @@
 { outputs, pkgs, ... }:
 {
   imports = [
-    outputs.nixosModules
+    outputs.nixosModules.default
     ./hardware-configuration.nix
   ];
 

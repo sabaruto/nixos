@@ -20,13 +20,16 @@ in
         plugins = [
           "git"
           "dotenv"
-          "1password"
+          "direnv"
         ];
 
         theme = "robbyrussell";
       };
 
-      shellInit = "source ~/.aliases";
+      shellInit = ''
+        source ~/.aliases
+        eval "$(direnv hook zsh)"
+      '';
     };
 
     system.userActivationScripts.zshrc = "touch .zshrc";

@@ -2,7 +2,7 @@
 
 {
   imports = [
-    outputs.nixosModules
+    outputs.nixosModules.default
     ./hardware-configuration.nix
   ];
   localModules = {
@@ -15,11 +15,11 @@
 
     desktopEnvironment = "hyprland";
 
+    shells.zsh.enable = true;
+
     apps = {
       steam.enable = true;
     };
-
-    shells.zsh.enable = true;
   };
 
   users.defaultUserShell = pkgs.zsh;

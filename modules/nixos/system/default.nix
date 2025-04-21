@@ -1,6 +1,6 @@
 { ... }:
 {
-  imports = [ 
+  imports = [
     ./desktop-environment
     ./gpu
     ./kernel

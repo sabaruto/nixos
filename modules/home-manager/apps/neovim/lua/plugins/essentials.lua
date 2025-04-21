@@ -14,23 +14,20 @@ return {
 		"MagicDuck/grug-far.nvim",
 		opts = { headerMaxWidth = 80 },
 		cmd = "GrugFar",
-		keys = {
-			{
-				"<leader>sr",
-				function()
-					local grug = require("grug-far")
-					local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
-					grug.open({
-						transient = true,
-						prefills = {
-							filesFilter = ext and ext ~= "" and "*." .. ext or nil,
-						},
-					})
-				end,
-				mode = { "n", "v" },
-				desc = "Search and Replace",
-			},
-		},
+		keys = function()
+			local grug = require("grug-far")
+			local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
+			return {
+				{
+					"<leader>sr",
+					function()
+						grug.open({ transient = true, prefills = { filesFilter = ext and ext ~= "" and "*." .. ext or nil } })
+					end,
+					mode = { "n", "v" },
+					desc = "Search and Replace",
+				},
+			}
+		end,
 	},
 	{
 		"folke/snacks.nvim",
@@ -49,37 +46,27 @@ return {
 		},
 		-- stylua: ignore
 		keys = {
-			{
-				"<leader>n",
-				function()
-					if Snacks.config.picker and Snacks.config.picker.enabled then
-						Snacks.picker.notifications()
-					else
-						Snacks.notifier.show_history()
-					end
-				end,
-				desc = "Notification History"
-			},
-			{ "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
-			{ "<leader>bd", function() Snacks.bufdelete() end,     desc = "Delete buffer" }
+			{ "<leader>n",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
+			{ "<leader>un", function() Snacks.notifier.hide() end,         desc = "Dismiss All Notifications" },
+			{ "<leader>bd", function() Snacks.bufdelete() end,             desc = "Delete buffer" }
 		},
 	},
 	{
 		"alexghergh/nvim-tmux-navigation",
-		config = function()
+		opts = {
+			disable_when_zoomed = true,
+		},
+		keys = function()
 			local nvim_tmux_nav = require("nvim-tmux-navigation")
-
-			nvim_tmux_nav.setup({
-				disable_when_zoomed = true, -- defaults to false
-			})
-
-			vim.keymap.set("n", "<M-left>", nvim_tmux_nav.NvimTmuxNavigateLeft)
-			vim.keymap.set("n", "<M-Down>", nvim_tmux_nav.NvimTmuxNavigateDown)
-			vim.keymap.set("n", "<M-Up>", nvim_tmux_nav.NvimTmuxNavigateUp)
-			vim.keymap.set("n", "<M-Right>", nvim_tmux_nav.NvimTmuxNavigateRight)
-			vim.keymap.set("n", "<M-\\>", nvim_tmux_nav.NvimTmuxNavigateLastActive)
-			vim.keymap.set("n", "<M-Space>", nvim_tmux_nav.NvimTmuxNavigateNext)
-		end,
+			return {
+				{ mode = { "n", "t" }, "<M-left>",  function() nvim_tmux_nav.NvimTmuxNavigateLeft() end, },
+				{ mode = { "n", "t" }, "<M-Down>",  function() nvim_tmux_nav.NvimTmuxNavigateDown() end, },
+				{ mode = { "n", "t" }, "<M-Up>",    function() nvim_tmux_nav.NvimTmuxNavigateUp() end, },
+				{ mode = { "n", "t" }, "<M-Right>", function() nvim_tmux_nav.NvimTmuxNavigateRight() end, },
+				{ mode = { "n", "t" }, "<M-\\>",    function() nvim_tmux_nav.NvimTmuxNavigateLastActive() end, },
+				{ mode = { "n", "t" }, "<M-space>", function() nvim_tmux_nav.NvimTmuxNavigateNext() end, },
+			}
+		end
 	},
 	{
 		"folke/flash.nvim",
@@ -94,46 +81,11 @@ return {
 		keys = function()
 			local flash = require("flash")
 			return {
-				{
-					"s",
-					mode = { "n", "x", "o" },
-					function()
-						flash.jump()
-					end,
-					desc = "Flash",
-				},
-				{
-					"S",
-					mode = { "n", "o", "x" },
-					function()
-						flash.treesitter()
-					end,
-					desc = "Flash Treesitter",
-				},
-				{
-					"r",
-					mode = "o",
-					function()
-						flash.remote()
-					end,
-					desc = "Remote Flash",
-				},
-				{
-					"R",
-					mode = { "o", "x" },
-					function()
-						flash.treesitter_search()
-					end,
-					desc = "Treesitter Search",
-				},
-				{
-					"<c-s>",
-					mode = { "c" },
-					function()
-						flash.toggle()
-					end,
-					desc = "Toggle Flash Search",
-				},
+				{ "s",     mode = { "n", "x", "o" }, function() flash.jump() end,              desc = "Flash" },
+				{ "S",     mode = { "n", "o", "x" }, function() flash.treesitter() end,        desc = "Flash Treesitter" },
+				{ "r",     mode = "o",               function() flash.remote() end,            desc = "Remote Flash" },
+				{ "R",     mode = { "o", "x" },      function() flash.treesitter_search() end, desc = "Treesitter Search" },
+				{ "<c-s>", mode = { "c" },           function() flash.toggle() end,            desc = "Toggle Flash Search" },
 			}
 		end,
 	},
@@ -150,4 +102,5 @@ return {
 			update_n_lines = "gsn", -- Update `n_lines`
 		},
 	},
+	{ "tiagovla/scope.nvim", config = true, },
 }

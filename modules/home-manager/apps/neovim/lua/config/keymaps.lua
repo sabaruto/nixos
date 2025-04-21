@@ -16,6 +16,7 @@ vim.keymap.set({ "n", "v" }, "<leader>xd", ":quit<CR>", { desc = "[D]elete Windo
 
 -- Tabs
 vim.keymap.set({ "n" }, "<leader><tab>a", ":tabnew<CR>", { desc = "[A]dd new tab" })
-vim.keymap.set({ "n" }, "<leader><tab><left>", ":-tabnext<cr>", { desc = "prev tab" })
+vim.keymap.set({ "n" }, "<leader><tab><left>", ":-tabnext<cr>", { desc = "[P]rev tab" })
 vim.keymap.set({ "n" }, "<leader><tab><right>", ":+tabnext<cr>", { desc = "next tab" })
 vim.keymap.set({ "n" }, "<leader><tab>d", ":tabclose<CR>", { desc = "[D]elete tab" })
+vim.keymap.set({ "n" }, "<leader><tab>k", ":tabclose<CR>", { desc = "[D]elete tab" })

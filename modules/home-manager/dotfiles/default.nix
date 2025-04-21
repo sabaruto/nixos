@@ -33,6 +33,7 @@ in
       source = ./dotconfig/hypr;
       recursive = true;
     };
+
     ".config/hypr/monitors.conf" = mkIf (cfg.hyprland.enable) (mkMerge [
       (mkIf (cfg.hyprland.monitors == "default") {
         text = "monitor=,preferred,auto,auto";

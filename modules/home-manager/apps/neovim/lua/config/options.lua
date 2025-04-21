@@ -11,3 +11,9 @@ vim.opt.termguicolors = true
 vim.opt.conceallevel = 2
 
 vim.o.updatetime = 250
+
+vim.opt.sessionoptions = {
+	"buffers",
+	"tabpages",
+	"globals",
+}

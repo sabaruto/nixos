@@ -35,6 +35,10 @@ in
         waybar
         libnotify
 
+        #lock screen
+        hyprlock
+        hypridle
+
         # network manager applet
         networkmanagerapplet
 
