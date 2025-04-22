@@ -40,8 +40,8 @@ in
       # TODO: Add dotfile path as a home-manager module
       activation = {
         directlink = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-          $DRY_RUN_CMD ln -sfvn  ${path}/lua /home/dosia/.config/nvim
-          $DRY_RUN_CMD ln -sfvn  ${path}/init.lua /home/dosia/.config/nvim
+          $DRY_RUN_CMD ln -sfvn  ${path}/lua ${config.home.homeDirectory}/.config/nvim
+          $DRY_RUN_CMD ln -sfvn  ${path}/init.lua ${config.home.homeDirectory}/.config/nvim
         '';
       };
     };

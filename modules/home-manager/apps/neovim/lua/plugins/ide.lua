@@ -19,6 +19,7 @@ return {
 			vim.lsp.enable("jsonls")
 			vim.lsp.enable("gopls")
 			vim.lsp.enable("golang_ci_lint")
+			vim.lsp.enable("marksman")
 		end,
 	},
 	{

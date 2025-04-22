@@ -39,8 +39,6 @@
 
   localModules = {
     apps = {
-      # kitty.enable = true;
-      zsh.enable = true;
       zen.enable = true;
       tmux.enable = true;
       neovim.enable = true;
