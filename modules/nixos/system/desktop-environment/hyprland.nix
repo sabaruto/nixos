@@ -30,7 +30,9 @@ in
     environment = {
 
       systemPackages = with pkgs; [
+        # widget enginr
         eww
+
         dunst
         waybar
         libnotify
@@ -54,6 +56,10 @@ in
 
         # GTK settings editor
         nwg-look
+
+        # File manager
+        kdePackages.dolphin
+        kdePackages.qtsvg
 
         (waybar.overrideAttrs (oldAttrs: {
           mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];

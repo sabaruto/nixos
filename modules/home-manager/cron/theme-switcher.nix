@@ -56,11 +56,11 @@ in
 
         services = {
           "light-mode" = {
-            Service.ExecStart = "${theme-switcher}/bin/switch-theme dark";
+            Service.ExecStart = "${theme-switcher}/bin/switch-theme light";
           };
 
           "dark-mode" = {
-            Service.ExecStart = "${theme-switcher}/bin/switch-theme light";
+            Service.ExecStart = "${theme-switcher}/bin/switch-theme dark";
           };
         };
       };
