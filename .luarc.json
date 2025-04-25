@@ -3,5 +3,6 @@
         "vim",
         "Snacks",
         "pick"
-    ]
+    ],
+    "workspace.maxPreload": 10000
 }

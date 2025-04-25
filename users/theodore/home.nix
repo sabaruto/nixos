@@ -28,8 +28,6 @@
     tree
     openssl
   ];
-  home.file = {
-  };
 
   nixpkgs.config.allowUnfree = true;
 

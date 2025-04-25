@@ -36,18 +36,21 @@ in
         gcc
         gnumake
       ];
-
-      # TODO: Add dotfile path as a home-manager module
-      activation = {
-        directlink = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-          $DRY_RUN_CMD ln -sfvn  ${path}/lua ${config.home.homeDirectory}/.config/nvim
-          $DRY_RUN_CMD ln -sfvn  ${path}/init.lua ${config.home.homeDirectory}/.config/nvim
-        '';
-      };
     };
     programs.neovim = {
       enable = true;
       defaultEditor = true;
     };
+
+    localModules.lib.links = [
+      {
+        sourcePath = "${path}/lua";
+        symbolicLink = "${config.home.homeDirectory}/.config/nvim/lua";
+      }
+      {
+        sourcePath = "${path}/init.lua";
+        symbolicLink = "${config.home.homeDirectory}/.config/nvim/init.lua";
+      }
+    ];
   };
 }

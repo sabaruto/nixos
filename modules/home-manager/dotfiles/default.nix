@@ -1,13 +1,13 @@
 {
   lib,
   config,
-  pkgs,
   ...
 }:
 
 with lib;
 let
   cfg = config.localModules.dotfiles;
+  path = "${config.home.homeDirectory}/nixos/modules/home-manager/dotfiles";
 in
 {
   options.localModules.dotfiles = {
@@ -28,27 +28,25 @@ in
     };
   };
 
-  config.home.file = {
-    ".config/hypr" = mkIf cfg.hyprland.enable {
-      source = ./dotconfig/hypr;
-      recursive = true;
-    };
+  config = {
+    localModules.lib.links = mkMerge [
+      (mkIf cfg.hyprland.enable [
+        {
+          sourcePath = "${path}/dotconfig/hypr";
+          symbolicLink = "${config.home.homeDirectory}/.config";
+        }
+        {
+          sourcePath = "${path}/option-files/${cfg.hyprland.monitors}.monitors.conf";
+          symbolicLink = "${config.home.homeDirectory}/.config/hypr/monitors.conf";
+        }
+      ])
 
-    ".config/hypr/monitors.conf" = mkIf (cfg.hyprland.enable) (mkMerge [
-      (mkIf (cfg.hyprland.monitors == "default") {
-        text = "monitor=,preferred,auto,auto";
-      })
-      (mkIf (cfg.hyprland.monitors == "alienware") {
-        text = "monitor=,3840x2160@239.99Hz,auto,auto";
-      })
-      (mkIf (cfg.hyprland.monitors == "zalu") {
-        text = "monitor=,preferred,auto,auto";
-      })
-    ]);
-
-    ".config/waybar" = mkIf cfg.waybar.enable {
-      source = ./dotconfig/waybar;
-      recursive = true;
-    };
+      (mkIf cfg.waybar.enable [
+        {
+          sourcePath = "${path}/dotconfig/waybar";
+          symbolicLink = "${config.home.homeDirectory}/.config";
+        }
+      ])
+    ];
   };
 }
