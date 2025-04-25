@@ -26,26 +26,167 @@ return {
 			local telescope = require("telescope.builtin")
 			return {
 				-- goto
-				{ "gd",         function() telescope.lsp_definitions() end,           desc = "Goto Definitions" },
-				{ "gi",         function() telescope.lsp_implementations() end,       desc = "Goto Implementations" },
-				{ "gr",         function() telescope.lsp_references() end,            desc = "Goto References" },
-				{ "gt",         function() telescope.lsp_type_definitions() end,      desc = "Goto type [R]eferences" },
-				{ "gps",        function() telescope.lsp_workspace_symbols() end,     desc = "Goto workspace symbols" },
+				{
+					"gd",
+					function()
+						telescope.lsp_definitions()
+					end,
+					desc = "Goto Definitions",
+				},
+				{
+					"gi",
+					function()
+						telescope.lsp_implementations()
+					end,
+					desc = "Goto Implementations",
+				},
+				{
+					"gr",
+					function()
+						telescope.lsp_references()
+					end,
+					desc = "Goto References",
+				},
+				{
+					"gt",
+					function()
+						telescope.lsp_type_definitions()
+					end,
+					desc = "Goto type [R]eferences",
+				},
+				{
+					"gps",
+					function()
+						telescope.lsp_workspace_symbols()
+					end,
+					desc = "Goto workspace symbols",
+				},
 
 				-- find
-				{ "<leader>sf", function() telescope.find_files() end,                desc = "Find files" },
-				{ "<leader>sg", function() telescope.git_files() end,                 desc = "Find git files" },
-				{ "<leader>sw", function() telescope.grep_string() end,               desc = "Find files with word under cursor" },
-				{ "<leader>fs", function() telescope.lsp_document_symbols() end,      desc = "Find document symbols" },
-				{ "<leader>ss", function() telescope.live_grep() end,                 desc = "Find files by grep" },
-				{ "<leader>sr", function() telescope.registers() end,                 desc = "Find registers" },
-				{ "<leader>sb", function() telescope.buffers() end,                   desc = "Find buffers" },
-				{ "<leader>so", function() telescope.oldfiles() end,                  desc = "Find recent files" },
-				{ "<leader>sB", function() telescope.current_buffer_fuzzy_find() end, desc = "Find buffers with fuzzy find" },
-				{ "<leader>sk", function() telescope.keymaps() end,                   desc = "Find keymaps" },
-				{ "<leader>sc", function() telescope.colorscheme() end,               desc = "Find colorschemes" },
+				{
+					"<leader>sf",
+					function()
+						telescope.find_files()
+					end,
+					desc = "Find files",
+				},
+				{
+					"<leader>sw",
+					function()
+						telescope.grep_string()
+					end,
+					desc = "Find files with word under cursor",
+				},
+				{
+					"<leader>fs",
+					function()
+						telescope.lsp_document_symbols()
+					end,
+					desc = "Find document symbols",
+				},
+				{
+					"<leader>ss",
+					function()
+						telescope.live_grep()
+					end,
+					desc = "Find files by grep",
+				},
+				{
+					"<leader>sr",
+					function()
+						telescope.registers()
+					end,
+					desc = "Find registers",
+				},
+				{
+					"<leader>sb",
+					function()
+						telescope.buffers()
+					end,
+					desc = "Find buffers",
+				},
+				{
+					"<leader>so",
+					function()
+						telescope.oldfiles()
+					end,
+					desc = "Find recent files",
+				},
+				{
+					"<leader>sB",
+					function()
+						telescope.current_buffer_fuzzy_find()
+					end,
+					desc = "Find buffers with fuzzy find",
+				},
+				{
+					"<leader>sk",
+					function()
+						telescope.keymaps()
+					end,
+					desc = "Find keymaps",
+				},
+				{
+					"<leader>sc",
+					function()
+						telescope.colorscheme()
+					end,
+					desc = "Find colorschemes",
+				},
+
+				-- Git
+				{
+					"<leader>gf",
+					function()
+						telescope.git_files()
+					end,
+					desc = "Find git files",
+				},
+				{
+					"<leader>gb",
+					function()
+						telescope.git_branches()
+					end,
+					desc = "Find git branches",
+				},
+				{
+					"<leader>gs",
+					function()
+						telescope.git_status()
+					end,
+					desc = "Find git status",
+				},
+				{
+					"<leader>gS",
+					function()
+						telescope.git_status()
+					end,
+					desc = "Find git stash",
+				},
+
+				{ "<leader>gc", "", desc = "+commits" },
+				{
+					"<leader>gcc",
+					function()
+						telescope.git_commits()
+					end,
+					desc = "Find git commits",
+				},
+				{
+					"<leader>gcb",
+					function()
+						telescope.git_bcommits()
+					end,
+					desc = "Find and checkout git commits",
+				},
+				{
+					"<leader>gcr",
+					function()
+						telescope.git_bcommits_range()
+					end,
+					desc = "Find git commit range",
+				},
 			}
 		end,
 	},
-
 }

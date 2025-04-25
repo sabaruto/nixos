@@ -35,6 +35,16 @@ in
         nodejs
         gcc
         gnumake
+
+        # linters / formatters
+        statix
+        nixfmt
+        deadnix
+        semgrep
+        codespell
+        stylelint
+        proselint
+        markdownlint-cli
       ];
     };
     programs.neovim = {

@@ -1,23 +1,23 @@
-vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	group = vim.api.nvim_create_augroup("use_spaces", { clear = true }),
-	pattern = { '*.nix' },
+	pattern = { "*.nix" },
 	callback = function()
-		vim.opt.tabstop = 2;
-		vim.opt.shiftwidth = 2;
-		vim.opt.expandtab = true;
-		vim.opt.softtabstop = 2;
-	end
+		vim.opt.tabstop = 2
+		vim.opt.shiftwidth = 2
+		vim.opt.expandtab = true
+		vim.opt.softtabstop = 2
+	end,
 })
 
-vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	group = vim.api.nvim_create_augroup("use_tabs", { clear = true }),
-	pattern = { '*.lua', '*.sh', '*.go' },
+	pattern = { "*.lua", "*.sh", "*.go" },
 	callback = function()
-		vim.opt.tabstop = 4;
-		vim.opt.shiftwidth = 4;
-		vim.opt.expandtab = false;
-		vim.opt.softtabstop = 0;
-	end
+		vim.opt.tabstop = 4
+		vim.opt.shiftwidth = 4
+		vim.opt.expandtab = false
+		vim.opt.softtabstop = 0
+	end,
 })
 
 vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
@@ -28,7 +28,6 @@ vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
 		end
 	end,
 })
-
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 	group = vim.api.nvim_create_augroup("auto_create_dir", { clear = true }),
