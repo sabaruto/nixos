@@ -18,6 +18,11 @@
       url = "github:nix-community/nixd";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -25,6 +30,7 @@
       self,
       nixpkgs,
       home-manager,
+      lanzaboote,
       ...
     }@inputs:
     let
@@ -48,6 +54,7 @@
           specialArgs = { inherit inputs outputs; };
 
           modules = [
+            lanzaboote.nixosModules.lanzaboote
             ./pcs/leano/configuration.nix
           ];
         };

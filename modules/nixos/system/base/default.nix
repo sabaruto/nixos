@@ -4,6 +4,7 @@
   lib,
   config,
   pkgs,
+  outputs,
   ...
 }:
 
@@ -85,17 +86,24 @@ in
 
       # Boot configuration
       sbctl
-      # lanzaboote-tool
     ];
 
     # Bootloader.
-    boot.loader = {
-      systemd-boot = {
+    boot = {
+
+      lanzaboote = {
         enable = true;
-        # Limit the number of generations to keep
-        configurationLimit = 10;
+        pkiBundle = "/var/lib/sbctl";
       };
-      efi.canTouchEfiVariables = true;
+
+      loader = {
+        systemd-boot = {
+          enable = false;
+          # Limit the number of generations to keep
+          configurationLimit = 10;
+        };
+        # efi.canTouchEfiVariables = true;
+      };
     };
 
     nix = {
