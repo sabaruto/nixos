@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  pkgs,
   ...
 }:
 
@@ -23,9 +22,9 @@ in
         tab_bar_style = "fade";
         wayland_titlebar_color = "system";
 
-        dynamic_background_opacity = true;
         background_opacity = "0.25";
         background_blur = 5;
+        dynamic_background_opacity = true;
       };
     };
   };

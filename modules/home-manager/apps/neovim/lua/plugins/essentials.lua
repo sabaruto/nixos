@@ -22,7 +22,7 @@ return {
 			scope = { enabled = true },
 			scroll = { enabled = true },
 			statuscolumn = { enabled = true },
-			toggle = { enabled = false },
+			toggle = { enabled = true },
 			words = { enabled = true },
 		},
 		-- stylua: ignore
@@ -31,59 +31,6 @@ return {
 			{ "<leader>un", function() Snacks.notifier.hide() end,         desc = "Dismiss All Notifications" },
 			{ "<leader>bd", function() Snacks.bufdelete() end,             desc = "Delete buffer" }
 		},
-	},
-	{
-		"alexghergh/nvim-tmux-navigation",
-		opts = {
-			disable_when_zoomed = true,
-		},
-		keys = function()
-			local nvim_tmux_nav = require("nvim-tmux-navigation")
-			return {
-				{
-					mode = { "n", "t" },
-					"<M-left>",
-					function()
-						nvim_tmux_nav.NvimTmuxNavigateLeft()
-					end,
-				},
-				{
-					mode = { "n", "t" },
-					"<M-Down>",
-					function()
-						nvim_tmux_nav.NvimTmuxNavigateDown()
-					end,
-				},
-				{
-					mode = { "n", "t" },
-					"<M-Up>",
-					function()
-						nvim_tmux_nav.NvimTmuxNavigateUp()
-					end,
-				},
-				{
-					mode = { "n", "t" },
-					"<M-Right>",
-					function()
-						nvim_tmux_nav.NvimTmuxNavigateRight()
-					end,
-				},
-				{
-					mode = { "n", "t" },
-					"<M-\\>",
-					function()
-						nvim_tmux_nav.NvimTmuxNavigateLastActive()
-					end,
-				},
-				{
-					mode = { "n", "t" },
-					"<M-space>",
-					function()
-						nvim_tmux_nav.NvimTmuxNavigateNext()
-					end,
-				},
-			}
-		end,
 	},
 	{
 		"folke/flash.nvim",
@@ -145,14 +92,15 @@ return {
 		"echasnovski/mini.surround",
 
 		mappings = {
-			add = "gsa", -- Add surrounding in Normal and Visual modes
+			add = "gsa",   -- Add surrounding in Normal and Visual modes
 			delete = "gsd", -- Delete surrounding
-			find = "gsf", -- Find surrounding (to the right)
+			find = "gsf",  -- Find surrounding (to the right)
 			find_left = "gsF", -- Find surrounding (to the left)
 			highlight = "gsh", -- Highlight surrounding
 			replace = "gsr", -- Replace surrounding
 			update_n_lines = "gsn", -- Update `n_lines`
 		},
 	},
-	{ "tiagovla/scope.nvim", config = true },
+	{ "tiagovla/scope.nvim",  config = true },
+	{ "nvim-lua/plenary.nvim" }
 }

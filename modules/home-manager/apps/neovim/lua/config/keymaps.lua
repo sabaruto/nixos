@@ -1,5 +1,5 @@
 -- Buffers
-vim.keymap.set({ "n", "v" }, "<leader>w", ":write<CR>", { desc = "Save buffer" })
+vim.keymap.set({ "n", "v" }, "<leader>w", ":write<CR>", { desc = "Save buffer", silent = true })
 vim.keymap.set({ "n", "v" }, "<leader>j", ":", { remap = true, desc = "Set command line" })
 
 -- Quitting
@@ -13,6 +13,11 @@ vim.keymap.set({ "n", "v" }, "<leader>x|", ":vsplit<CR>", { desc = "Vertical Spl
 vim.keymap.set({ "n", "v" }, "<leader>xh", ":split<CR>", { desc = "[H]orizontal Split" })
 vim.keymap.set({ "n", "v" }, "<leader>xv", ":vsplit<CR>", { desc = "[V]ertical Split" })
 vim.keymap.set({ "n", "v" }, "<leader>xd", ":quit<CR>", { desc = "[D]elete Window" })
+
+vim.keymap.set({ "n", "t" }, "<M-left>", ":wincmd h<CR>", { silent = true, desc = "Move window left" } )
+vim.keymap.set({ "n", "t" }, "<M-right>", ":wincmd l<CR>", { silent = true, desc = "Move window right" } )
+vim.keymap.set({ "n", "t" }, "<M-up>", ":wincmd k<CR>", { silent = true, desc = "Move window up" } )
+vim.keymap.set({ "n", "t" }, "<M-down>", ":wincmd j<CR>", { silent = true, desc = "Move window down" } )
 
 -- Tabs
 vim.keymap.set({ "n" }, "<leader><tab>a", ":tabnew<CR>", { desc = "[A]dd new tab" })

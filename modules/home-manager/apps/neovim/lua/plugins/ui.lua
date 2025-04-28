@@ -34,6 +34,14 @@ return {
 		},
 	},
 	{
+		"m4xshen/smartcolumn.nvim",
+		opts = {
+			colorcolumn = "80",
+			disabled_filetypes = { "dashboard" },
+			custom_colorcolumn = { lua = "120", java = { "180", "200" } },
+		}
+	},
+	{
 		"echasnovski/mini.icons",
 		lazy = true,
 		opts = {

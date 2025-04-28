@@ -28,23 +28,31 @@ in
         # grep improvement
         ripgrep
 
+        markdown-oxide
+
         # fonts
         nerd-fonts.fira-code
         nerd-fonts.droid-sans-mono
 
         nodejs
+        go
+
+        # Builders
         gcc
         gnumake
 
         # linters / formatters
+        vale
         statix
-        nixfmt
+        stylua
+        selene
         deadnix
         semgrep
         codespell
         stylelint
         proselint
         markdownlint-cli
+        jdt-language-server
       ];
     };
     programs.neovim = {

@@ -20,7 +20,7 @@ require("lazy").setup({
 	spec = {
 		-- import your plugins
 		{ import = "plugins" },
-		{ import = "plugins/cmp" },
+		{ import = "plugins/blink" },
 		{ import = "plugins/dap" },
 		{ import = "plugins/telescope" },
 	},

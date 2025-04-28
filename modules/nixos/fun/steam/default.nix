@@ -15,5 +15,13 @@ in
 
   config = mkIf cfg.steam.enable {
     programs.steam.enable = true;
+
+    environment.systemPackages = with pkgs; [
+      gamescope
+      moonlight-qt
+      sunshine
+      avahi
+    ];
   };
+
 }

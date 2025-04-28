@@ -61,6 +61,16 @@ in
         kdePackages.dolphin
         kdePackages.qtsvg
 
+        # Remote desktop
+        wayvnc
+
+        # Protocols
+        wlr-protocols
+        frog-protocols
+
+        # Media Player
+        mpv
+
         (waybar.overrideAttrs (oldAttrs: {
           mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
         }))

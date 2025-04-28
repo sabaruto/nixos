@@ -8,6 +8,5 @@ return {
 		},
 	},
 	{ "hrsh7th/cmp-nvim-lsp", lazy = true },
-	{ "hrsh7th/cmp-nvim-lsp", lazy = true },
-	{ "hrsh7th/cmp-path",     lazy = true }
+	{ "hrsh7th/cmp-path",     lazy = true },
 }

@@ -82,16 +82,20 @@ in
 
       # Note taking
       obsidian
+
+      # Boot configuration
+      sbctl
+      # lanzaboote-tool
     ];
 
-    # Limit the number of generations to keep
-    boot.loader.systemd-boot.configurationLimit = 10;
-
-    # Perform garbage collection weekly to maintain low disk usage
-    nix.gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 1w";
+    # Bootloader.
+    boot.loader = {
+      systemd-boot = {
+        enable = true;
+        # Limit the number of generations to keep
+        configurationLimit = 10;
+      };
+      efi.canTouchEfiVariables = true;
     };
 
     nix = {
@@ -99,14 +103,17 @@ in
       extraOptions = ''
         experimental-features = nix-command flakes
       '';
+
+      # Perform garbage collection weekly to maintain low disk usage
+      gc = {
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than 1w";
+      };
     };
 
     # Optimise storage
     nix.settings.auto-optimise-store = true;
-
-    # Bootloader.
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = true;
 
     # Enable networking
     networking.networkmanager.enable = true;
@@ -130,19 +137,22 @@ in
     };
 
     # Configure keymap in X11
-    services.xserver.xkb = {
-      layout = "gb";
-      variant = "";
+    services = {
+      # Enable CUPS to print documents.
+      printing.enable = true;
+
+      # Enable sound with pipewire.
+      pulseaudio.enable = false;
+
+      xserver.xkb = {
+        layout = "gb";
+        variant = "";
+      };
     };
 
     # Configure console keymap
     console.keyMap = "uk";
 
-    # Enable CUPS to print documents.
-    services.printing.enable = true;
-
-    # Enable sound with pipewire.
-    services.pulseaudio.enable = false;
     security.rtkit.enable = true;
     services.pipewire = {
       enable = true;

@@ -14,6 +14,7 @@ return {
 				},
 			},
 		},
+		dependencies = { "nvim-telescope/telescope-fzf-native.nvim", "ahmedkhalf/project.nvim" },
 		config = function(_, opts)
 			local telescope = require("telescope")
 			telescope.setup(opts)
@@ -24,7 +25,6 @@ return {
 	},
 	{
 		"ahmedkhalf/project.nvim",
-		dependencies = { "nvim-telescope/telescope.nvim" },
 		config = function()
 			require("project_nvim").setup()
 		end,
@@ -40,7 +40,6 @@ return {
 	},
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
-		dependencies = { "nvim-telescope/telescope.nvim" },
 		build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
 	},
 }
