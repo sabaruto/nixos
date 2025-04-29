@@ -22,7 +22,6 @@ require("lazy").setup({
 		{ import = "plugins" },
 		{ import = "plugins/blink" },
 		{ import = "plugins/dap" },
-		{ import = "plugins/hydra" },
 		{ import = "plugins/telescope" },
 	},
 	-- Configure any other settings here. See the documentation for more details.

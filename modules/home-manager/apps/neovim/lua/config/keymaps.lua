@@ -14,6 +14,11 @@ vim.keymap.set({ "n", "v" }, "<leader>xh", ":split<CR>", { desc = "[H]orizontal 
 vim.keymap.set({ "n", "v" }, "<leader>xv", ":vsplit<CR>", { desc = "[V]ertical Split" })
 vim.keymap.set({ "n", "v" }, "<leader>xd", ":quit<CR>", { desc = "[D]elete Window" })
 
+vim.keymap.set({ "n" }, "<leader>x<left>", ":wincmd h<CR>", { silent = true, desc = "Move window left" })
+vim.keymap.set({ "n" }, "<leader>x<right>", ":wincmd l<CR>", { silent = true, desc = "Move window right" })
+vim.keymap.set({ "n" }, "<leader>x<up>", ":wincmd k<CR>", { silent = true, desc = "Move window up" })
+vim.keymap.set({ "n" }, "<leader>x<down>", ":wincmd j<CR>", { silent = true, desc = "Move window down" })
+
 vim.keymap.set({ "n" }, "<M-left>", ":wincmd h<CR>", { silent = true, desc = "Move window left" })
 vim.keymap.set({ "n" }, "<M-right>", ":wincmd l<CR>", { silent = true, desc = "Move window right" })
 vim.keymap.set({ "n" }, "<M-up>", ":wincmd k<CR>", { silent = true, desc = "Move window up" })

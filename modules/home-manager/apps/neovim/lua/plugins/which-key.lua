@@ -24,16 +24,28 @@ return {
 					{ "g", group = "goto" },
 					{ "gs", group = "surround" },
 					{ "z", group = "fold" },
+					{
+						"<leader>?",
+						function()
+							require("which-key").show({ global = true })
+						end,
+						desc = " Keymaps (which-key)",
+					},
+					{
+						"<leader>x<space>",
+						function()
+							require("which-key").show({ keys = "<leader>x", loop = true })
+						end,
+						desc = "Hydra Mode (which-key)",
+					},
+					{
+						"<leader><tab><space>",
+						function()
+							require("which-key").show({ keys = "<leader><tab>", loop = true })
+						end,
+						desc = "Hydra Mode (which-key)",
+					}
 				},
-			},
-		},
-		keys = {
-			{
-				"<leader>?",
-				function()
-					require("which-key").show({ global = false })
-				end,
-				desc = "Buffer Local Keymaps (which-key)",
 			},
 		},
 	},
