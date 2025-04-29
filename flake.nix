@@ -45,6 +45,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs outputs; };
           modules = [
+            lanzaboote.nixosModules.lanzaboote
             ./pcs/zalu/configuration.nix
           ];
         };
