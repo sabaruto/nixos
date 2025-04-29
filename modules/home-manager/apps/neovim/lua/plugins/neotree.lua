@@ -18,8 +18,8 @@ return {
 				end,
 				desc = "Git Explorer",
 			},
-			{ "<leader>be", ":Neotree buffers",     desc = "Buffer Explorer" },
-			{ "<leader>te", ":Neotree toggle=true", desc = "Toggle Neotree" },
+			{ "<leader>be", ":Neotree buffers<CR>",     desc = "Buffer Explorer" },
+			{ "<leader>te", ":Neotree toggle=true<CR>", desc = "Toggle Neotree" },
 		},
 
 		deactivate = function()

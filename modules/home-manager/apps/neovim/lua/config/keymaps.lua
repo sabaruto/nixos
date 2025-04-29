@@ -14,10 +14,15 @@ vim.keymap.set({ "n", "v" }, "<leader>xh", ":split<CR>", { desc = "[H]orizontal 
 vim.keymap.set({ "n", "v" }, "<leader>xv", ":vsplit<CR>", { desc = "[V]ertical Split" })
 vim.keymap.set({ "n", "v" }, "<leader>xd", ":quit<CR>", { desc = "[D]elete Window" })
 
-vim.keymap.set({ "n", "t" }, "<M-left>", ":wincmd h<CR>", { silent = true, desc = "Move window left" } )
-vim.keymap.set({ "n", "t" }, "<M-right>", ":wincmd l<CR>", { silent = true, desc = "Move window right" } )
-vim.keymap.set({ "n", "t" }, "<M-up>", ":wincmd k<CR>", { silent = true, desc = "Move window up" } )
-vim.keymap.set({ "n", "t" }, "<M-down>", ":wincmd j<CR>", { silent = true, desc = "Move window down" } )
+vim.keymap.set({ "n" }, "<M-left>", ":wincmd h<CR>", { silent = true, desc = "Move window left" })
+vim.keymap.set({ "n" }, "<M-right>", ":wincmd l<CR>", { silent = true, desc = "Move window right" })
+vim.keymap.set({ "n" }, "<M-up>", ":wincmd k<CR>", { silent = true, desc = "Move window up" })
+vim.keymap.set({ "n" }, "<M-down>", ":wincmd j<CR>", { silent = true, desc = "Move window down" })
+
+vim.keymap.set({ "t" }, "<M-left>", "<C-\\><C-N>:wincmd h<CR>", { silent = true, desc = "Move window left" })
+vim.keymap.set({ "t" }, "<M-right>", "<C-\\><C-N>:wincmd l<CR>", { silent = true, desc = "Move window right" })
+vim.keymap.set({ "t" }, "<M-up>", "<C-\\><C-N>:wincmd k<CR>", { silent = true, desc = "Move window up" })
+vim.keymap.set({ "t" }, "<M-down>", "<C-\\><C-N>:wincmd j<CR>", { silent = true, desc = "Move window down" })
 
 -- Tabs
 vim.keymap.set({ "n" }, "<leader><tab>a", ":tabnew<CR>", { desc = "[A]dd new tab" })

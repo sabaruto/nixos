@@ -17,19 +17,33 @@ return {
 				["<C-e>"] = { 'cancel', 'fallback' },
 				["<ESC>"] = { 'cancel', 'fallback' },
 
-				["<CR>"] = { 'accept_and_enter', 'fallback' },
-				["<TAB>"] = { 'accept', 'snippet_forward', 'fallback' },
+				["<CR>"] = { 'accept', 'fallback' },
+				["<Right>"] = { 'select_and_accept', 'cancel', 'fallback' },
 
 				['<Up>'] = { 'select_prev', 'fallback' },
 				['<Down>'] = { 'select_next', 'fallback' },
 
+				["<TAB>"] = { 'snippet_forward', 'fallback' },
 				['<S-TAB>'] = { 'snippet_backward', 'fallback' },
 
 				['<S-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
 				['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
 			},
 
-			cmdline = { keymap = { preset = 'inherit' } },
+			cmdline = {
+				keymap = {
+					preset = 'inherit',
+
+					['<Tab>'] = {
+						function(cmp)
+							if cmp.is_ghost_text_visible() and not cmp.is_menu_visible() then return cmp.accept() end
+						end,
+						'show_and_insert',
+						'select_next',
+					},
+					['<S-Tab>'] = { 'show_and_insert', 'select_prev' },
+				}
+			},
 			term = { keymap = { preset = 'inherit' } },
 
 			appearance = {
@@ -37,7 +51,7 @@ return {
 			},
 
 			completion = {
-				list = { selection = { preselect = true, }, },
+				list = { selection = { preselect = false, }, },
 				documentation = { auto_show = false },
 			},
 
