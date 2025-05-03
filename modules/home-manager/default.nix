@@ -5,6 +5,5 @@
     ./apps
     ./cmd
     ./cron
-    ./dotfiles
   ];
 }

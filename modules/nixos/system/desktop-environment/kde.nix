@@ -1,25 +1,50 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 with lib;
 
 let
-	cfg = config.localModules;
+  cfg = config.localModules;
 in
 {
   config = mkIf (cfg.desktopEnvironment == "kde") {
-  	services = {
-  	  xserver.enable = true;
-  	  desktopManager = {
-  	    plasma6.enable = true;
-  	  };
+    programs.dconf.enable = true;
 
-  	  displayManager = {
-  	    defaultSession = "plasma";
+    environment.systemPackages = with pkgs.kdePackages; [
+      wayqt
+      kwayland
+      layer-shell-qt
+    ];
 
-  	    sddm = {
-  	      wayland.enable = true;
-  	    };
-  	  };
-  	};
+    qt = {
+      enable = true;
+      style = "breeze";
+      platformTheme = "kde6";
+    };
+
+    services = {
+      xserver.enable = true;
+
+      desktopManager = {
+        plasma6.enable = true;
+      };
+
+      displayManager = {
+        defaultSession = "plasma";
+
+        sddm = {
+          enable = true;
+          wayland.enable = true;
+
+          extraPackages = [
+
+          ];
+        };
+      };
+    };
   };
 }

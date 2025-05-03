@@ -25,7 +25,12 @@
 
       # browsers
       firefox
-      vivaldi
+      # Vivaldi with forceful qt app wrapping
+      (vivaldi.overrideAttrs (oldAttrs: {
+        dontWrapQtApps = false;
+        dontPatchELF = true;
+        nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ kdePackages.wrapQtAppsHook ];
+      }))
 
       # zoom
       zoom-us

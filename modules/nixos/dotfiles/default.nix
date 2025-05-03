@@ -55,7 +55,7 @@ in
       (mkIf cfg.kde.enable [
         {
           sourcePath = "${path}/dotconfig/plasma-org.kde.plasma.desktop-appletsrc";
-          symbolicLink = "${homeDirectory}/.config/plasma-org-kde-plasma-desktop-appletsrc";
+          symbolicLink = "${homeDirectory}/.config/plasma-org.kde.plasma.desktop-appletsrc";
         }
         {
           sourcePath = "${path}/dotconfig/plasmashellrc";
