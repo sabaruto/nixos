@@ -28,6 +28,8 @@ in
     waybar = {
       enable = mkEnableOption "waybar";
     };
+
+    kde.enable = mkEnableOption "kde";
   };
 
   config = {
@@ -46,7 +48,18 @@ in
       (mkIf cfg.waybar.enable [
         {
           sourcePath = "${path}/dotconfig/waybar";
-          symbolicLink = "${config.home.homeDirectory}/.config";
+          symbolicLink = "${homeDirectory}/.config";
+        }
+      ])
+
+      (mkIf cfg.kde.enable [
+        {
+          sourcePath = "${path}/dotconfig/plasma-org.kde.plasma.desktop-appletsrc";
+          symbolicLink = "${homeDirectory}/.config/plasma-org-kde-plasma-desktop-appletsrc";
+        }
+        {
+          sourcePath = "${path}/dotconfig/plasmashellrc";
+          symbolicLink = "${homeDirectory}/.config/plasmashellrc";
         }
       ])
     ];

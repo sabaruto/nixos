@@ -22,6 +22,8 @@
     apps = {
       steam.enable = true;
     };
+
+    dotfiles.kde.enable = true;
   };
 
   users.defaultUserShell = pkgs.zsh;

@@ -26,7 +26,7 @@ in
     system.userActivationScripts = mkMerge (
       forEach cfg.links (link: {
         "${link.sourcePath}" = {
-          text = "$DRY_RUN_CMD ln -sfvn  ${link.sourcePath} ${link.symbolicLink}\n";
+          text = "$DRY_RUN_CMD ln -sfvn  ${link.sourcePath} ${link.symbolicLink}";
           deps = [ ];
         };
       })

@@ -5,5 +5,6 @@
     ./system
     ./shells
     ./lib
+    ./dotfiles
   ];
 }
