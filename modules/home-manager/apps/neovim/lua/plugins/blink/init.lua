@@ -17,8 +17,7 @@ return {
 				["<C-e>"] = { 'cancel', 'fallback' },
 				["<ESC>"] = { 'cancel', 'fallback' },
 
-				["<CR>"] = { 'accept', 'fallback' },
-				["<Right>"] = { 'select_and_accept', 'cancel', 'fallback' },
+				["<Right>"] = { 'accept', 'cancel', 'fallback' },
 
 				['<Up>'] = { 'select_prev', 'fallback' },
 				['<Down>'] = { 'select_next', 'fallback' },

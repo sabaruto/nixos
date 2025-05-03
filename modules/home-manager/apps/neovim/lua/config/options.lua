@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.g.maplocalleader = "<Tab>"
+vim.g.maplocalleader = "<tab>"
 
 vim.opt.smarttab = true
 vim.opt.tabstop = 4

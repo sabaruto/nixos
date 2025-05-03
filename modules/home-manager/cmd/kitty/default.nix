@@ -23,8 +23,9 @@ in
         wayland_titlebar_color = "system";
 
         background_opacity = "0.25";
-        background_blur = 5;
+        background_blur = 6;
         dynamic_background_opacity = true;
+        font_size = 12;
       };
     };
   };

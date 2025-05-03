@@ -9,25 +9,27 @@
     outputs.homeManagerModules.default
   ];
 
-  home.username = "theodore";
-  home.homeDirectory = "/home/theodore";
-  home.stateVersion = "24.11";
-  home.packages = with pkgs; [
-    # Password manager
-    bitwarden-desktop
-    bitwarden-cli
+  home = {
+    username = "theodore";
+    homeDirectory = "/home/theodore";
+    stateVersion = "24.11";
+    packages = with pkgs; [
+      # Password manager
+      bitwarden-desktop
+      bitwarden-cli
 
-    # music services
-    tidal-hifi
-    spotify
+      # music services
+      tidal-hifi
+      spotify
 
-    # zoom
-    zoom-us
+      # zoom
+      zoom-us
 
-    # cli apps
-    tree
-    openssl
-  ];
+      # cli apps
+      tree
+      openssl
+    ];
+  };
 
   nixpkgs.config.allowUnfree = true;
 

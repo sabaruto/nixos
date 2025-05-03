@@ -36,15 +36,22 @@ return {
 						function()
 							require("which-key").show({ keys = "<leader>x", loop = true })
 						end,
-						desc = "Hydra Mode (which-key)",
+						desc = "Windows Hydra Mode",
 					},
 					{
 						"<leader><tab><space>",
 						function()
 							require("which-key").show({ keys = "<leader><tab>", loop = true })
 						end,
-						desc = "Hydra Mode (which-key)",
-					}
+						desc = "Tab Hydra Mode",
+					},
+					{
+						"<leader>b<space>",
+						function()
+							require("which-key").show({ keys = "<leader>b", loop = true })
+						end,
+						desc = "Buffer Hydra Mode",
+					},
 				},
 			},
 		},

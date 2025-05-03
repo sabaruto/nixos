@@ -1,8 +1,8 @@
 {
-    "diagnostics.globals": [
-        "vim",
-        "Snacks",
-        "pick"
-    ],
-    "workspace.maxPreload": 10000
+	"diagnostics.globals": [
+		"vim",
+		"Snacks",
+		"pick"
+	],
+	"workspace.maxPreload": 10000
 }

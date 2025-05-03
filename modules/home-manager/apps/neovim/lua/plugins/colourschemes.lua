@@ -1,23 +1,8 @@
 return {
-	{
-		"catppuccin/nvim",
-		name = "catppuccin",
-	},
-	{
-		"rose-pine/neovim",
-		name = "rose-pine",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			vim.cmd("colorscheme rose-pine")
-		end
-	},
-	{
-		"f-person/auto-dark-mode.nvim",
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		}
-	},
+	{ "catppuccin/nvim",              lazy = false, priority = 1000 },
+	{ "rose-pine/neovim",             lazy = false, priority = 1000 },
+	{ "EdenEast/nightfox.nvim",       lazy = false, priority = 1000 },
+	{ "olimorris/onedarkpro.nvim",    lazy = false, priority = 1000 },
+	{ "folke/tokyonight.nvim",        lazy = false, priority = 1000 },
+	{ "f-person/auto-dark-mode.nvim", config = true },
 }

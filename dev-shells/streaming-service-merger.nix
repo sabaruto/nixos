@@ -1,7 +1,6 @@
 { pkgs }:
 pkgs.mkShell {
   packages = with pkgs; [
-    sqls
     zsh
 
     # Java
@@ -9,5 +8,8 @@ pkgs.mkShell {
 
     # Build Automation
     maven
+
+    # Database
+    sqlite
   ];
 }

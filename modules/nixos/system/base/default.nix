@@ -78,6 +78,7 @@ in
       rPackages.pcutils
       wget
       gnupg
+      unzip
       usbutils
       home-manager
 

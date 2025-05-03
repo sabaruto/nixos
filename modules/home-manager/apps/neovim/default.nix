@@ -34,8 +34,12 @@ in
         nerd-fonts.fira-code
         nerd-fonts.droid-sans-mono
 
+        # git improvement
+        lazygit
+
         nodejs
         go
+        jq
 
         # Builders
         gcc
@@ -48,6 +52,7 @@ in
         selene
         deadnix
         semgrep
+        lemminx
         codespell
         stylelint
         proselint

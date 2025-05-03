@@ -13,6 +13,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 		os.exit(1)
 	end
 end
+
 vim.opt.rtp:prepend(lazypath)
 
 -- Setup lazy.nvim
@@ -22,13 +23,34 @@ require("lazy").setup({
 		{ import = "plugins" },
 		{ import = "plugins/blink" },
 		{ import = "plugins/dap" },
-		{ import = "plugins/telescope" },
 	},
 	-- Configure any other settings here. See the documentation for more details.
 	-- colorscheme that will be used when installing plugins.
-	install = { colorscheme = { "habamax" } },
+
 	-- automatically check for plugin updates
 	checker = { enabled = true },
+
+	custom_keys = {
+		["<localleader>l"] = {
+			function(plugin)
+				require("lazy.util").float_term({ "lazygit", "log" }, {
+					cwd = plugin.dir,
+				})
+			end,
+			desc = "Open lazygit log",
+		},
+
+		["<localleader>t"] = {
+			function(plugin)
+				require("lazy.util").float_term(nil, {
+					cwd = plugin.dir,
+				})
+			end,
+			desc = "Open terminal in plugin dir",
+		},
+
+		["<leader>l"] = { ":Lazy<CR>", desc = "lazy" },
+	}
 })
 
-vim.keymap.set({ "n" }, "<leader>l", ":Lazy<CR>", { desc = "lazy" })
+vim.cmd("colorscheme catppuccin")

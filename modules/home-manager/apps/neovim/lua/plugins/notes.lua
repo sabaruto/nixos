@@ -5,12 +5,6 @@ return {
 		opts = {},
 	},
 	{
-		"brianhuster/live-preview.nvim",
-		dependencies = {
-			"nvim-telescope/telescope.nvim",
-		},
-	},
-	{
 		'preservim/vim-markdown',
 		dependencies = { "godlygeek/tabular" },
 	}

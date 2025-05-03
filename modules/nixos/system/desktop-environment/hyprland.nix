@@ -70,6 +70,7 @@ in
 
         # Media Player
         mpv
+        gthumb
 
         (waybar.overrideAttrs (oldAttrs: {
           mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
