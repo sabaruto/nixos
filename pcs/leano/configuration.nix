@@ -10,15 +10,18 @@
     hostname = "leano";
     stateVersion = "24.11";
 
+    desktopEnvironment = "kde";
+    shells.zsh.enable = true;
+
     swapSize = 32 * 1024;
     gpu = "nvidia";
 
-    desktopEnvironment = "hyprland";
-
-    shells.zsh.enable = true;
-
     apps = {
       steam.enable = true;
+    };
+
+    dotfiles = {
+      kde.enable = true;
     };
   };
 

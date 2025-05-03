@@ -98,12 +98,14 @@ in
       };
 
       loader = {
+        efi.canTouchEfiVariables = true;
+
         systemd-boot = {
           enable = false;
+
           # Limit the number of generations to keep
           configurationLimit = 10;
         };
-        # efi.canTouchEfiVariables = true;
       };
     };
 
@@ -176,5 +178,8 @@ in
 
     # Enable the OpenSSH daemon.
     services.openssh.enable = true;
+
+    # Enable bluetooth
+    hardware.bluetooth.enable = true;
   };
 }
