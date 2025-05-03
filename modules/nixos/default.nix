@@ -4,5 +4,6 @@
     ./fun
     ./system
     ./shells
+    ./lib
   ];
 }

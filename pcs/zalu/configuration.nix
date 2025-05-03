@@ -15,7 +15,7 @@
     swapSize = 16 * 1024;
     gpu = "none";
 
-    desktopEnvironment = "gnome";
+    desktopEnvironment = "kde";
 
     shells.zsh.enable = true;
 
@@ -25,4 +25,6 @@
   };
 
   users.defaultUserShell = pkgs.zsh;
+
+  hardware.bluetooth.enable = true;
 }

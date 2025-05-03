@@ -7,7 +7,9 @@
 with lib;
 let
   cfg = config.localModules.dotfiles;
-  path = "${config.home.homeDirectory}/nixos/modules/home-manager/dotfiles";
+  user = config.localModules.name;
+  homeDirectory = "${config.users.users.${user}.home}";
+  path = "${homeDirectory}/nixos/modules/nixos/dotfiles";
 in
 {
   options.localModules.dotfiles = {
@@ -33,11 +35,11 @@ in
       (mkIf cfg.hyprland.enable [
         {
           sourcePath = "${path}/dotconfig/hypr";
-          symbolicLink = "${config.home.homeDirectory}/.config";
+          symbolicLink = "${homeDirectory}/.config";
         }
         {
           sourcePath = "${path}/option-files/${cfg.hyprland.monitors}.monitors.conf";
-          symbolicLink = "${config.home.homeDirectory}/.config/hypr/monitors.conf";
+          symbolicLink = "${homeDirectory}/.config/hypr/monitors.conf";
         }
       ])
 

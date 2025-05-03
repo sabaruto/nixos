@@ -16,13 +16,11 @@ in
 
   config =
     let
-      theme-switcher = (
-        import ./scripts/theme-switcher.nix {
-          inherit pkgs;
-          conf-path = ./nwg-look-conf;
-          user = home.username;
-        }
-      );
+      theme-switcher = import ./scripts/theme-switcher.nix {
+        inherit pkgs;
+        conf-path = ./nwg-look-conf;
+        user = home.username;
+      };
     in
     mkIf cfg.enable {
       home.packages = [
