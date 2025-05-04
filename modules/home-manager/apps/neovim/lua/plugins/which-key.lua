@@ -3,8 +3,8 @@ return {
 		"folke/which-key.nvim",
 		event = "VeryLazy",
 		opts = {
-			preset = "modern",
-			win = { row = 50 },
+			preset = "helix",
+			win = { row = 50, col = 0 },
 			spec = {
 				{
 					mode = { "n", "v" },
@@ -30,27 +30,6 @@ return {
 							require("which-key").show({ global = true })
 						end,
 						desc = " Keymaps (which-key)",
-					},
-					{
-						"<leader>x<space>",
-						function()
-							require("which-key").show({ keys = "<leader>x", loop = true })
-						end,
-						desc = "Windows Hydra Mode",
-					},
-					{
-						"<leader><tab><space>",
-						function()
-							require("which-key").show({ keys = "<leader><tab>", loop = true })
-						end,
-						desc = "Tab Hydra Mode",
-					},
-					{
-						"<leader>b<space>",
-						function()
-							require("which-key").show({ keys = "<leader>b", loop = true })
-						end,
-						desc = "Buffer Hydra Mode",
 					},
 				},
 			},

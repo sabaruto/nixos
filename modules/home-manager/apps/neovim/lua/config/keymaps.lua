@@ -23,11 +23,11 @@ vim.keymap.set({ "n" }, wl .. "<down>", ":wincmd j<CR>", { silent = true, desc =
 vim.keymap.set({ "n" }, wl .. "<left>", ":wincmd h<CR>", { silent = true, desc = "Move window left" })
 vim.keymap.set({ "n" }, wl .. "<right>", ":wincmd l<CR>", { silent = true, desc = "Move window right" })
 vim.keymap.set({ "n" }, wl .. "<up>", ":wincmd k<CR>", { silent = true, desc = "Move window up" })
-
-vim.keymap.set({ "n" }, wl .. "<C-left>", "[[ 4<C-w>< ]]", { silent = true, desc = "Expand window width" })
-vim.keymap.set({ "n" }, wl .. "<C-right>", "[[ 4<C-w>> ]]", { silent = true, desc = "Shink window width" })
-vim.keymap.set({ "n" }, wl .. "<C-up>", "[[ 4<C-w>+ ]]", { silent = true, desc = "Expand window height" })
-vim.keymap.set({ "n" }, wl .. "<C-down>", "[[ 4<C-w>- ]]", { silent = true, desc = "Shrink window height" })
+--
+-- vim.keymap.set({ "n" }, wl .. "<C-left>", "[[ 4<C-w>< ]]", { silent = true, desc = "Expand window width" })
+-- vim.keymap.set({ "n" }, wl .. "<C-right>", "[[ 4<C-w>> ]]", { silent = true, desc = "Shink window width" })
+-- vim.keymap.set({ "n" }, wl .. "<C-up>", "[[ 4<C-w>+ ]]", { silent = true, desc = "Expand window height" })
+-- vim.keymap.set({ "n" }, wl .. "<C-down>", "[[ 4<C-w>- ]]", { silent = true, desc = "Shrink window height" })
 
 vim.keymap.set({ "n" }, "<M-left>", ":wincmd h<CR>", { silent = true, desc = "Move window left" })
 vim.keymap.set({ "n" }, "<M-right>", ":wincmd l<CR>", { silent = true, desc = "Move window right" })

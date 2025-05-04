@@ -18,6 +18,7 @@ in
       wayqt
       kwayland
       layer-shell-qt
+      plasma-browser-integration
     ];
 
     qt = {
@@ -39,10 +40,6 @@ in
         sddm = {
           enable = true;
           wayland.enable = true;
-
-          extraPackages = [
-
-          ];
         };
       };
     };
