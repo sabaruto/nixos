@@ -87,6 +87,9 @@ in
 
       # Boot configuration
       sbctl
+
+      # Communication
+      discord
     ];
 
     # Bootloader.
