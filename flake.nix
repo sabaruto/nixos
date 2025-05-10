@@ -14,6 +14,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixd = {
       url = "github:nix-community/nixd";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,6 +35,7 @@
       self,
       nixpkgs,
       home-manager,
+      nix-darwin,
       lanzaboote,
       ...
     }@inputs:
@@ -38,6 +44,7 @@
     in
     {
       nixosModules.default = import ./modules/nixos;
+      nixDarwinModules.default = import ./modules/nix-darwin;
       homeManagerModules.default = import ./modules/home-manager;
 
       nixosConfigurations = {
@@ -57,6 +64,19 @@
           modules = [
             lanzaboote.nixosModules.lanzaboote
             ./pcs/leano/configuration.nix
+          ];
+        };
+      };
+
+      darwinConfigurations = {
+        malu = nix-darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          specialArgs = { inherit inputs outputs; };
+
+          modules = [
+            home-manager.darwinModules.home-manager
+            ./pcs/malu/configuration.nix
+            ./pcs/malu/home.nix
           ];
         };
       };

@@ -1,14 +1,11 @@
 return {
 	{
-		"mfussenegger/nvim-jdtls",
-		ft = "java",
-		opts = {
-			cmd = { "jdtls" },
+		"nvim-java/nvim-java",
+		dependencies = {
+			"mason-org/mason.nvim",
+			"mason-org/mason-lspconfig.nvim",
+			"neovim/nvim-lspconfig",
+			"mfussenegger/nvim-dap"
 		},
-
-		config = function(_, opts)
-			vim.lsp.enable("jdtls")
-			require("jdtls").start_or_attach(opts)
-		end
-	}
+	},
 }

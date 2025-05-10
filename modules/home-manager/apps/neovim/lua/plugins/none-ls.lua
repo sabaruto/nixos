@@ -5,9 +5,10 @@ return {
 			"CKolkey/ts-node-action",
 			"ThePrimeagen/refactoring.nvim",
 		},
-		opts = {},
+		opts = {
+			debug = true,
+		},
 		config = function(_, opts)
-			opts.debug = true
 			opts.sources = {
 				-- Python
 				require("null-ls").builtins.formatting.isort,

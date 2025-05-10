@@ -56,6 +56,7 @@ in
         codespell
         stylelint
         proselint
+        nixfmt-rfc-style
         markdownlint-cli
         jdt-language-server
       ];

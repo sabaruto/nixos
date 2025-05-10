@@ -3,8 +3,10 @@ return {
 		"obsidian-nvim/obsidian.nvim",
 		version = "*", -- recommended, use latest release instead of latest commit
 		lazy = true,
-		ft = "markdown",
-
+	event = {
+    		"BufReadPre " .. vim.fn.expand "~" .. "personal-library",
+    		"BufNewFile " .. vim.fn.expand "~" .. "notes",
+		},
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"preservim/vim-markdown",
@@ -16,6 +18,10 @@ return {
 					name = "personal library",
 					path = "~/personal-library",
 				},
+				{
+					name = "Notes",
+					path = "~/notes",
+				}
 			},
 
 			daily_notes = {

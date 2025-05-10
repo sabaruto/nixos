@@ -15,14 +15,6 @@
     stateVersion = "24.11";
 
     packages = with pkgs; [
-      # Password manager
-      bitwarden-desktop
-      bitwarden-cli
-
-      # music services
-      tidal-hifi
-      spotify
-
       # browsers
       firefox
       # Vivaldi with forceful qt app wrapping
@@ -40,10 +32,6 @@
 
       # boot configuration
       efibootmgr
-
-      # cli apps
-      tree
-      openssl
 
       # miracast
       gnome-network-displays
@@ -78,12 +66,4 @@
       ];
     };
   };
-
-  nixpkgs.config.allowUnfree = true;
-
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
-
-  programs.home-manager.enable = true;
 }
