@@ -1,10 +1,1 @@
-{ ... }:
-{
-  imports = [
-    ./fun
-    ./system
-    ./shells
-    ./lib
-    ./dotfiles
-  ];
-}
+{ ... }: { imports = [ ./fun ./system ./shells ./lib ./dotfiles ]; }

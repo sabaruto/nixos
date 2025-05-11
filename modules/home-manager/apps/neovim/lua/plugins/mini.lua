@@ -7,6 +7,8 @@ return {
 	{ "echasnovski/mini.splitjoin", version = false, config = true },
 	{ "echasnovski/mini.jump",      version = false, config = true },
 	{ "echasnovski/mini.icons",     version = false, config = true },
+	{ 'echasnovski/mini.jump2d',    version = false, config = true },
+	{ 'echasnovski/mini.map',       version = false, config = true },
 	{
 		'echasnovski/mini.bufremove',
 		version = false,
@@ -20,10 +22,10 @@ return {
 		version = false,
 		opts = {
 			mappings = {
-				go_in = "<right>",
-				go_in_plus = "<S-right>",
-				go_out = "<left>",
-				go_out_plus = "<S-left>",
+				go_in = "l",
+				go_in_plus = "<S-l>",
+				go_out = "h",
+				go_out_plus = "<S-h>",
 			},
 
 			windows = {
@@ -48,15 +50,15 @@ return {
 			end
 
 			opts.mappings = {
-				left = ml .. '<left>',
-				right = ml .. '<right>',
-				up = ml .. '<up>',
-				down = ml .. '<down>',
+				left = ml .. 'h',
+				right = ml .. 'l',
+				up = ml .. 'k',
+				down = ml .. 'j',
 
-				line_left = ml .. '<left>',
-				line_right = ml .. '<right>',
-				line_up = ml .. '<up>',
-				line_down = ml .. '<down>',
+				line_left = ml .. 'h',
+				line_right = ml .. 'l',
+				line_up = ml .. 'k',
+				line_down = ml .. 'j',
 			}
 
 			return opts

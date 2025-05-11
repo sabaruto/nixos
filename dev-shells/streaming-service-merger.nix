@@ -11,5 +11,8 @@ pkgs.mkShell {
 
     # Database
     sqlite
+
+    # Python
+    python3Full
   ];
 }

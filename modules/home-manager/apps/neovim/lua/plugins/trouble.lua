@@ -10,12 +10,12 @@ return {
 			},
 		},
 		keys = {
-			{ "<leader>dx", ":Trouble diagnostics toggle<CR>", desc = "Diagnostics (Trouble)" },
+			{ "<leader>dx", ":Trouble diagnostics toggle<CR>",              desc = "Diagnostics (Trouble)" },
 			{ "<leader>dX", ":Trouble diagnostics toggle filter.buf=0<CR>", desc = "Buffer Diagnostics (Trouble)" },
-			{ "<leader>cs", ":Trouble symbols toggle<CR>", desc = "Symbols (Trouble)" },
-			{ "<leader>cS", ":Trouble lsp toggle<CR>", desc = "LSP references/definitions/... (Trouble)" },
-			{ "<leader>tL", ":Trouble loclist toggle<CR>", desc = "Location List (Trouble)" },
-			{ "<leader>tQ", ":Trouble qflist toggle<CR>", desc = "Quickfix List (Trouble)" },
+			{ "<leader>cs", ":Trouble symbols toggle<CR>",                  desc = "Symbols (Trouble)" },
+			{ "<leader>cS", ":Trouble lsp toggle<CR>",                      desc = "LSP references/definitions/... (Trouble)" },
+			{ "<leader>tL", ":Trouble loclist toggle<CR>",                  desc = "Location List (Trouble)" },
+			{ "<leader>tQ", ":Trouble qflist toggle<CR>",                   desc = "Quickfix List (Trouble)" },
 			{
 				"[q",
 				function()
@@ -43,14 +43,6 @@ return {
 					end
 				end,
 				desc = "Next Trouble/Quickfix Item",
-			},
-		},
-	},
-	{
-		"nvim-lualine/lualine.nvim",
-		opts = {
-			extensions = {
-				"trouble",
 			},
 		},
 	},

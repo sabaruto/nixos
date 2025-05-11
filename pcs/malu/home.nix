@@ -1,14 +1,7 @@
-{
-  inputs,
-  outputs,
-  ...
-}:
+{ inputs, outputs, ... }:
 
 {
-  imports = [
-    inputs.home-manager.darwinModules.home-manager
-    outputs.homeManagerModules.default
-  ];
+  imports = [ outputs.homeManagerModules.default ];
 
   localModules = {
     home-manager = {
@@ -17,15 +10,11 @@
       system = "aarch64-darwin";
 
       config = {
-        apps = {
-          neovim.enable = true;
-        };
+        apps = { neovim.enable = true; };
 
         development = {
           enable = true;
-          languages = [
-            "nix"
-          ];
+          languages = [ "nix" ];
         };
       };
     };

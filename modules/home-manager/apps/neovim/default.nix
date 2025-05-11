@@ -1,15 +1,9 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, pkgs, ... }:
 with lib;
 let
   cfg = config.localModules.apps.neovim;
   path = "${config.home.homeDirectory}/nixos/modules/home-manager/apps/neovim";
-in
-{
+in {
   options.localModules.apps.neovim.enable = mkEnableOption "neovim";
 
   config = mkIf cfg.enable {

@@ -1,15 +1,8 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}:
+{ lib, config, pkgs, ... }:
 with lib;
 
-let
-  cfg = config.localModules.home-manager;
-in
-{
+let cfg = config.localModules.home-manager;
+in {
   options.localModules.home-manager = {
     enable = mkEnableOption "Home Manager";
 
@@ -29,6 +22,11 @@ in
       type = types.attrs;
       default = { };
     };
+
+    packages = mkOption {
+      type = types.listOf types.package;
+      default = [ ];
+    };
   };
 
   config = {
@@ -36,30 +34,26 @@ in
       useGlobalPkgs = true;
       useUserPackages = true;
 
-      users."${cfg.username}" =
-        { ... }:
-        {
-          imports = [
-            ./lib
-            ./apps
-            ./cmd
-            ./base
-          ];
+      users."${cfg.username}" = { ... }: {
+        imports = [ ./lib ./apps ./cmd ./base ];
 
-          programs.home-manager.enable = true;
+        programs.home-manager.enable = true;
 
-          home = {
-            username = "${cfg.username}";
-            stateVersion = "24.11";
+        home = {
+          packages = cfg.packages;
 
-            homeDirectory = mkDefault (mkMerge [
-              (mkIf (cfg.system == "x86_64-linux") "/home/${cfg.username}")
-              (mkIf (cfg.system == "aarch64-darwin") "/Users/${cfg.username}")
-            ]);
-          };
+          username = "${cfg.username}";
+          stateVersion = "24.11";
 
-          localModules = cfg.config;
+          homeDirectory = mkDefault (mkMerge [
+            (mkIf (cfg.system == "x86_64-linux") "/home/${cfg.username}")
+            (mkIf (cfg.system == "aarch64-darwin") "/Users/${cfg.username}")
+          ]);
+
         };
+
+        localModules = cfg.config;
+      };
     };
   };
 }
