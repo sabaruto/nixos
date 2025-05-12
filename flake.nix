@@ -25,12 +25,24 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-darwin, lanzaboote, ... }@inputs:
-    let inherit (self) outputs;
-    in {
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      nix-darwin,
+      lanzaboote,
+      ...
+    }@inputs:
+    let
+      inherit (self) outputs;
+    in
+    {
       nixosModules.default = import ./modules/nixos;
       nixDarwinModules.default = import ./modules/nix-darwin;
-      homeManagerModules = { default = import ./modules/home-manager; };
+      homeManagerModules = {
+        default = import ./modules/home-manager;
+      };
 
       nixosConfigurations = {
         zalu = nixpkgs.lib.nixosSystem {

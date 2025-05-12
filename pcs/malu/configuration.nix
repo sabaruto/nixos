@@ -13,9 +13,7 @@
     shells.zsh.enable = true;
   };
 
-  environment.shells = [
-    pkgs.zsh
-  ];
+  programs.zsh.enable = true;
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -26,4 +24,8 @@
     name = "t.aaronobelley";
     home = "/Users/t.aaronobelley";
   };
+
+  environment.systemPackages = [
+    pkgs.neofetch
+  ];
 }

@@ -18,6 +18,11 @@ return {
 				["<ESC>"] = { 'cancel', 'fallback' },
 
 				["<Right>"] = { 'accept', 'cancel', 'fallback' },
+				['<C-' .. vim.g.rightkey .. '>'] = { 'accept', 'cancel', 'fallback' },
+
+
+				['<C-' .. vim.g.upkey .. '>'] = { 'select_prev', 'fallback' },
+				['<C-' .. vim.g.downkey .. '>'] = { 'select_next', 'fallback' },
 
 				['<Up>'] = { 'select_prev', 'fallback' },
 				['<Down>'] = { 'select_next', 'fallback' },

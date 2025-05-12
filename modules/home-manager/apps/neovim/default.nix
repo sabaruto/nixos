@@ -1,9 +1,15 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 with lib;
 let
   cfg = config.localModules.apps.neovim;
   path = "${config.home.homeDirectory}/nixos/modules/home-manager/apps/neovim";
-in {
+in
+{
   options.localModules.apps.neovim.enable = mkEnableOption "neovim";
 
   config = mkIf cfg.enable {
@@ -34,6 +40,7 @@ in {
         nodejs
         go
         jq
+        zk
 
         # Builders
         gcc
@@ -62,12 +69,8 @@ in {
 
     localModules.lib.links = [
       {
-        sourcePath = "${path}/lua";
-        symbolicLink = "${config.home.homeDirectory}/.config/nvim/lua";
-      }
-      {
-        sourcePath = "${path}/init.lua";
-        symbolicLink = "${config.home.homeDirectory}/.config/nvim/init.lua";
+        sourcePath = "${path}";
+        symbolicLink = "${config.home.homeDirectory}/.config/nvim";
       }
     ];
   };

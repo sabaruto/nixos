@@ -5,7 +5,7 @@ return {
 
 		keys = {
 			{
-				"<leader>fe",
+				"<leader>",
 				function()
 					require("neo-tree.command").execute({ dir = vim.uv.cwd() })
 				end,
@@ -56,7 +56,12 @@ return {
 				mappings = {
 					["<right>"] = "open",
 					["<left>"] = "close_node",
+					[vim.g.leftkey] = "focus_preview",
+					[vim.g.rightkey] = "open",
+					[vim.g.downkey] = "<down>",
+					[vim.g.upkey] = "<up>",
 					["<space>"] = "none",
+
 					["Y"] = {
 						function(state)
 							local node = state.tree:get_node()

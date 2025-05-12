@@ -4,11 +4,18 @@ local downkey = vim.g.downkey
 local upkey = vim.g.upkey
 local rightkey = vim.g.rightkey
 
+local mod_key = vim.g.mod_key
+
 -- Movement
-vim.keymap.set({ "n", "v" }, leftkey, "h", { silent = true })
-vim.keymap.set({ "n", "v" }, downkey, "j", { silent = true })
-vim.keymap.set({ "n", "v" }, upkey, "k", { silent = true })
-vim.keymap.set({ "n", "v" }, rightkey, "l", { silent = true })
+vim.keymap.set({ "n", "x" }, leftkey, "h", { silent = true })
+vim.keymap.set({ "n", "x" }, downkey, "j", { silent = true })
+vim.keymap.set({ "n", "x" }, upkey, "k", { silent = true })
+vim.keymap.set({ "n", "x" }, rightkey, "l", { silent = true })
+
+vim.keymap.set("i", "<C-" .. leftkey .. ">", "<left>", { silent = true })
+vim.keymap.set("i", "<C-" .. downkey .. ">", "<down>", { silent = true })
+vim.keymap.set("i", "<C-" .. upkey .. ">", "<up>", { silent = true })
+vim.keymap.set("i", "<C-" .. rightkey .. ">", "<right>", { silent = true })
 
 -- Buffers
 vim.keymap.set({ "n", "v" }, "<leader>w", ":write<CR>", { desc = "Save buffer", silent = true })
@@ -41,7 +48,7 @@ vim.keymap.set({ "n" }, wl .. "<left>", ":wincmd h<CR>", { silent = true, desc =
 vim.keymap.set({ "n" }, wl .. "<right>", ":wincmd l<CR>", { silent = true, desc = "Move window right" })
 vim.keymap.set({ "n" }, wl .. "<up>", ":wincmd k<CR>", { silent = true, desc = "Move window up" })
 
-vim.keymap.set({ "n" }, "<M-" .. leftkey .. ">", ":wincmd h<CR>", { silent = true, desc = "Move window left" })
+vim.keymap.set({ "n" }, "<M-" .. leftkey .. ">", ":wincmd h", { silent = true, desc = "Move window left" })
 vim.keymap.set({ "n" }, "<M-" .. rightkey .. ">", ":wincmd l<CR>", { silent = true, desc = "Move window right" })
 vim.keymap.set({ "n" }, "<M-" .. upkey .. ">", ":wincmd k<CR>", { silent = true, desc = "Move window up" })
 vim.keymap.set({ "n" }, "<M-" .. downkey .. ">", ":wincmd j<CR>", { silent = true, desc = "Move window down" })
@@ -50,7 +57,6 @@ vim.keymap.set({ "n" }, "<M-left>", ":wincmd h<CR>", { silent = true, desc = "Mo
 vim.keymap.set({ "n" }, "<M-right>", ":wincmd l<CR>", { silent = true, desc = "Move window right" })
 vim.keymap.set({ "n" }, "<M-up>", ":wincmd k<CR>", { silent = true, desc = "Move window up" })
 vim.keymap.set({ "n" }, "<M-down>", ":wincmd j<CR>", { silent = true, desc = "Move window down" })
-
 
 vim.keymap.set({ "t" }, "<M-" .. vim.g.leftkey .. ">", "<C-\\><C-N>:wincmd h<CR>", { silent = true })
 vim.keymap.set({ "t" }, "<M-" .. vim.g.rightkey .. ">", "<C-\\><C-N>:wincmd l<CR>", { silent = true })
@@ -61,6 +67,17 @@ vim.keymap.set({ "t" }, "<M-left>", "<C-\\><C-N>:wincmd h<CR>", { silent = true,
 vim.keymap.set({ "t" }, "<M-right>", "<C-\\><C-N>:wincmd l<CR>", { silent = true, desc = "Move window right" })
 vim.keymap.set({ "t" }, "<M-up>", "<C-\\><C-N>:wincmd k<CR>", { silent = true, desc = "Move window up" })
 vim.keymap.set({ "t" }, "<M-down>", "<C-\\><C-N>:wincmd j<CR>", { silent = true, desc = "Move window down" })
+
+-- Movement ( MacOS )
+vim.keymap.set({ "n" }, "∆", ":wincmd h<CR>", { silent = true })
+vim.keymap.set({ "n" }, "…", ":wincmd l<CR>", { silent = true })
+vim.keymap.set({ "n" }, "¬", ":wincmd k<CR>", { silent = true })
+vim.keymap.set({ "n" }, "˚", ":wincmd j<CR>", { silent = true })
+
+vim.keymap.set({ "t" }, "∆", "<C-\\><C-N>:wincmd h<CR>", { silent = true, desc = "Move window left" })
+vim.keymap.set({ "t" }, "…", "<C-\\><C-N>:wincmd l<CR>", { silent = true, desc = "Move window right" })
+vim.keymap.set({ "t" }, "¬", "<C-\\><C-N>:wincmd k<CR>", { silent = true, desc = "Move window up" })
+vim.keymap.set({ "t" }, "˚", "<C-\\><C-N>:wincmd j<CR>", { silent = true, desc = "Move window down" })
 
 -- Tabs
 local tl = vim.g.createmapleader("tab", "<leader><tab>")
