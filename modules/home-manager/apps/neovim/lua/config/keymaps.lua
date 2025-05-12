@@ -1,3 +1,15 @@
+-- local values
+local leftkey = vim.g.leftkey
+local downkey = vim.g.downkey
+local upkey = vim.g.upkey
+local rightkey = vim.g.rightkey
+
+-- Movement
+vim.keymap.set({ "n", "v" }, leftkey, "h", { silent = true })
+vim.keymap.set({ "n", "v" }, downkey, "j", { silent = true })
+vim.keymap.set({ "n", "v" }, upkey, "k", { silent = true })
+vim.keymap.set({ "n", "v" }, rightkey, "l", { silent = true })
+
 -- Buffers
 vim.keymap.set({ "n", "v" }, "<leader>w", ":write<CR>", { desc = "Save buffer", silent = true })
 vim.keymap.set({ "n", "v" }, "<leader>j", ":", { remap = true, desc = "Set command line" })
@@ -19,20 +31,31 @@ vim.keymap.set({ "n", "v" }, wl .. "h", ":split<CR>", { desc = "[H]orizontal Spl
 vim.keymap.set({ "n", "v" }, wl .. "v", ":vsplit<CR>", { desc = "[V]ertical Split" })
 vim.keymap.set({ "n", "v" }, wl .. "|", ":vsplit<CR>", { desc = "Vertical Split" })
 
-vim.keymap.set({ "n" }, wl .. "<down>", ":wincmd j<CR>", { silent = true, desc = "Move window down" })
+vim.keymap.set({ "n" }, wl .. leftkey, ":wincmd h<CR>", { silent = true, desc = "Move window left" })
+vim.keymap.set({ "n" }, wl .. downkey, ":wincmd j<CR>", { silent = true, desc = "Move window down" })
+vim.keymap.set({ "n" }, wl .. rightkey, ":wincmd l<CR>", { silent = true, desc = "Move window right" })
+vim.keymap.set({ "n" }, wl .. upkey, ":wincmd k<CR>", { silent = true, desc = "Move window up" })
+
+vim.keymap.set({ "n" }, wl .. "<left>", ":wincmd j<CR>", { silent = true, desc = "Move window down" })
 vim.keymap.set({ "n" }, wl .. "<left>", ":wincmd h<CR>", { silent = true, desc = "Move window left" })
 vim.keymap.set({ "n" }, wl .. "<right>", ":wincmd l<CR>", { silent = true, desc = "Move window right" })
 vim.keymap.set({ "n" }, wl .. "<up>", ":wincmd k<CR>", { silent = true, desc = "Move window up" })
---
--- vim.keymap.set({ "n" }, wl .. "<C-left>", "[[ 4<C-w>< ]]", { silent = true, desc = "Expand window width" })
--- vim.keymap.set({ "n" }, wl .. "<C-right>", "[[ 4<C-w>> ]]", { silent = true, desc = "Shink window width" })
--- vim.keymap.set({ "n" }, wl .. "<C-up>", "[[ 4<C-w>+ ]]", { silent = true, desc = "Expand window height" })
--- vim.keymap.set({ "n" }, wl .. "<C-down>", "[[ 4<C-w>- ]]", { silent = true, desc = "Shrink window height" })
+
+vim.keymap.set({ "n" }, "<M-" .. leftkey .. ">", ":wincmd h<CR>", { silent = true, desc = "Move window left" })
+vim.keymap.set({ "n" }, "<M-" .. rightkey .. ">", ":wincmd l<CR>", { silent = true, desc = "Move window right" })
+vim.keymap.set({ "n" }, "<M-" .. upkey .. ">", ":wincmd k<CR>", { silent = true, desc = "Move window up" })
+vim.keymap.set({ "n" }, "<M-" .. downkey .. ">", ":wincmd j<CR>", { silent = true, desc = "Move window down" })
 
 vim.keymap.set({ "n" }, "<M-left>", ":wincmd h<CR>", { silent = true, desc = "Move window left" })
 vim.keymap.set({ "n" }, "<M-right>", ":wincmd l<CR>", { silent = true, desc = "Move window right" })
 vim.keymap.set({ "n" }, "<M-up>", ":wincmd k<CR>", { silent = true, desc = "Move window up" })
 vim.keymap.set({ "n" }, "<M-down>", ":wincmd j<CR>", { silent = true, desc = "Move window down" })
+
+
+vim.keymap.set({ "t" }, "<M-" .. vim.g.leftkey .. ">", "<C-\\><C-N>:wincmd h<CR>", { silent = true })
+vim.keymap.set({ "t" }, "<M-" .. vim.g.rightkey .. ">", "<C-\\><C-N>:wincmd l<CR>", { silent = true })
+vim.keymap.set({ "t" }, "<M-" .. vim.g.upkey .. ">", "<C-\\><C-N>:wincmd k<CR>", { silent = true })
+vim.keymap.set({ "t" }, "<M-" .. vim.g.downkey .. ">", "<C-\\><C-N>:wincmd j<CR>", { silent = true })
 
 vim.keymap.set({ "t" }, "<M-left>", "<C-\\><C-N>:wincmd h<CR>", { silent = true, desc = "Move window left" })
 vim.keymap.set({ "t" }, "<M-right>", "<C-\\><C-N>:wincmd l<CR>", { silent = true, desc = "Move window right" })

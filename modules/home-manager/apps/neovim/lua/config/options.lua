@@ -1,6 +1,11 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "<tab>"
 
+vim.g.leftkey = "j"
+vim.g.downkey = "k"
+vim.g.upkey = "l"
+vim.g.rightkey = ";"
+
 vim.opt.smarttab = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4

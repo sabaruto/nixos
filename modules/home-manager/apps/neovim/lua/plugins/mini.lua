@@ -5,10 +5,16 @@ return {
 	{ "echasnovski/mini.surround",  version = false, config = true },
 	{ "echasnovski/mini.comment",   version = false, config = true },
 	{ "echasnovski/mini.splitjoin", version = false, config = true },
-	{ "echasnovski/mini.jump",      version = false, config = true },
 	{ "echasnovski/mini.icons",     version = false, config = true },
 	{ 'echasnovski/mini.jump2d',    version = false, config = true },
 	{ 'echasnovski/mini.map',       version = false, config = true },
+	{
+		"echasnovski/mini.jump",
+		version = false,
+		opts = {
+			mappings = { repeat_jump = 'h' },
+		},
+	},
 	{
 		'echasnovski/mini.bufremove',
 		version = false,
@@ -22,10 +28,10 @@ return {
 		version = false,
 		opts = {
 			mappings = {
-				go_in = "l",
-				go_in_plus = "<S-l>",
-				go_out = "h",
-				go_out_plus = "<S-h>",
+				go_in = vim.g.rightkey,
+				go_in_plus = "<S-" .. vim.g.rightkey .. ">",
+				go_out = vim.g.leftkey,
+				go_out_plus = "<S-" .. vim.g.leftkey .. ">",
 			},
 
 			windows = {
@@ -50,15 +56,15 @@ return {
 			end
 
 			opts.mappings = {
-				left = ml .. 'h',
-				right = ml .. 'l',
-				up = ml .. 'k',
-				down = ml .. 'j',
+				left = ml .. vim.g.leftkey,
+				right = ml .. vim.g.rightkey,
+				up = ml .. vim.g.upkey,
+				down = ml .. vim.g.downkey,
 
-				line_left = ml .. 'h',
-				line_right = ml .. 'l',
-				line_up = ml .. 'k',
-				line_down = ml .. 'j',
+				line_left = ml .. vim.g.leftkey,
+				line_right = ml .. vim.g.rightkey,
+				line_up = ml .. vim.g.upkey,
+				line_down = ml .. vim.g.downkey,
 			}
 
 			return opts
