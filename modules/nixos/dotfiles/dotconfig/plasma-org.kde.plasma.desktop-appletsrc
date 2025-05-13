@@ -175,6 +175,11 @@ totalSensors=["memory/physical/usedPercent"]
 immutability=1
 plugin=org.kde.kscreen
 
+[Containments][25][Applets][66][Configuration]
+PreloadWeight=55
+popupHeight=196
+popupWidth=270
+
 [Containments][25][Applets][67]
 immutability=1
 plugin=org.kde.plasma.devicenotifier
@@ -214,7 +219,7 @@ immutability=1
 plugin=org.kde.plasma.networkmanagement
 
 [Containments][25][Applets][69][Configuration]
-PreloadWeight=55
+PreloadWeight=100
 popupHeight=360
 popupWidth=346
 
@@ -257,10 +262,10 @@ enableAutoSwitch=true
 [Containments][25][General]
 AppletOrder=71;73;60;61;62;59;27;57;58;64;65;66;67;68;69;70;63
 
-[Containments][72]
-ItemGeometries-3840x2160=
+[Containments][74]
+ItemGeometries-2304x1440=
 ItemGeometriesHorizontal=
-activityId=6975a8cb-5504-45f0-8271-794ad6f8951d
+activityId=736ddf0a-7c98-4eab-9d5a-f3c620ebe725
 formfactor=0
 immutability=1
 lastScreen=0
@@ -268,12 +273,8 @@ location=0
 plugin=org.kde.plasma.folder
 wallpaperplugin=org.kde.image
 
-[Containments][72][General]
-positions={"3840x2160":[]}
-
-[Containments][72][Wallpaper][org.kde.image][General]
-Image=/home/dosia/Pictures/Desktop/giant-woman.jpg
-SlidePaths=/nix/store/bwrv1z1hk2qq7qj2zapnvk348l6d7rnd-breeze-6.3.4/share/wallpapers/,/run/current-system/sw/share/wallpapers/
+[Containments][74][General]
+positions={"2304x1440":[]}
 
 [ScreenMapping]
 itemsOnDisabledScreens=

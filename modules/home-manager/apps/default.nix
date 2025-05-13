@@ -3,7 +3,7 @@
 with lib;
 let cfg = config.localModules.development;
 in {
-  imports = [ ./neovim ];
+  imports = [ ./neovim ./ghostty ];
 
   options.localModules = {
     development = {

@@ -3,9 +3,9 @@ return {
 		"obsidian-nvim/obsidian.nvim",
 		version = "*", -- recommended, use latest release instead of latest commit
 		lazy = true,
-	event = {
-    		"BufReadPre " .. vim.fn.expand "~" .. "personal-library",
-    		"BufNewFile " .. vim.fn.expand "~" .. "notes",
+		event = {
+			"BufReadPre " .. vim.fn.expand "~" .. "/personal-library",
+			"BufNewFile " .. vim.fn.expand "~" .. "/notes",
 		},
 		dependencies = {
 			"nvim-lua/plenary.nvim",

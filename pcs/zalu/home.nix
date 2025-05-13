@@ -44,6 +44,7 @@
       apps = {
         git.enable = true;
         neovim.enable = true;
+        ghostty.enable = true;
       };
 
       development = {
