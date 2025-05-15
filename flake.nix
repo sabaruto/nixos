@@ -23,26 +23,20 @@
       url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      nix-darwin,
-      lanzaboote,
-      ...
-    }@inputs:
-    let
-      inherit (self) outputs;
-    in
-    {
+  outputs = { self, nixpkgs, home-manager, nix-darwin, nixos-wsl, lanzaboote
+    , ... }@inputs:
+    let inherit (self) outputs;
+    in {
       nixosModules.default = import ./modules/nixos;
       nixDarwinModules.default = import ./modules/nix-darwin;
-      homeManagerModules = {
-        default = import ./modules/home-manager;
-      };
+      homeManagerModules = { default = import ./modules/home-manager; };
 
       nixosConfigurations = {
         zalu = nixpkgs.lib.nixosSystem {
@@ -65,6 +59,18 @@
             lanzaboote.nixosModules.lanzaboote
             ./pcs/leano/configuration.nix
             ./pcs/leano/home.nix
+          ];
+        };
+
+        halu = nixpkgs.lib.nixosSystem rec {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs outputs system; };
+
+          modules = [
+            home-manager.nixosModules.home-manager
+            nixos-wsl.nixosModules.default
+            ./pcs/halu/configuration.nix
+            ./pcs/halu/home.nix
           ];
         };
       };

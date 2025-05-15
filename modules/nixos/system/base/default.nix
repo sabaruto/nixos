@@ -1,19 +1,11 @@
 # The base configuration for all machines
 
-{
-  lib,
-  config,
-  pkgs,
-  outputs,
-  ...
-}:
+{ lib, config, pkgs, outputs, ... }:
 
 with lib;
 
-let
-  cfg = config.localModules;
-in
-{
+let cfg = config.localModules;
+in {
   options.localModules = {
     name = mkOption {
       type = types.str;
@@ -55,18 +47,13 @@ in
     users.users."${cfg.name}" = {
       isNormalUser = true;
       description = "Theodosia Kalu";
-      extraGroups = [
-        "networkmanager"
-        "wheel"
-      ];
+      extraGroups = [ "networkmanager" "wheel" ];
     };
 
-    swapDevices = mkIf (cfg.swapSize != null) [
-      {
-        device = "/swapfile";
-        size = cfg.swapSize;
-      }
-    ];
+    swapDevices = mkIf (cfg.swapSize != null) [{
+      device = "/swapfile";
+      size = cfg.swapSize;
+    }];
 
     environment.systemPackages = with pkgs; [
       # nixos configuration applications
@@ -94,11 +81,11 @@ in
 
     # Bootloader.
     boot = {
-
-      lanzaboote = {
-        enable = true;
-        pkiBundle = "/var/lib/sbctl";
-      };
+      #
+      # lanzaboote = {
+      #   enable = true;
+      #   pkiBundle = "/var/lib/sbctl";
+      # };
 
       loader = {
         efi.canTouchEfiVariables = true;

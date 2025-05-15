@@ -16,22 +16,31 @@ in {
 
   config = mkIf cfg.git.enable {
     programs = mkMerge [
-      {
+      (mkIf (cfg.git.user == "sabaruto") {
         git = {
           enable = true;
 
           userEmail = "theodoreaaronobelley@hotmail.co.uk";
           userName = "sabaruto";
+
           extraConfig = { init = { defaultBranch = "main"; }; };
         };
-      }
+      })
 
       (mkIf (cfg.git.user == "teya") {
         git = {
           userName = "Theodosia Aaron-Obelley";
           userEmail = "t.aaronobelley@saltpay.co";
 
-          extraConfig = { user = { signingkey = ""; }; };
+          extraConfig = {
+            init = { defaultBranch = "main"; };
+            user = {
+              signingkey =
+                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBbr2Z58OpZuhaNqm8VFizveEa5IaqKv3NuZLIXqHrKp";
+            };
+            url."git@github.com:saltpay"."insteadOf" =
+              "https://github.com/saltpay";
+          };
         };
       })
     ];
