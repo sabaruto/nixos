@@ -30,13 +30,20 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-darwin, nixos-wsl, lanzaboote
-    , ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixos-wsl, lanzaboote, ... }@inputs:
     let inherit (self) outputs;
-    in {
-      nixosModules.default = import ./modules/nixos;
-      nixDarwinModules.default = import ./modules/nix-darwin;
-      homeManagerModules = { default = import ./modules/home-manager; };
+    in rec {
+      nixosModules = {
+        default = import ./modules/nixos/default;
+        personal = import ./modules/nixos/personal;
+        work = import ./modules/nixos/work;
+      };
+
+      homeManagerModules = {
+        default = import ./modules/home-manager/default;
+        personal = import ./modules/home-manager/personal;
+        work = import ./modules/home-manager/work;
+      };
 
       nixosConfigurations = {
         zalu = nixpkgs.lib.nixosSystem {
@@ -45,6 +52,10 @@
           modules = [
             home-manager.nixosModules.home-manager
             lanzaboote.nixosModules.lanzaboote
+            nixosModules.default
+            nixosModules.personal
+            homeManagerModules.default
+            homeManagerModules.personal
             ./pcs/zalu/configuration.nix
             ./pcs/zalu/home.nix
           ];
@@ -57,6 +68,10 @@
           modules = [
             home-manager.nixosModules.home-manager
             lanzaboote.nixosModules.lanzaboote
+            nixosModules.default
+            nixosModules.personal
+            homeManagerModules.default
+            homeManagerModules.personal
             ./pcs/leano/configuration.nix
             ./pcs/leano/home.nix
           ];
@@ -69,21 +84,11 @@
           modules = [
             home-manager.nixosModules.home-manager
             nixos-wsl.nixosModules.default
+            nixosModules.default
+            nixosModules.work
+            homeManagerModules.default
             ./pcs/halu/configuration.nix
             ./pcs/halu/home.nix
-          ];
-        };
-      };
-
-      darwinConfigurations = {
-        malu = nix-darwin.lib.darwinSystem {
-          system = "aarch64-darwin";
-          specialArgs = { inherit inputs outputs; };
-
-          modules = [
-            home-manager.darwinModules.home-manager
-            ./pcs/malu/configuration.nix
-            ./pcs/malu/home.nix
           ];
         };
       };

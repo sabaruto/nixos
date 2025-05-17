@@ -3,6 +3,7 @@
 {
   imports = [
     outputs.nixosModules.default
+    outputs.nixosModules.personal
     ./hardware-configuration.nix
   ];
   localModules = {
@@ -11,17 +12,17 @@
     stateVersion = "24.11";
 
     desktopEnvironment = "kde";
-    shells.zsh.enable = true;
 
     swapSize = 32 * 1024;
     gpu = "nvidia";
 
-    apps = {
-      steam.enable = true;
-    };
+    apps = { steam.enable = true; };
 
-    dotfiles = {
-      kde.enable = true;
+    dotfiles = { kde.enable = true; };
+
+    shells = {
+      zsh.enable = true;
+      fish.enable = true;
     };
   };
 

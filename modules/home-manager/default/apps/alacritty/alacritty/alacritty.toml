@@ -1,0 +1,12 @@
+[general]
+import = [
+	"~/.config/alacritty/themes/catppuccin-macchiato.toml",
+	"~/.config/alacritty/themes/catppuccin-latte.toml",
+]
+
+[font]
+normal = { family = "MartianMono NF", style = "Regular" }
+size = 12
+
+[cursor]
+style = { "blinking" = "On" }

@@ -1,5 +1,5 @@
-{ config, lib, pkgs, outputs, ... }: {
-  imports = [ outputs.nixosModules.default ];
+{ lib, pkgs, outputs, ... }: {
+  imports = [ outputs.nixosModules.default outputs.nixosModules.work ];
   localModules = {
     name = "t-aaronobelley";
     hostname = "halu";

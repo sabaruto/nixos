@@ -1,7 +1,7 @@
-{ outputs, pkgs, ... }:
-{
+{ outputs, pkgs, ... }: {
   imports = [
     outputs.nixosModules.default
+    outputs.nixosModules.personal
     ./hardware-configuration.nix
   ];
 
@@ -19,9 +19,7 @@
 
     shells.zsh.enable = true;
 
-    apps = {
-      steam.enable = true;
-    };
+    apps = { steam.enable = true; };
 
     dotfiles.kde.enable = true;
   };

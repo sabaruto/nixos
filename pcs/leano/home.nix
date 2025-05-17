@@ -27,6 +27,9 @@
 
       # boot configuration
       efibootmgr
+
+      alacritty
+      yazi-unwrapped
     ];
 
     config = {
@@ -35,6 +38,7 @@
       apps = {
         git.enable = true;
         neovim.enable = true;
+        alacritty.enable = true;
       };
 
       development = {
