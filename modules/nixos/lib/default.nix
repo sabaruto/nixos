@@ -1,6 +1,1 @@
-{ lib, config, ... }:
-{
-  imports = [
-    ./link.nix
-  ];
-}
+{ ... }: { imports = [ ./link.nix ./op-inject.nix ]; }

@@ -5,6 +5,8 @@ with lib;
 let
   # TODO: Switch to cmd
   cfg = config.localModules.apps;
+  homeDirectory = config.home.homeDirectory;
+  path = "${homeDirectory}/nixos/modules/home-manager/cmd/git";
 in {
   options.localModules.apps.git = {
     enable = mkEnableOption "git";
@@ -16,10 +18,10 @@ in {
 
   config = mkIf cfg.git.enable {
     programs = mkMerge [
+      { git.enable = true; }
+
       (mkIf (cfg.git.user == "sabaruto") {
         git = {
-          enable = true;
-
           userEmail = "theodoreaaronobelley@hotmail.co.uk";
           userName = "sabaruto";
 
@@ -31,18 +33,21 @@ in {
         git = {
           userName = "Theodosia Aaron-Obelley";
           userEmail = "t.aaronobelley@saltpay.co";
-
-          extraConfig = {
-            init = { defaultBranch = "main"; };
-            user = {
-              signingkey =
-                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBbr2Z58OpZuhaNqm8VFizveEa5IaqKv3NuZLIXqHrKp";
-            };
-            url."git@github.com:saltpay"."insteadOf" =
-              "https://github.com/saltpay";
-          };
         };
       })
+    ];
+
+    localModules.lib.links = mkMerge [
+      (mkIf (cfg.git.user == "teya") [
+        {
+          sourcePath = "${path}/teya-gitconfig";
+          symbolicLink = "${homeDirectory}/.gitconfig";
+        }
+        {
+          sourcePath = "${path}/teya-gitignore";
+          symbolicLink = "${homeDirectory}/.gitignore";
+        }
+      ])
     ];
   };
 }

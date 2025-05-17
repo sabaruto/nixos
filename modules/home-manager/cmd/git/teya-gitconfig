@@ -1,0 +1,17 @@
+[core]
+        sshCommand = ssh.exe
+        excludesfile = ~/.gitignore
+
+[user]
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBbr2Z58OpZuhaNqm8VFizveEa5IaqKv3NuZLIXqHrKp
+  name = Theodosia Aaron-Obelley
+  email = t.aaronobelley@saltpay.co
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/mnt/c/Users/TheodosiaAaron-Obell/AppData/Local/1Password/app/8/op-ssh-sign-wsl"
+
+[url "git@github.com:saltpay"]
+        insteadOf = https://github.com/saltpay
