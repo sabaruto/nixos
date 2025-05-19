@@ -15,3 +15,7 @@ Thumbs.db
 
 # Compiled C++ files
 *.out
+
+# Direnv files
+.envrc
+.direnv/

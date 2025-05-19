@@ -11,6 +11,7 @@
       ctlptl
       helm
       tilt
+      postman
       ghostty
       dconf-editor
       gnome-menus

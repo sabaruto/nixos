@@ -1,8 +1,10 @@
 { pkgs, lib, config, ... }:
 
 with lib;
-
-let cfg = config.localModules.shells;
+let
+  cfg = config.localModules.shells;
+  homeDirectory = "/home/t-aaronobelley";
+  path = "${homeDirectory}/nixos/modules/nixos/default/shells/zsh";
 in {
   options.localModules.shells.zsh.enable = mkEnableOption "zsh";
 
@@ -27,6 +29,9 @@ in {
       '';
     };
 
-    system.userActivationScripts.zshrc = "touch .zshrc";
+    localModules.lib.links = [{
+      sourcePath = "${path}/.zshrc";
+      symbolicLink = "${homeDirectory}/.zshrc";
+    }];
   };
 }

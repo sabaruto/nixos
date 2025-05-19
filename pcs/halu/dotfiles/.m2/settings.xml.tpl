@@ -13,6 +13,14 @@
             <id>snapshots</id>
         </server>
     </servers>
+	<mirrors>
+    <mirror>
+      <mirrorOf>*</mirrorOf>
+      <name>main-maven-virtual</name>
+      <url>https://saltpay.jfrog.io/artifactory/main-maven-virtual</url>
+      <id>main</id>
+    </mirror>
+	</mirrors>
     <profiles>
         <profile>
             <repositories>
