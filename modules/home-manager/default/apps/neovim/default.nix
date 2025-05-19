@@ -36,7 +36,6 @@ in {
         nodejs
         go
         jq
-        zk
 
         # Builders
         gcc

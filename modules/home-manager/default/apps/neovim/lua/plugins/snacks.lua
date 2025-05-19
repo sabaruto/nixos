@@ -8,7 +8,7 @@ return {
 		opts = {
 			bigfile = { enabled = true },
 			dashboard = { enabled = true },
-			explorer = { enabled = false },
+			explorer = { enabled = true },
 			indent = { enabled = true },
 			input = { enabled = true },
 			notifier = {
@@ -17,36 +17,6 @@ return {
 			},
 			picker = {
 				enabled = true,
-
-				win = {
-					input = {
-						keys = {
-							[vim.g.downkey] = "list_down",
-							[vim.g.upkey] = "list_up",
-							["h"] = "none",
-							["j"] = "none",
-
-							["<C-" .. vim.g.upkey .. ">"] = { "list_up", mode = { "i", "n" } },
-							["<C-" .. vim.g.downkey .. ">"] = { "list_down", mode = { "i", "n" } },
-							["<C-h>"] = "none",
-							["<C-j>"] = "none",
-						},
-					},
-
-					list = {
-						keys = {
-							[vim.g.downkey] = "list_down",
-							[vim.g.upkey] = "list_up",
-							["h"] = "none",
-							["j"] = "none",
-
-							["<C-" .. vim.g.upkey .. ">"] = { "list_up", mode = { "i", "n" } },
-							["<C-" .. vim.g.downkey .. ">"] = { "list_down", mode = { "i", "n" } },
-							["<C-h>"] = "none",
-							["<C-j>"] = "none",
-						},
-					},
-				},
 			},
 			quickfile = { enabled = true },
 			scope = { enabled = true },
@@ -69,6 +39,7 @@ return {
 			{ "<leader>,",       function() Snacks.picker.buffers() end,                   desc = "Buffers" },
 			{ "<leader>:",       function() Snacks.picker.command_history() end,           desc = "Command History" },
 			{ "<leader>n",       function() Snacks.picker.notifications() end,             desc = "Notification History" },
+			{ "<leader>fe",      function() Snacks.explorer() end,                         desc = "File Explorer" },
 			-- -- find
 			{ "<leader>fb",      function() Snacks.picker.buffers() end,                   desc = "Buffers" },
 			{ "<leader>fc",      function() Snacks.picker.files({ cwd = config_cwd }) end, desc = "Find Config File" },

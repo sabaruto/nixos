@@ -36,7 +36,7 @@ return {
 			local mf = require("mini.files")
 			return {
 				{
-					"<leader>fe",
+					"<leader>se",
 					function()
 						mf.open(
 							vim.fn.bufname()
