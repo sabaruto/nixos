@@ -6,6 +6,7 @@ return {
 	{ "echasnovski/mini.comment",   version = false, config = true },
 	{ "echasnovski/mini.splitjoin", version = false, config = true },
 	{ "echasnovski/mini.icons",     version = false, config = true },
+	{ 'echasnovski/mini.indentscope', version = false, config = true },
 	{ 'echasnovski/mini.map',       version = false, config = true },
 	{
 		'echasnovski/mini.bufremove',

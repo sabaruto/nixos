@@ -23,7 +23,7 @@ in {
       shellInit = ''
         source ~/.aliases
         eval "$(direnv hook zsh)"
-        eval "$(oh-my-posh init zsh --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/quick-term.omp.json)"
+        eval "$(oh-my-posh init zsh --config ~/.config/theme.omp.json)"
       '';
     };
 

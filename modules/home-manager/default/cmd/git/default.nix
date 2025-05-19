@@ -6,7 +6,7 @@ let
   # TODO: Switch to cmd
   cfg = config.localModules.apps;
   homeDirectory = config.home.homeDirectory;
-  path = "${homeDirectory}/nixos/modules/home-manager/cmd/git";
+  path = "${homeDirectory}/nixos/modules/home-manager/default/cmd/git";
 in {
   options.localModules.apps.git = {
     enable = mkEnableOption "git";

@@ -17,7 +17,10 @@
     ];
 
     config = {
-      cmd = { direnv.enable = true; };
+      cmd = {
+        direnv.enable = true;
+        oh-my-posh.enable = true;
+      };
 
       lib = {
         links = [{
@@ -29,6 +32,7 @@
 
       apps = {
         neovim.enable = true;
+        tmux.enable = true;
 
         git = {
           enable = true;

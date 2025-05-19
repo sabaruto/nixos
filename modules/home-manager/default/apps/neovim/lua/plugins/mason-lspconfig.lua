@@ -6,7 +6,6 @@ return {
 			vim.lsp.enable("jdtls")
 			vim.lsp.enable("lua_ls")
 			vim.lsp.enable("nixd")
-			vim.lsp.enable("zk")
 		end
 	},
 	{

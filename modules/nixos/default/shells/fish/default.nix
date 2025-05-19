@@ -13,7 +13,7 @@ in {
 
       shellInit = ''
         direnv hook fish | source
-        oh-my-posh init fish --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/quick-term.omp.json | source
+        oh-my-posh init fish --config ~/.config/theme.omp.json | source
       '';
     };
   };

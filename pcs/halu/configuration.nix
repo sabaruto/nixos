@@ -33,5 +33,7 @@
     docker-desktop.enable = true;
   };
 
+  programs.nix-ld.enable = true;
+
   users = { defaultUserShell = pkgs.zsh; };
 }

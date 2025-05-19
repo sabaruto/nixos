@@ -109,6 +109,9 @@
       };
 
       devShells."x86_64-linux" = {
+        default = import ./dev-shells {
+          pkgs = import nixpkgs { system = "x86_64-linux"; };
+        };
         ssm = import ./dev-shells/streaming-service-merger.nix {
           pkgs = import nixpkgs { system = "x86_64-linux"; };
         };
