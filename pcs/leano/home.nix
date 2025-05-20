@@ -33,11 +33,15 @@
     ];
 
     config = {
-      cmd = { direnv.enable = true; };
+      cmd = {
+        direnv.enable = true;
+        oh-my-posh.enable = true;
+      };
 
       apps = {
         git.enable = true;
         neovim.enable = true;
+        wezterm.enable = true;
         alacritty.enable = true;
       };
 
