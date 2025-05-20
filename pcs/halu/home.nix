@@ -23,11 +23,18 @@
       };
 
       lib = {
-        links = [{
-          sourcePath =
-            "/home/t-aaronobelley/nixos/pcs/halu/dotfiles/.composer/auth.json";
-          symbolicLink = "/home/t-aaronobelley/.composer/";
-        }];
+        links = [
+          {
+            sourcePath =
+              "/home/t-aaronobelley/nixos/pcs/halu/dotfiles/.composer/auth.json";
+            symbolicLink = "/home/t-aaronobelley/.composer/";
+          }
+          {
+            sourcePath =
+              "/home/t-aaronobelley/nixos/pcs/halu/dotfiles/.wezterm.lua";
+            symbolicLink = "/mnt/c/Users/TheodosiaAaron-Obell/.wezterm.lua";
+          }
+        ];
       };
 
       apps = {
