@@ -1,13 +1,13 @@
 return {
-	{ 'echasnovski/mini.ai',        version = false, config = true },
-	{ 'echasnovski/mini.pairs',     version = false, config = true },
-	{ 'echasnovski/mini.operators', version = false, config = true },
-	{ "echasnovski/mini.surround",  version = false, config = true },
-	{ "echasnovski/mini.comment",   version = false, config = true },
-	{ "echasnovski/mini.splitjoin", version = false, config = true },
-	{ "echasnovski/mini.icons",     version = false, config = true },
+	{ 'echasnovski/mini.ai',          version = false, config = true },
+	{ 'echasnovski/mini.pairs',       version = false, config = true },
+	{ 'echasnovski/mini.operators',   version = false, config = true },
+	{ "echasnovski/mini.surround",    version = false, config = true },
+	{ "echasnovski/mini.comment",     version = false, config = true },
+	{ "echasnovski/mini.splitjoin",   version = false, config = true },
+	{ "echasnovski/mini.icons",       version = false, config = true },
 	{ 'echasnovski/mini.indentscope', version = false, config = true },
-	{ 'echasnovski/mini.map',       version = false, config = true },
+	{ 'echasnovski/mini.map',         version = false, config = true },
 	{
 		'echasnovski/mini.bufremove',
 		version = false,
@@ -52,26 +52,6 @@ return {
 	{
 		'echasnovski/mini.move',
 		version = false,
-		opts = function(opts)
-			local ml = vim.g.createmapleader("move", "<leader>m")
-
-			if opts == nil then
-				opts = { mappings = {} }
-			end
-
-			opts.mappings = {
-				left = ml .. vim.g.leftkey,
-				right = ml .. vim.g.rightkey,
-				up = ml .. vim.g.upkey,
-				down = ml .. vim.g.downkey,
-
-				line_left = ml .. vim.g.leftkey,
-				line_right = ml .. vim.g.rightkey,
-				line_up = ml .. vim.g.upkey,
-				line_down = ml .. vim.g.downkey,
-			}
-
-			return opts
-		end,
+		opts = true,
 	},
 }

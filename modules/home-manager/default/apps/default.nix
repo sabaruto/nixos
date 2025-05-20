@@ -37,7 +37,7 @@ in {
         ];
       })
       (mkIf (elem "lua" cfg.languages) {
-        packages = with pkgs; [ lua lua-language-server ];
+        packages = with pkgs; [ lua-language-server ];
       })
 
       (mkIf (elem "python" cfg.languages) {

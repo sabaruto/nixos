@@ -23,12 +23,12 @@ in {
         # grep improvement
         ripgrep
 
-        markdown-oxide
-
         # fonts
         nerd-fonts.fira-code
         nerd-fonts.droid-sans-mono
         nerd-fonts.martian-mono
+
+        lua51Packages.lua
 
         # git improvement
         lazygit
@@ -37,9 +37,20 @@ in {
         go
         jq
 
+        luajitPackages.luarocks-nix
+
         # Builders
         gcc
         gnumake
+
+        # mason languages
+        php
+        julia
+        cargo
+        python313Packages.python
+        python313Packages.pip
+        temurin-bin-24
+        php84Packages.composer
 
         # linters / formatters
         vale

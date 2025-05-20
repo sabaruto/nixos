@@ -1,6 +1,21 @@
 return {
 	{
 		"nvim-java/nvim-java",
+		opts = {
+			root_markers = {
+				'settings.gradle',
+				'settings.gradle.kts',
+				'pom.xml',
+				'build.gradle',
+				'mvnw',
+				'gradlew',
+				'build.gradle',
+				'build.gradle.kts'
+			},
+		},
+		config = function(_, opts)
+			require('java').setup(opts)
+		end,
 		dependencies = {
 			"mason-org/mason.nvim",
 			"mason-org/mason-lspconfig.nvim",
@@ -8,4 +23,13 @@ return {
 			"mfussenegger/nvim-dap"
 		},
 	},
+	{
+		"mason-org/mason.nvim",
+		opts = {
+			registries = {
+				'github:nvim-java/mason-registry',
+				'github:mason-org/mason-registry',
+			}
+		},
+	}
 }

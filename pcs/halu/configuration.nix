@@ -33,7 +33,10 @@
     docker-desktop.enable = true;
   };
 
-  programs.nix-ld.enable = true;
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [ python3Full jdk24 ];
+  };
 
   users = { defaultUserShell = pkgs.zsh; };
 }

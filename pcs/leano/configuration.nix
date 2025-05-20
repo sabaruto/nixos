@@ -26,5 +26,14 @@
     };
   };
 
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      jdk21
+      jdk24
+
+      python3Full
+    ];
+  };
   users.defaultUserShell = pkgs.zsh;
 }
