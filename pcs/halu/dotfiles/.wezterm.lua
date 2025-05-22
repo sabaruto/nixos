@@ -43,6 +43,11 @@ config.keys = {
 		key = 'm',
 		mods = "CTRL|ALT",
 		action = wezterm.action.PaneSelect
+	},
+	{
+		key = 'TAB',
+		mods = "LEADER",
+		action = wezterm.action.PaneSelect
 	}
 }
 

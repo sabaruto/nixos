@@ -1,5 +1,16 @@
 return {
 	{
+		"mason-org/mason-lspconfig.nvim",
+		opts = {
+			automatic_enable = false,
+		},
+		dependencies = {
+			{ "mason-org/mason.nvim", opts = {} },
+			"neovim/nvim-lspconfig",
+		},
+	},
+
+	{
 		"neovim/nvim-lspconfig",
 		config = function()
 			vim.lsp.enable("jsonls")
@@ -7,13 +18,5 @@ return {
 			vim.lsp.enable("lua_ls")
 			vim.lsp.enable("nixd")
 		end
-	},
-	{
-		"mason-org/mason-lspconfig.nvim",
-		dependencies = {
-			"neovim/nvim-lspconfig"
-		},
-		opts = {
-		},
 	},
 }

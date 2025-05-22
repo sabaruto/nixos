@@ -19,3 +19,6 @@ Thumbs.db
 # Direnv files
 .envrc
 .direnv/
+
+# Obsidian files
+.obsidian
