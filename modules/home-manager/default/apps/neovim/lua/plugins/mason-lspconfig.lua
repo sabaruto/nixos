@@ -11,7 +11,7 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
-		dependencies = { 'folke/neodev.nvim' },
+		dependencies = { 'folke/neodev.nvim', config = true },
 		config = function()
 			vim.lsp.enable("jsonls")
 			vim.lsp.enable("jdtls")

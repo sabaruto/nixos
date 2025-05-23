@@ -1,3 +1,4 @@
 return {
-	cmd = { 'kulala-ls' }
+	cmd = { 'kulala-ls' },
+	filetypes = { "http", "rest" }
 }
