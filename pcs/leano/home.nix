@@ -22,6 +22,9 @@
 
       alacritty
       yazi-unwrapped
+
+      # Music w/ code
+      supercollider
     ];
 
     config = {

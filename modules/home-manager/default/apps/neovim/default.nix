@@ -41,6 +41,7 @@ in {
 
         # Builders
         gcc
+        cmake
         gnumake
 
         # mason languages
@@ -63,6 +64,7 @@ in {
         codespell
         stylelint
         proselint
+        kulala-fmt
         nixfmt-rfc-style
         markdownlint-cli
         jdt-language-server

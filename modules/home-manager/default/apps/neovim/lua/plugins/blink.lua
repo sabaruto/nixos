@@ -37,15 +37,8 @@ return {
 			cmdline = {
 				keymap = {
 					preset = 'inherit',
-
-					['<Tab>'] = {
-						function(cmp)
-							if cmp.is_ghost_text_visible() and not cmp.is_menu_visible() then return cmp.accept() end
-						end,
-						'show_and_insert',
-						'select_next',
-					},
-					['<S-Tab>'] = { 'show_and_insert', 'select_prev' },
+					['<Tab>'] = { 'show', 'accept' },
+					completion = { menu = { auto_show = true } },
 				}
 			},
 			term = { keymap = { preset = 'inherit' } },
@@ -57,6 +50,12 @@ return {
 			completion = {
 				list = { selection = { preselect = false, }, },
 				documentation = { auto_show = false },
+
+				menu = {
+					draw = {
+						treesitter = { 'lsp' },
+					}
+				},
 			},
 
 			sources = {

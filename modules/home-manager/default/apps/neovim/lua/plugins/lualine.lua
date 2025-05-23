@@ -79,36 +79,36 @@ return {
 				lualine_z = { { "tabs", mode = 2 } },
 			},
 
-			winbar = {
-				lualine_a = {
-					{ "filename", path = 4, cond = has_filename },
-					{
-						"filename",
-						path = 3,
-						cond = has_full_filename
-					},
-				},
-				lualine_b = {
-					"diff",
-					"diagnostics",
-				},
-				lualine_c = {},
-				lualine_x = { "filetype" },
-				lualine_y = {
-					"progress",
-					{ "location", cond = is_file },
-				},
-				lualine_z = { "lsp_status" },
-			},
+			-- winbar = {
+			-- 	lualine_a = {
+			-- 		{ "filename", path = 4, cond = has_filename },
+			-- 		{
+			-- 			"filename",
+			-- 			path = 3,
+			-- 			cond = has_full_filename
+			-- 		},
+			-- 	},
+			-- 	lualine_b = {
+			-- 		"diff",
+			-- 		"diagnostics",
+			-- 	},
+			-- 	lualine_c = {},
+			-- 	lualine_x = { "filetype" },
+			-- 	lualine_y = {
+			-- 		"progress",
+			-- 		{ "location", cond = is_file },
+			-- 	},
+			-- 	lualine_z = { "lsp_status" },
+			-- },
 
-			inactive_winbar = {
-				lualine_a = { { "filename", path = 4, cond = has_filename } },
-				lualine_b = {},
-				lualine_c = {},
-				lualine_x = { "filetype" },
-				lualine_y = {},
-				lualine_z = {},
-			},
+			-- inactive_winbar = {
+			-- 	lualine_a = { { "filename", path = 4, cond = has_filename } },
+			-- 	lualine_b = {},
+			-- 	lualine_c = {},
+			-- 	lualine_x = { "filetype" },
+			-- 	lualine_y = {},
+			-- 	lualine_z = {},
+			-- },
 
 			options = {
 				always_divide_middle = false,
