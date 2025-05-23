@@ -37,6 +37,9 @@ in {
         go
         jq
 
+        # node package builder
+        node2nix
+
         luajitPackages.luarocks-nix
 
         # Builders

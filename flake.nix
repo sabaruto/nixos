@@ -31,8 +31,14 @@
   };
 
   outputs = { self, nixpkgs, home-manager, nixos-wsl, lanzaboote, ... }@inputs:
-    let inherit (self) outputs;
+    let
+      inherit (self) outputs;
+      system = "x86_64-linux";
     in rec {
+
+      packages."${system}" = let pkgs = import nixpkgs { inherit system; };
+      in { kulala-ls = pkgs.callPackage ./packages/kulala { inherit pkgs; }; };
+
       nixosModules = {
         default = import ./modules/nixos/default;
         personal = import ./modules/nixos/personal;
@@ -47,48 +53,48 @@
 
       nixosConfigurations = {
         zalu = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
+          inherit system;
           specialArgs = { inherit inputs outputs; };
           modules = [
+            ./pcs/zalu/configuration.nix
+            ./pcs/zalu/home.nix
             home-manager.nixosModules.home-manager
+            homeManagerModules.default
+            homeManagerModules.personal
             lanzaboote.nixosModules.lanzaboote
             nixosModules.default
             nixosModules.personal
-            homeManagerModules.default
-            homeManagerModules.personal
-            ./pcs/zalu/configuration.nix
-            ./pcs/zalu/home.nix
           ];
         };
 
         leano = nixpkgs.lib.nixosSystem rec {
-          system = "x86_64-linux";
+          inherit system;
           specialArgs = { inherit inputs outputs system; };
 
           modules = [
+            ./pcs/leano/configuration.nix
+            ./pcs/leano/home.nix
             home-manager.nixosModules.home-manager
+            homeManagerModules.default
+            homeManagerModules.personal
             lanzaboote.nixosModules.lanzaboote
             nixosModules.default
             nixosModules.personal
-            homeManagerModules.default
-            homeManagerModules.personal
-            ./pcs/leano/configuration.nix
-            ./pcs/leano/home.nix
           ];
         };
 
         halu = nixpkgs.lib.nixosSystem rec {
-          system = "x86_64-linux";
+          inherit system;
           specialArgs = { inherit inputs outputs system; };
 
           modules = [
+            ./pcs/halu/configuration.nix
+            ./pcs/halu/home.nix
             home-manager.nixosModules.home-manager
+            homeManagerModules.default
             nixos-wsl.nixosModules.default
             nixosModules.default
             nixosModules.work
-            homeManagerModules.default
-            ./pcs/halu/configuration.nix
-            ./pcs/halu/home.nix
           ];
         };
       };
@@ -96,29 +102,28 @@
       homeConfigurations = {
         theodore = home-manager.lib.homeManagerConfiguration {
           extraSpecialArgs = { inherit inputs outputs; };
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          pkgs = nixpkgs.legacyPackages."${system}";
           modules = [ ./users/theodore/home.nix ];
         };
 
         dosia = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          pkgs = nixpkgs.legacyPackages."${system}";
           extraSpecialArgs = { inherit inputs outputs; };
 
           modules = [ ./users/dosia/home.nix ];
         };
       };
 
-      devShells."x86_64-linux" = {
-        default = import ./dev-shells {
-          pkgs = import nixpkgs { system = "x86_64-linux"; };
-        };
+      devShells."${system}" = {
+        default =
+          import ./dev-shells { pkgs = import nixpkgs { inherit system; }; };
         ssm = import ./dev-shells/streaming-service-merger.nix {
-          pkgs = import nixpkgs { system = "x86_64-linux"; };
+          pkgs = import nixpkgs { inherit system; };
         };
 
         payments-gateway-service =
           import ./dev-shells/payments-gateway-service.nix {
-            pkgs = import nixpkgs { system = "x86_64-linux"; };
+            pkgs = import nixpkgs { inherit system; };
           };
       };
     };

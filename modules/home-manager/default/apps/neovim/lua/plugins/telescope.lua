@@ -69,7 +69,6 @@ return {
 				{ "<leader>ff",  function() telescope.find_files() end,                desc = "Find files" },
 				{ "<leader>fw",  function() telescope.grep_string() end,               desc = "Find files with word under cursor" },
 				{ "<leader>fS",  function() telescope.lsp_document_symbols() end,      desc = "Find document symbols" },
-				{ "<leader>fs",  function() telescope.live_grep() end,                 desc = "Find files by grep" },
 				{ "<leader>fr",  function() telescope.registers() end,                 desc = "Find registers" },
 				{ "<leader>fb",  function() telescope.buffers() end,                   desc = "Find buffers" },
 				{ "<leader>fo",  function() telescope.oldfiles() end,                  desc = "Find recent files" },
@@ -77,6 +76,8 @@ return {
 				{ "<leader>fk",  function() telescope.keymaps() end,                   desc = "Find keymaps" },
 				{ "<leader>fc",  function() telescope.colorscheme() end,               desc = "Find colorschemes" },
 
+				-- search
+				{ "<leader>s/",  function() telescope.live_grep() end,                 desc = "Find files by grep" },
 				-- Git
 				{ "<leader>gf",  function() telescope.git_files() end,                 desc = "Find git files" },
 				{ "<leader>gb",  function() telescope.git_branches() end,              desc = "Find git branches" },

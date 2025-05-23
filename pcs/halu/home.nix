@@ -14,6 +14,7 @@
       postman
       dconf-editor
       gnome-menus
+      outputs.packages."x86_64-linux".kulala-ls
     ];
 
     config = {

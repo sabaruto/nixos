@@ -9,14 +9,15 @@ return {
 			"neovim/nvim-lspconfig",
 		},
 	},
-
 	{
 		"neovim/nvim-lspconfig",
+		dependencies = { 'folke/neodev.nvim' },
 		config = function()
 			vim.lsp.enable("jsonls")
 			vim.lsp.enable("jdtls")
 			vim.lsp.enable("lua_ls")
 			vim.lsp.enable("nixd")
+			vim.lsp.enable("kulala-ls")
 		end
 	},
 }

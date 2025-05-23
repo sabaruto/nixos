@@ -43,19 +43,9 @@ return {
 			},
 			term = { keymap = { preset = 'inherit' } },
 
-			appearance = {
-				nerd_font_variant = 'mono',
-			},
-
 			completion = {
 				list = { selection = { preselect = false, }, },
 				documentation = { auto_show = false },
-
-				menu = {
-					draw = {
-						treesitter = { 'lsp' },
-					}
-				},
 			},
 
 			sources = {
