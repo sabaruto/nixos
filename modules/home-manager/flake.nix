@@ -20,11 +20,13 @@
 
       apps = ./default/apps;
 
+      base = ./default/base;
+
       cmd = ./default/cmd;
 
       cron = ./default/cron;
 
-      all = { imports = [ apps cmd cron ]; };
+      all = { imports = [ apps base cmd cron ]; };
     };
   };
 }
