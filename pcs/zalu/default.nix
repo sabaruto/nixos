@@ -15,13 +15,14 @@
     swapSize = 16 * 1024;
     gpu = "none";
 
-    desktopEnvironment = "kde";
+    desktopEnvironment = "gnome";
 
     shells.zsh.enable = true;
 
     apps = { steam.enable = true; };
 
     dotfiles.kde.enable = true;
+    peripherals.kanata.enable = true;
 
     home-manager = {
       enable = true;
@@ -39,15 +40,6 @@
 
         # boot configuration
         efibootmgr
-
-        # miracast
-        gnome-network-displays
-        openh264
-        x264
-        faac
-        dnsmasq
-
-        syncthing
       ];
 
       config = {
@@ -59,7 +51,7 @@
         apps = {
           git.enable = true;
           neovim.enable = true;
-          ghostty.enable = true;
+          wezterm.enable = true;
         };
 
         development = {

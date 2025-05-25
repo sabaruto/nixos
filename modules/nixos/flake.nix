@@ -14,6 +14,7 @@
 
     nixosModules = rec {
       dotfiles = ./default/dotfiles;
+      peripherals = ./default/peripherals;
       shells = ./default/shells;
       system = ./default/system;
       fun = ./personal/fun;
@@ -24,7 +25,8 @@
       };
 
       default = {
-        imports = [ dotfiles lib shells system fun lanzaboote-config ];
+        imports =
+          [ dotfiles lib shells system fun peripherals lanzaboote-config ];
       };
     };
   };

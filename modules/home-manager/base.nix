@@ -25,25 +25,35 @@ in {
       type = types.listOf types.attrs;
       default = [ ];
     };
+
   };
 
   config = {
     home-manager = mkIf cfg.enable {
       useGlobalPkgs = true;
       useUserPackages = true;
+      backupFileExtension = "backup";
 
       users."${config.localModules.name}" = _: {
         imports = cfg.paths ++ cfg.modules;
 
-        programs.home-manager.enable = true;
-        localModules = cfg.config;
+        options.localModules.desktopEnvironment = mkOption {
+          type = types.str;
+          default = "${config.localModules.desktopEnvironment}";
+        };
 
-        home = {
-          inherit (cfg) packages;
+        config = {
 
-          username = "${config.localModules.name}";
-          homeDirectory = mkDefault "/home/${config.localModules.name}";
-          stateVersion = "24.11";
+          programs.home-manager.enable = true;
+          localModules = cfg.config;
+
+          home = {
+            inherit (cfg) packages;
+
+            username = "${config.localModules.name}";
+            homeDirectory = mkDefault "/home/${config.localModules.name}";
+            stateVersion = "24.11";
+          };
         };
       };
     };

@@ -47,7 +47,7 @@ in {
     users.users."${cfg.name}" = {
       isNormalUser = true;
       description = "Theodosia Kalu";
-      extraGroups = [ "networkmanager" "wheel" ];
+      extraGroups = [ "networkmanager" "wheel" "input" "uinput" ];
     };
 
     swapDevices = mkIf (cfg.swapSize != null) [{
