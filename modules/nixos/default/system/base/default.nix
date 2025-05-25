@@ -56,6 +56,15 @@ in {
     }];
 
     environment.systemPackages = with pkgs; [
+      # browsers
+      firefox
+
+      # cursors
+      google-cursor
+
+      # boot configuration
+      efibootmgr
+
       # nixos configuration applications
       git
       micro

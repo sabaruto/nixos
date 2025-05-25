@@ -63,6 +63,7 @@ in {
         stylua
         selene
         deadnix
+        codespell
         semgrep
         lemminx
         codespell

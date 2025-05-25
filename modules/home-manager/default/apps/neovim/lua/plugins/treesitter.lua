@@ -8,8 +8,8 @@ return {
 			configs.setup({
 				auto_install = true,
 				sync_install = false,
-				indent = { enable = false },
-				highlight = { enable = false },
+				indent = { enable = true },
+				highlight = { enable = true },
 				ensure_installed = {
 					"c",
 					"lua",

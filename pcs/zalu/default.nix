@@ -28,19 +28,11 @@
       enable = true;
       modules = [ inputs.local-home-manager.nixosModules.all ];
 
-      packages = with pkgs; [
-        # browsers
-        firefox
-
-        # zoom
-        zoom-us
-
-        # cursors
-        google-cursor
-
-        # boot configuration
-        efibootmgr
-      ];
+      packages = with pkgs;
+        [
+          # zoom
+          zoom-us
+        ];
 
       config = {
         cmd = {

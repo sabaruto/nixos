@@ -31,9 +31,12 @@ return {
 			mappings = {
 				go_in_plus = vim.g.rightkey,
 				go_out_plus = vim.g.leftkey,
-				go_in = "",
-				go_out = "",
-				["<rightkey>"] = "go_in"
+				go_in = "<S-" .. vim.g.rightkey .. ">",
+				go_out = "<S-" .. vim.g.leftkey .. ">",
+				synchronize = "<leader>w",
+				reveal_cwd = "<leader>d",
+				["<rightkey>"] = "go_in",
+				["<leftkey>"] = "go_out"
 			},
 
 			windows = {
@@ -41,19 +44,10 @@ return {
 				width_preview = 80,
 			},
 		},
-		keys = function()
-			local mf = require("mini.files")
-			return {
-				{
-					"<leader>se",
-					function()
-						mf.open(vim.fn.bufname())
-						mf.reveal_cwd()
-					end,
-					desc = "Open mini files"
-				},
-			}
-		end
+		keys = {
+			{ "<leader>e", "<CMD>lua require('mini.files').open(vim.api.nvim_buf_get_name(0), true)<CR>", desc = "Open mini files (current directory)" },
+			{ "<leader>E", "<CMD>lua require('mini.files').open(vim.uv.cwd(), true)<CR>",                 desc = "Open mini files (cwd)" },
+		}
 	},
 	{
 		'echasnovski/mini.move',

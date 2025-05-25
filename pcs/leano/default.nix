@@ -41,25 +41,11 @@
       enable = true;
       modules = [ inputs.local-home-manager.nixosModules.all ];
 
-      packages = with pkgs; [
-        # browsers
-        firefox
-
-        # zoom
-        zoom-us
-
-        # cursors
-        google-cursor
-
-        # boot configuration
-        efibootmgr
-
-        alacritty
-        yazi-unwrapped
-
-        # Music w/ code
-        supercollider
-      ];
+      packages = with pkgs;
+        [
+          # Music w/ code
+          supercollider
+        ];
 
       config = {
         cmd = {

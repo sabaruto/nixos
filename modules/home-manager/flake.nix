@@ -12,8 +12,6 @@
 
   outputs = inputs: {
     nixosModules = rec {
-      inherit (inputs) nixd;
-
       default = {
         imports = [ inputs.home-manager.nixosModules.home-manager ./base.nix ];
       };
