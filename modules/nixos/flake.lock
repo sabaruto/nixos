@@ -31,26 +31,9 @@
         "type": "github"
       }
     },
-    "flake-compat_2": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1733328505,
-        "narHash": "sha256-NeCCThCEP3eCl2l/+27kNNK7QrwZB1IJCrXfrbv5oqU=",
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "rev": "ff81ac966bb2cae68946d5ed5fc4994f96d0ffec",
-        "type": "github"
-      },
-      "original": {
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "type": "github"
-      }
-    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
-          "local-nixos",
           "lanzaboote",
           "nixpkgs"
         ]
@@ -72,7 +55,6 @@
     "gitignore": {
       "inputs": {
         "nixpkgs": [
-          "local-nixos",
           "lanzaboote",
           "pre-commit-hooks-nix",
           "nixpkgs"
@@ -92,34 +74,12 @@
         "type": "github"
       }
     },
-    "home-manager": {
-      "inputs": {
-        "nixpkgs": [
-          "local-home-manager",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1747978958,
-        "narHash": "sha256-pQQnbxWpY3IiZqgelXHIe/OAE/Yv4NSQq7fch7M6nXQ=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "7419250703fd5eb50e99bdfb07a86671939103ea",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "type": "github"
-      }
-    },
     "lanzaboote": {
       "inputs": {
         "crane": "crane",
         "flake-compat": "flake-compat",
         "flake-parts": "flake-parts",
         "nixpkgs": [
-          "local-nixos",
           "nixpkgs"
         ],
         "pre-commit-hooks-nix": "pre-commit-hooks-nix",
@@ -137,78 +97,6 @@
         "owner": "nix-community",
         "ref": "v0.4.2",
         "repo": "lanzaboote",
-        "type": "github"
-      }
-    },
-    "local-home-manager": {
-      "inputs": {
-        "home-manager": "home-manager",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "path": "modules/home-manager",
-        "type": "path"
-      },
-      "original": {
-        "path": "modules/home-manager",
-        "type": "path"
-      },
-      "parent": []
-    },
-    "local-nixos": {
-      "inputs": {
-        "lanzaboote": "lanzaboote",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "path": "modules/nixos",
-        "type": "path"
-      },
-      "original": {
-        "path": "modules/nixos",
-        "type": "path"
-      },
-      "parent": []
-    },
-    "local-packages": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "path": "packages",
-        "type": "path"
-      },
-      "original": {
-        "path": "packages",
-        "type": "path"
-      },
-      "parent": []
-    },
-    "nixos-wsl": {
-      "inputs": {
-        "flake-compat": "flake-compat_2",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1746453552,
-        "narHash": "sha256-r66UGha+7KVHkI7ksrcMjnw/mm9Sg4l5bQlylxHwdGU=",
-        "owner": "nix-community",
-        "repo": "NixOS-WSL",
-        "rev": "be618645aa0adf461f778500172b6896d5ab2d01",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "ref": "main",
-        "repo": "NixOS-WSL",
         "type": "github"
       }
     },
@@ -247,13 +135,11 @@
     "pre-commit-hooks-nix": {
       "inputs": {
         "flake-compat": [
-          "local-nixos",
           "lanzaboote",
           "flake-compat"
         ],
         "gitignore": "gitignore",
         "nixpkgs": [
-          "local-nixos",
           "lanzaboote",
           "nixpkgs"
         ],
@@ -275,17 +161,13 @@
     },
     "root": {
       "inputs": {
-        "local-home-manager": "local-home-manager",
-        "local-nixos": "local-nixos",
-        "local-packages": "local-packages",
-        "nixos-wsl": "nixos-wsl",
+        "lanzaboote": "lanzaboote",
         "nixpkgs": "nixpkgs"
       }
     },
     "rust-overlay": {
       "inputs": {
         "nixpkgs": [
-          "local-nixos",
           "lanzaboote",
           "nixpkgs"
         ]

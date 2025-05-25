@@ -1,6 +1,6 @@
 # The base configuration for all machines
 
-{ lib, config, pkgs, outputs, ... }:
+{ lib, config, pkgs, ... }:
 
 with lib;
 
@@ -97,7 +97,7 @@ in {
       gc = {
         automatic = true;
         dates = "weekly";
-        options = "--delete-older-than 1w";
+        options = "--delete-older-than 7d";
       };
     };
 

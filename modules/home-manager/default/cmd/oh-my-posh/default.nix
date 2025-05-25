@@ -11,11 +11,7 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [ oh-my-posh ];
 
-    localModules.lib = {
-      links = [{
-        sourcePath = "${path}/theme.omp.json";
-        symbolicLink = "${config.home.homeDirectory}/.config/theme.omp.json";
-      }];
-    };
+    xdg.configFile."theme.omp.json".source =
+      config.lib.file.mkOutOfStoreSymlink "${path}/theme.omp.json";
   };
 }

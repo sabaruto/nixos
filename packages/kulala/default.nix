@@ -1,3 +1,4 @@
+# TODO: Create a packages flake
 { pkgs ? import <nixpkgs> { inherit system; }, system ? builtins.currentSystem
 , nodejs ? pkgs."nodejs_24" }:
 

@@ -1,22 +1,10 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, ... }:
 with lib;
 
 let cfg = config.localModules.home-manager;
 in {
   options.localModules.home-manager = {
     enable = mkEnableOption "Home Manager";
-
-    username = mkOption {
-      type = types.str;
-      default = "dosia";
-      description = "Name of the current user";
-    };
-
-    system = mkOption {
-      type = types.str;
-      default = "x86_64-linux";
-      description = "Current system";
-    };
 
     config = mkOption {
       type = types.attrs;
@@ -32,6 +20,11 @@ in {
       type = types.listOf types.path;
       default = [ ];
     };
+
+    modules = mkOption {
+      type = types.listOf types.attrs;
+      default = [ ];
+    };
   };
 
   config = {
@@ -39,25 +32,19 @@ in {
       useGlobalPkgs = true;
       useUserPackages = true;
 
-      users."${cfg.username}" = { ... }: {
-        imports = cfg.paths;
+      users."${config.localModules.name}" = _: {
+        imports = cfg.paths ++ cfg.modules;
 
         programs.home-manager.enable = true;
+        localModules = cfg.config;
 
         home = {
-          packages = cfg.packages;
+          inherit (cfg) packages;
 
-          username = "${cfg.username}";
+          username = "${config.localModules.name}";
+          homeDirectory = mkDefault "/home/${config.localModules.name}";
           stateVersion = "24.11";
-
-          homeDirectory = mkDefault (mkMerge [
-            (mkIf (cfg.system == "x86_64-linux") "/home/${cfg.username}")
-            (mkIf (cfg.system == "aarch64-darwin") "/Users/${cfg.username}")
-          ]);
-
         };
-
-        localModules = cfg.config;
       };
     };
   };

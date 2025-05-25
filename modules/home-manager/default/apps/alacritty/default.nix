@@ -10,9 +10,7 @@ in {
   config = mkIf cfg.alacritty.enable {
     home.packages = with pkgs; [ alacritty ];
 
-    localModules.lib.links = [{
-      sourcePath = "${path}/alacritty";
-      symbolicLink = "${config.home.homeDirectory}/.config";
-    }];
+    xdg.configFile."alacritty".source =
+      config.lib.file.mkOutOfStoreSymlink "${path}/alacritty";
   };
 }

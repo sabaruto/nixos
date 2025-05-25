@@ -1,0 +1,86 @@
+{ pkgs, inputs, ... }:
+
+{
+  imports = [
+    ./hardware-configuration.nix
+    inputs.local-nixos.nixosModules.default
+    inputs.local-home-manager.nixosModules.default
+  ];
+
+  users.defaultUserShell = pkgs.zsh;
+
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      jdk21
+      jdk24
+
+      python3Full
+    ];
+  };
+
+  localModules = {
+    name = "dosia";
+    hostname = "leano";
+    stateVersion = "24.11";
+
+    desktopEnvironment = "kde";
+
+    swapSize = 32 * 1024;
+    gpu = "nvidia";
+
+    apps.steam.enable = true;
+    dotfiles.kde.enable = true;
+
+    shells = {
+      zsh.enable = true;
+      fish.enable = true;
+    };
+
+    home-manager = {
+      enable = true;
+      modules = [ inputs.local-home-manager.nixosModules.all ];
+
+      packages = with pkgs; [
+        # browsers
+        firefox
+
+        # zoom
+        zoom-us
+
+        # cursors
+        google-cursor
+
+        # boot configuration
+        efibootmgr
+
+        alacritty
+        yazi-unwrapped
+
+        # Music w/ code
+        supercollider
+      ];
+
+      config = {
+        cmd = {
+          direnv.enable = true;
+          oh-my-posh.enable = true;
+        };
+
+        apps = {
+          git.enable = true;
+          neovim.enable = true;
+          wezterm.enable = true;
+          alacritty.enable = true;
+        };
+
+        development = {
+          enable = true;
+          installOnNixos = true;
+          languages = [ "nix" "lua" "java" "golang" "typescript" ];
+        };
+      };
+    };
+  };
+
+}

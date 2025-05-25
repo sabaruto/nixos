@@ -5,7 +5,7 @@ with lib;
 let
   # TODO: Switch to cmd
   cfg = config.localModules.apps;
-  homeDirectory = config.home.homeDirectory;
+  homeDirectory = "${config.home.homeDirectory}";
   path = "${homeDirectory}/nixos/modules/home-manager/default/cmd/git";
 in {
   options.localModules.apps.git = {
@@ -34,20 +34,15 @@ in {
           userName = "Theodosia Aaron-Obelley";
           userEmail = "t.aaronobelley@saltpay.co";
         };
+
       })
     ];
 
-    localModules.lib.links = mkMerge [
-      (mkIf (cfg.git.user == "teya") [
-        {
-          sourcePath = "${path}/teya-gitconfig";
-          symbolicLink = "${homeDirectory}/.gitconfig";
-        }
-        {
-          sourcePath = "${path}/teya-gitignore";
-          symbolicLink = "${homeDirectory}/.gitignore";
-        }
-      ])
-    ];
+    home.file = mkIf (cfg.git.user == "teya") {
+      ".gitconfig".source =
+        config.lib.file.mkOutOfStoreSymlink "${path}/teya-gitconfig";
+      ".gitignore".source =
+        config.lib.file.mkOutOfStoreSymlink "${path}/teya-gitignore";
+    };
   };
 }

@@ -22,6 +22,7 @@ in {
 
         # grep improvement
         ripgrep
+        nixd
 
         # fonts
         nerd-fonts.fira-code
@@ -78,9 +79,6 @@ in {
       defaultEditor = true;
     };
 
-    localModules.lib.links = [{
-      sourcePath = "${path}/*";
-      symbolicLink = "${config.home.homeDirectory}/.config/nvim";
-    }];
+    xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink path;
   };
 }

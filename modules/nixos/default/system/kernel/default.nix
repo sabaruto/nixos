@@ -1,16 +1,9 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, pkgs, ... }:
 
 with lib;
 
-let
-  cfg = config.localModules.system;
-in
-{
+let cfg = config.localModules.system;
+in {
   options.localModules.system.kernel = {
     enable = mkEnableOption "kernel";
 
@@ -28,7 +21,8 @@ in
 
     url = mkOption {
       type = types.str;
-      default = "https://github.com/torvalds/linux/archive/refs/heads/master.zip";
+      default =
+        "https://github.com/torvalds/linux/archive/refs/heads/master.zip";
       description = "URL to linux version";
     };
 
@@ -46,28 +40,18 @@ in
   };
 
   config = mkIf cfg.kernel.enable {
-    boot.kernelPackages =
-      let
-        linux_sgx_pkg =
-          { fetchurl, buildLinux, ... }@args:
+    boot.kernelPackages = let
+      linux_sgx_pkg = { fetchurl, buildLinux, ... }@args:
 
-          buildLinux (
-            args
-            // rec {
-              version = cfg.kernel.version;
-              modDirVersion = version;
-              src = fetchurl {
-                url = cfg.kernel.url;
-                hash = cfg.kernel.hash;
-              };
-              kernelPatches = [ ];
+        buildLinux (args // rec {
+          inherit (cfg.kernel) version;
+          modDirVersion = version;
+          src = fetchurl { inherit (cfg.kernel) url hash; };
+          kernelPatches = [ ];
 
-              extraMeta.branch = cfg.kernel.altVersion;
-            }
-            // (args.argsOverride or { })
-          );
-        linux_sgx = pkgs.callPackage linux_sgx_pkg { };
-      in
-      pkgs.recurseIntoAttrs (pkgs.linuxPackagesFor linux_sgx);
+          extraMeta.branch = cfg.kernel.altVersion;
+        } // (args.argsOverride or { }));
+      linux_sgx = pkgs.callPackage linux_sgx_pkg { };
+    in pkgs.recurseIntoAttrs (pkgs.linuxPackagesFor linux_sgx);
   };
 }

@@ -8,10 +8,7 @@ in {
   options.localModules.apps.wezterm.enable = mkEnableOption "Wezterm";
   config = mkIf cfg.enable {
     home.packages = with pkgs; [ wezterm ];
-
-    localModules.lib.links = [{
-      sourcePath = "${path}/.wezterm.lua";
-      symbolicLink = "${config.home.homeDirectory}/.wezterm.lua";
-    }];
+    home.file.".wezterm.lua".source =
+      config.lib.file.mkOutOfStoreSymlink "${path}/.wezterm.lua";
   };
 }
