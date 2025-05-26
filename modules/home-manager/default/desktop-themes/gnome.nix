@@ -5,12 +5,12 @@ with lib; {
       enable = true;
 
       iconTheme = {
-        name = "rose-pine";
+        name = "rose-pine-dawn";
         package = rose-pine-icon-theme;
       };
 
       theme = {
-        name = "rose-pine";
+        name = "rose-pine-dawn";
         package = rose-pine-gtk-theme;
       };
 
@@ -36,7 +36,8 @@ with lib; {
       "org/gnome/desktop/interface" = {
         accent-color = "yellow";
         cursor-size = lib.hm.gvariant.mkUint32 24;
-        font-name = "Source Sans 3,  12";
+        font-name = "Source Sans 3, 14";
+        font-hinting = "full";
       };
 
       "org/gnome/shell/extensions/tilingshell" = {
@@ -47,9 +48,7 @@ with lib; {
 
     home.packages = with pkgs.gnomeExtensions; [
       tiling-shell
-      coverflow-alt-tab
       blur-my-shell
-      sound-output-device-chooser
       night-theme-switcher
 
       pkgs.gnome-tweaks

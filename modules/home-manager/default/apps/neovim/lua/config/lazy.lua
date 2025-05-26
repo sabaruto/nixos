@@ -52,4 +52,4 @@ require("lazy").setup({
 	}
 })
 
-vim.cmd("colorscheme rose-pine")
+vim.cmd("colorscheme everforest")
