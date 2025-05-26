@@ -37,6 +37,7 @@ in {
         nodejs
         go
         jq
+        sqlite
 
         # node package builder
         node2nix

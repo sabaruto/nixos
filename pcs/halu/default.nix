@@ -1,6 +1,4 @@
-{ lib, config, pkgs, inputs, ... }:
-let path = "${config.home.homeDirectory}/nixos/pcs/halu/dotfiles";
-in {
+{ config, pkgs, inputs, ... }: {
   imports = [
     inputs.local-nixos.nixosModules.shells
     inputs.local-nixos.nixosModules.system

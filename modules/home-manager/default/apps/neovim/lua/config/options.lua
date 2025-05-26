@@ -15,6 +15,8 @@ vim.opt.autoindent = true
 vim.opt.termguicolors = true
 vim.opt.conceallevel = 2
 
+vim.opt.foldlevel = 99
+
 vim.o.updatetime = 250
 
 vim.opt.sessionoptions = {

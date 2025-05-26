@@ -4,9 +4,14 @@ return {
 		version = "*", -- recommended, use latest release instead of latest commit
 		lazy = true,
 		event = {
-			"BufReadPre " .. vim.fn.expand "~" .. "/personal-library",
-			"BufNewFile " .. vim.fn.expand "~" .. "/notes",
+			"BufReadPre " .. vim.fn.expand "~" .. "/personal-library/*.md",
+			"BufNewFile " .. vim.fn.expand "~" .. "/notes/*.md",
 		},
+
+		ui = {
+			enable = false,
+		},
+
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"preservim/vim-markdown",
@@ -69,10 +74,6 @@ return {
 			new_notes_location = "notes_subdir",
 			wiki_link_func = "prepend_note_id",
 			use_advanced_uri = true,
-
-			picker = {
-				name = "snacks.pick",
-			},
 		},
 	}
 }
