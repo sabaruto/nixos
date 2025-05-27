@@ -3,7 +3,7 @@ local wezterm = require('wezterm')
 local config = wezterm.config_builder()
 
 config.font_size = 12
-config.color_scheme = 'Rosé Pine Dawn (Gogh)'
+config.color_scheme = 'Rosé Pine (Gogh)'
 config.font = wezterm.font("MartianMono Nerd Font")
 config.window_decorations = 'NONE'
 
