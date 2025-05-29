@@ -9,23 +9,23 @@ in {
     programs.zsh = {
       enable = true;
       enableCompletion = true;
-      autosuggestions.enable = true;
+      autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
 
-      ohMyZsh = {
+      oh-my-zsh = {
         enable = true;
         plugins = [ "git" "dotenv" "direnv" ];
 
         theme = "robbyrussell";
       };
 
-      shellInit = ''
+      initContent = ''
         source ~/.aliases
         eval "$(direnv hook zsh)"
         eval "$(oh-my-posh init zsh --config ~/.config/theme.omp.json)"
       '';
 
-      shellAliases = mkIf (config.localModules.name == "t-aaronobelley") {
+      shellAliases = mkIf (config.home.username == "t-aaronobelley") {
         # Installation environment
         mvn-install =
           "./mvnw install -Dskip.unitTests -Dskip.integrationTests=true -Djacoco.skip=true -Dcheckstyle.skip=true";

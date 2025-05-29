@@ -1,6 +1,5 @@
 { config, pkgs, inputs, ... }: {
   imports = [
-    inputs.local-nixos.nixosModules.shells
     inputs.local-nixos.nixosModules.system
     inputs.local-nixos.nixosModules.lib
     inputs.local-home-manager.nixosModules.default
@@ -11,7 +10,7 @@
     hostname = "halu";
     stateVersion = "24.11";
 
-    shells.zsh.enable = true;
+    desktopEnvironment = "none";
 
     home-manager = {
       enable = true;
@@ -38,6 +37,7 @@
       # };
 
       config = {
+        shells.zsh.enable = true;
         cmd = {
           direnv.enable = true;
           oh-my-posh.enable = true;
@@ -46,6 +46,7 @@
         apps = {
           neovim.enable = true;
           tmux.enable = true;
+          ghostty.enable = true;
 
           git = {
             enable = true;
@@ -74,6 +75,7 @@
     libraries = with pkgs; [ python3Full jdk24 ];
   };
 
+  programs.zsh.enable = true;
   users = { defaultUserShell = pkgs.zsh; };
 
 }

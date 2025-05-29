@@ -7,7 +7,7 @@ with lib;
 
   options.localModules = {
     desktopEnvironment = mkOption {
-      type = with types; nullOr (enum [ "gnome" "kde" "hyprland" ]);
+      type = with types; nullOr (enum [ "none" "gnome" "kde" "hyprland" ]);
       default = null;
     };
   };

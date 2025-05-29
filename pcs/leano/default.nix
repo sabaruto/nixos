@@ -7,6 +7,7 @@
     inputs.local-home-manager.nixosModules.default
   ];
 
+  programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
   programs.nix-ld = {
@@ -32,11 +33,6 @@
     apps.steam.enable = true;
     dotfiles.kde.enable = true;
 
-    shells = {
-      zsh.enable = true;
-      fish.enable = true;
-    };
-
     home-manager = {
       enable = true;
       modules = [ inputs.local-home-manager.nixosModules.all ];
@@ -48,6 +44,11 @@
         ];
 
       config = {
+        shells = {
+          zsh.enable = true;
+          fish.enable = true;
+        };
+
         cmd = {
           direnv.enable = true;
           oh-my-posh.enable = true;

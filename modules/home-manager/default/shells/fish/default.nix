@@ -9,7 +9,6 @@ in {
   config = mkIf cfg.fish.enable {
     programs.fish = {
       enable = true;
-      useBabelfish = true;
 
       shellInit = ''
         direnv hook fish | source

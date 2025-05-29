@@ -24,9 +24,11 @@
 
       cron = ./default/cron;
 
+      shells = ./default/shells;
+
       desktop-themes = ./default/desktop-themes;
 
-      all = { imports = [ apps base cmd cron desktop-themes ]; };
+      all = { imports = [ apps base cmd cron shells desktop-themes ]; };
     };
   };
 }

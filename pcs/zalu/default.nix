@@ -17,8 +17,6 @@
 
     desktopEnvironment = "gnome";
 
-    shells.zsh.enable = true;
-
     apps = { steam.enable = true; };
 
     dotfiles.kde.enable = true;
@@ -35,6 +33,8 @@
         ];
 
       config = {
+        shells.zsh.enable = true;
+
         cmd = {
           direnv.enable = true;
           oh-my-posh.enable = true;
@@ -55,6 +55,7 @@
     };
   };
 
+  programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
   hardware.bluetooth.enable = true;

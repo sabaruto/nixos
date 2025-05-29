@@ -6,6 +6,8 @@ mkShell {
     jdk24
 
     maven
+    spring-boot-cli
+    lombok
 
     postgresql
 

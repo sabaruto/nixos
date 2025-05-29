@@ -18,7 +18,12 @@ in {
 
   config = mkIf cfg.git.enable {
     programs = mkMerge [
-      { git.enable = true; }
+      {
+        git = {
+          enable = true;
+          lfs.enable = true;
+        };
+      }
 
       (mkIf (cfg.git.user == "sabaruto") {
         git = {
