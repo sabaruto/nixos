@@ -53,16 +53,9 @@
       };
 
       devShells."${system}" = {
-        default =
-          import ./dev-shells { pkgs = import nixpkgs { inherit system; }; };
-        ssm = import ./dev-shells/streaming-service-merger.nix {
+        saltpay = import ./dev-shells/saltpay.nix {
           pkgs = import nixpkgs { inherit system; };
         };
-
-        payments-gateway-service =
-          import ./dev-shells/payments-gateway-service.nix {
-            pkgs = import nixpkgs { inherit system; };
-          };
       };
     };
 }

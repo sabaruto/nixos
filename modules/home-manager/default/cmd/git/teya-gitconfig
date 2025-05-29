@@ -1,5 +1,5 @@
 [core]
-        sshCommand = ssh.exe
+	sshCommand = ssh.exe
         excludesfile = ~/.gitignore
 
 [user]
