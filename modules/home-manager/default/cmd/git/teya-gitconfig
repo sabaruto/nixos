@@ -3,7 +3,7 @@
         excludesfile = ~/.gitignore
 
 [user]
-  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBbr2Z58OpZuhaNqm8VFizveEa5IaqKv3NuZLIXqHrKp
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJPmcouh67CsJLDvYpp9xG5KPINQwKWrTdE/DxxjEXLN
   name = Theodosia Aaron-Obelley
   email = t.aaronobelley@saltpay.co
 
@@ -11,7 +11,10 @@
   format = ssh
 
 [gpg "ssh"]
-  program = "/mnt/c/Users/TheodosiaAaron-Obell/AppData/Local/1Password/app/8/op-ssh-sign-wsl"
+  program = "/mnt/c/Users/Theodosia/AppData/Local/1Password/app/8/op-ssh-sign-wsl"
+
+[commit]
+	gpgsign = true
 
 [url "git@github.com:saltpay"]
         insteadOf = https://github.com/saltpay

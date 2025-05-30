@@ -8,10 +8,5 @@ in {
 
   options.localModules.cmd.oh-my-posh.enable = mkEnableOption "oh-my-posh";
 
-  config = mkIf cfg.enable {
-    home.packages = with pkgs; [ oh-my-posh ];
-
-    xdg.configFile."theme.omp.json".source =
-      config.lib.file.mkOutOfStoreSymlink "${path}/theme.omp.json";
-  };
+  config = mkIf cfg.enable { home.packages = with pkgs; [ oh-my-posh ]; };
 }

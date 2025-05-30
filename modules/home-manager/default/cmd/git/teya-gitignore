@@ -22,3 +22,6 @@ Thumbs.db
 
 # Obsidian files
 .obsidian
+
+# FActory paths
+.factorypath

@@ -25,7 +25,16 @@
         postman
         dconf-editor
         gnome-menus
+        chezmoi
         inputs.local-packages.packages."x86_64-linux".kulala-ls
+
+        oh-my-zsh
+        oh-my-posh
+
+        # fonts
+        nerd-fonts.fira-code
+        nerd-fonts.droid-sans-mono
+        nerd-fonts.martian-mono
       ];
 
       # TODO: Add to modules
@@ -37,7 +46,6 @@
       # };
 
       config = {
-        shells.zsh.enable = true;
         cmd = {
           direnv.enable = true;
           oh-my-posh.enable = true;
@@ -68,11 +76,6 @@
     useWindowsDriver = true;
     startMenuLaunchers = true;
     docker-desktop.enable = true;
-  };
-
-  programs.nix-ld = {
-    enable = true;
-    libraries = with pkgs; [ python3Full jdk24 ];
   };
 
   programs.zsh.enable = true;
