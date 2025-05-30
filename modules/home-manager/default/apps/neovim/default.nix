@@ -10,9 +10,6 @@ in {
   config = mkIf cfg.enable {
     home = {
       packages = with pkgs; [
-        # language servers
-        vscode-langservers-extracted
-
         # fuzzy search
         fzf
         fd
@@ -22,7 +19,6 @@ in {
 
         # grep improvement
         ripgrep
-        nixd
 
         # fonts
         nerd-fonts.fira-code
@@ -57,23 +53,6 @@ in {
         python313Packages.pip
         temurin-bin-24
         php84Packages.composer
-
-        # linters / formatters
-        vale
-        statix
-        stylua
-        selene
-        deadnix
-        codespell
-        semgrep
-        lemminx
-        codespell
-        stylelint
-        proselint
-        kulala-fmt
-        nixfmt-rfc-style
-        markdownlint-cli
-        jdt-language-server
       ];
     };
     programs.neovim = {

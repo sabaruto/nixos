@@ -110,6 +110,8 @@ in {
       };
     };
 
+    programs.nix-ld = { enable = true; };
+
     # Optimise storage
     nix.settings.auto-optimise-store = true;
 

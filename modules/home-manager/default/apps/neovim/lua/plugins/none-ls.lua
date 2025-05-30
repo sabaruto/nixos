@@ -16,9 +16,7 @@ return {
 				require("null-ls").builtins.diagnostics.mypy,
 
 				-- Nix
-				require("null-ls").builtins.diagnostics.statix,
 				require("null-ls").builtins.formatting.nixfmt,
-				require("null-ls").builtins.diagnostics.deadnix,
 
 				-- General diagnosis
 				require("null-ls").builtins.diagnostics.semgrep,
