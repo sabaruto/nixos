@@ -66,6 +66,7 @@ in {
       efibootmgr
 
       # nixos configuration applications
+      gh
       git
       micro
 
@@ -86,6 +87,19 @@ in {
 
       # Communication
       discord
+
+      # Chezmoi configuration
+      chezmoi
+
+      oh-my-zsh
+      oh-my-posh
+
+      # fonts
+      nerd-fonts.fira-code
+      nerd-fonts.droid-sans-mono
+      nerd-fonts.martian-mono
+
+      lunarvim
     ];
 
     # Bootloader.

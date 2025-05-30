@@ -44,10 +44,6 @@
         ];
 
       config = {
-        shells = {
-          zsh.enable = true;
-          fish.enable = true;
-        };
 
         cmd = {
           direnv.enable = true;

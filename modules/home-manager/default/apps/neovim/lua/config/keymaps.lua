@@ -83,4 +83,4 @@ local terml = vim.g.createmapleader("terminal", "<leader>t")
 vim.keymap.set({ "n" }, terml .. "t", ":edit term://zsh<CR>", { desc = "Start new terminal" })
 
 -- LSP
-vim.keymap.set({ "n" }, "ga", function() vim.lsp.buf.code_action() end, { desc = "Goto LSP Code Actions" })
+vim.keymap.set({ "n" }, "ga", function() vim.lsp.buf.code_action() end, { desc = "GotoLSP Code Actions" })

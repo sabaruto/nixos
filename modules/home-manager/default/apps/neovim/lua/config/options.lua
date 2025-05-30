@@ -19,8 +19,8 @@ vim.opt.foldlevel = 99
 
 vim.o.updatetime = 250
 
-vim.opt.sessionoptions = {
-	"buffers",
-	"tabpages",
-	"globals",
-}
+vim.opt.sessionoptions.append({
+  "buffers",
+  "tabpages",
+  "globals",
+})

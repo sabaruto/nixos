@@ -26,20 +26,7 @@
       enable = true;
       modules = [ inputs.local-home-manager.nixosModules.all ];
 
-      packages = with pkgs; [
-        # zoom
-        zoom-us
-
-        chezmoi
-
-        oh-my-zsh
-        oh-my-posh
-
-        # fonts
-        nerd-fonts.fira-code
-        nerd-fonts.droid-sans-mono
-        nerd-fonts.martian-mono
-      ];
+      packages = with pkgs; [ ];
 
       config = {
         # shells.zsh.enable = true;
