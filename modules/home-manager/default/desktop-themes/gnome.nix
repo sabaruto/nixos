@@ -1,24 +1,6 @@
 { lib, config, pkgs, ... }:
 with lib; {
   config = mkIf (config.localModules.desktopEnvironment == "gnome") {
-    gtk = with pkgs; {
-      enable = true;
-
-      iconTheme = {
-        name = "rose-pine-dawn";
-        package = rose-pine-icon-theme;
-      };
-
-      theme = {
-        name = "rose-pine-dawn";
-        package = rose-pine-gtk-theme;
-      };
-
-      cursorTheme = {
-        name = "BreezeX-RosePine-Linux";
-        package = rose-pine-cursor;
-      };
-    };
 
     dconf.settings = {
       "org.gnome/shell" = { disable-user-extensions = false; };
