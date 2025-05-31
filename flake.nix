@@ -29,8 +29,7 @@
     let
       inherit (self) outputs;
       system = "x86_64-linux";
-    in
-    {
+    in {
 
       nixosConfigurations = {
         zalu = nixpkgs.lib.nixosSystem {
@@ -51,17 +50,23 @@
 
           modules = [ ./pcs/halu nixos-wsl.nixosModules.default ];
         };
+
+        mini-pc = nixpkgs.lib.nixosSystem rec {
+          inherit system;
+          specialArgs = { inherit inputs outputs system; };
+
+          modules = [ ./pcs/mini-pc ];
+        };
       };
 
-      devShells."${system}" =
-        let pkgs = import nixpkgs { inherit system; };
-        in {
-          saltpay = import ./dev-shells/saltpay.nix { inherit pkgs; };
+      devShells."${system}" = let pkgs = import nixpkgs { inherit system; };
+      in {
+        saltpay = import ./dev-shells/saltpay.nix { inherit pkgs; };
 
-          streaming-service-merger =
-            import ./dev-shells/streaming-service-merger.nix { inherit pkgs; };
+        streaming-service-merger =
+          import ./dev-shells/streaming-service-merger.nix { inherit pkgs; };
 
-          mini-pc = import ./dev-shells/mini-pc.nix { inherit pkgs; };
-        };
+        mini-pc = import ./dev-shells/mini-pc.nix { inherit pkgs; };
+      };
     };
 }
