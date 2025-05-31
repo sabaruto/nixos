@@ -182,6 +182,9 @@ in {
     # Enable the OpenSSH daemon.
     services.openssh.enable = true;
 
+    # Enable tailescale
+    services.tailscale.enable = true;
+
     # Enable bluetooth
     hardware.bluetooth.enable = true;
   };
