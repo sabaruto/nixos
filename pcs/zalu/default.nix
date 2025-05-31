@@ -18,19 +18,13 @@
     desktopEnvironment = "gnome";
 
     apps = { steam.enable = true; };
-
-    dotfiles.kde.enable = true;
     peripherals.kanata.enable = true;
 
     home-manager = {
       enable = true;
       modules = [ inputs.local-home-manager.nixosModules.all ];
 
-      packages = with pkgs; [ ];
-
       config = {
-        # shells.zsh.enable = true;
-
         cmd = {
           direnv.enable = true;
           oh-my-posh.enable = true;

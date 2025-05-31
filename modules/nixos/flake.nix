@@ -13,19 +13,15 @@
   outputs = { lanzaboote, ... }: {
 
     nixosModules = rec {
-      dotfiles = ./default/dotfiles;
-      peripherals = ./default/peripherals;
-      system = ./default/system;
-      fun = ./personal/fun;
-      lib = ./default/lib;
+      peripherals = ./peripherals;
+      system = ./system;
+      fun = ./fun;
 
       lanzaboote-config = {
-        imports = [ ./personal/lanzaboote lanzaboote.nixosModules.lanzaboote ];
+        imports = [ ./lanzaboote lanzaboote.nixosModules.lanzaboote ];
       };
 
-      default = {
-        imports = [ dotfiles lib system fun peripherals lanzaboote-config ];
-      };
+      default = { imports = [ system fun peripherals lanzaboote-config ]; };
     };
   };
 }

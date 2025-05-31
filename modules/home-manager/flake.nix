@@ -16,17 +16,12 @@
         imports = [ inputs.home-manager.nixosModules.home-manager ./base.nix ];
       };
 
-      apps = ./default/apps;
-
-      base = ./default/base;
-
-      cmd = ./default/cmd;
-
-      cron = ./default/cron;
-
-      shells = ./default/shells;
-
-      desktop-themes = ./default/desktop-themes;
+      apps = ./apps;
+      base = ./base;
+      cmd = ./cmd;
+      cron = ./cron;
+      shells = ./shells;
+      desktop-themes = ./desktop-themes;
 
       all = { imports = [ apps base cmd cron shells desktop-themes ]; };
     };

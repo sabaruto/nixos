@@ -1,7 +1,6 @@
 { config, pkgs, inputs, ... }: {
   imports = [
     inputs.local-nixos.nixosModules.system
-    inputs.local-nixos.nixosModules.lib
     inputs.local-home-manager.nixosModules.default
   ];
 
@@ -25,25 +24,8 @@
         postman
         dconf-editor
         gnome-menus
-        chezmoi
         inputs.local-packages.packages."x86_64-linux".kulala-ls
-
-        oh-my-zsh
-        oh-my-posh
-
-        # fonts
-        nerd-fonts.fira-code
-        nerd-fonts.droid-sans-mono
-        nerd-fonts.martian-mono
       ];
-
-      # TODO: Add to modules
-      # home-file = {
-      #   ".composer".source =
-      #     config.lib.file.mkOutOfStoreSymlink "${path}/.composer";
-      #   ".wezterm".source =
-      #     config.lib.file.mkOutOfStoreSymlink "${path}/.wezterm";
-      # };
 
       config = {
         cmd = {

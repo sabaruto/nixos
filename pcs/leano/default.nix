@@ -31,8 +31,6 @@
     gpu = "nvidia";
 
     apps.steam.enable = true;
-    dotfiles.kde.enable = true;
-
     home-manager = {
       enable = true;
       modules = [ inputs.local-home-manager.nixosModules.all ];
