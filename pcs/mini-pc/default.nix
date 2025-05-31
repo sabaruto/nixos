@@ -1,5 +1,6 @@
 { pkgs, inputs, ... }: {
   imports = [
+    ./hardware-configuration.nix
     inputs.local-nixos.nixosModules.default
     inputs.local-home-manager.nixosModules.default
   ];
