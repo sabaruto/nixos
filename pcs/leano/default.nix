@@ -35,11 +35,11 @@
       enable = true;
       modules = [ inputs.local-home-manager.nixosModules.all ];
 
-      packages = with pkgs;
-        [
-          # Music w/ code
-          supercollider
-        ];
+      packages = with pkgs; [
+        # Music w/ code
+        supercollider
+        rtorrent
+      ];
 
       config = {
 
