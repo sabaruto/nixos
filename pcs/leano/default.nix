@@ -39,6 +39,9 @@
         # Music w/ code
         supercollider
         rtorrent
+        lms
+        serviio
+        vlc
       ];
 
       config = {
