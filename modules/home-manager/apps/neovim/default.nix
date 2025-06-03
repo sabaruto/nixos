@@ -32,6 +32,9 @@ in {
         jq
         sqlite
 
+        imagemagick
+        vscode-langservers-extracted
+
         # node package builder
         node2nix
 
@@ -46,6 +49,7 @@ in {
         php
         julia
         cargo
+        mermaid-cli
         python313Packages.python
         python313Packages.pip
         temurin-bin-24

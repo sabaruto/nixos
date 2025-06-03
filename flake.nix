@@ -67,6 +67,9 @@
           import ./dev-shells/streaming-service-merger.nix { inherit pkgs; };
 
         mini-pc = import ./dev-shells/mini-pc.nix { inherit pkgs; };
+
+        terminal-scripts =
+          import ./dev-shells/terminal-scripts.nix { inherit pkgs; };
       };
     };
 }

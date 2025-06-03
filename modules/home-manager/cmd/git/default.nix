@@ -42,12 +42,5 @@ in {
 
       })
     ];
-
-    home.file = mkIf (cfg.git.user == "teya") {
-      ".gitconfig".source =
-        config.lib.file.mkOutOfStoreSymlink "${path}/teya-gitconfig";
-      ".gitignore".source =
-        config.lib.file.mkOutOfStoreSymlink "${path}/teya-gitignore";
-    };
   };
 }
