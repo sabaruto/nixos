@@ -40,8 +40,7 @@
         supercollider
         rtorrent
         lms
-        serviio
-        vlc
+        ums
       ];
 
       config = {
