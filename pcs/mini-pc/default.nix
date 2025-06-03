@@ -24,7 +24,9 @@
       enable = true;
       modules = [ inputs.local-home-manager.nixosModules.all ];
 
-      packages = with pkgs; [ docker docker-compose ];
+      packages = with pkgs; [
+        docker docker-compose transmission_4 rtorrent jellyfin
+      ];
 
       config = {
         cmd.direnv.enable = true;

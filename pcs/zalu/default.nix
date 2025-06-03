@@ -19,6 +19,7 @@
 
     apps = { steam.enable = true; };
     peripherals.kanata.enable = true;
+    virtualisation.docker.enable = true;
 
     home-manager = {
       enable = true;
