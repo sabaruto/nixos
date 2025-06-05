@@ -6,8 +6,6 @@
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  security.pki.certificateFiles =
-    [ "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt" ];
 
   localModules = {
     name = "dosia";
@@ -21,6 +19,8 @@
 
     apps = { steam.enable = true; };
     peripherals.kanata.enable = true;
+
+    secrets.enable = true;
 
     home-manager = {
       enable = true;

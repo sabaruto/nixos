@@ -1,5 +1,4 @@
-root.crt
-root.key
+*.key
 
 # emacs unsaved files
 \#*#

@@ -30,6 +30,8 @@
     swapSize = 32 * 1024;
     gpu = "nvidia";
 
+    secrets.enable = true;
+
     apps.steam.enable = true;
     home-manager = {
       enable = true;
@@ -40,6 +42,7 @@
         supercollider
         rtorrent
         jellyfin-media-player
+        kdePackages.k3b
       ];
 
       config = {
