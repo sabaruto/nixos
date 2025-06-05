@@ -1,7 +1,12 @@
-{ config, pkgs, inputs, ... }: {
+{ lib, config, pkgs, inputs, ... }: {
   imports = [
     inputs.local-nixos.nixosModules.system
     inputs.local-home-manager.nixosModules.default
+  ];
+
+  security.pki.certificateFiles = [
+    "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
+    /etc/ssl/certs/SaltPay_Root_CA_01.pem
   ];
 
   localModules = {
@@ -10,6 +15,8 @@
     stateVersion = "24.11";
 
     desktopEnvironment = "none";
+
+    system.podman.enable = true;
 
     home-manager = {
       enable = true;
