@@ -6,6 +6,8 @@
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  security.pki.certificateFiles =
+    [ "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt" ];
 
   localModules = {
     name = "dosia";
@@ -19,12 +21,12 @@
 
     apps = { steam.enable = true; };
     peripherals.kanata.enable = true;
-    virtualisation.docker.enable = true;
 
     home-manager = {
       enable = true;
       modules = [ inputs.local-home-manager.nixosModules.all ];
 
+      packages = with pkgs; [ jellyfin-media-player ];
       config = {
         cmd = {
           direnv.enable = true;

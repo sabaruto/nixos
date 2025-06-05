@@ -3,12 +3,9 @@
 {
   home = {
     packages = with pkgs; [
-      # Password Manager
-      _1password-cli
-      _1password-gui
-
       # Music
       spotify
+      tidal-hifi
 
       # Visualise directories
       tree
@@ -20,7 +17,6 @@
 
       # Boot configuration
       pkgs.efibootmgr
-      tidal-hifi
     ];
     sessionVariables = { EDITOR = "nvim"; };
   };

@@ -4,13 +4,18 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
+    opnix = {
+      url = "github:brizzbuzz/opnix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { lanzaboote, ... }: {
+  outputs = { opnix, lanzaboote, ... }: {
 
     nixosModules = rec {
       peripherals = ./peripherals;
@@ -21,7 +26,11 @@
         imports = [ ./lanzaboote lanzaboote.nixosModules.lanzaboote ];
       };
 
-      default = { imports = [ system fun peripherals lanzaboote-config ]; };
+      secrets = { imports = [ ./secrets opnix.nixosModules.default ]; };
+
+      default = {
+        imports = [ system fun peripherals secrets lanzaboote-config ];
+      };
     };
   };
 }

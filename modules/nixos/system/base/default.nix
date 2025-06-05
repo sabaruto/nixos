@@ -100,6 +100,7 @@ in {
       nerd-fonts.martian-mono
 
       lunarvim
+      jellyfin-media-player
     ];
 
     # Bootloader.
@@ -124,7 +125,15 @@ in {
       };
     };
 
-    programs.nix-ld = { enable = true; };
+    programs = {
+      _1password.enable = true;
+      _1password-gui = {
+        enable = true;
+        polkitPolicyOwners = [ "${config.localModules.name}" ];
+      };
+
+      nix-ld = { enable = true; };
+    };
 
     # Optimise storage
     nix.settings.auto-optimise-store = true;
