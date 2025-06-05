@@ -39,8 +39,7 @@
         # Music w/ code
         supercollider
         rtorrent
-        lms
-        ums
+        jellyfin-media-player
       ];
 
       config = {
