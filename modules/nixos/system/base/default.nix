@@ -47,6 +47,7 @@ in {
     users.users."${cfg.name}" = {
       isNormalUser = true;
       description = "Theodosia Kalu";
+      home = "/home/${config.localModules.name}";
       extraGroups = [ "networkmanager" "wheel" "input" "uinput" ];
     };
 

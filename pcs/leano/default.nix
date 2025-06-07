@@ -40,12 +40,11 @@
       packages = with pkgs; [
         # Music w/ code
         supercollider
-        rtorrent
-        jellyfin-media-player
         kdePackages.k3b
       ];
 
       config = {
+        secrets.enable = true;
 
         cmd = {
           direnv.enable = true;

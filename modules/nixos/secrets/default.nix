@@ -1,6 +1,9 @@
 { lib, config, pkgs, ... }:
 with lib;
-let cfg = config.localModules.secrets;
+let
+  cfg = config.localModules.secrets;
+  user = config.localModules.name;
+  home-directory = "/home/${user}";
 in {
   options.localModules.secrets.enable = mkEnableOption "Secrets";
 
@@ -10,14 +13,20 @@ in {
       users = [ "${config.localModules.name}" ]; # Users that need secret access
       tokenFile = "/etc/opnix-token"; # Default location
       configFile = ./secrets.json;
-      outputDir = "/var/lib/opnix/secrets"; # Optional, this is the default
     };
 
     security.pki = {
       certificateFiles = [
         "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
-        ../../../secrets/ssl/certs/mini-pc-public-key.crt
-        ../../../secrets/ssl/certs/leano-public-key.crt
+        # "${home-directory}/.ssl/certs/mini-pc-public-key.crt"
+        # "${home-directory}.ssl/certs/leano-public-key.crt"
+      ];
+
+      certificates = [
+        (mkIf (pathExists "${home-directory}/.ssl/certs/mini-pc-public-key.crt")
+          (readFile "${home-directory}/.ssl/certs/mini-pc-public-key.crt"))
+        (mkIf (pathExists "${home-directory}/.ssl/certs/leano-public-key.crt")
+          (readFile "${home-directory}/.ssl/certs/leano-public-key.crt"))
       ];
     };
 
