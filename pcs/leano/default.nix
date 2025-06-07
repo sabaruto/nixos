@@ -43,6 +43,8 @@
       config = {
         secrets.enable = true;
 
+        shells.zsh.enable = true;
+
         cmd = {
           direnv.enable = true;
           oh-my-posh.enable = true;

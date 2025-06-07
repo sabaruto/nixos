@@ -19,32 +19,59 @@ in {
         theme = "robbyrussell";
       };
 
-      initContent = ''
-        source ~/.aliases
-        eval "$(direnv hook zsh)"
-        eval "$(oh-my-posh init zsh --config ~/.config/theme.omp.json)"
-      '';
+      initContent = mkMerge [
+        ''
+          export ZSH="$HOME/.oh-my-zsh"
+          ZSH_THEME="robbyrussell"
 
-      shellAliases = mkIf (config.home.username == "t-aaronobelley") {
-        # Installation environment
-        mvn-install =
-          "./mvnw install -Dskip.unitTests -Dskip.integrationTests=true -Djacoco.skip=true -Dcheckstyle.skip=true";
-        mvn-clean-install =
-          "./mvnw clean install -Dskip.unitTests -Dskip.integrationTests=true -Dcheckstyle.skip=true";
-        mvn-full-install = "./mvnw clean install";
+          zstyle ':omz:update' mode auto      # update automatically without asking
+          COMPLETION_WAITING_DOTS="true"
 
-        pgs-mock-app = ''
-          ./mvnw spring-boot:run -pl payments-gateway-service-web -Dspring-boot.run.profiles=mock,local,secret -Dspring-boot.run.arguments="--spring.docker.compose.file=../docker-compose.yml"'';
-        pgs-mock-bootstap =
-          "./mvnw -pl :common-test-utils exec:java@Localbootstrap-mock";
+          HIST_STAMPS="dd/mm/yyyy"
 
-        # Dev environment
-        pgs-dev-app = ''
-          ./mvnw spring-boot:run -pl payments-gateway-service-web -Dspring-boot.run.profiles=proxy,local,secret -Dspring-boot.run.arguments="--spring.docker.compose.file=../docker-compose.yml"'';
-        pgs-dev-bootstap =
-          "./mvnw -pl :common-test-utils exec:java@Localbootstrap-dev";
+          source $ZSH/oh-my-zsh.sh
+          if [[ -n $SSH_CONNECTION ]]; then
+            export EDITOR='vim'
+          else
+            export EDITOR='nvim'
+          fi
+        ''
+        (mkIf (config.localModules.cmd.oh-my-posh.enable) ''
+          eval "$(oh-my-posh init zsh --config ~/.config/theme.omp.json)"
+        '')
+        (mkIf (config.localModules.cmd.direnv.enable) ''
+          eval "$(direnv hook zsh)"
+        '')
+      ];
 
-      };
+      shellAliases = mkMerge [
+        {
+          n-switch = "nixos-rebuild switch --use-remote-sudo";
+          n-debug =
+            "nixos-rebuild switch --use-remote-sudo --show-trace --verbose";
+          n-up = "nix flake update";
+        }
+
+        (mkIf (config.home.username == "t-aaronobelley") {
+          # Installation environment
+          mvn-install =
+            "./mvnw install -Dskip.unitTests -Dskip.integrationTests=true -Djacoco.skip=true -Dcheckstyle.skip=true";
+          mvn-clean-install =
+            "./mvnw clean install -Dskip.unitTests -Dskip.integrationTests=true -Dcheckstyle.skip=true";
+          mvn-full-install = "./mvnw clean install";
+
+          pgs-mock-app = ''
+            ./mvnw spring-boot:run -pl payments-gateway-service-web -Dspring-boot.run.profiles=mock,local,secret -Dspring-boot.run.arguments="--spring.docker.compose.file=../docker-compose.yml"'';
+          pgs-mock-bootstap =
+            "./mvnw -pl :common-test-utils exec:java@Localbootstrap-mock";
+
+          # Dev environment
+          pgs-dev-app = ''
+            ./mvnw spring-boot:run -pl payments-gateway-service-web -Dspring-boot.run.profiles=proxy,local,secret -Dspring-boot.run.arguments="--spring.docker.compose.file=../docker-compose.yml"'';
+          pgs-dev-bootstap =
+            "./mvnw -pl :common-test-utils exec:java@Localbootstrap-dev";
+        })
+      ];
     };
   };
 }
