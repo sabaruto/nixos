@@ -1,11 +1,7 @@
-{ pkgs, inputs, ... }:
+{ config, pkgs, inputs, home-manager-modules, ... }:
 
 {
-  imports = [
-    ./hardware-configuration.nix
-    inputs.local-nixos.nixosModules.default
-    inputs.local-home-manager.nixosModules.default
-  ];
+  imports = [ ./hardware-configuration.nix ];
 
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
@@ -35,7 +31,8 @@
     apps.steam.enable = true;
     home-manager = {
       enable = true;
-      modules = [ inputs.local-home-manager.nixosModules.all ];
+      username = config.localModules.name;
+      modules = home-manager-modules;
 
       packages = with pkgs; [
         # Music w/ code

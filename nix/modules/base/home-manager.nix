@@ -11,6 +11,11 @@ in {
       default = { };
     };
 
+    username = mkOption {
+      type = types.str;
+      default = "dosia";
+    };
+
     packages = mkOption {
       type = types.listOf types.package;
       default = [ ];
@@ -34,7 +39,7 @@ in {
       useUserPackages = true;
       backupFileExtension = "backup";
 
-      users."${config.localModules.name}" = _: {
+      users."${config.localModules.home-manager.username}" = _: {
         imports = cfg.paths ++ cfg.modules;
 
         options.localModules.desktopEnvironment = mkOption {

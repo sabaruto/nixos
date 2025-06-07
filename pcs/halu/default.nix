@@ -1,9 +1,4 @@
-{ lib, config, pkgs, inputs, ... }: {
-  imports = [
-    inputs.local-nixos.nixosModules.system
-    inputs.local-home-manager.nixosModules.default
-  ];
-
+{ lib, config, pkgs, inputs, home-manager-modules, ... }: {
   security.pki.certificateFiles = [
     "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
     /etc/ssl/certs/SaltPay_Root_CA_01.pem
@@ -20,7 +15,8 @@
 
     home-manager = {
       enable = true;
-      modules = [ inputs.local-home-manager.nixosModules.all ];
+      username = "${config.localModules.name}";
+      modules = home-manager-modules;
 
       packages = with pkgs; [
         kubectl

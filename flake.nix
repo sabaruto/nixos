@@ -9,13 +9,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    local-nixos = {
-      url = "path:modules/nixos";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    local-home-manager = {
-      url = "path:modules/home-manager";
+    local-modules = {
+      url = "path:nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -25,7 +20,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixos-wsl, ... }@inputs:
+  outputs = { self, nixpkgs, nixos-wsl, local-modules, ... }@inputs:
     let
       inherit (self) outputs;
       system = "x86_64-linux";
@@ -34,28 +29,57 @@
       nixosConfigurations = {
         zalu = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs outputs system; };
-          modules = [ ./pcs/zalu ];
+          specialArgs = {
+            inherit inputs outputs system;
+            home-manager-modules = [ local-modules.homeManagerModules.all ];
+          };
+          modules = [
+            ./pcs/zalu
+            local-modules.nixosModules.default
+            local-modules.homeManagerModules.default
+          ];
         };
 
         leano = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs outputs system; };
-          modules = [ ./pcs/leano ];
+          specialArgs = {
+            inherit inputs outputs system;
+            home-manager-modules = [ local-modules.homeManagerModules.all ];
+          };
+          modules = [
+            ./pcs/leano
+            local-modules.nixosModules.default
+            local-modules.homeManagerModules.default
+          ];
         };
 
         halu = nixpkgs.lib.nixosSystem rec {
           inherit system;
-          specialArgs = { inherit inputs outputs system; };
+          specialArgs = {
+            inherit inputs outputs system;
+            home-manager-modules = [ local-modules.homeManagerModules.all ];
+          };
 
-          modules = [ ./pcs/halu nixos-wsl.nixosModules.default ];
+          modules = [
+            ./pcs/halu
+            nixos-wsl.nixosModules.default
+            local-modules.nixosModules.system
+            local-modules.homeManagerModules.default
+          ];
         };
 
         mini-pc = nixpkgs.lib.nixosSystem rec {
           inherit system;
-          specialArgs = { inherit inputs outputs system; };
+          specialArgs = {
+            inherit inputs outputs system;
+            home-manager-modules = [ local-modules.home-manager-modules.all ];
+          };
 
-          modules = [ ./pcs/mini-pc ];
+          modules = [
+            ./pcs/mini-pc
+            local-modules.nixosModules.system
+            local-modules.homeManagerModules.default
+          ];
         };
       };
 

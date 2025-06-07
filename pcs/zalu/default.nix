@@ -1,9 +1,5 @@
-{ inputs, pkgs, ... }: {
-  imports = [
-    ./hardware-configuration.nix
-    inputs.local-nixos.nixosModules.default
-    inputs.local-home-manager.nixosModules.default
-  ];
+{ inputs, pkgs, home-manager-modules, ... }: {
+  imports = [ ./hardware-configuration.nix ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -24,7 +20,7 @@
 
     home-manager = {
       enable = true;
-      modules = [ inputs.local-home-manager.nixosModules.all ];
+      modules = home-manager-modules;
 
       packages = with pkgs; [ jellyfin-media-player ];
       config = {
