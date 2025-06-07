@@ -5,6 +5,75 @@
   users.defaultUserShell = pkgs.zsh;
 
   programs.nix-ld.enable = true;
+  virtualisation.docker.enable = true;
+
+  services = {
+    jellyfin.enable = true;
+    plex.enable = true;
+    nzbget.enable = true;
+    sonarr.enable = true;
+    radarr.enable = true;
+    lidarr.enable = true;
+    prowlarr.enable = true;
+    music-assistant = {
+      enable = true;
+      providers = [
+        "tidal"
+        "spotify"
+        "filesystem_local"
+        "jellyfin"
+        "dlna"
+      ];
+    };
+  };
+
+  environment.systemPackages = with pkgs; [
+    jellyfin-web
+    jellyfin-ffmpeg
+
+    qbittorrent
+    qbittorrent-nox
+    qbittorrent-cli
+  ];
+
+  users = {
+    users = {
+      sonarr = {
+        uid = 274;
+      };
+
+      radarr = {
+        uid = 275;
+      };
+
+      lidarr = {
+        uid = 306;
+      };
+
+      mstream = {
+        uid = 307;
+        group = "servarr";
+      };
+    };
+
+    groups = {
+    servarr = {
+      gid = 1001;
+
+      members = [
+        "lidarr"
+        "sonarr"
+        "radarr"
+        "prowlarr"
+        "nzbget"
+        "plex"
+        "music-assistant"
+
+        config.localModules.name
+      ];
+    };
+    };
+  };
 
   localModules = {
     name = "saiki";
