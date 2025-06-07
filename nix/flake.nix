@@ -53,6 +53,7 @@
       base = ./modules/base/home-manager.nix;
       cmd = ./modules/cmd;
       cron = ./modules/cron;
+      dotfiles = ./modules/dotfiles;
       shells = ./modules/shells;
       secrets = {
         imports = [
@@ -62,7 +63,9 @@
       };
       desktop-themes = ./modules/desktop-themes;
 
-      all = { imports = [ apps cmd cron shells secrets desktop-themes ]; };
+      all = {
+        imports = [ apps cmd cron dotfiles shells secrets desktop-themes ];
+      };
     };
   };
 }
