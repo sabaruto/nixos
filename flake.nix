@@ -24,15 +24,13 @@
     let
       inherit (self) outputs;
       system = "x86_64-linux";
+      home-manager-modules = [ local-modules.homeManagerModules.all ];
     in {
 
       nixosConfigurations = {
         zalu = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = {
-            inherit inputs outputs system;
-            home-manager-modules = [ local-modules.homeManagerModules.all ];
-          };
+          specialArgs = { inherit inputs outputs system home-manager-modules; };
           modules = [
             ./pcs/zalu
             local-modules.nixosModules.default
@@ -42,10 +40,7 @@
 
         leano = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = {
-            inherit inputs outputs system;
-            home-manager-modules = [ local-modules.homeManagerModules.all ];
-          };
+          specialArgs = { inherit inputs outputs system home-manager-modules; };
           modules = [
             ./pcs/leano
             local-modules.nixosModules.default
@@ -55,10 +50,7 @@
 
         halu = nixpkgs.lib.nixosSystem rec {
           inherit system;
-          specialArgs = {
-            inherit inputs outputs system;
-            home-manager-modules = [ local-modules.homeManagerModules.all ];
-          };
+          specialArgs = { inherit inputs outputs system home-manager-modules; };
 
           modules = [
             ./pcs/halu
@@ -70,14 +62,11 @@
 
         mini-pc = nixpkgs.lib.nixosSystem rec {
           inherit system;
-          specialArgs = {
-            inherit inputs outputs system;
-            home-manager-modules = [ local-modules.home-manager-modules.all ];
-          };
+          specialArgs = { inherit inputs outputs system home-manager-modules; };
 
           modules = [
             ./pcs/mini-pc
-            local-modules.nixosModules.system
+            local-modules.nixosModules.default
             local-modules.homeManagerModules.default
           ];
         };

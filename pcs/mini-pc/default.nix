@@ -1,9 +1,5 @@
-{ pkgs, inputs, ... }: {
-  imports = [
-    ./hardware-configuration.nix
-    inputs.local-nixos.nixosModules.default
-    inputs.local-home-manager.nixosModules.default
-  ];
+{ config, pkgs, inputs, home-manager-modules, ... }: {
+  imports = [ ./hardware-configuration.nix ];
 
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
@@ -22,10 +18,15 @@
 
     home-manager = {
       enable = true;
-      modules = [ inputs.local-home-manager.nixosModules.all ];
+      username = config.localModules.name;
+      modules = home-manager-modules;
 
       packages = with pkgs; [
-        docker docker-compose transmission_4 rtorrent jellyfin
+        docker
+        docker-compose
+        transmission_4
+        rtorrent
+        jellyfin
       ];
 
       config = {
