@@ -2,6 +2,10 @@
   imports = [ ./hardware-configuration.nix ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  hardware.bluetooth.enable = true;
+
+  users.defaultUserShell = pkgs.zsh;
+  programs.zsh.enable = true;
 
   localModules = {
     name = "dosia";
@@ -13,7 +17,7 @@
 
     desktopEnvironment = "gnome";
 
-    apps = { steam.enable = true; };
+    apps.steam.enable = true;
     peripherals.kanata.enable = true;
 
     secrets.enable = true;
@@ -24,6 +28,8 @@
 
       packages = with pkgs; [ jellyfin-media-player ];
       config = {
+        shells.zsh.enable = true;
+
         cmd = {
           direnv.enable = true;
           oh-my-posh.enable = true;
@@ -43,9 +49,4 @@
       };
     };
   };
-
-  programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
-
-  hardware.bluetooth.enable = true;
 }

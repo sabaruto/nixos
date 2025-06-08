@@ -4,10 +4,9 @@ let
   cfg = config.localModules;
   dotfilesDirectory =
     "${config.home.homeDirectory}/github.com/sabaruto/nixos/nix/modules/dotfiles";
-in {
-  options.localModules = {
-
-  };
+in
+{
+  options.localModules = { };
 
   config = {
     home.file = {
@@ -25,6 +24,14 @@ in {
         source =
           config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/.oh-my-zsh";
         target = ".oh-my-zsh";
+      };
+
+      ".wezterm.lua" = mkIf cfg.apps.wezterm.enable {
+        enable = true;
+        recursive = true;
+        source = config.lib.file.mkOutOfStoreSymlink
+          "${dotfilesDirectory}/.wezterm.lua";
+        target = ".wezterm.lua";
       };
     };
   };
