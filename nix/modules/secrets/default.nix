@@ -18,8 +18,6 @@ in {
     security.pki = {
       certificateFiles = [
         "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
-        # "${home-directory}/.ssl/certs/mini-pc-public-key.crt"
-        # "${home-directory}.ssl/certs/leano-public-key.crt"
       ];
 
       certificates = [

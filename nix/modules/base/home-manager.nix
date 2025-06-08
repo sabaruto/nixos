@@ -47,11 +47,11 @@ in {
           default = "${config.localModules.desktopEnvironment}";
         };
 
-        config = {
+        config = mkMerge [
+          cfg.config
+          {
 
           programs.home-manager.enable = true;
-          localModules = cfg.config;
-
           home = {
             inherit (cfg) packages;
 
@@ -59,7 +59,8 @@ in {
             homeDirectory = mkDefault "/home/${config.localModules.name}";
             stateVersion = "24.11";
           };
-        };
+        }
+        ];
       };
     };
   };

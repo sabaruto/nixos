@@ -17,13 +17,13 @@
     prowlarr.enable = true;
     music-assistant = {
       enable = true;
-      providers = [
-        "tidal"
-        "spotify"
-        "filesystem_local"
-        "jellyfin"
-        "dlna"
-      ];
+      providers = [ "tidal" "spotify" "filesystem_local" "jellyfin" ];
+    };
+
+    tailscale = {
+      openFirewall = true;
+      useRoutingFeatures = "both";
+      authKeyFile = "/home/${config.localModules.name}/etc/auth/tailscale_key";
     };
   };
 
@@ -38,17 +38,11 @@
 
   users = {
     users = {
-      sonarr = {
-        uid = 274;
-      };
+      sonarr = { uid = 274; };
 
-      radarr = {
-        uid = 275;
-      };
+      radarr = { uid = 275; };
 
-      lidarr = {
-        uid = 306;
-      };
+      lidarr = { uid = 306; };
 
       mstream = {
         uid = 307;
@@ -57,21 +51,20 @@
     };
 
     groups = {
-    servarr = {
-      gid = 1001;
+      servarr = {
+        gid = 1001;
 
-      members = [
-        "lidarr"
-        "sonarr"
-        "radarr"
-        "prowlarr"
-        "nzbget"
-        "plex"
-        "music-assistant"
-
-        config.localModules.name
-      ];
-    };
+        members = [
+          "lidarr"
+          "sonarr"
+          "radarr"
+          "prowlarr"
+          "nzbget"
+          "plex"
+          "music-assistant"
+          config.localModules.name
+        ];
+      };
     };
   };
 
@@ -99,15 +92,26 @@
       ];
 
       config = {
-        cmd.direnv.enable = true;
-
-        apps = {
-          neovim.enable = true;
-          tmux.enable = true;
-          git.enable = true;
+        programs.onepassword-secrets = {
+          enable = true;
+          secrets = [{
+            path = "etc/auth/tailscale_key";
+            reference = "op://System/Mini PC Tailscale/auth-key";
+          }];
         };
 
-        development.enable = true;
+        localModules = {
+
+          cmd.direnv.enable = true;
+
+          apps = {
+            neovim.enable = true;
+            tmux.enable = true;
+            git.enable = true;
+          };
+
+          development.enable = true;
+        };
       };
     };
   };
