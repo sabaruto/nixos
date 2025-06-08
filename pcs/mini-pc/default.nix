@@ -7,6 +7,8 @@
   programs.nix-ld.enable = true;
   virtualisation.docker.enable = true;
 
+  programs.ssh.startAgent = true;
+
   services = {
     jellyfin.enable = true;
     plex.enable = true;
