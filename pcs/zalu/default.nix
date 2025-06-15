@@ -1,4 +1,4 @@
-{ inputs, pkgs, home-manager-modules, ... }: {
+{ lib, inputs, pkgs, home-manager-modules, system, ... }: {
   imports = [ ./hardware-configuration.nix ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -26,8 +26,8 @@
       enable = true;
       modules = home-manager-modules;
 
-      packages = with pkgs; [ jellyfin-media-player ];
-      config = {
+      packages = with pkgs; [ jellyfin-media-player krita ];
+      config.localModules = {
         shells.zsh.enable = true;
 
         cmd = {

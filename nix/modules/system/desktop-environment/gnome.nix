@@ -5,8 +5,7 @@ with lib.gvariant;
 let cfg = config.localModules;
 in {
   config = mkIf (cfg.desktopEnvironment == "gnome") {
-    services.xserver = {
-      enable = true;
+    services = {
       displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
     };

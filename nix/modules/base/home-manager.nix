@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, pkgs, config, ... }:
 with lib;
 
 let cfg = config.localModules.home-manager;
@@ -51,15 +51,34 @@ in {
           cfg.config
           {
 
-          programs.home-manager.enable = true;
-          home = {
-            inherit (cfg) packages;
+            programs.home-manager.enable = true;
+            home = {
+              packages = [
 
-            username = "${config.localModules.name}";
-            homeDirectory = mkDefault "/home/${config.localModules.name}";
-            stateVersion = "24.11";
-          };
-        }
+                # Music
+                pkgs.spotify
+                pkgs.tidal-hifi
+
+                # Visualise directories
+                pkgs.tree
+
+                pkgs.neofetch
+
+                # Certificates
+                pkgs.openssl
+
+                # Boot configuration
+                pkgs.efibootmgr
+
+              ] ++ cfg.packages;
+
+              username = "${config.localModules.name}";
+              homeDirectory = mkDefault "/home/${config.localModules.name}";
+              sessionVariables = { EDITOR = "nvim"; };
+
+              stateVersion = "24.11";
+            };
+          }
         ];
       };
     };
