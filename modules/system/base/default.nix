@@ -183,6 +183,8 @@ in {
         group = "users";
         dataDir = "/home/${config.localModules.name}";
 
+        overrideDevices = true;
+
         settings = {
           options = { localAnnounceEnabled = true; };
 
