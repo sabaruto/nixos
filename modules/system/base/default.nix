@@ -190,18 +190,22 @@ in {
             "Zalu" = {
               id =
                 "WP5633J-AIXRXZH-ENLB5QU-AU6J7N5-ZW5LWPI-GTPHZEQ-OVBTFL3-CVX3CAC";
+              autoAcceptFolders = true;
             };
             "Pixel 7 Pro" = {
               id =
                 "HQXEIYG-EKDJHID-TYTZQFG-LPUFSKU-LBVVPCL-RU42WGY-PV3G3C7-EYUELA6";
+              autoAcceptFolders = true;
             };
             "Mini PC" = {
               id =
                 "GCBNGHW-NDQD7PC-DVVUJQB-2DLH2A7-X6LO5OV-TOWBGRX-QD46WB5-OYVN7AR";
+              autoAcceptFolders = true;
             };
             "Leano" = {
               id =
                 "HBJCTA7-GZPZE7V-R7VQ4SR-TZQZHB7-R2JTIO5-V4OAYGP-3A4BPL7-3H52HAC";
+              autoAcceptFolders = true;
             };
           };
 
