@@ -2,8 +2,8 @@
 import = [
 	"themes/catppuccin-macchiato.toml",
 	"themes/catppuccin-latte.toml",
-	"themes/rose-pine-moon.toml",
 	"themes/rose-pine-dawn.toml",
+	"themes/rose-pine-moon.toml",
 ]
 
 [window]
