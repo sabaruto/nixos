@@ -180,14 +180,31 @@ in {
         enable = true;
         openDefaultPorts = true;
 
-        devices = {
-          "zalu" = {
-            id =
-              "WP5633J-AIXRXZH-ENLB5QU-AU6J7N5-ZW5LWPI-GTPHZEQ-OVBTFL3-CVX3CAC";
+        settings = {
+          devices = {
+            "Zalu" = {
+              id =
+                "WP5633J-AIXRXZH-ENLB5QU-AU6J7N5-ZW5LWPI-GTPHZEQ-OVBTFL3-CVX3CAC";
+            };
+            "Pixel 7 Pro" = {
+              id =
+                "HQXEIYG-EKDJHID-TYTZQFG-LPUFSKU-LBVVPCL-RU42WGY-PV3G3C7-EYUELA6";
+            };
+            "Mini PC" = {
+              id =
+                "KVXSXDH-2TKAHJY-YCC47HI-VVDEZIP-3THOPA5-QELCDVX-6ILIKF7-PKVREAY";
+            };
+            "Leano" = {
+              id =
+                "HBJCTA7-GZPZE7V-R7VQ4SR-TZQZHB7-R2JTIO5-V4OAYGP-3A4BPL7-3H52HAC";
+            };
           };
-          "pixel 7 pro" = {
-            id =
-              "HQXEIYG-EKDJHID-TYTZQFG-LPUFSKU-LBVVPCL-RU42WGY-PV3G3C7-EYUELA6";
+
+          folders = {
+            "My Vaults" = {
+              path = "~/My Vaults";
+              devices = [ "Zalu" "Pixel 7 Pro" "Mini PC" "Leano" ];
+            };
           };
         };
       };
