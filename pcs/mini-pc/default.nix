@@ -10,13 +10,30 @@
   programs.ssh.startAgent = true;
 
   services = {
-    jellyfin.enable = true;
+    jellyfin = {
+      enable = true;
+      openFirewall = true;
+      dataDir = "/data/jellyfin";
+    };
+
     plex.enable = true;
     nzbget.enable = true;
     sonarr.enable = true;
     radarr.enable = true;
-    lidarr.enable = true;
-    prowlarr.enable = true;
+    readarr.enable = true;
+    lidarr = {
+      enable = true;
+
+      settings = { server = { urlbase = "lidarr"; }; };
+    };
+
+    prowlarr = {
+      enable = true;
+
+      settings = { server = { urlbase = "prowlarr"; }; };
+    };
+
+    flaresolverr.enable = true;
     music-assistant = {
       enable = true;
       providers = [ "tidal" "spotify" "filesystem_local" "jellyfin" ];
@@ -57,12 +74,14 @@
         gid = 1001;
 
         members = [
+          "root"
           "lidarr"
           "sonarr"
           "radarr"
           "prowlarr"
           "nzbget"
           "plex"
+          "jellyfin"
           "music-assistant"
           config.localModules.name
         ];
@@ -104,7 +123,12 @@
 
         localModules = {
 
-          cmd.direnv.enable = true;
+          cmd = {
+            direnv.enable = true;
+            oh-my-posh.enable = true;
+          };
+
+          shells.zsh.enable = true;
 
           apps = {
             neovim.enable = true;
