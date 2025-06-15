@@ -197,7 +197,7 @@ in {
             };
             "Mini PC" = {
               id =
-                "KVXSXDH-2TKAHJY-YCC47HI-VVDEZIP-3THOPA5-QELCDVX-6ILIKF7-PKVREAY";
+                "GCBNGHW-NDQD7PC-DVVUJQB-2DLH2A7-X6LO5OV-TOWBGRX-QD46WB5-OYVN7AR";
             };
             "Leano" = {
               id =
