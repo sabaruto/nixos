@@ -168,11 +168,11 @@
         "opnix": "opnix"
       },
       "locked": {
-        "path": "nix",
+        "path": "modules",
         "type": "path"
       },
       "original": {
-        "path": "nix",
+        "path": "modules",
         "type": "path"
       },
       "parent": []

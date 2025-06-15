@@ -40,7 +40,7 @@
         kdePackages.k3b
       ];
 
-      config = {
+      config.localModules = {
         secrets.enable = true;
 
         shells.zsh.enable = true;

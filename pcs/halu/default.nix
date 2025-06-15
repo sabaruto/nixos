@@ -30,7 +30,7 @@
         inputs.local-packages.packages."x86_64-linux".kulala-ls
       ];
 
-      config = {
+      config.localModules = {
         cmd = {
           direnv.enable = true;
           oh-my-posh.enable = true;
