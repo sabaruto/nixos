@@ -21,7 +21,7 @@
     hostname = "leano";
     stateVersion = "24.11";
 
-    desktopEnvironment = "kde";
+    desktopEnvironment = "gnome";
 
     swapSize = 32 * 1024;
     gpu = "nvidia";
