@@ -179,6 +179,17 @@ in {
       syncthing = {
         enable = true;
         openDefaultPorts = true;
+
+        devices = {
+          "zalu" = {
+            id =
+              "WP5633J-AIXRXZH-ENLB5QU-AU6J7N5-ZW5LWPI-GTPHZEQ-OVBTFL3-CVX3CAC";
+          };
+          "pixel 7 pro" = {
+            id =
+              "HQXEIYG-EKDJHID-TYTZQFG-LPUFSKU-LBVVPCL-RU42WGY-PV3G3C7-EYUELA6";
+          };
+        };
       };
 
       pipewire = {
