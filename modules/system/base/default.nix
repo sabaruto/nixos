@@ -179,8 +179,13 @@ in {
       syncthing = {
         enable = true;
         openDefaultPorts = true;
+        user = "${config.localModules.name}";
+        group = "users";
+        dataDir = "/home/${config.localModules.name}";
 
         settings = {
+          options = { localAnnounceEnabled = true; };
+
           devices = {
             "Zalu" = {
               id =
@@ -203,6 +208,12 @@ in {
           folders = {
             "My Vaults" = {
               path = "~/My Vaults";
+              id = "my-vaults";
+              devices = [ "Zalu" "Pixel 7 Pro" "Mini PC" "Leano" ];
+            };
+            "personal-library" = {
+              path = "~/personal-library";
+              id = "personal-library";
               devices = [ "Zalu" "Pixel 7 Pro" "Mini PC" "Leano" ];
             };
           };
