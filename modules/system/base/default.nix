@@ -191,7 +191,7 @@ in {
           devices = {
             "Zalu" = {
               id =
-                "WP5633J-AIXRXZH-ENLB5QU-AU6J7N5-ZW5LWPI-GTPHZEQ-OVBTFL3-CVX3CAC";
+                "6XEVIJF-5VEW2F5-HWEWSDV-GI2MWXV-4D5M23V-ECLUA5S-DMQXUHT-7TEAHAJ";
               autoAcceptFolders = true;
             };
             "Pixel 7 Pro" = {
