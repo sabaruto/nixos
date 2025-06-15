@@ -8,6 +8,7 @@
   virtualisation.docker.enable = true;
 
   programs.ssh.startAgent = true;
+  networking.firewall.allowedTCPPorts = [ 8384 ];
 
   services = {
     jellyfin = {
