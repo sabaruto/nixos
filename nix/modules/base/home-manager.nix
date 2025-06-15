@@ -71,6 +71,8 @@ in {
                   # Boot configuration
                   efibootmgr
 
+                  syncthing
+
                 ] ++ cfg.packages;
 
               username = "${config.localModules.name}";
