@@ -206,7 +206,7 @@ in {
             };
             "Leano" = {
               id =
-                "HBJCTA7-GZPZE7V-R7VQ4SR-TZQZHB7-R2JTIO5-V4OAYGP-3A4BPL7-3H52HAC";
+                "JRBBVE4-VY4PYVH-7FRRSI6-BCAIDHK-ZFIPVKU-AEX6GXG-Z5Q2Z65-FNSYOQU";
               autoAcceptFolders = true;
             };
           };
