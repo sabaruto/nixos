@@ -26,12 +26,28 @@ in
         target = ".oh-my-zsh";
       };
 
+      "oh-my-posh" = mkIf cfg.cmd.oh-my-posh.enable {
+        enable = true;
+        recursive = true;
+        source =
+          config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/oh-my-posh";
+        target = ".config/oh-my-posh";
+      };
+
       ".wezterm.lua" = mkIf cfg.apps.wezterm.enable {
         enable = true;
         recursive = true;
         source = config.lib.file.mkOutOfStoreSymlink
           "${dotfilesDirectory}/.wezterm.lua";
         target = ".wezterm.lua";
+      };
+
+      "alacritty" = mkIf cfg.apps.alacritty.enable {
+        enable = true;
+        recursive = true;
+        source =
+          config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/alacritty";
+        target = ".config/alacritty";
       };
     };
   };

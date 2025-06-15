@@ -1,0 +1,17 @@
+[general]
+import = [
+	"themes/catppuccin-macchiato.toml",
+	"themes/catppuccin-latte.toml",
+	"themes/rose-pine-moon.toml",
+	"themes/rose-pine-dawn.toml",
+]
+
+[window]
+decorations = "None"
+
+[font]
+normal = { family = "FiraCode Nerd Font", style = "Regular" }
+size = 14
+
+[cursor]
+style = { "blinking" = "On" }

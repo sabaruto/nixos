@@ -53,24 +53,25 @@ in {
 
             programs.home-manager.enable = true;
             home = {
-              packages = [
+              packages = with pkgs;
+                [
 
-                # Music
-                pkgs.spotify
-                pkgs.tidal-hifi
+                  # Music
+                  spotify
+                  tidal-hifi
 
-                # Visualise directories
-                pkgs.tree
+                  # Visualise directories
+                  tree
 
-                pkgs.neofetch
+                  neofetch
 
-                # Certificates
-                pkgs.openssl
+                  # Certificates
+                  openssl
 
-                # Boot configuration
-                pkgs.efibootmgr
+                  # Boot configuration
+                  efibootmgr
 
-              ] ++ cfg.packages;
+                ] ++ cfg.packages;
 
               username = "${config.localModules.name}";
               homeDirectory = mkDefault "/home/${config.localModules.name}";
