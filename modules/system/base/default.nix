@@ -86,6 +86,9 @@ in {
       # Boot configuration
       sbctl
 
+      # Python
+      poetry
+
       # Communication
       discord
 

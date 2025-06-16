@@ -123,6 +123,7 @@ return {
 		},
 		keys = {
 			-- { ft = "markdown" }
+			{ "<localleader>n", "<cmd>ObsidianNew<cr>",         ft = "markdown", desc = "Create new Obsidian Page" },
 			{ "<localleader>g", "<cmd>ObsidianOpen<cr>",        ft = "markdown", desc = "Open file in Obsidian App" },
 			{ "<localleader>f", "<cmd>ObsidianQuickSwitch<cr>", ft = "markdown", desc = "Open Obsidian File" },
 			{ "<localleader>l", "<cmd>ObsidianFollowLink<cr>",  ft = "markdown", desc = "Follow Obsidian Link" },

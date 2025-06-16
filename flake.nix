@@ -25,8 +25,7 @@
       inherit (self) outputs;
       system = "x86_64-linux";
       home-manager-modules = [ local-modules.homeManagerModules.all ];
-    in
-    {
+    in {
 
       nixosConfigurations = {
         zalu = nixpkgs.lib.nixosSystem {
@@ -73,18 +72,14 @@
         };
       };
 
-      devShells."${system}" =
-        let pkgs = import nixpkgs { inherit system; };
-        in {
-          saltpay = import ./dev-shells/saltpay.nix { inherit pkgs; };
+      devShells."${system}" = let pkgs = import nixpkgs { inherit system; };
+      in {
+        saltpay = import ./dev-shells/saltpay.nix { inherit pkgs; };
 
-          streaming-service-merger =
-            import ./dev-shells/streaming-service-merger.nix { inherit pkgs; };
+        streaming-service-merger =
+          import ./dev-shells/streaming-service-merger.nix { inherit pkgs; };
 
-          mini-pc = import ./dev-shells/mini-pc.nix { inherit pkgs; };
-
-          terminal-scripts =
-            import ./dev-shells/terminal-scripts.nix { inherit pkgs; };
-        };
+        mini-pc = import ./dev-shells/mini-pc.nix { inherit pkgs; };
+      };
     };
 }

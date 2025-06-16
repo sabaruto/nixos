@@ -64,7 +64,7 @@ return {
 				{ "<leader>fc",  telescope.colorscheme,               desc = "Find colorschemes" },
 
 				-- search
-				{ "<leader>s/",  telescope.live_grep,                 desc = "Find files by grep" },
+				{ "<leader>/",   telescope.live_grep,                 desc = "Find files by grep" },
 
 				-- Git
 				{ "<leader>gf",  telescope.git_files,                 desc = "Find git files" },
@@ -72,7 +72,6 @@ return {
 				{ "<leader>gs",  telescope.git_status,                desc = "Find git status" },
 				{ "<leader>gS",  telescope.git_status,                desc = "Find git stash" },
 
-				{ "<leader>gc",  "",                                  desc = "+commits" },
 				{ "<leader>gcc", telescope.git_commits,               desc = "Find git commits" },
 				{ "<leader>gcb", telescope.git_bcommits,              desc = "Find and checkout git commits" },
 				{ "<leader>gcr", telescope.git_bcommits_range,        desc = "Find git commit range" },

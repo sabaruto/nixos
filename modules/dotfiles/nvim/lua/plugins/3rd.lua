@@ -3,7 +3,7 @@ return {
 	dependencies = {
 		"3rd/image.nvim",
 	},
-	enabled = true,
+	enabled = false,
 
 	opts = { -- you can just pass {}, defaults below
 		renderer_options = {

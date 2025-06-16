@@ -7,6 +7,7 @@ return {
 			vim.lsp.enable("jsonls")
 			vim.lsp.enable("lua_ls")
 			vim.lsp.enable("nil")
+			vim.lsp.enable("gopls")
 			vim.lsp.enable("pyright")
 		end
 	},

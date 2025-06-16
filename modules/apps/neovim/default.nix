@@ -47,6 +47,7 @@ in {
 
         # mason languages
         nil
+        gopls
         php
         julia
         cargo
