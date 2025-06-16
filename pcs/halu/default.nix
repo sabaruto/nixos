@@ -4,6 +4,8 @@
     /etc/ssl/certs/SaltPay_Root_CA_01.pem
   ];
 
+  services.syncthing.enable = lib.mkForce false;
+
   localModules = {
     name = "t-aaronobelley";
     hostname = "halu";

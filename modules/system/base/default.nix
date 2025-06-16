@@ -48,7 +48,7 @@ in {
       isNormalUser = true;
       description = "Theodosia Kalu";
       home = "/home/${config.localModules.name}";
-      extraGroups = [ "networkmanager" "wheel" "input" "uinput" "root" ];
+      extraGroups = [ "networkmanager" "wheel" "input" "uinput" ];
     };
 
     swapDevices = mkIf (cfg.swapSize != null) [{
