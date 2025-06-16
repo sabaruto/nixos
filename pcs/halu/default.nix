@@ -33,6 +33,8 @@
       ];
 
       config.localModules = {
+        shells.zsh.enable = true;
+
         cmd = {
           direnv.enable = true;
           oh-my-posh.enable = true;
@@ -42,6 +44,7 @@
           neovim.enable = true;
           tmux.enable = true;
           ghostty.enable = true;
+          alacritty.enable = true;
 
           git = {
             enable = true;
