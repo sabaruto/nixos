@@ -17,15 +17,17 @@ return {
 
 				-- Nix
 				require("null-ls").builtins.diagnostics.statix,
-				require("null-ls").builtins.formatting.nixfmt,
 				require("null-ls").builtins.diagnostics.deadnix,
+				require("null-ls").builtins.formatting.nixfmt,
 
 				-- General diagnosis
-				require("null-ls").builtins.diagnostics.semgrep,
+				require("null-ls").builtins.formatting.xmllint,
+				require("null-ls").builtins.formatting.yamlfmt,
 				require("null-ls").builtins.diagnostics.codespell,
 				require("null-ls").builtins.diagnostics.stylelint,
+				require("null-ls").builtins.diagnostics.tidy,
 
-				-- General refactoring
+				-- General ng
 				require("null-ls").builtins.code_actions.refactoring,
 				require("null-ls").builtins.code_actions.ts_node_action,
 			}

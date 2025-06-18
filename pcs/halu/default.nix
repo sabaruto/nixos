@@ -29,6 +29,7 @@
         postman
         dconf-editor
         gnome-menus
+        jwt-cli
         inputs.local-packages.packages."x86_64-linux".kulala-ls
       ];
 

@@ -9,6 +9,8 @@ return {
 			vim.lsp.enable("nil")
 			vim.lsp.enable("gopls")
 			vim.lsp.enable("pyright")
+			vim.lsp.enable("lemminx")
+			vim.lsp.enable("spectral")
 		end
 	},
 }

@@ -45,16 +45,24 @@ in {
         cmake
         gnumake
 
-        # mason languages
+        # lsp / formatters
         nil
         gopls
         php
         julia
+        lemminx
+        yamlfmt
+        html-tidy
+        libxml2Python
+        sonarlint-ls
+
+        # Builders
         cargo
         mermaid-cli
         python313Packages.python
         python313Packages.pip
         temurin-bin-24
+        spectral-language-server
         php84Packages.composer
       ];
     };
