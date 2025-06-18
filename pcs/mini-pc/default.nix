@@ -48,8 +48,31 @@
       settings = { server = { urlbase = "prowlarr"; }; };
     };
 
+    rtorrent = {
+      enable = true;
+      openFirewall = true;
+
+      group = "servarr";
+    };
+
+    rutorrent = {
+      enable = true;
+
+      hostName = "localhost";
+      group = "servarr";
+    };
+
+    deluge = {
+      enable = true;
+      group = "servarr";
+
+      web = {
+        enable = true;
+        openFirewall = true;
+      };
+    };
+
     flaresolverr.enable = true;
-    rutorrent.enable = true;
     music-assistant = {
       enable = true;
       providers = [ "tidal" "spotify" "filesystem_local" "jellyfin" ];
