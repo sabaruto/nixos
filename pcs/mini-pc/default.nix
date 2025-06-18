@@ -19,9 +19,23 @@
 
     plex.enable = true;
     nzbget.enable = true;
-    sonarr.enable = true;
-    radarr.enable = true;
-    readarr.enable = true;
+
+    sonarr = {
+      enable = true;
+
+      settings = { server = { urlbase = "sonarr"; }; };
+    };
+
+    radarr = {
+      enable = true;
+
+      settings = { server = { urlbase = "radarr"; }; };
+    };
+    readarr = {
+      enable = true;
+
+      settings = { server = { urlbase = "readarr"; }; };
+    };
     lidarr = {
       enable = true;
 
@@ -35,6 +49,7 @@
     };
 
     flaresolverr.enable = true;
+    rutorrent.enable = true;
     music-assistant = {
       enable = true;
       providers = [ "tidal" "spotify" "filesystem_local" "jellyfin" ];
@@ -58,6 +73,11 @@
 
   users = {
     users = {
+      rtorrent = {
+        isSystemUser = true;
+        group = "servarr";
+      };
+
       sonarr = { uid = 274; };
 
       radarr = { uid = 275; };
@@ -83,7 +103,6 @@
           "nzbget"
           "plex"
           "jellyfin"
-          "music-assistant"
           config.localModules.name
         ];
       };

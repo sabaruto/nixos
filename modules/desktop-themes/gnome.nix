@@ -35,6 +35,7 @@ with lib; {
 
       pkgs.gnome-tweaks
       pkgs.source-sans
+      pkgs.rose-pine-gtk-theme
     ];
   };
 }
