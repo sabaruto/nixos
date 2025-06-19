@@ -8,6 +8,7 @@ in {
 
     qt = {
       enable = true;
+      style = "breeze";
       platformTheme = "gnome";
     };
 

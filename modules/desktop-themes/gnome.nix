@@ -5,8 +5,6 @@ with lib; {
     dconf.settings = {
       "org.gnome/shell" = { disable-user-extensions = false; };
 
-      "org/gnome/desktop/notifications" = { accent-color = "yellow"; };
-
       "org/gnome/desktop/peripherals/touchpad" = {
         two-finger-scrolling-enabled = true;
       };

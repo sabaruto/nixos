@@ -26,7 +26,12 @@
       enable = true;
       modules = home-manager-modules;
 
-      packages = with pkgs; [ jellyfin-media-player krita ];
+      packages = with pkgs; [
+        jellyfin-media-player
+        krita
+        vivaldi
+        kdePackages.k3b
+      ];
       config.localModules = {
         shells.zsh.enable = true;
 
