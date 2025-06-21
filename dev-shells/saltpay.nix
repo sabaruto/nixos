@@ -8,6 +8,9 @@ mkShell {
     maven
     spring-boot-cli
     lombok
+    libglibutil
+    jdt-language-server
+    teleport
 
     postgresql
 

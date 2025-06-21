@@ -53,10 +53,12 @@ in {
         isort
         julia
         pyright
-        lemminx
         yamlfmt
         statix
         deadnix
+        yarn-berry
+        lemminx
+        ueberzug
         html-tidy
         libxml2Python
         sonarlint-ls

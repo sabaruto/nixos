@@ -1,5 +1,5 @@
 return {
-	root_dir = vim.fs.root(0, { ".git", "mvnw", "gradlew" }),
+	root_dir = vim.fs.dirname(vim.fs.find({ ".git", "mvnw", "gradlew" }, { upward = true })[1]),
 	settings = {
 		java = {
 			eclipse = {

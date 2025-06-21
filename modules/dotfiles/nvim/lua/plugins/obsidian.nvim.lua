@@ -117,9 +117,12 @@ return {
 				blink = true,
 			},
 
+			open = {
+				use_advanced_uri = true,
+			},
+
 			new_notes_location = "notes_subdir",
 			wiki_link_func = "prepend_note_id",
-			use_advanced_uri = true,
 		},
 		keys = {
 			-- { ft = "markdown" }

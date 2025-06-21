@@ -44,6 +44,7 @@
         apps = {
           neovim.enable = true;
           tmux.enable = true;
+          wezterm.enable = true;
           ghostty.enable = true;
           alacritty.enable = true;
 

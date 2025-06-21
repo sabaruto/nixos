@@ -29,7 +29,7 @@ return {
 			defaults = {
 				sorting_strategy = "ascending",
 				layout_strategy = "horizontal",
-				path_display = { "truncate" },
+				path_display = { "smart", "truncate" },
 				dynamic_preview_tile = true,
 				layout_config = {
 					prompt_position = "top",

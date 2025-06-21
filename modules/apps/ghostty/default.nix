@@ -8,8 +8,10 @@ with lib; {
       enableBashIntegration = true;
       enableZshIntegration = true;
       enableFishIntegration = true;
-
-      settings.window-decoration = "server";
+      settings = {
+        theme = "light:rose-pine-dawn,dark:rose-pine";
+        window-decoration = "server";
+      };
     };
 
     home.packages = with pkgs; [ gnome-tweaks gnome-menus ];

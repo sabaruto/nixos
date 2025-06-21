@@ -17,6 +17,16 @@ return {
 			vim.lsp.enable("cssls")
 			vim.lsp.enable("yamlls")
 			vim.lsp.enable("markdown_oxide")
+			vim.lsp.config('*', {
+				root_markers = { '.git' },
+				capabilities = {
+					textDocument = {
+						semanticTokens = {
+							multilineTokenSupport = true,
+						}
+					}
+				}
+			})
 		end
 	},
 }

@@ -1,11 +1,22 @@
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-	group = vim.api.nvim_create_augroup("use_spaces", { clear = true }),
+	group = vim.api.nvim_create_augroup("use_2_spaces", { clear = true }),
 	pattern = { "*.nix", "*.yml", "*.yaml", "*.md" },
 	callback = function()
 		vim.opt.tabstop = 2
 		vim.opt.shiftwidth = 2
 		vim.opt.expandtab = true
 		vim.opt.softtabstop = 2
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+	group = vim.api.nvim_create_augroup("use_4_spaces", { clear = true }),
+	pattern = { "*.json" },
+	callback = function()
+		vim.opt.tabstop = 4
+		vim.opt.shiftwidth = 4
+		vim.opt.expandtab = true
+		vim.opt.softtabstop = 4
 	end,
 })
 
@@ -53,9 +64,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 	group = vim.api.nvim_create_augroup('my.lsp', {}),
 	callback = function(args)
 		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-		if client:supports_method('textDocument/implementation') then
-			-- Create a keymap for vim.lsp.buf.implementation ...
-		end
 
 		-- Enable auto-completion. Note: Use CTRL-Y to select an item. |complete_CTRL-Y|
 		if client:supports_method('textDocument/completion') then

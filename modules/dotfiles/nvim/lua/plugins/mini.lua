@@ -21,7 +21,8 @@ return {
 		version = false,
 		config = true,
 		keys = {
-			{ "<leader>bd", function() require("mini.bufremove").delete() end, desc = "Delete buffer" },
+			{ "<leader>bd", function() require("mini.bufremove").delete() end,  desc = "Delete buffer" },
+			{ "<leader>bD", function() require("mini.bufremove").wipeout() end, desc = "Wipeout buffer" },
 		},
 	},
 	{

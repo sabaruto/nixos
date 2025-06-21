@@ -1,11 +1,10 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, ... }:
 with lib;
 let
   cfg = config.localModules;
   dotfilesDirectory =
     "${config.home.homeDirectory}/github.com/sabaruto/nixos/modules/dotfiles";
-in
-{
+in {
   options.localModules = { };
 
   config = {
