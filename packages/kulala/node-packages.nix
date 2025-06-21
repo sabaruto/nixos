@@ -1,5 +1,4 @@
-{ nodeEnv, fetchurl, fetchgit, nix-gitignore, stdenv, lib
-, globalBuildInputs ? [ ] }:
+{ nodeEnv, fetchurl, globalBuildInputs ? [ ] }:
 
 let
   sources = {

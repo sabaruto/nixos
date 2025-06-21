@@ -1,4 +1,4 @@
-{ lib, inputs, pkgs, home-manager-modules, system, ... }: {
+{ pkgs, home-manager-modules, ... }: {
   imports = [ ./hardware-configuration.nix ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;

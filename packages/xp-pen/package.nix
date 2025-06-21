@@ -1,11 +1,4 @@
-{ lib
-, xorg
-, stdenv
-, autoPatchelfHook
-, libusb1
-, qtbase
-, libglvnd
-, wrapQtAppsHook
+{ lib, xorg, stdenv, autoPatchelfHook, libusb1, qtbase, libglvnd, wrapQtAppsHook
 }:
 with stdenv;
 with xorg;

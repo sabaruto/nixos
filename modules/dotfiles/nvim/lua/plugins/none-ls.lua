@@ -1,6 +1,7 @@
 return {
 	{
 		"nvimtools/none-ls.nvim",
+		enabled = false,
 		dependencies = {
 			"CKolkey/ts-node-action",
 			"ThePrimeagen/refactoring.nvim",
