@@ -4,7 +4,8 @@ local downkey = vim.g.downkey
 local upkey = vim.g.upkey
 local rightkey = vim.g.rightkey
 
-local mod_key = vim.g.mod_key
+-- Commands
+vim.keymap.set({ "n", "v" }, "<leader>j", ":", { remap = true, desc = "Set command line" })
 
 -- Movement
 vim.keymap.set({ "n", "x" }, leftkey, "h", { silent = true })
@@ -18,49 +19,53 @@ vim.keymap.set("i", "<C-" .. upkey .. ">", "<up>", { silent = true })
 vim.keymap.set("i", "<C-" .. rightkey .. ">", "<right>", { silent = true })
 
 -- Buffers
-vim.keymap.set({ "n", "v" }, "<leader>w", ":write<CR>", { desc = "Save buffer", silent = true })
-vim.keymap.set({ "n", "v" }, "<leader>j", ":", { remap = true, desc = "Set command line" })
+vim.keymap.set({ "n", "v" }, "<leader>w", "<cmd>write<cr>", { desc = "Save buffer", silent = true })
 
 -- Quitting
 local ql = vim.g.createmapleader("quit", "<leader>q")
 
-vim.keymap.set({ "n", "v" }, ql .. "q", ":qa<CR>", { desc = "Normal quit" })
-vim.keymap.set({ "n", "v" }, ql .. "!", ":q!<CR>", { remap = true, desc = "Force quit" })
-vim.keymap.set({ "n", "v" }, ql .. "w", ":wqa<CR>", { remap = true, desc = "Save buffers and quit" })
+vim.keymap.set({ "n", "v" }, ql .. "q", "<cmd>qa<cr>", { desc = "Normal quit" })
+vim.keymap.set({ "n", "v" }, ql .. "!", "<cmd>q!<cr>", { remap = true, desc = "Force quit" })
+vim.keymap.set({ "n", "v" }, ql .. "w", "<cmd>wqa<cr>", { remap = true, desc = "Save buffers and quit" })
 
 -- Windows
 local wl = vim.g.createmapleader("windows", "<leader>x")
 
-vim.keymap.set({ "n", "v" }, wl .. "d", ":quit<CR>", { desc = "[D]elete Window" })
+vim.keymap.set({ "n", "v" }, wl .. "d", "<cmd>quit<cr>", { desc = "[D]elete Window" })
 
-vim.keymap.set({ "n", "v" }, wl .. "-", ":split<CR>", { desc = "Horizontal Split" })
-vim.keymap.set({ "n", "v" }, wl .. "h", ":split<CR>", { desc = "[H]orizontal Split" })
-vim.keymap.set({ "n", "v" }, wl .. "v", ":vsplit<CR>", { desc = "[V]ertical Split" })
-vim.keymap.set({ "n", "v" }, wl .. "|", ":vsplit<CR>", { desc = "Vertical Split" })
+vim.keymap.set({ "n", "v" }, wl .. "-", "<cmd>split<cr>", { desc = "Horizontal Split" })
+vim.keymap.set({ "n", "v" }, wl .. "h", "<cmd>split<cr>", { desc = "[H]orizontal Split" })
+vim.keymap.set({ "n", "v" }, wl .. "v", "<cmd>vsplit<cr>", { desc = "[V]ertical Split" })
+vim.keymap.set({ "n", "v" }, wl .. "|", "<cmd>vsplit<cr>", { desc = "Vertical Split" })
 
-vim.keymap.set({ "n" }, wl .. leftkey, ":wincmd h<CR>", { silent = true, desc = "Move window left" })
-vim.keymap.set({ "n" }, wl .. downkey, ":wincmd j<CR>", { silent = true, desc = "Move window down" })
-vim.keymap.set({ "n" }, wl .. rightkey, ":wincmd l<CR>", { silent = true, desc = "Move window right" })
-vim.keymap.set({ "n" }, wl .. upkey, ":wincmd k<CR>", { silent = true, desc = "Move window up" })
+vim.keymap.set({ "n" }, wl .. leftkey, "<cmd>wincmd h<cr>", { silent = true, desc = "Move window left" })
+vim.keymap.set({ "n" }, wl .. downkey, "<cmd>wincmd j<cr>", { silent = true, desc = "Move window down" })
+vim.keymap.set({ "n" }, wl .. rightkey, "<cmd>wincmd l<cr>", { silent = true, desc = "Move window right" })
+vim.keymap.set({ "n" }, wl .. upkey, "<cmd>wincmd k<cr>", { silent = true, desc = "Move window up" })
 
-vim.keymap.set({ "n" }, wl .. "<down>", ":wincmd j<CR>", { silent = true, desc = "Move window down" })
-vim.keymap.set({ "n" }, wl .. "<left>", ":wincmd h<CR>", { silent = true, desc = "Move window left" })
-vim.keymap.set({ "n" }, wl .. "<right>", ":wincmd l<CR>", { silent = true, desc = "Move window right" })
-vim.keymap.set({ "n" }, wl .. "<up>", ":wincmd k<CR>", { silent = true, desc = "Move window up" })
+vim.keymap.set({ "n" }, wl .. "<down>", "<cmd>wincmd j<cr>", { silent = true, desc = "Move window down" })
+vim.keymap.set({ "n" }, wl .. "<left>", "<cmd>wincmd h<cr>", { silent = true, desc = "Move window left" })
+vim.keymap.set({ "n" }, wl .. "<right>", "<cmd>wincmd l<cr>", { silent = true, desc = "Move window right" })
+vim.keymap.set({ "n" }, wl .. "<up>", "<cmd>wincmd k<cr>", { silent = true, desc = "Move window up" })
 
 -- Tabs
 local tl = vim.g.createmapleader("tab", "<leader><tab>")
 
-vim.keymap.set({ "n" }, tl .. "a", ":tabnew<CR>", { desc = "[A]dd new tab" })
-vim.keymap.set({ "n" }, tl .. "<left>", ":-tabnext<cr>", { desc = "[P]rev tab" })
-vim.keymap.set({ "n" }, tl .. "<right>", ":+tabnext<cr>", { desc = "next tab" })
-vim.keymap.set({ "n" }, tl .. "d", ":tabclose<CR>", { desc = "[D]elete tab" })
-vim.keymap.set({ "n" }, tl .. "k", ":tabclose<CR>", { desc = "[D]elete tab" })
+vim.keymap.set({ "n" }, tl .. "a", "<cmd>tabnew<cr>", { desc = "[A]dd new tab" })
+vim.keymap.set({ "n" }, tl .. "<left>", "<cmd>-tabnext<cr>", { desc = "[P]rev tab" })
+vim.keymap.set({ "n" }, tl .. "<right>", "<cmd>+tabnext<cr>", { desc = "next tab" })
+vim.keymap.set({ "n" }, tl .. "d", "<cmd>tabclose<cr>", { desc = "[D]elete tab" })
+vim.keymap.set({ "n" }, tl .. "c", "<cmd>tabonly<cr>", { desc = "[O]nly keep current tab" })
+
+for tab_index = 1, 9, 1
+do
+	vim.keymap.set({ "n" }, tl .. tab_index, "<cmd>" .. tab_index .. "tabnext<cr>", { desc = "goto tab " .. tab_index })
+end
 
 -- Terminal
 
 local terml = vim.g.createmapleader("terminal", "<leader>t")
-vim.keymap.set({ "n" }, terml .. "t", ":edit term://zsh<CR>", { desc = "Start new terminal" })
+vim.keymap.set({ "n" }, terml .. "t", "<cmd>edit term://zsh<cr>", { desc = "Start new terminal" })
 
 -- LSP
 vim.keymap.set({ "n" }, "ga", vim.lsp.buf.code_action, { desc = "Goto LSP Code Actions" })

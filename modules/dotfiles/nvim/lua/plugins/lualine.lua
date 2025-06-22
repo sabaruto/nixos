@@ -45,6 +45,17 @@ local function has_full_filename()
 	return elem_in(filetypes, vim.bo.filetype)
 end
 
+local function set_keys()
+	for index = 1, 9 do
+		vim.keymap.set({ "n", "v" }, "<C-b>" .. index, "<cmd>LualineBuffersJump! " .. index .. "<cr>",
+			{ desc = "Go to buffer " .. index })
+		vim.keymap.set({ "n", "v" }, "<leader>b" .. index, "<cmd>LualineBuffersJump! " .. index .. "<cr>",
+			{ desc = "Go to buffer " .. index })
+		vim.keymap.set({ "n", "v" }, "<C-" .. index .. ">", "<cmd>LualineBuffersJump! " .. index .. "<cr>",
+			{ desc = "Go to buffer " .. index })
+	end
+end
+
 return {
 	{
 		"nvim-lualine/lualine.nvim",
@@ -115,5 +126,9 @@ return {
 				component_separators = { left = '', right = '' },
 			},
 		},
+		config = function(_, opts)
+			require("lualine").setup(opts)
+			set_keys()
+		end
 	}
 }

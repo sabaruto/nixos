@@ -59,7 +59,7 @@ in {
         deadnix
         yarn-berry
         lemminx
-        ueberzug
+        ueberzugpp
         asciidoc
         vale-ls
         html-tidy

@@ -2,7 +2,7 @@ return {
 	{
 		"sabaruto/markdown-preview.nvim",
 		branch = "update",
-		-- enabled = false,
+		enabled = false,
 		-- dir = "~/github.com/sabaruto/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
 		ft = { "markdown" },

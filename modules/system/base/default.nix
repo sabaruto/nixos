@@ -230,6 +230,11 @@ in {
               id = "personal-library";
               devices = [ "Zalu" "Pixel 7 Pro" "Mini PC" "Leano" ];
             };
+            "ZK Notes" = {
+              path = "~/notes";
+              id = "zk-notes";
+              devices = [ "Zalu" "Pixel 7 Pro" "Mini PC" "Leano" ];
+            };
           };
         };
       };

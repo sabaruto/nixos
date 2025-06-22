@@ -52,7 +52,7 @@
           git.enable = true;
           neovim.enable = true;
           wezterm.enable = true;
-          alacritty.enable = true;
+          ghostty.enable = true;
         };
 
         development = {

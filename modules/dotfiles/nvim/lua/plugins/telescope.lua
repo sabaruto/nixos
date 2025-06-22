@@ -35,6 +35,11 @@ return {
 					prompt_position = "top",
 				},
 			},
+			pickers = {
+				-- current_buffer_fuzzy_find = {
+				-- 	theme = "dropdown"
+				-- }
+			},
 			extensions = {
 				fzf = {
 					fuzzy = true,    -- false will only do exact matching
@@ -65,6 +70,7 @@ return {
 				{ "<leader>fc",  telescope.colorscheme,               desc = "Find colorschemes" },
 
 				-- search
+				{ "/",           telescope.current_buffer_fuzzy_find, desc = "Search" },
 				{ "<leader>/",   telescope.live_grep,                 desc = "Find files by grep" },
 
 				-- Git

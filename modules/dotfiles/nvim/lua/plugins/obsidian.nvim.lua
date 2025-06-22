@@ -3,6 +3,7 @@ return {
 		"obsidian-nvim/obsidian.nvim",
 		version = "*", -- recommended, use latest release instead of latest commit
 		lazy = true,
+		enabled = false,
 		event = {
 			"BufReadPre " .. vim.fn.expand "~" .. "/personal-library/*.md",
 			"BufNewFile " .. vim.fn.expand "~" .. "/personal-library/*.md",

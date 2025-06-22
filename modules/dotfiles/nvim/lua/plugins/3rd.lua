@@ -2,10 +2,10 @@ return {
 	{
 		{
 			"3rd/image.nvim",
-			enabled = false,
+			enabled = true,
 			build = false,
 			opts = {
-				backend = "kitty",
+				-- backend = "ueberzug",
 				processor = "magick_cli"
 			}
 		}
@@ -16,9 +16,9 @@ return {
 			"3rd/image.nvim",
 		},
 
-		enabled = false,
+		enabled = true,
 
-		opts = { -- you can just pass {}, defaults below
+		opts = {
 			renderer_options = {
 				mermaid = {
 					background = "white", -- nil | "transparent" | "white" | "#hex"
