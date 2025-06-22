@@ -26,8 +26,6 @@
     swapSize = 32 * 1024;
     gpu = "nvidia";
 
-    secrets.enable = true;
-
     apps.steam.enable = true;
     home-manager = {
       enable = true;
@@ -43,8 +41,6 @@
       ];
 
       config.localModules = {
-        secrets.enable = true;
-
         shells.zsh.enable = true;
 
         cmd = {

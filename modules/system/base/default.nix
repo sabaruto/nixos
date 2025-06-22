@@ -86,6 +86,8 @@ in {
       # Boot configuration
       sbctl
 
+      zk
+
       # Python
       poetry
 
@@ -97,6 +99,9 @@ in {
 
       oh-my-zsh
       oh-my-posh
+
+      # Whatsapp
+      whatsie
 
       # fonts
       nerd-fonts.fira-code

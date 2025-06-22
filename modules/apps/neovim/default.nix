@@ -27,7 +27,7 @@ in {
         # git improvement
         lazygit
 
-        nodejs
+        nodejs_24
         go
         jq
         sqlite
@@ -49,6 +49,7 @@ in {
         nil
         nixd
         gopls
+        vale
         php
         isort
         julia
@@ -59,7 +60,10 @@ in {
         yarn-berry
         lemminx
         ueberzug
+        asciidoc
+        vale-ls
         html-tidy
+        asciidoctor
         libxml2Python
         sonarlint-ls
 

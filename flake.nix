@@ -80,6 +80,9 @@
           import ./dev-shells/streaming-service-merger.nix { inherit pkgs; };
 
         mini-pc = import ./dev-shells/mini-pc.nix { inherit pkgs; };
+
+        markdown-preview =
+          import ./dev-shells/markdown-preview.nix { inherit pkgs; };
       };
     };
 }

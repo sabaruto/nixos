@@ -16,9 +16,7 @@ in {
     };
 
     security.pki = {
-      certificateFiles = [
-        "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
-      ];
+      certificateFiles = [ "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt" ];
 
       certificates = [
         (mkIf (pathExists "${home-directory}/.ssl/certs/mini-pc-public-key.crt")

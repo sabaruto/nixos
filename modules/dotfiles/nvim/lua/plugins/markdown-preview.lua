@@ -1,12 +1,11 @@
 return {
 	{
 		"sabaruto/markdown-preview.nvim",
-		branch = "theodosia/full-upgrade",
+		branch = "update",
+		-- enabled = false,
+		-- dir = "~/github.com/sabaruto/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
 		ft = { "markdown" },
-		build = "cd app && yarn install",
-		init = function()
-			vim.g.mkdp_filetypes = { "markdown" }
-		end
+		config = function(_, _) vim.fn["mkdp#util#install"]() end,
 	}
 }

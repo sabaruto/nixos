@@ -7,6 +7,7 @@ return {
 			vim.lsp.enable("jsonls")
 			vim.lsp.enable("lua_ls")
 			vim.lsp.enable("nil_ls")
+			vim.lsp.enable("vale_ls")
 			vim.lsp.enable("nixd")
 			vim.lsp.enable("statix")
 			vim.lsp.enable("gopls")
