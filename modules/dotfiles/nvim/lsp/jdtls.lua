@@ -5,8 +5,16 @@ return {
 			eclipse = {
 				downloadSources = true,
 			},
+			saveActions = {
+				organizeImports = true,
+				cleanup = true,
+			},
+
 			configuration = {
 				updateBuildConfiguration = "interactive",
+				maven = {
+					globalSettings = os.getenv("HOME") .. "/.m2/settings.xml"
+				}
 			},
 			maven = {
 				downloadSources = true,

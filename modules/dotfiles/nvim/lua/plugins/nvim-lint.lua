@@ -6,10 +6,23 @@ return {
 				python = {
 					"mypy",
 				},
-			}
+				lua = {
+					"luac"
+				},
+				nix = {
+					"deadnix"
+				},
+			},
 		},
 		config = function(_, opts)
 			require("lint").linters_by_ft = opts.linters_by_ft
+
+			vim.api.nvim_create_autocmd("BufWritePost", {
+				pattern = "*",
+				callback = function(_)
+					require("lint").try_lint()
+				end
+			})
 		end
 	}
 }

@@ -3,7 +3,7 @@ local act = wezterm.action
 
 local config = wezterm.config_builder()
 
-config.font_size = 15
+config.font_size = 12
 -- config.color_scheme = "Rosé Pine Moon (Gogh)"
 config.color_scheme = "Rosé Pine Dawn (Gogh)"
 config.font = wezterm.font("FiraCode Nerd Font")
@@ -32,11 +32,6 @@ config.keys = {
 		key = "q",
 		mods = "LEADER",
 		action = act.CloseCurrentPane({ confirm = false }),
-	},
-	{
-		key = "q",
-		mods = "CTRL|ALT",
-		action = act.CloseCurrentPane({ confirm = true }),
 	},
 	{
 		key = "m",
@@ -70,14 +65,14 @@ config.keys = {
 
 -- Movement
 local movement_keys = {
-	{ key = "LeftArrow",  mods = "CTRL|ALT", action = act.ActivatePaneDirection("Left") },
-	{ key = "h",          mods = "CTRL|ALT", action = act.ActivatePaneDirection("Left") },
-	{ key = "RightArrow", mods = "CTRL|ALT", action = act.ActivatePaneDirection("Right") },
-	{ key = "l",          mods = "CTRL|ALT", action = act.ActivatePaneDirection("Right") },
-	{ key = "UpArrow",    mods = "CTRL|ALT", action = act.ActivatePaneDirection("Up") },
-	{ key = "k",          mods = "CTRL|ALT", action = act.ActivatePaneDirection("Up") },
-	{ key = "DownArrow",  mods = "CTRL|ALT", action = act.ActivatePaneDirection("Down") },
-	{ key = "j",          mods = "CTRL|ALT", action = act.ActivatePaneDirection("Down") },
+	{ key = "LeftArrow",  mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Left") },
+	{ key = "h",          mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Left") },
+	{ key = "RightArrow", mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Right") },
+	{ key = "l",          mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Right") },
+	{ key = "UpArrow",    mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Up") },
+	{ key = "k",          mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Up") },
+	{ key = "DownArrow",  mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Down") },
+	{ key = "j",          mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Down") },
 }
 
 for _, v in ipairs(movement_keys) do
@@ -94,8 +89,8 @@ end
 
 for i = 1, 8 do
 	table.insert(config.keys, {
-		key = "F" .. tostring(i),
-		mods = "SHIFT",
+		key = tostring(i),
+		mods = "ALT",
 		action = act.ActivateTab(i - 1),
 	})
 end

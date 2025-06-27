@@ -37,6 +37,8 @@ vim.keymap.set({ "n", "v" }, wl .. "-", "<cmd>split<cr>", { desc = "Horizontal S
 vim.keymap.set({ "n", "v" }, wl .. "h", "<cmd>split<cr>", { desc = "[H]orizontal Split" })
 vim.keymap.set({ "n", "v" }, wl .. "v", "<cmd>vsplit<cr>", { desc = "[V]ertical Split" })
 vim.keymap.set({ "n", "v" }, wl .. "|", "<cmd>vsplit<cr>", { desc = "Vertical Split" })
+vim.keymap.set({ "n", "v" }, "<leader>-", "<cmd>split<cr>", { desc = "Horizontal Split" })
+vim.keymap.set({ "n", "v" }, "<leader>|", "<cmd>vsplit<cr>", { desc = "Vertical Split" })
 
 vim.keymap.set({ "n" }, wl .. leftkey, "<cmd>wincmd h<cr>", { silent = true, desc = "Move window left" })
 vim.keymap.set({ "n" }, wl .. downkey, "<cmd>wincmd j<cr>", { silent = true, desc = "Move window down" })
@@ -69,5 +71,7 @@ vim.keymap.set({ "n" }, terml .. "t", "<cmd>edit term://zsh<cr>", { desc = "Star
 
 -- LSP
 vim.keymap.set({ "n" }, "ga", vim.lsp.buf.code_action, { desc = "Goto LSP Code Actions" })
+vim.keymap.set({ "n" }, "<leader>uf", vim.lsp.buf.format, { desc = "Format buffer" })
+vim.keymap.set({ "n" }, "<f3>", vim.lsp.buf.format, { desc = "Format buffer" })
 vim.keymap.set({ "n" }, "<leader>r", vim.lsp.buf.rename, { desc = "Rename variable" })
 vim.keymap.set({ "n" }, "<f2>", vim.lsp.buf.rename, { desc = "Rename variable" })
