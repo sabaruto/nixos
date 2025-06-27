@@ -20,7 +20,7 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, opnix, lanzaboote, ... }: {
+  outputs = { home-manager, opnix, lanzaboote, ... }: {
 
     nixosModules = rec {
       peripherals = ./peripherals;

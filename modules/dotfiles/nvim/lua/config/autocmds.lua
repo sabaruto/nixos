@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	group = vim.api.nvim_create_augroup("use_4_spaces", { clear = true }),
-	pattern = { "*.json" },
+	pattern = { "*.json", "*.java" },
 	callback = function()
 		vim.opt.tabstop = 4
 		vim.opt.shiftwidth = 4
@@ -76,15 +76,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 		-- Auto-format ("lint") on save.
 		-- Usually not needed if server supports "textDocument/willSaveWaitUntil".
-		if not client:supports_method('textDocument/willSaveWaitUntil')
-			and client:supports_method('textDocument/formatting') then
-			vim.api.nvim_create_autocmd('BufWritePre', {
-				group = vim.api.nvim_create_augroup('my.lsp', { clear = false }),
-				buffer = args.buf,
-				callback = function()
-					vim.lsp.buf.format({ bufnr = args.buf, id = client.id, timeout_ms = 1000 })
-				end,
-			})
-		end
+		-- if not client:supports_method('textDocument/willSaveWaitUntil')
+		-- 	and client:supports_method('textDocument/formatting') then
+		-- 	vim.api.nvim_create_autocmd('BufWritePre', {
+		-- 		group = vim.api.nvim_create_augroup('my.lsp', { clear = false }),
+		-- 		buffer = args.buf,
+		-- 		callback = function()
+		-- 			vim.lsp.buf.format({ bufnr = args.buf, id = client.id, timeout_ms = 1000 })
+		-- 		end,
+		-- 	})
+		-- end
 	end,
 })

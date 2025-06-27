@@ -3,15 +3,27 @@ with pkgs;
 mkShell {
   packages = [
     # java
-    jdk24
+    temurin-bin-24
+    temurin-bin
+    temurin-bin-17
+    temurin-bin-11
 
-    maven
     spring-boot-cli
-    lombok
     libglibutil
-    jdt-language-server
     teleport
 
+    # project builders
+    maven
+    gradle
+
+    # Jars
+    lombok
+    checkstyle
+
+    # lsp
+    jdt-language-server
+
+    # Databases
     postgresql
 
     python3Full

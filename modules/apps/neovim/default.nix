@@ -66,6 +66,8 @@ in {
         asciidoctor
         libxml2Python
         sonarlint-ls
+        uncrustify
+        google-java-format
 
         # Builders
         cargo
@@ -77,6 +79,7 @@ in {
         python313Packages.pip
         yaml-language-server
         php84Packages.composer
+        lua-language-server
         spectral-language-server
       ];
     };
