@@ -48,6 +48,30 @@ in {
           config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/alacritty";
         target = ".config/alacritty";
       };
+
+      "hypr" = mkIf (cfg.desktopEnvironment == "hyprland") {
+        enable = true;
+        recursive = true;
+        source =
+          config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/hypr";
+        target = ".config/hypr";
+      };
+
+      "waybar" = mkIf (cfg.desktopEnvironment == "hyprland") {
+        enable = true;
+        recursive = true;
+        source =
+          config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/waybar";
+        target = ".config/waybar";
+      };
+
+      "pictures" = {
+        enable = true;
+        recursive = true;
+        source =
+          config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/.pictures";
+        target = ".pictures";
+      };
     };
   };
 }

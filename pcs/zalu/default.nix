@@ -15,7 +15,7 @@
     swapSize = 16 * 1024;
     gpu = "none";
 
-    desktopEnvironment = "gnome";
+    desktopEnvironment = "hyprland";
 
     apps.steam.enable = true;
     peripherals.kanata.enable = true;

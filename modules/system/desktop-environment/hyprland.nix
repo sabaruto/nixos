@@ -1,14 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, pkgs, ... }:
 with lib;
-let
-  cfg = config.localModules;
-in
-{
+let cfg = config.localModules;
+in {
   config = mkIf (cfg.desktopEnvironment == "hyprland") {
     hardware = {
       graphics.enable = true;
@@ -22,9 +15,7 @@ in
 
     xdg.portal = {
       enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-gtk
-      ];
+      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
     };
 
     environment = {
