@@ -27,7 +27,7 @@ in {
         # git improvement
         lazygit
 
-        nodejs_24
+        # nodejs_24
         go
         jq
         sqlite

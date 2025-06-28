@@ -10,6 +10,7 @@ in {
 
     programs.hyprland = {
       enable = true;
+      withUWSM = true;
       xwayland.enable = true;
     };
 
@@ -41,6 +42,9 @@ in {
         # audio
         pulseaudio
         pamixer
+
+        # brightness
+        brightnessctl
 
         # app launcher
         rofi-wayland
