@@ -72,6 +72,14 @@ in {
           config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/.pictures";
         target = ".pictures";
       };
+
+      "ghostty" = {
+        enable = true;
+        recursive = true;
+        source =
+          config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/ghostty";
+        target = ".config/ghostty";
+      };
     };
   };
 }

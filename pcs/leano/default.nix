@@ -21,7 +21,7 @@
     hostname = "leano";
     stateVersion = "24.11";
 
-    desktopEnvironment = "gnome";
+    desktopEnvironment = "hyprland";
 
     swapSize = 32 * 1024;
     gpu = "nvidia";

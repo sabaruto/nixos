@@ -1,0 +1,6 @@
+shell-integration = zsh
+theme = light:rose-pine-dawn,dark:rose-pine
+window-decoration = server
+
+# config files
+config-file = keybind/config

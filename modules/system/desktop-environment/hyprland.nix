@@ -27,6 +27,8 @@ in {
 
         dunst
         waybar
+        pavucontrol
+        blueman
         libnotify
 
         #lock screen
