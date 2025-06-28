@@ -73,6 +73,22 @@ in {
         target = ".pictures";
       };
 
+      "themes" = {
+        enable = true;
+        recursive = true;
+        source =
+          config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/.themes";
+        target = ".themes";
+      };
+
+      "icons" = {
+        enable = true;
+        recursive = true;
+        source =
+          config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/.icons";
+        target = ".icons";
+      };
+
       "ghostty" = {
         enable = true;
         recursive = true;
