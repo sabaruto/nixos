@@ -20,8 +20,8 @@ in {
       ".oh-my-zsh" = mkIf cfg.shells.zsh.enable {
         enable = true;
         recursive = true;
-        source =
-          config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/.oh-my-zsh";
+        source = config.lib.file.mkOutOfStoreSymlink
+          "${dotfilesDirectory}/dot_oh-my-zsh";
         target = ".oh-my-zsh";
       };
 
@@ -37,7 +37,7 @@ in {
         enable = true;
         recursive = true;
         source = config.lib.file.mkOutOfStoreSymlink
-          "${dotfilesDirectory}/.wezterm.lua";
+          "${dotfilesDirectory}/dot_wezterm.lua";
         target = ".wezterm.lua";
       };
 
@@ -68,16 +68,18 @@ in {
       "pictures" = {
         enable = true;
         recursive = true;
-        source =
-          config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/.pictures";
+        source = config.lib.file.mkOutOfStoreSymlink
+          "${dotfilesDirectory}/dot_pictures";
         target = ".pictures";
       };
 
       "themes" = {
+        # TODO: Use git submodules over directly copying the full
+        # repo
         enable = true;
         recursive = true;
         source =
-          config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/.themes";
+          config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/dot_themes";
         target = ".themes";
       };
 
@@ -85,7 +87,7 @@ in {
         enable = true;
         recursive = true;
         source =
-          config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/.icons";
+          config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/dot_icons";
         target = ".icons";
       };
 

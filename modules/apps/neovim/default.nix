@@ -61,7 +61,6 @@ in {
         lemminx
         ueberzugpp
         asciidoc
-        vale-ls
         html-tidy
         asciidoctor
         libxml2Python
