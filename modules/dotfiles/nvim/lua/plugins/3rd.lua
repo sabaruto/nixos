@@ -2,20 +2,20 @@ return {
 	{
 		{
 			"3rd/image.nvim",
-			enabled = true,
+			enabled = false,
 			build = false,
 			opts = {
 				-- backend = "ueberzug",
-				processor = "magick_cli"
-			}
-		}
+				processor = "magick_cli",
+			},
+		},
 	},
 	{
 		"3rd/diagram.nvim",
 		dependencies = {
 			"3rd/image.nvim",
 		},
-
+		optional = true,
 		enabled = true,
 
 		opts = {
@@ -53,4 +53,5 @@ return {
 			})
 			require("diagram").setup(opts)
 		end,
-	} }
+	},
+}

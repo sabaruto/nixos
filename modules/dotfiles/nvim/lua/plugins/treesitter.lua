@@ -22,6 +22,6 @@ return {
 					"markdown_inline",
 				},
 			})
-		end
-	}
+		end,
+	},
 }

@@ -47,12 +47,18 @@ end
 
 local function set_keys()
 	for index = 1, 9 do
-		vim.keymap.set({ "n", "v" }, "<C-b>" .. index, "<cmd>LualineBuffersJump! " .. index .. "<cr>",
-			{ desc = "Go to buffer " .. index })
-		vim.keymap.set({ "n", "v" }, "<leader>b" .. index, "<cmd>LualineBuffersJump! " .. index .. "<cr>",
-			{ desc = "Go to buffer " .. index })
-		vim.keymap.set({ "n", "v" }, "<C-" .. index .. ">", "<cmd>LualineBuffersJump! " .. index .. "<cr>",
-			{ desc = "Go to buffer " .. index })
+		vim.keymap.set(
+			{ "n", "v" },
+			"" .. index,
+			"<cmd>LualineBuffersJump! " .. index .. "<cr>",
+			{ desc = "Go to buffer " .. index }
+		)
+		vim.keymap.set(
+			{ "n", "v" },
+			"<leader>b" .. index,
+			"<cmd>LualineBuffersJump! " .. index .. "<cr>",
+			{ desc = "Go to buffer " .. index }
+		)
 	end
 end
 
@@ -96,7 +102,7 @@ return {
 					{
 						"filename",
 						path = 3,
-						cond = has_full_filename
+						cond = has_full_filename,
 					},
 				},
 				lualine_b = {
@@ -122,13 +128,13 @@ return {
 
 			options = {
 				always_divide_middle = false,
-				section_separators = { left = '', right = '' },
-				component_separators = { left = '', right = '' },
+				section_separators = { left = "", right = "" },
+				component_separators = { left = "", right = "" },
 			},
 		},
 		config = function(_, opts)
 			require("lualine").setup(opts)
 			set_keys()
-		end
-	}
+		end,
+	},
 }
