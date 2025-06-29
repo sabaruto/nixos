@@ -58,8 +58,7 @@ in {
         nwg-look
 
         # File manager
-        kdePackages.dolphin
-        kdePackages.qtsvg
+        nautilus
 
         # Remote desktop
         wayvnc
