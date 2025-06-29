@@ -1,9 +1,6 @@
 { config, lib, pkgs, ... }:
 with lib;
-let
-  cfg = config.localModules.cmd.oh-my-posh;
-  path =
-    "${config.home.homeDirectory}/nixos/modules/home-manager/default/cmd/oh-my-posh";
+let cfg = config.localModules.cmd.oh-my-posh;
 in {
 
   options.localModules.cmd.oh-my-posh.enable = mkEnableOption "oh-my-posh";

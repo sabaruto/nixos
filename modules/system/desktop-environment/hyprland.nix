@@ -51,6 +51,9 @@ in {
         # app launcher
         rofi-wayland
 
+        # cursor themes
+        rose-pine-hyprcursor
+
         # GTK settings editor
         nwg-look
 

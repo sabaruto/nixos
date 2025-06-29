@@ -12,7 +12,9 @@ in {
     hardware.nvidia = {
       open = true;
       package = config.boot.kernelPackages.nvidiaPackages.stable;
+      powerManagement.enable = true;
       modesetting.enable = true;
+      videoAcceleration = true;
     };
   };
 }

@@ -73,24 +73,6 @@ in {
         target = ".pictures";
       };
 
-      "themes" = {
-        # TODO: Use git submodules over directly copying the full
-        # repo
-        enable = true;
-        recursive = true;
-        source =
-          config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/dot_themes";
-        target = ".themes";
-      };
-
-      "icons" = {
-        enable = true;
-        recursive = true;
-        source =
-          config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/dot_icons";
-        target = ".icons";
-      };
-
       "ghostty" = {
         enable = true;
         recursive = true;
