@@ -1,3 +1,3 @@
-[submodule "nix/modules/dotfiles/dot_oh-my-zsh"]
-	path = nix/modules/dotfiles/dot_oh-my-zsh
+[submodule "modules/dotfiles/dot_oh-my-zsh"]
+	path = modules/dotfiles/dot_oh-my-zsh
 	url = https://github.com/ohmyzsh/ohmyzsh.git
