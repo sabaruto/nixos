@@ -49,7 +49,7 @@ return {
 			},
 
 			sources = {
-				default = { 'lsp', 'path', 'snippets', 'buffer' },
+				default = { 'lsp', 'buffer', 'omni', 'path', 'snippets' },
 			},
 
 			fuzzy = { implementation = "prefer_rust_with_warning" }
@@ -58,7 +58,6 @@ return {
 	},
 	{
 		'saghen/blink.compat',
-		version = false,
 		lazy = true,
 		config = true,
 	}

@@ -86,5 +86,6 @@ in {
       enable = true;
       defaultEditor = true;
     };
+
   };
 }
