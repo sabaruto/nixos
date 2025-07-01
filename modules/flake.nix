@@ -4,11 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
-    opnix = {
-      url = "github:brizzbuzz/opnix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,7 +15,7 @@
     };
   };
 
-  outputs = { home-manager, opnix, lanzaboote, ... }: {
+  outputs = { home-manager, lanzaboote, ... }: {
 
     nixosModules = rec {
       peripherals = ./peripherals;
@@ -31,14 +26,7 @@
         imports = [ ./lanzaboote lanzaboote.nixosModules.lanzaboote ];
       };
 
-      secrets = {
-        nixpkgs.overlays = [ opnix.overlays.default ];
-        imports = [ ./secrets opnix.nixosModules.default ];
-      };
-
-      default = {
-        imports = [ system fun peripherals secrets lanzaboote-config ];
-      };
+      default = { imports = [ system fun peripherals lanzaboote-config ]; };
     };
 
     homeManagerModules = rec {
@@ -52,15 +40,9 @@
       cron = ./cron;
       dotfiles = ./dotfiles;
       shells = ./shells;
-      secrets = {
-        imports =
-          [ opnix.homeManagerModules.default ./secrets/home-manager.nix ];
-      };
       desktop-themes = ./desktop-themes;
 
-      all = {
-        imports = [ apps cmd cron dotfiles shells secrets desktop-themes ];
-      };
+      all = { imports = [ apps cmd cron dotfiles shells desktop-themes ]; };
     };
   };
 }
