@@ -48,7 +48,7 @@
           ];
         };
 
-        H1L0 = {
+        K1L0 = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs outputs system home-manager-modules; };
           modules = [
