@@ -9,11 +9,11 @@
 
   localModules = {
     name = "dosia";
-    hostname = "zalu";
-    stateVersion = "24.11";
+    hostname = "K1L0";
+    stateVersion = "25.05";
 
-    swapSize = 16 * 1024;
-    gpu = "none";
+    swapSize = 32 * 1024;
+    gpu = "nvidia";
 
     desktopEnvironment = "hyprland";
 
@@ -25,11 +25,13 @@
       modules = home-manager-modules;
 
       packages = with pkgs; [
-        jellyfin-media-player
-        krita
-        vivaldi
+        # Music w/ code
+        supercollider
         kdePackages.k3b
+        chromium
+        vivaldi
       ];
+
       config.localModules = {
         shells.zsh.enable = true;
 

@@ -48,6 +48,16 @@
           ];
         };
 
+        H1L0 = {
+          inherit system;
+          specialArgs = { inherit inputs outputs system home-manager-modules; };
+          modules = [
+            ./pcs/K1L0
+            local-modules.nixosModules.default
+            local-modules.homeManagerModules.default
+          ];
+        };
+
         halu = nixpkgs.lib.nixosSystem rec {
           inherit system;
           specialArgs = { inherit inputs outputs system home-manager-modules; };
