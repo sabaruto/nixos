@@ -1,17 +1,23 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  ...
+}:
 
 with lib;
 
 let
   # TODO: Switch to cmd
   cfg = config.localModules.apps;
-  homeDirectory = "${config.home.homeDirectory}";
-  path = "${homeDirectory}/nixos/modules/home-manager/default/cmd/git";
-in {
+in
+{
   options.localModules.apps.git = {
     enable = mkEnableOption "git";
     user = mkOption {
-      type = types.enum [ "sabaruto" "teya" ];
+      type = types.enum [
+        "sabaruto"
+        "teya"
+      ];
       default = "sabaruto";
     };
   };
@@ -30,7 +36,11 @@ in {
           userEmail = "theodoreaaronobelley@hotmail.co.uk";
           userName = "sabaruto";
 
-          extraConfig = { init = { defaultBranch = "main"; }; };
+          extraConfig = {
+            init = {
+              defaultBranch = "main";
+            };
+          };
         };
       })
 

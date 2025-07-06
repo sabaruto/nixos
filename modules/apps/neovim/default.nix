@@ -1,12 +1,22 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 with lib;
-let cfg = config.localModules.apps.neovim;
-in {
+let
+  cfg = config.localModules.apps.neovim;
+in
+{
   options.localModules.apps.neovim.enable = mkEnableOption "neovim";
 
   config = mkIf cfg.enable {
     home = {
       packages = with pkgs; [
+        # GUI
+        neovide
+
         # fuzzy search
         fzf
         fd
@@ -16,6 +26,9 @@ in {
 
         # grep improvement
         ripgrep
+
+        # Coloscripts
+        dwt1-shell-color-scripts
 
         # fonts
         nerd-fonts.fira-code
@@ -42,6 +55,7 @@ in {
 
         # Builders
         gcc
+        deno
         cmake
         gnumake
 

@@ -7,7 +7,7 @@ config.font_size = 14
 config.color_scheme = "Rosé Pine Moon (Gogh)"
 -- config.color_scheme = "Rosé Pine Dawn (Gogh)"
 config.font = wezterm.font("FiraCode Nerd Font")
-config.window_decorations = "NONE"
+config.window_decorations = "TITLE"
 config.hide_tab_bar_if_only_one_tab = true
 
 config.leader = {

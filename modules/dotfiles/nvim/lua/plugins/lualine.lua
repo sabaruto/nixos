@@ -48,8 +48,8 @@ end
 local function set_keys()
 	for index = 1, 9 do
 		vim.keymap.set(
-			{ "n", "v" },
-			"" .. index,
+			{ "n" },
+			tostring(index),
 			"<cmd>LualineBuffersJump! " .. index .. "<cr>",
 			{ desc = "Go to buffer " .. index }
 		)

@@ -1,9 +1,16 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 with lib;
 
-let cfg = config.localModules.apps;
-in {
+let
+  cfg = config.localModules.apps;
+in
+{
 
   options.localModules.apps.tmux.enable = mkEnableOption "tmux";
 
@@ -28,10 +35,10 @@ in {
         {
           plugin = vim-tmux-navigator;
           extraConfig = ''
-            set -g @vim_navigator_mapping_left "C-Left C-h"  # use C-h and C-Left
-            set -g @vim_navigator_mapping_right "C-Right C-l"
-            set -g @vim_navigator_mapping_up "C-k"
-            set -g @vim_navigator_mapping_down "C-j"
+            set -g @vim_navigator_mapping_left "C-Left C-H"  # use C-h and C-Left
+            set -g @vim_navigator_mapping_right "C-Right C-L"
+            set -g @vim_navigator_mapping_up "C-Up C-K"
+            set -g @vim_navigator_mapping_down "C-Down C-J"
             set -g @vim_navigator_mapping_prev ""  # removes the C-\ binding
           '';
 

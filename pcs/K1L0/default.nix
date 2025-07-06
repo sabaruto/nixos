@@ -1,4 +1,5 @@
-{ pkgs, home-manager-modules, ... }: {
+{ pkgs, home-manager-modules, ... }:
+{
   imports = [ ./hardware-configuration.nix ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -6,6 +7,13 @@
 
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
+
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      python3Full
+    ];
+  };
 
   localModules = {
     name = "dosia";
@@ -42,15 +50,23 @@
 
         apps = {
           git.enable = true;
+          tmux.enable = true;
           neovim.enable = true;
           wezterm.enable = true;
+          ghostty.enable = true;
           alacritty.enable = true;
         };
 
         development = {
           enable = true;
           installOnNixos = true;
-          languages = [ "nix" "lua" "java" "golang" "typescript" ];
+          languages = [
+            "nix"
+            "lua"
+            "java"
+            "golang"
+            "typescript"
+          ];
         };
       };
     };
