@@ -116,6 +116,9 @@ in
       # Whatsapp
       whatsie
 
+      # Markdown renderer
+      marktext
+
       # fonts
       nerd-fonts.fira-code
       nerd-fonts.droid-sans-mono
