@@ -58,8 +58,8 @@ local terml = vim.g.createmapleader("terminal", "<leader>t")
 vim.keymap.set({ "n" }, terml .. "t", "<cmd>edit term://zsh<cr>", { desc = "Start new terminal" })
 
 -- LSP
-vim.keymap.set({ "n" }, "ga", vim.lsp.buf.code_action, { desc = "Goto LSP Code Actions" })
-vim.keymap.set({ "n" }, "<leader>uf", vim.lsp.buf.format, { desc = "Format buffer" })
-vim.keymap.set({ "n" }, "<f3>", vim.lsp.buf.format, { desc = "Format buffer" })
-vim.keymap.set({ "n" }, "<leader>r", vim.lsp.buf.rename, { desc = "Rename variable" })
-vim.keymap.set({ "n" }, "<f2>", vim.lsp.buf.rename, { desc = "Rename variable" })
+vim.keymap.set({ "n", "x" }, "ga", vim.lsp.buf.code_action, { desc = "Goto LSP Code Actions" })
+vim.keymap.set({ "n", "x" }, "<leader>uf", vim.lsp.buf.format, { desc = "Format buffer" })
+vim.keymap.set({ "n", "x" }, "<f3>", vim.lsp.buf.format, { desc = "Format buffer" })
+vim.keymap.set({ "n", "x" }, "<leader>r", vim.lsp.buf.rename, { desc = "Rename variable" })
+vim.keymap.set({ "n", "x" }, "<f2>", vim.lsp.buf.rename, { desc = "Rename variable" })

@@ -9,12 +9,17 @@ in {
     services.xserver.videoDrivers = [ "nvidia" ];
 
     # Enable nvidia package
-    hardware.nvidia = {
-      open = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-      powerManagement.enable = true;
-      modesetting.enable = true;
-      videoAcceleration = true;
+    hardware = {
+      graphics = true;
+
+      nvidia = {
+        open = true;
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
+        nvidiaPersistenced = true;
+        powerManagement.enable = true;
+        modesetting.enable = true;
+        videoAcceleration = true;
+      };
     };
   };
 }

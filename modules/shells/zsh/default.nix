@@ -14,7 +14,7 @@ in {
 
       oh-my-zsh = {
         enable = true;
-        plugins = [ "git" "dotenv" "direnv" ];
+        plugins = [ "git" "dotenv" "direnv" "mvn" "zsh-interactive-cd" ];
 
         theme = "robbyrussell";
       };
@@ -60,6 +60,7 @@ in {
             "./mvnw clean install -Dskip.unitTests -Dskip.integrationTests=true -Dcheckstyle.skip=true";
           mvn-full-install = "./mvnw clean install";
 
+          # Payments Gateway Service
           pgs-mock-app = ''
             ./mvnw spring-boot:run -pl payments-gateway-service-web -Dspring-boot.run.profiles=mock,local,secret -Dspring-boot.run.arguments="--spring.docker.compose.file=../docker-compose.yml"'';
           pgs-mock-bootstap =
@@ -70,6 +71,8 @@ in {
             ./mvnw spring-boot:run -pl payments-gateway-service-web -Dspring-boot.run.profiles=proxy,local,secret -Dspring-boot.run.arguments="--spring.docker.compose.file=../docker-compose.yml"'';
           pgs-dev-bootstap =
             "./mvnw -pl :common-test-utils exec:java@Localbootstrap-dev";
+
+          # Acceptance Quality Control
         })
       ];
     };

@@ -1,14 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, pkgs, ... }:
 with lib;
-let
-  cfg = config.localModules.apps.neovim;
-in
-{
+let cfg = config.localModules.apps.neovim;
+in {
   options.localModules.apps.neovim.enable = mkEnableOption "neovim";
 
   config = mkIf cfg.enable {
@@ -29,6 +22,9 @@ in
 
         # Coloscripts
         dwt1-shell-color-scripts
+
+        # clipboard managers
+        xsel
 
         # fonts
         nerd-fonts.fira-code
@@ -52,6 +48,7 @@ in
         node2nix
 
         luajitPackages.luarocks-nix
+        glow
 
         # Builders
         gcc

@@ -26,7 +26,6 @@ return {
 
 			-- Global keymaps
 			{ "<leader>zn",      "<cmd>ZkNew { title = vim.fn.input('Title: ') }<cr>",                      desc = "New note (zk)" },
-			{ "<leader>zn",      "<cmd>ZkNew { title = vim.fn.input('Title: ') }<cr>",                      desc = "New note (zk)" },
 			{ "<leader>zf",      "<cmd>ZkNotes { sort = { 'modified'} }<cr>",                               desc = "Open note (zk)" },
 			{ "<leader>zt",      "<cmd>ZkTags<cr>",                                                         desc = "Find related tags (zk)" },
 			{ "<leader>fz",      "<cmd>ZkNotes<cr>",                                                        desc = "Find notes (zk)" },

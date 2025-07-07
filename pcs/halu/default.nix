@@ -12,6 +12,7 @@
     stateVersion = "24.11";
 
     desktopEnvironment = "none";
+    gpu = "nvidia";
 
     system.podman.enable = true;
 
