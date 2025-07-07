@@ -1,10 +1,4 @@
-{
-  config,
-  pkgs,
-  home-manager-modules,
-  ...
-}:
-{
+{ config, pkgs, home-manager-modules, ... }: {
   imports = [ ./hardware-configuration.nix ];
 
   programs.zsh.enable = true;
@@ -29,49 +23,29 @@
     sonarr = {
       enable = true;
 
-      settings = {
-        server = {
-          urlbase = "sonarr";
-        };
-      };
+      settings = { server = { urlbase = "sonarr"; }; };
     };
 
     radarr = {
       enable = true;
 
-      settings = {
-        server = {
-          urlbase = "radarr";
-        };
-      };
+      settings = { server = { urlbase = "radarr"; }; };
     };
     readarr = {
       enable = true;
 
-      settings = {
-        server = {
-          urlbase = "readarr";
-        };
-      };
+      settings = { server = { urlbase = "readarr"; }; };
     };
     lidarr = {
       enable = true;
 
-      settings = {
-        server = {
-          urlbase = "lidarr";
-        };
-      };
+      settings = { server = { urlbase = "lidarr"; }; };
     };
 
     prowlarr = {
       enable = true;
 
-      settings = {
-        server = {
-          urlbase = "prowlarr";
-        };
-      };
+      settings = { server = { urlbase = "prowlarr"; }; };
     };
 
     rtorrent = {
@@ -98,15 +72,14 @@
       };
     };
 
-    flaresolverr.enable = true;
+    flaresolverr = {
+      enable = true;
+      openFirewall = true;
+    };
+
     music-assistant = {
       enable = true;
-      providers = [
-        "tidal"
-        "spotify"
-        "filesystem_local"
-        "jellyfin"
-      ];
+      providers = [ "tidal" "spotify" "filesystem_local" "jellyfin" ];
     };
 
     tailscale = {
@@ -132,17 +105,11 @@
         group = "servarr";
       };
 
-      sonarr = {
-        uid = 274;
-      };
+      sonarr = { uid = 274; };
 
-      radarr = {
-        uid = 275;
-      };
+      radarr = { uid = 275; };
 
-      lidarr = {
-        uid = 306;
-      };
+      lidarr = { uid = 306; };
 
       mstream = {
         uid = 307;
