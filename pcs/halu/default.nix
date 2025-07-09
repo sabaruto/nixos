@@ -1,8 +1,6 @@
 { lib, config, pkgs, inputs, home-manager-modules, ... }: {
-  security.pki.certificateFiles = [
-    "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
-    /etc/ssl/certs/SaltPay_Root_CA_01.pem
-  ];
+  security.pki.certificateFiles =
+    [ "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt" ];
 
   services.syncthing.enable = lib.mkForce false;
 
