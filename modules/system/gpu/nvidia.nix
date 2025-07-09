@@ -10,12 +10,11 @@ in {
 
     # Enable nvidia package
     hardware = {
-      graphics = true;
+      graphics.enable = true;
 
       nvidia = {
         open = true;
         package = config.boot.kernelPackages.nvidiaPackages.stable;
-        nvidiaPersistenced = true;
         powerManagement.enable = true;
         modesetting.enable = true;
         videoAcceleration = true;
