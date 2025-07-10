@@ -1,6 +1,15 @@
-{ lib, config, pkgs, inputs, home-manager-modules, ... }: {
-  security.pki.certificateFiles =
-    [ "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt" ];
+{
+  lib,
+  config,
+  pkgs,
+  inputs,
+  home-manager-modules,
+  ...
+}:
+{
+  security.pki.certificateFiles = [
+    "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
+  ];
 
   services.syncthing.enable = lib.mkForce false;
 
@@ -29,6 +38,7 @@
         dconf-editor
         gnome-menus
         jwt-cli
+        inputs.agenix.packages.x86_64-linux.default
         inputs.local-packages.packages."x86_64-linux".kulala-ls
       ];
 
@@ -53,7 +63,6 @@
           };
         };
       };
-
     };
   };
 
@@ -68,7 +77,21 @@
     docker-desktop.enable = true;
   };
 
-  programs.zsh.enable = true;
-  users = { defaultUserShell = pkgs.zsh; };
+  age = {
+    secretsDir = "/home/t-aaronobelley/agenix";
+    identityPaths = [
+      "/etc/ssh/id_ed25519"
+    ];
 
+    secrets = {
+      "SaltPay_Root_CA_01.pem" = {
+        file = ../../secrets/SaltPay_Root_CA.age;
+      };
+    };
+  };
+
+  programs.zsh.enable = true;
+  users = {
+    defaultUserShell = pkgs.zsh;
+  };
 }

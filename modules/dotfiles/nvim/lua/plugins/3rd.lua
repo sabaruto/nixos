@@ -2,7 +2,7 @@ return {
 	{
 		{
 			"3rd/image.nvim",
-			enabled = false,
+			enabled = true,
 			build = false,
 			opts = {
 				-- backend = "ueberzug",
@@ -15,7 +15,6 @@ return {
 		dependencies = {
 			"3rd/image.nvim",
 		},
-		optional = true,
 		enabled = true,
 
 		opts = {

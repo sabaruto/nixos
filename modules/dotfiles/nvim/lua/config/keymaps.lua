@@ -1,6 +1,15 @@
 -- Commands
 vim.keymap.set({ "n", "v" }, "<leader>j", ":", { remap = true, desc = "Set command line" })
 
+
+-- Copy and Paste
+vim.keymap.set('n', '<C-S-w>', ':w<CR>')      -- Save
+vim.keymap.set('v', '<C-S-C>', '"+y')         -- Copy
+vim.keymap.set('n', '<C-S-V>', '"+P')         -- Paste normal mode
+vim.keymap.set('v', '<C-S-V>', '"+P')         -- Paste visual mode
+vim.keymap.set('c', '<C-S-V>', '<C-R>+')      -- Paste command mode
+vim.keymap.set('i', '<C-S-V>', '<ESC>l"+Pli') -- Paste insert mode
+
 -- Movement
 vim.keymap.set("i", "<C-h>", "<left>", { silent = true })
 vim.keymap.set("i", "<C-j>", "<down>", { silent = true })

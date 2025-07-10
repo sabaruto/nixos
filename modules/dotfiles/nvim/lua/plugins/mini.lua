@@ -17,6 +17,20 @@ return {
 	{ 'echasnovski/mini.indentscope', version = false, config = true },
 	{ 'echasnovski/mini.map',         version = false, config = true },
 	{
+		'echasnovski/mini.animate',
+		version = false,
+		opts = {
+			cursor = {
+				timing = function(_, n)
+					return 125 / n
+				end
+			},
+			scroll = {
+				enable = false,
+			}
+		}
+	},
+	{
 		'echasnovski/mini.bufremove',
 		version = false,
 		config = true,
@@ -28,6 +42,7 @@ return {
 	{
 		'echasnovski/mini.files',
 		version = false,
+		lazy = false,
 		opts = {
 			mappings = {
 				go_in_plus = vim.g.rightkey,
