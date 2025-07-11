@@ -49,7 +49,16 @@ return {
 			},
 			quickfile = { enabled = true },
 			scope = { enabled = true },
-			scroll = { enabled = false },
+			scroll = {
+				enabled = true,
+				animate = {
+					easing = "inSine",
+				},
+
+				animate_repeat = {
+					easing = "inSine",
+				},
+			},
 
 			statuscolumn = {
 				enabled = true,
