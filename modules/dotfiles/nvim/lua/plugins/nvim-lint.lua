@@ -1,7 +1,7 @@
 return {
 	{
 		"mfussenegger/nvim-lint",
-		enabled = false,
+		enabled = true,
 		opts = {
 			linters_by_ft = {
 				python = {

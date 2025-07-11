@@ -1,5 +1,4 @@
 return {
-	root_dir = vim.fs.dirname(vim.fs.find({ ".git", "mvnw", "gradlew" }, { upward = true })[1]),
 	settings = {
 		java = {
 			eclipse = {
@@ -9,7 +8,6 @@ return {
 				organizeImports = true,
 				cleanup = true,
 			},
-
 			configuration = {
 				updateBuildConfiguration = "interactive",
 				maven = {
@@ -33,6 +31,12 @@ return {
 					enabled = "all", -- literals, all, none
 				},
 			},
+			format = {
+				settings = {
+					url = os.getenv("HOME") .. "/.m2/formatter.xml",
+					profile = "IntelliJ",
+				}
+			}
 		},
 		signatureHelp = { enabled = true },
 	},

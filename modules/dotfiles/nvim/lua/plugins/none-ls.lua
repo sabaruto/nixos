@@ -1,6 +1,7 @@
 return {
 	"nvimtools/none-ls.nvim",
 	event = { "VeryLazy" },
+	enabled = false,
 	config = function(_, opts)
 		local null_ls = require("null-ls")
 		opts = {

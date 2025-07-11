@@ -3,6 +3,7 @@
   config,
   pkgs,
   inputs,
+  system,
   home-manager-modules,
   ...
 }:
@@ -38,8 +39,9 @@
         dconf-editor
         gnome-menus
         jwt-cli
-        inputs.agenix.packages.x86_64-linux.default
-        inputs.local-packages.packages."x86_64-linux".kulala-ls
+        inputs.agenix.packages."${system}".default
+        inputs.local-packages.packages."${system}".kulala-ls
+        inputs.local-packages.packages."${system}".java-debug
       ];
 
       config.localModules = {
