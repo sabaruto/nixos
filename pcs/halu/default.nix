@@ -48,13 +48,13 @@
         shells.zsh.enable = true;
 
         cmd = {
+          tmux.enable = true;
           direnv.enable = true;
           oh-my-posh.enable = true;
         };
 
         apps = {
           neovim.enable = true;
-          tmux.enable = true;
           wezterm.enable = true;
           ghostty.enable = true;
           alacritty.enable = true;

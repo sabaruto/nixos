@@ -1,13 +1,13 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 
 with lib;
 
 let
-  # TODO: Switch to cmd
   cfg = config.localModules.apps;
 in
 {
@@ -16,6 +16,18 @@ in
   config = mkIf cfg.kitty.enable {
     programs.kitty = lib.mkForce {
       enable = true;
+      enableGitIntegration = true;
+
+      font = {
+        name = "Lilex";
+        package = pkgs.nerd-fonts.lilex;
+        size = 14;
+      };
+
+      shellIntegration = {
+        enableZshIntegration = true;
+      };
+
       settings = {
         confirm_os_window_close = 0;
 
@@ -25,7 +37,9 @@ in
         background_opacity = "0.25";
         background_blur = 6;
         dynamic_background_opacity = true;
-        font_size = 12;
+        font_size = 14;
+
+        cursor_trail = 3;
       };
     };
   };

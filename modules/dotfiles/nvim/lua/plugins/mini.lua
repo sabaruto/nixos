@@ -19,6 +19,7 @@ return {
 	{
 		'echasnovski/mini.animate',
 		version = false,
+		enabled = false,
 		opts = {
 			cursor = {
 				timing = function(_, n)

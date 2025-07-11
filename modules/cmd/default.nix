@@ -1,13 +1,21 @@
 { lib, config, ... }:
 
 with lib;
-let cfg = config.localModules;
+let
+  cfg = config.localModules;
 
-in {
+in
+{
 
-  imports = [ ./git ./kitty ./direnv ./tmux ./oh-my-posh ];
-  config.localModules.apps = mkIf cfg.development.enable {
-    kitty.enable = true;
+  imports = [
+    ./git
+    ./direnv
+    ./tmux
+    ./oh-my-posh
+  ];
+  config.localModules.cmd = mkIf cfg.development.enable {
     tmux.enable = true;
+    direnv.enable = true;
+    git.enable = true;
   };
 }

@@ -1,7 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 with lib;
-let cfg = config.localModules.apps.neovim;
-in {
+let
+  cfg = config.localModules.apps.neovim;
+in
+{
   options.localModules.apps.neovim.enable = mkEnableOption "neovim";
 
   config = mkIf cfg.enable {
@@ -30,6 +37,7 @@ in {
         nerd-fonts.fira-code
         nerd-fonts.droid-sans-mono
         nerd-fonts.martian-mono
+        nerd-fonts.lilex
 
         lua51Packages.lua
 
@@ -57,40 +65,40 @@ in {
         gnumake
 
         # lsp / formatters
-        nil
-        nixd
+        asciidoc
+        asciidoctor
+        deadnix
+        google-java-format
         gopls
-        vale
-        php
+        html-tidy
         isort
         julia
-        pyright
-        yamlfmt
-        statix
-        deadnix
-        yarn-berry
         lemminx
-        ueberzugpp
-        asciidoc
-        html-tidy
-        asciidoctor
         libxml2Python
+        nil
+        nixd
+        php
+        pyright
         sonarlint-ls
+        statix
+        ueberzugpp
         uncrustify
-        google-java-format
+        vale
+        yamlfmt
+        yarn-berry
 
         # Builders
-        cargo
-        mermaid-cli
-        temurin-bin-24
-        markdown-oxide
-        python313Packages.python
         bash-language-server
-        python313Packages.pip
-        yaml-language-server
-        php84Packages.composer
+        cargo
         lua-language-server
+        markdown-oxide
+        mermaid-cli
+        php84Packages.composer
+        python313Packages.pip
+        python313Packages.python
         spectral-language-server
+        temurin-bin-24
+        yaml-language-server
       ];
     };
     programs.neovim = {

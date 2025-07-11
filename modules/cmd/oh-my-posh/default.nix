@@ -1,7 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 with lib;
-let cfg = config.localModules.cmd.oh-my-posh;
-in {
+let
+  cfg = config.localModules.cmd.oh-my-posh;
+in
+{
 
   options.localModules.cmd.oh-my-posh.enable = mkEnableOption "oh-my-posh";
 

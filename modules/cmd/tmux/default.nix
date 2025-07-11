@@ -8,11 +8,11 @@
 with lib;
 
 let
-  cfg = config.localModules.apps;
+  cfg = config.localModules.cmd;
 in
 {
 
-  options.localModules.apps.tmux.enable = mkEnableOption "tmux";
+  options.localModules.cmd.tmux.enable = mkEnableOption "tmux";
 
   config = mkIf cfg.tmux.enable {
     programs.tmux = {

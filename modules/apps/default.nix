@@ -1,17 +1,38 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 with lib;
-let cfg = config.localModules.development;
-in {
-  imports = [ ./alacritty ./neovim ./ghostty ./wezterm ];
+let
+  cfg = config.localModules.development;
+in
+{
+  imports = [
+    ./alacritty
+    ./neovim
+    ./ghostty
+    ./wezterm
+    ./kitty
+  ];
 
   options.localModules = {
     development = {
       enable = mkEnableOption "Development";
       installOnNixos = mkEnableOption "Install with Nix";
       languages = mkOption {
-        type = with types;
-          listOf (enum [ "golang" "typescript" "nix" "java" "python" "lua" ]);
+        type =
+          with types;
+          listOf (enum [
+            "golang"
+            "typescript"
+            "nix"
+            "java"
+            "python"
+            "lua"
+          ]);
       };
     };
 
@@ -21,7 +42,11 @@ in {
   config = mkIf (cfg.enable && cfg.installOnNixos) {
     home = mkMerge [
       (mkIf (elem "golang" cfg.languages) {
-        packages = with pkgs; [ gopls delve golangci-lint ];
+        packages = with pkgs; [
+          gopls
+          delve
+          golangci-lint
+        ];
       })
       (mkIf (elem "nix" cfg.languages) {
         packages = with pkgs; [

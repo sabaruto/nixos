@@ -7,11 +7,10 @@
 with lib;
 
 let
-  # TODO: Switch to cmd
-  cfg = config.localModules.apps;
+  cfg = config.localModules.cmd;
 in
 {
-  options.localModules.apps.git = {
+  options.localModules.cmd.git = {
     enable = mkEnableOption "git";
     user = mkOption {
       type = types.enum [
@@ -68,7 +67,6 @@ in
             };
           };
         };
-
       })
     ];
   };

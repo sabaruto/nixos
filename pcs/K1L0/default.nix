@@ -45,16 +45,16 @@
 
         cmd = {
           direnv.enable = true;
+          git.enable = true;
           oh-my-posh.enable = true;
+          tmux.enable = true;
         };
 
         apps = {
-          git.enable = true;
-          tmux.enable = true;
+          alacritty.enable = true;
+          kitty.enable = true;
           neovim.enable = true;
           wezterm.enable = true;
-          ghostty.enable = true;
-          alacritty.enable = true;
         };
 
         development = {
