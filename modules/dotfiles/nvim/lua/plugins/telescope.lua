@@ -14,8 +14,14 @@ return {
 		branch = "0.1.x",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
+			"mfussenegger/nvim-dap",
+
 			"Snikimonkd/telescope-git-conflicts.nvim",
 			"nvim-telescope/telescope-fzf-native.nvim",
+			"nvim-telescope/telescope-file-browser.nvim",
+			"nvim-telescope/telescope-ui-select.nvim",
+			"nvim-telescope/telescope-dap.nvim",
+			"nvim-telescope/telescope-media-files.nvim",
 		},
 
 		opts = {
@@ -37,59 +43,79 @@ return {
 					override_generic_sorter = true, -- override the generic sorter
 					override_file_sorter = true, -- override the file sorter
 				},
+				cmdline = {
+					mappings = {
+						complete      = '<Tab>',
+						run_selection = '<C-CR>',
+						run_input     = '<CR>',
+					},
+				},
 			},
 		},
 
 		config = function(_, opts)
-			require("telescope").setup(opts)
-			require('telescope').load_extension('fzf')
-			require("telescope").load_extension("project")
-			require("telescope").load_extension("conflicts")
-		end,
-		keys = function()
-			local telescope = require("telescope.builtin")
-			local extensions = require("telescope").extensions
-			return {
-				-- goto
-				{ "gd",          telescope.lsp_definitions,           desc = "Goto Definitions" },
-				{ "gi",          telescope.lsp_implementations,       desc = "Goto Implementations" },
-				{ "gr",          telescope.lsp_references,            desc = "Goto References" },
-				{ "gt",          telescope.lsp_type_definitions,      desc = "Goto type References" },
-				{ "gps",         telescope.lsp_workspace_symbols,     desc = "Goto workspace symbols" },
+			local telescope = require("telescope")
+			telescope.setup(opts)
+			telescope.load_extension('fzf')
+			telescope.load_extension('dap')
+			telescope.load_extension("project")
+			telescope.load_extension("conflicts")
+			telescope.load_extension("ui-select")
+			telescope.load_extension("file_browser")
+			telescope.load_extension("media_files")
 
-				-- find
-				{ "<leader>ff",  telescope.find_files,                desc = "Find files" },
-				{ "<leader>fw",  telescope.grep_string,               desc = "Find files with word under cursor" },
-				{ "<leader>fS",  telescope.lsp_document_symbols,      desc = "Find document symbols" },
-				{ "<leader>fr",  telescope.registers,                 desc = "Find registers" },
-				{ "<leader>fb",  telescope.buffers,                   desc = "Find buffers" },
-				{ "<leader>fo",  telescope.oldfiles,                  desc = "Find recent files" },
-				{ "<leader>fB",  telescope.current_buffer_fuzzy_find, desc = "Find buffers with fuzzy find" },
-				{ "<leader>fk",  telescope.keymaps,                   desc = "Find keymaps" },
-				{ "<leader>fc",  telescope.colorscheme,               desc = "Find colorschemes" },
 
-				-- search
-				{ "/",           telescope.current_buffer_fuzzy_find, desc = "Search" },
-				{ "<leader>/",   telescope.live_grep,                 desc = "Find files by grep" },
+			local builtin_search = require("telescope.builtin")
+			local ext_search = telescope.extensions
 
-				-- Git
-				{ "<leader>gf",  telescope.git_files,                 desc = "Find git files" },
-				{ "<leader>gb",  telescope.git_branches,              desc = "Find git branches" },
-				{ "<leader>gs",  telescope.git_status,                desc = "Find git status" },
-				{ "<leader>gS",  telescope.git_status,                desc = "Find git stash" },
+			-- goto
+			vim.keymap.set({ "n", "v" }, "gd", builtin_search.lsp_definitions, { desc = "Goto Definitions" })
+			vim.keymap.set({ "n", "v" }, "gi", builtin_search.lsp_implementations, { desc = "Goto Implementations" })
+			vim.keymap.set({ "n", "v" }, "gr", builtin_search.lsp_references, { desc = "Goto References" })
+			vim.keymap.set({ "n", "v" }, "gt", builtin_search.lsp_type_definitions, { desc = "Goto type References" })
+			vim.keymap.set({ "n", "v" }, "gps", builtin_search.lsp_workspace_symbols,
+				{ desc = "Goto workspace symbols" })
 
-				{ "<leader>gcc", telescope.git_commits,               desc = "Find git commits" },
-				{ "<leader>gcb", telescope.git_bcommits,              desc = "Find and checkout git commits" },
-				{ "<leader>gcr", telescope.git_bcommits_range,        desc = "Find git commit range" },
-				{
-					"<leader>gC",
-					function()
-						extensions.conflicts.conflicts({})
-					end,
-					desc = "Find conflicting files",
-				},
-				{ "<leader>fp", extensions.project.project, desc = "Find [P]rojects" },
-			}
+			-- find
+			vim.keymap.set({ "n", "v" }, "<leader>ff", builtin_search.find_files, { desc = "Find files" })
+			vim.keymap.set({ "n", "v" }, "<leader>fw", builtin_search.grep_string,
+				{ desc = "Find files with word under cursor" })
+			vim.keymap.set({ "n", "v" }, "<leader>fS", builtin_search.lsp_document_symbols,
+				{ desc = "Find document symbols" })
+			vim.keymap.set({ "n", "v" }, "<leader>fr", builtin_search.registers, { desc = "Find registers" })
+			vim.keymap.set({ "n", "v" }, "<leader>fo", builtin_search.oldfiles, { desc = "Find recent files" })
+			vim.keymap.set({ "n", "v" }, "<leader>f/", builtin_search.current_buffer_fuzzy_find,
+				{ desc = "Find buffers with fuzzy find" })
+			vim.keymap.set({ "n", "v" }, "<leader>fk", builtin_search.keymaps, { desc = "Find keymaps" })
+			vim.keymap.set({ "n", "v" }, "<leader>fc", builtin_search.colorscheme, { desc = "Find colorschemes" })
+			vim.keymap.set({ "n", "v" }, "<leader>fb",
+				function() ext_search.file_browser.file_browser({ path = "%:p:h" }) end,
+				{ desc = "Find Folders / Files" })
+			vim.keymap.set({ "n", "v" }, "<leader>fB", ext_search.file_browser.file_browser,
+				{ desc = "Find Folders / Files (cwd)" })
+			vim.keymap.set({ "n", "v" }, "<leader>fm", ext_search.media_files.media_files, { desc = "Find Media Files" })
+
+			-- search
+			-- vim.keymap.set({ "n", "v" }, "/", builtin_search.current_buffer_fuzzy_find, { desc = "Search" })
+			vim.keymap.set({ "n", "v" }, "<leader>/", builtin_search.live_grep, { desc = "Find files by grep" })
+
+			-- Git
+			vim.keymap.set({ "n", "v" }, "<leader>gf", builtin_search.git_files, { desc = "Find git files" })
+			vim.keymap.set({ "n", "v" }, "<leader>gb", builtin_search.git_branches, { desc = "Find git branches" })
+			vim.keymap.set({ "n", "v" }, "<leader>gs", builtin_search.git_status, { desc = "Find git status" })
+			vim.keymap.set({ "n", "v" }, "<leader>gS", builtin_search.git_status, { desc = "Find git stash" })
+
+			vim.keymap.set({ "n", "v" }, "<leader>gcc", builtin_search.git_commits, { desc = "Find git commits" })
+			vim.keymap.set({ "n", "v" }, "<leader>gcb", builtin_search.git_bcommits,
+				{ desc = "Find and checkout git commits" })
+			vim.keymap.set({ "n", "v" },
+				"<leader>gC",
+				function()
+					ext_search.conflicts.conflicts({})
+				end,
+				{ desc = "Find conflicting files",
+				})
+			vim.keymap.set({ "n", "v" }, "<leader>fp", ext_search.project.project, { desc = "Find [P]rojects" })
 		end,
 	},
 }

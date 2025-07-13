@@ -16,8 +16,7 @@
     };
 
     lix-module = {
-      url =
-        "https://git.lix.systems/lix-project/nixos-module/archive/2.93.2-1.tar.gz";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.2-1.tar.gz";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
@@ -46,20 +45,38 @@
     };
   };
 
-  outputs = { self, agenix, nixpkgs, nixos-wsl, flake-utils, local-modules
-    , lix-module, ... }@inputs:
-    flake-utils.lib.eachDefaultSystemPassThrough (system:
+  outputs =
+    {
+      self,
+      agenix,
+      nixpkgs,
+      nixos-wsl,
+      flake-utils,
+      local-modules,
+      lix-module,
+      ...
+    }@inputs:
+    flake-utils.lib.eachDefaultSystemPassThrough (
+      system:
       let
         inherit (self) outputs;
         home-manager-modules = [ local-modules.homeManagerModules.all ];
-        specialArgs = { inherit inputs outputs system home-manager-modules; };
+        specialArgs = {
+          inherit
+            inputs
+            outputs
+            system
+            home-manager-modules
+            ;
+        };
 
         default-modules = [
           lix-module.nixosModules.default
           local-modules.nixosModules.default
           local-modules.homeManagerModules.default
         ];
-      in {
+      in
+      {
         nixosConfigurations = {
           zalu = nixpkgs.lib.nixosSystem {
             inherit specialArgs;
@@ -96,16 +113,20 @@
           };
         };
 
-        devShells."${system}" = let
-          pkgs = import nixpkgs {
-            inherit system;
-            config = { allowUnfree = true; };
+        devShells."${system}" =
+          let
+            pkgs = import nixpkgs {
+              inherit system;
+              config = {
+                allowUnfree = true;
+              };
+            };
+          in
+          {
+            saltpay = import ./dev-shells/saltpay.nix { inherit pkgs; };
+            streaming-service-merger = import ./dev-shells/streaming-service-merger.nix { inherit pkgs; };
+            zk-app = import ./dev-shells/zk-app.nix { inherit pkgs; };
           };
-        in {
-          saltpay = import ./dev-shells/saltpay.nix { inherit pkgs; };
-          streaming-service-merger =
-            import ./dev-shells/streaming-service-merger.nix { inherit pkgs; };
-          zk-app = import ./dev-shells/zk-app.nix { inherit pkgs; };
-        };
-      });
+      }
+    );
 }

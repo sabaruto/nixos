@@ -1,6 +1,14 @@
-{ lib, config, pkgs, inputs, system, home-manager-modules, ... }: {
-  security.pki.certificateFiles =
-    [ "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt" ];
+{
+  lib,
+  config,
+  pkgs,
+  inputs,
+  system,
+  home-manager-modules,
+  ...
+}:
+{
+  security.pki.certificateFiles = [ "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt" ];
 
   services.syncthing.enable = lib.mkForce false;
 
@@ -75,11 +83,15 @@
     identityPaths = [ "/etc/ssh/id_ed25519" ];
 
     secrets = {
-      "SaltPay_Root_CA_01.pem" = { file = ../../secrets/SaltPay_Root_CA.age; };
+      "SaltPay_Root_CA_01.pem" = {
+        file = ../../secrets/SaltPay_Root_CA.age;
+      };
     };
   };
 
   programs.zsh.enable = true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  users = { defaultUserShell = pkgs.zsh; };
+  users = {
+    defaultUserShell = pkgs.zsh;
+  };
 }

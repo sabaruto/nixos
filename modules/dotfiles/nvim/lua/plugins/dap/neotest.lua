@@ -10,6 +10,7 @@ return {
 			"nvim-treesitter/nvim-treesitter",
 			"nvim-neotest/neotest-plenary",
 		},
+		enabled = false,
 		opts = {
 			status = { virtual_text = true },
 			output = { open_on_run = true },
