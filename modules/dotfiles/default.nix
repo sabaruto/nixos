@@ -73,6 +73,14 @@ in {
         target = ".pictures";
       };
 
+      "nixpkgs" = {
+        enable = true;
+        recursive = true;
+        source =
+          config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/nixpkgs";
+        target = ".config/nixpkgs";
+      };
+
       "ghostty" = {
         enable = true;
         recursive = true;

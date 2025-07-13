@@ -46,10 +46,10 @@
         cmd = {
           direnv.enable = true;
           oh-my-posh.enable = true;
+          git.enable = true;
         };
 
         apps = {
-          git.enable = true;
           neovim.enable = true;
           wezterm.enable = true;
           ghostty.enable = true;

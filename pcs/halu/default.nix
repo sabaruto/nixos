@@ -1,16 +1,6 @@
-{
-  lib,
-  config,
-  pkgs,
-  inputs,
-  system,
-  home-manager-modules,
-  ...
-}:
-{
-  security.pki.certificateFiles = [
-    "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
-  ];
+{ lib, config, pkgs, inputs, system, home-manager-modules, ... }: {
+  security.pki.certificateFiles =
+    [ "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt" ];
 
   services.syncthing.enable = lib.mkForce false;
 
@@ -51,6 +41,11 @@
           tmux.enable = true;
           direnv.enable = true;
           oh-my-posh.enable = true;
+
+          git = {
+            enable = true;
+            user = "teya";
+          };
         };
 
         apps = {
@@ -59,10 +54,6 @@
           ghostty.enable = true;
           alacritty.enable = true;
 
-          git = {
-            enable = true;
-            user = "teya";
-          };
         };
       };
     };
@@ -81,19 +72,14 @@
 
   age = {
     secretsDir = "/home/t-aaronobelley/agenix";
-    identityPaths = [
-      "/etc/ssh/id_ed25519"
-    ];
+    identityPaths = [ "/etc/ssh/id_ed25519" ];
 
     secrets = {
-      "SaltPay_Root_CA_01.pem" = {
-        file = ../../secrets/SaltPay_Root_CA.age;
-      };
+      "SaltPay_Root_CA_01.pem" = { file = ../../secrets/SaltPay_Root_CA.age; };
     };
   };
 
   programs.zsh.enable = true;
-  users = {
-    defaultUserShell = pkgs.zsh;
-  };
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  users = { defaultUserShell = pkgs.zsh; };
 }
