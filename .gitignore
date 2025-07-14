@@ -11,3 +11,6 @@
 
 # any git keys
 git-crypt-key
+
+# 1Password secrets
+op_secrets.tpl.json
