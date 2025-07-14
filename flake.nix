@@ -115,17 +115,12 @@
 
         devShells."${system}" =
           let
-            pkgs = import nixpkgs {
-              inherit system;
-              config = {
-                allowUnfree = true;
-              };
-            };
+            pkgs = import nixpkgs;
           in
           {
             saltpay = import ./dev-shells/saltpay.nix { inherit pkgs; };
             streaming-service-merger = import ./dev-shells/streaming-service-merger.nix { inherit pkgs; };
-            zk-app = import ./dev-shells/zk-app.nix { inherit pkgs; };
+            zk-app = import ./dev-shells/zk-app.nix { inherit nixpkgs system; };
           };
       }
     );
