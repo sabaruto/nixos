@@ -91,17 +91,6 @@
     wslConf.user.default = "t-aaronobelley";
   };
 
-  age = {
-    secretsDir = "/home/t-aaronobelley/agenix";
-    identityPaths = [ "/etc/ssh/id_ed25519" ];
-
-    secrets = {
-      "SaltPay_Root_CA_01.pem" = {
-        file = ../../secrets/SaltPay_Root_CA.age;
-      };
-    };
-  };
-
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
