@@ -46,9 +46,11 @@ return {
 					},
 				},
 				format = {
+					enabled = false,
 					settings = {
-						url = os.getenv("HOME") .. "/.m2/formatter.xml",
 						profile = "IntelliJ",
+						url =
+							os.getenv("HOME") .. "/.m2/formatter.xml",
 					}
 				}
 			},

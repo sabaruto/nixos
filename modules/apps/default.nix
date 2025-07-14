@@ -90,6 +90,9 @@ in
           # lsp
           jdt-language-server
 
+          # formatters
+          clang-tools
+
           # Databases
           postgresql
         ];

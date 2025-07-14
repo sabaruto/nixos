@@ -13,10 +13,14 @@ return {
 				nix = {
 					"deadnix"
 				},
+				java = {
+					"checkstyle"
+				},
 			},
 		},
 		config = function(_, opts)
 			require("lint").linters_by_ft = opts.linters_by_ft
+			require("lint").linters.checkstyle.config_file = os.getenv("HOME") .. "/.m2/checkstyle.xml"
 
 			vim.api.nvim_create_autocmd("BufWritePost", {
 				pattern = "*",

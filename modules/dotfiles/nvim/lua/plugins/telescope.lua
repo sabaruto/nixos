@@ -1,11 +1,5 @@
 return {
 	{
-		"nvim-telescope/telescope-project.nvim",
-		dependencies = {
-			"nvim-telescope/telescope.nvim",
-		},
-	},
-	{
 		"nvim-telescope/telescope-fzf-native.nvim",
 		build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
 	},
@@ -58,11 +52,11 @@ return {
 			telescope.setup(opts)
 			telescope.load_extension('fzf')
 			telescope.load_extension('dap')
-			telescope.load_extension("project")
 			telescope.load_extension("conflicts")
 			telescope.load_extension("ui-select")
 			telescope.load_extension("file_browser")
 			telescope.load_extension("media_files")
+			telescope.load_extension("workspaces")
 
 
 			local builtin_search = require("telescope.builtin")
@@ -115,7 +109,7 @@ return {
 				end,
 				{ desc = "Find conflicting files",
 				})
-			vim.keymap.set({ "n", "v" }, "<leader>fp", ext_search.project.project, { desc = "Find [P]rojects" })
+			vim.keymap.set({ "n", "v" }, "<leader>fw", ext_search.workspaces.workspaces, { desc = "Find workspaces" })
 		end,
 	},
 }
