@@ -41,14 +41,7 @@ in
 
   config = mkIf (cfg.enable && cfg.installOnNixos) {
     home = mkMerge [
-      (mkIf (elem "golang" cfg.languages) {
-        packages = with pkgs; [
-          gopls
-          delve
-          golangci-lint
-        ];
-      })
-      (mkIf (elem "nix" cfg.languages) {
+      {
         packages = with pkgs; [
           # creating packages from URLs
           nix-init
@@ -59,14 +52,47 @@ in
           # nix formatter
           nixfmt-rfc-style
           nixd
+
+          lua-language-server
         ];
-      })
-      (mkIf (elem "lua" cfg.languages) {
-        packages = with pkgs; [ lua-language-server ];
+      }
+
+      (mkIf (elem "golang" cfg.languages) {
+        packages = with pkgs; [
+          gopls
+          delve
+          golangci-lint
+        ];
       })
 
       (mkIf (elem "python" cfg.languages) {
-        packages = with pkgs; [ python312Packages.debugpy ];
+        packages = with pkgs; [
+          python3Full
+          python312Packages.debugpy
+        ];
+      })
+
+      (mkIf (elem "java" cfg.languages) {
+        packages = with pkgs; [
+          # java
+          temurin-bin-24
+
+          spring-boot-cli
+          libglibutil
+
+          # project builders
+          maven
+          gradle
+
+          # Jars
+          lombok
+
+          # lsp
+          jdt-language-server
+
+          # Databases
+          postgresql
+        ];
       })
     ];
 
@@ -75,6 +101,13 @@ in
       enableZshIntegration = true;
       enableBashIntegration = true;
       enableFishIntegration = true;
+    };
+
+    localModules.apps = mkIf cfg.enable {
+      kitty.enable = true;
+      neovim.enable = true;
+      wezterm.enable = true;
+      alacritty.enable = true;
     };
   };
 }

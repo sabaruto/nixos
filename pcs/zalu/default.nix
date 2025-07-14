@@ -1,4 +1,5 @@
-{ pkgs, home-manager-modules, ... }: {
+{ pkgs, home-manager-modules, ... }:
+{
   imports = [ ./hardware-configuration.nix ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -33,23 +34,16 @@
       config.localModules = {
         shells.zsh.enable = true;
 
-        cmd = {
-          direnv.enable = true;
-          git.enable = true;
-          oh-my-posh.enable = true;
-        };
-
-        apps = {
-          kitty.enable = true;
-          neovim.enable = true;
-          wezterm.enable = true;
-          alacritty.enable = true;
-        };
-
         development = {
           enable = true;
           installOnNixos = true;
-          languages = [ "nix" "lua" "java" "golang" "typescript" ];
+          languages = [
+            "nix"
+            "lua"
+            "java"
+            "golang"
+            "typescript"
+          ];
         };
       };
     };

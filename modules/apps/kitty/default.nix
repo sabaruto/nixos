@@ -35,8 +35,8 @@ in
         wayland_titlebar_color = "system";
 
         background_opacity = "0.25";
-        background_blur = 6;
-        dynamic_background_opacity = true;
+        background_blur = 0;
+        dynamic_background_opacity = false;
         font_size = 14;
 
         cursor_trail = 3;

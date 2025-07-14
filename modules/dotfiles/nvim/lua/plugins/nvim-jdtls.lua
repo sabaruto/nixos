@@ -23,18 +23,6 @@ return {
 
 					runtimes = {
 						{
-							name = "JavaSE-11",
-							path = vim.fn.glob("/nix/store/*-temurin-bin-11.0.26")
-						},
-						{
-							name = "JavaSE-17",
-							path = vim.fn.glob("/nix/store/*-temurin-bin-17.0.14")
-						},
-						{
-							name = "JavaSE-21",
-							path = vim.fn.glob("/nix/store/*-temurin-bin-21.0.6")
-						},
-						{
 							name = "JavaSE-24",
 							path = vim.fn.glob("/nix/store/*-temurin-bin-24.0.0")
 						}

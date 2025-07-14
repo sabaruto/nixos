@@ -14,8 +14,9 @@ in
     ./oh-my-posh
   ];
   config.localModules.cmd = mkIf cfg.development.enable {
-    tmux.enable = true;
     direnv.enable = true;
     git.enable = true;
+    oh-my-posh.enable = true;
+    tmux.enable = true;
   };
 }

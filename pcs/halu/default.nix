@@ -8,7 +8,12 @@
   ...
 }:
 {
-  security.pki.certificateFiles = [ "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt" ];
+  security.pki = {
+    certificateFiles = [
+      "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
+      ../../secrets/SaltPay_Root_CA_01.pem
+    ];
+  };
 
   services.syncthing.enable = lib.mkForce false;
 
@@ -35,33 +40,33 @@
         tilt
         postman
         dconf-editor
-        gnome-menus
         jwt-cli
         inputs.agenix.packages."${system}".default
         inputs.local-packages.packages."${system}".kulala-ls
         inputs.local-packages.packages."${system}".java-debug
+
+        xdg-utils-cxx
+        weston
       ];
 
       config.localModules = {
         shells.zsh.enable = true;
 
-        cmd = {
-          tmux.enable = true;
-          direnv.enable = true;
-          oh-my-posh.enable = true;
+        development = {
+          enable = true;
+          installOnNixos = true;
+          languages = [
+            "nix"
+            "lua"
+            "java"
+          ];
+        };
 
+        cmd = {
           git = {
             enable = true;
             user = "teya";
           };
-        };
-
-        apps = {
-          neovim.enable = true;
-          wezterm.enable = true;
-          ghostty.enable = true;
-          alacritty.enable = true;
-
         };
       };
     };
@@ -71,11 +76,19 @@
     enable = true;
     defaultUser = "t-aaronobelley";
 
+    wrapBinSh = true;
+
     # USB access
     usbip.enable = true;
     useWindowsDriver = true;
     startMenuLaunchers = true;
-    docker-desktop.enable = true;
+    docker-desktop.enable = false;
+
+    interop = {
+      register = true;
+    };
+
+    wslConf.user.default = "t-aaronobelley";
   };
 
   age = {
@@ -85,6 +98,31 @@
     secrets = {
       "SaltPay_Root_CA_01.pem" = {
         file = ../../secrets/SaltPay_Root_CA.age;
+      };
+    };
+  };
+
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+
+    wlr.enable = true;
+    lxqt.enable = true;
+
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      kdePackages.xdg-desktop-portal-kde
+      xdg-desktop-portal-hyprland
+    ];
+
+    config = {
+      common = {
+        default = [
+          "lxqt"
+        ];
+        "org.freedesktop.Notifications" = [
+
+        ];
       };
     };
   };
