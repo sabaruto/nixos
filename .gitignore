@@ -8,3 +8,6 @@
 
 # null-ls files
 .null-ls_*
+
+# any git keys
+git-crypt-key
