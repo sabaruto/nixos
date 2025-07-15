@@ -53,6 +53,7 @@ mkShell rec {
     jdk24
     google-chrome
     virtualglLib
+    lombok
 
     (androidenv.emulateApp {
       name = "emulate-MyAndroidApp";

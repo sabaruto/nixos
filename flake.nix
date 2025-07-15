@@ -119,6 +119,7 @@
             inherit nixpkgs system;
           };
           zk-app = import ./dev-shells/zk-app.nix { inherit nixpkgs system; };
+          nodejs = import ./dev-shells/nodejs.nix { inherit nixpkgs system; };
         };
       }
     );

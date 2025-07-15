@@ -51,6 +51,17 @@ return {
 						url =
 							os.getenv("HOME") .. "/.m2/eclipse-formatter.xml",
 					}
+				},
+				capabilities = {
+					workspace = {
+						configuration = true,
+						didChangeWatchedFiles = {
+							dynamicRegistration = true
+						},
+						didChangeWorkspaceFolders = {
+							dynamicRegistration = true
+						}
+					}
 				}
 			},
 			signatureHelp = { enabled = true },
@@ -58,23 +69,36 @@ return {
 
 		config = function(_, opts)
 			local home = os.getenv("HOME")
+			local nixos_dir = home .. "/github.com/sabaruto/nixos"
+			local jars_dir = nixos_dir .. "/tools/java/jars"
 
 			local jdtls_dir = vim.fn.glob("/nix/store/*-jdt-language-server-*/bin/jdtls")
-
 			local cache_dir = home .. "/.cache/jdtls"
 			local config_dir = cache_dir .. "/config"
 
 			local cwd = vim.fn.getcwd()
-
 			local project_name = vim.fn.fnamemodify(cwd, ':p:h:t')
 			local workspace_dir = cache_dir .. '/workspace/' .. project_name
-
 			local lombok_dir = vim.fn.glob("/nix/store/*-lombok-*/share/java/lombok.jar")
-
 			local config = {}
+
+			config.on_attach = function(_, _)
+				require("jdtls.setup").add_commands()
+				require("jdtls").setup_dap()
+			end
+
 			config.settings = opts
 			config.cmd = {
 				jdtls_dir,
+				'--jvm-arg=-Declipse.application=org.eclipse.jdt.ls.core.id1',
+				'--jvm-arg=-Dosgi.bundles.defaultStartLevel=4',
+				'--jvm-arg=-Declipse.product=org.eclipse.jdt.ls.core.product',
+				'--jvm-arg=-Dlog.protocol=true',
+				'--jvm-arg=-Dlog.level=ALL',
+				'--jvm-arg=-Xmx1g',
+				'--jvm-arg=--add-modules=ALL-SYSTEM',
+				'--jvm-arg=--add-opens=java.base/java.util=ALL-UNNAMED',
+				'--jvm-arg=--add-opens=java.base/java.lang=ALL-UNNAMED',
 				"-configuration",
 				config_dir,
 				"-data",
@@ -82,19 +106,25 @@ return {
 				"--jvm-arg=-javaagent:" .. lombok_dir,
 			}
 
-			local bundles = {
-				vim.fn.glob("/nix/store/*-java-debug-*/share/java/java-debug.jar"),
-			}
+			local bundles = {}
 
 			vim.list_extend(bundles,
-				vim.split(vim.fn.glob(home .. "/github.com/microsoft/vscode-java-test/server/*.jar", 1), "\n"))
+				vim.split(vim.fn.glob(jars_dir .. "/bundles/*.jar", 1), "\n"))
 			config['init_options'] = {
 				bundles = bundles,
 			}
 
+			local extendedClientCapabilities = require('jdtls').extendedClientCapabilities
+			extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
+
 			config['init_options'] = {
 				bundles = bundles,
+				extendedClientCapabilities = extendedClientCapabilities,
 			}
+
+			config.on_init = function(client, _)
+				client.notify('workspace/didChangeConfiguration', { settings = config.settings })
+			end
 
 			local function attach_jdtls()
 				require("jdtls").start_or_attach(config)

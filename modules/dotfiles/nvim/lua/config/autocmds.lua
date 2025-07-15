@@ -68,8 +68,14 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'InsertLeave' }, {
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {
-	group = vim.api.nvim_create_augroup('my.lsp', {}),
 	callback = function(args)
+		vim.g.remove_lsp_mapping('n', 'gra')
+		vim.g.remove_lsp_mapping('x', 'gra')
+		vim.g.remove_lsp_mapping('n', 'gri')
+		vim.g.remove_lsp_mapping('n', 'grn')
+		vim.g.remove_lsp_mapping('n', 'grr')
+		vim.g.remove_lsp_mapping('n', 'grt')
+
 		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 
 		-- Enable auto-completion. Note: Use CTRL-Y to select an item. |complete_CTRL-Y|
@@ -80,6 +86,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 			vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = false })
 		end
+
+
 
 		-- Auto-format ("lint") on save.
 		-- Usually not needed if server supports "textDocument/willSaveWaitUntil".
