@@ -13,8 +13,8 @@ end
 
 config.font_size = 14
 
-config.color_scheme = "Rosé Pine Moon (Gogh)"
--- config.color_scheme = "Rosé Pine Dawn (Gogh)"
+-- config.color_scheme = "Rosé Pine Moon (Gogh)"
+config.color_scheme = "Rosé Pine Dawn (Gogh)"
 --
 config.font = wezterm.font("Lilex Nerd Font")
 
@@ -22,12 +22,8 @@ config.font = wezterm.font("Lilex Nerd Font")
 if is_linux() then
 	config.window_decorations = "NONE"
 elseif is_windows() then
-	config.window_decorations = "NONE"
-	config.wsl_domains = {
-		{
-			name = "WSL:NixOS"
-		}
-	}
+	config.color_scheme = "Rosé Pine Dawn (Gogh)"
+	config.default_domain = "WSL:NixOS"
 end
 
 config.hide_tab_bar_if_only_one_tab = true

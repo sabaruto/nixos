@@ -113,15 +113,13 @@
           };
         };
 
-        devShells."${system}" =
-          let
-            pkgs = import nixpkgs;
-          in
-          {
-            saltpay = import ./dev-shells/saltpay.nix { inherit pkgs; };
-            streaming-service-merger = import ./dev-shells/streaming-service-merger.nix { inherit pkgs; };
-            zk-app = import ./dev-shells/zk-app.nix { inherit nixpkgs system; };
+        devShells."${system}" = {
+          saltpay = import ./dev-shells/saltpay.nix { inherit nixpkgs system; };
+          streaming-service-merger = import ./dev-shells/streaming-service-merger.nix {
+            inherit nixpkgs system;
           };
+          zk-app = import ./dev-shells/zk-app.nix { inherit nixpkgs system; };
+        };
       }
     );
 }

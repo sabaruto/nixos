@@ -27,10 +27,6 @@ return {
 				"prettier",
 				stop_after_first = true
 			},
-
-			java = {
-				"clang-format"
-			},
 		},
 
 		-- Set default options

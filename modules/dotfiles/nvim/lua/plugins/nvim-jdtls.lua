@@ -11,7 +11,7 @@ return {
 					downloadSources = true,
 				},
 				saveActions = {
-					organizeImports = true,
+					organizeImports = false,
 					cleanup = true,
 				},
 				configuration = {
@@ -46,11 +46,10 @@ return {
 					},
 				},
 				format = {
-					enabled = false,
 					settings = {
-						profile = "IntelliJ",
+						profile = "Intellij",
 						url =
-							os.getenv("HOME") .. "/.m2/formatter.xml",
+							os.getenv("HOME") .. "/.m2/eclipse-formatter.xml",
 					}
 				}
 			},
@@ -65,7 +64,9 @@ return {
 			local cache_dir = home .. "/.cache/jdtls"
 			local config_dir = cache_dir .. "/config"
 
-			local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
+			local cwd = vim.fn.getcwd()
+
+			local project_name = vim.fn.fnamemodify(cwd, ':p:h:t')
 			local workspace_dir = cache_dir .. '/workspace/' .. project_name
 
 			local lombok_dir = vim.fn.glob("/nix/store/*-lombok-*/share/java/lombok.jar")

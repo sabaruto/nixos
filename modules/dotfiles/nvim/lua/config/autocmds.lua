@@ -60,6 +60,13 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 	end,
 })
 
+vim.api.nvim_create_autocmd({ 'BufEnter', 'InsertLeave' }, {
+	group = vim.api.nvim_create_augroup('Start lsp actions', { clear = true }),
+	callback = function()
+		vim.lsp.codelens.refresh({ bufnr = 0 })
+	end,
+})
+
 vim.api.nvim_create_autocmd('LspAttach', {
 	group = vim.api.nvim_create_augroup('my.lsp', {}),
 	callback = function(args)
