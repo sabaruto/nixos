@@ -13,8 +13,8 @@ end
 
 config.font_size = 14
 
--- config.color_scheme = "Rosé Pine Moon (Gogh)"
-config.color_scheme = "Rosé Pine Dawn (Gogh)"
+config.color_scheme = "Rosé Pine Moon (Gogh)"
+-- config.color_scheme = "Rosé Pine Dawn (Gogh)"
 --
 config.font = wezterm.font("Lilex Nerd Font")
 

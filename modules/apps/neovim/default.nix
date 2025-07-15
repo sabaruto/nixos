@@ -7,11 +7,21 @@
 with lib;
 let
   cfg = config.localModules.apps.neovim;
+  dotfilesDir = config.localModules.const.dotfiles;
 in
 {
   options.localModules.apps.neovim.enable = mkEnableOption "neovim";
 
   config = mkIf cfg.enable {
+    localModules.lib.home-files = [
+      {
+        name = "nvim";
+        recursive = true;
+        source = "${dotfilesDir}/nvim";
+        target = ".config/nvim";
+      }
+    ];
+
     home = {
       packages = with pkgs; [
         # GUI

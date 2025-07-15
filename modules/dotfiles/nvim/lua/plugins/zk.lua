@@ -22,7 +22,7 @@ return {
 			require("zk").setup(opts)
 		end,
 		keys = {
-			{ "<leader>z",       desc = "(zk)" },
+			{ "<leader>z",       group = "(zk)" },
 
 			-- Global keymaps
 			{ "<leader>zn",      "<cmd>ZkNew { title = vim.fn.input('Title: ') }<cr>",                      desc = "New note (zk)" },

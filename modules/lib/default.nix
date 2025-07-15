@@ -1,1 +1,6 @@
-{ ... }: { imports = [ ./link.nix ./op-inject.nix ]; }
+{ ... }:
+{
+  imports = [
+    ./home-file.nix
+  ];
+}

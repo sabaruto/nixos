@@ -50,7 +50,6 @@ mkShell rec {
 
   buildInputs = [
     androidSdk
-    flutter
     jdk24
     google-chrome
     virtualglLib

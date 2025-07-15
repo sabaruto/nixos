@@ -5,17 +5,29 @@ let
   dotfilesDirectory = "${config.home.homeDirectory}/github.com/sabaruto/nixos/modules/dotfiles";
 in
 {
-  options.localModules = { };
+  options.localModules.const.dotfiles = mkOption {
+    type = types.str;
+    default = "${config.home.homeDirectory}/github.com/sabaruto/nixos/modules/dotfiles";
+  };
 
   config = {
-    home.file = {
-      "nvim" = mkIf cfg.apps.neovim.enable {
-        enable = true;
+    localModules.lib.home-files = [
+      {
+        name = "nixpkgs";
         recursive = true;
-        source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/nvim";
-        target = ".config/nvim";
-      };
+        source = "${dotfilesDirectory}/nixpkgs";
+        target = ".config/nixpkgs";
+      }
 
+      {
+        name = "pictures";
+        recursive = true;
+        source = "${dotfilesDirectory}/dot_pictures";
+        target = ".pictures";
+      }
+    ];
+
+    home.file = {
       ".oh-my-zsh" = mkIf cfg.shells.zsh.enable {
         enable = true;
         recursive = true;
@@ -28,13 +40,6 @@ in
         recursive = true;
         source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/oh-my-posh";
         target = ".config/oh-my-posh";
-      };
-
-      ".wezterm.lua" = mkIf cfg.apps.wezterm.enable {
-        enable = true;
-        recursive = true;
-        source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/dot_wezterm.lua";
-        target = ".wezterm.lua";
       };
 
       "alacritty" = mkIf cfg.apps.alacritty.enable {
@@ -56,34 +61,6 @@ in
         recursive = true;
         source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/waybar";
         target = ".config/waybar";
-      };
-
-      "pictures" = {
-        enable = true;
-        recursive = true;
-        source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/dot_pictures";
-        target = ".pictures";
-      };
-
-      "nixpkgs" = {
-        enable = true;
-        recursive = true;
-        source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/nixpkgs";
-        target = ".config/nixpkgs";
-      };
-
-      "ghostty" = {
-        enable = true;
-        recursive = true;
-        source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/ghostty";
-        target = ".config/ghostty";
-      };
-
-      "kitty" = {
-        enable = true;
-        recursive = true;
-        source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/kitty";
-        target = ".config/kitty";
       };
     };
   };

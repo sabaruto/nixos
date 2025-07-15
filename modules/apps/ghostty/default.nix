@@ -1,5 +1,11 @@
-{ lib, config, pkgs, ... }:
-with lib; {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+with lib;
+{
   options.localModules.apps.ghostty.enable = mkEnableOption "Ghostty";
 
   config = mkIf config.localModules.apps.ghostty.enable {
@@ -11,6 +17,18 @@ with lib; {
       installVimSyntax = true;
     };
 
-    home.packages = with pkgs; [ gnome-tweaks gnome-menus ];
+    localModules.lib.home-files = [
+      {
+        name = "ghostty";
+        recursive = true;
+        source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/ghostty";
+        target = ".config/ghostty";
+      }
+    ];
+
+    home.packages = with pkgs; [
+      gnome-tweaks
+      gnome-menus
+    ];
   };
 }
