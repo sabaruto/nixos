@@ -55,7 +55,6 @@ in {
             home = {
               packages = with pkgs;
                 [
-
                   # Music
                   spotify
                   tidal-hifi
@@ -67,6 +66,8 @@ in {
 
                   # Certificates
                   openssl
+
+                  obsidian
 
                   # Boot configuration
                   efibootmgr

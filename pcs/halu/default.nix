@@ -44,9 +44,12 @@
         inputs.agenix.packages."${system}".default
         inputs.local-packages.packages."${system}".kulala-ls
         inputs.local-packages.packages."${system}".java-debug
+        yazi
 
         xdg-utils-cxx
         weston
+
+        stylua
       ];
 
       config.localModules = {

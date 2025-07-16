@@ -45,13 +45,6 @@ return {
 						enabled = "all", -- literals, all, none
 					},
 				},
-				format = {
-					settings = {
-						profile = "Intellij",
-						url =
-							os.getenv("HOME") .. "/.m2/eclipse-formatter.xml",
-					}
-				},
 				capabilities = {
 					workspace = {
 						configuration = true,

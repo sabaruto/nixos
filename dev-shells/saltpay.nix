@@ -7,6 +7,7 @@ mkShell {
   packages = [
     teleport
     checkstyle
+    # jetbrains.idea-community
 
     # Other java installations
     # temurin-bin
