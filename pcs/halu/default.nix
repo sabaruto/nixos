@@ -8,6 +8,7 @@
   ...
 }:
 {
+  imports = [ ./hardware-configuration.nix ];
   security.pki = {
     certificateFiles = [
       "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
@@ -22,7 +23,7 @@
     hostname = "halu";
     stateVersion = "24.11";
 
-    desktopEnvironment = "none";
+    desktopEnvironment = "gnome";
     gpu = "nvidia";
 
     system.podman.enable = true;
@@ -73,25 +74,6 @@
         };
       };
     };
-  };
-
-  wsl = {
-    enable = true;
-    defaultUser = "t-aaronobelley";
-
-    wrapBinSh = true;
-
-    # USB access
-    usbip.enable = true;
-    useWindowsDriver = true;
-    startMenuLaunchers = true;
-    docker-desktop.enable = false;
-
-    interop = {
-      register = true;
-    };
-
-    wslConf.user.default = "t-aaronobelley";
   };
 
   xdg.portal = {

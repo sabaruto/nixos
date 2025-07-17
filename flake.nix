@@ -100,8 +100,7 @@
             modules = [
               ./pcs/halu
               agenix.nixosModules.default
-              nixos-wsl.nixosModules.default
-              local-modules.nixosModules.system
+              local-modules.nixosModules.default
               local-modules.homeManagerModules.default
             ];
           };
@@ -109,7 +108,7 @@
           mini-pc = nixpkgs.lib.nixosSystem {
             inherit specialArgs;
 
-            modules = default-modules ++ [ ./pcs/mini-pc ];
+            modules = default-modules + [ ./pcs/mini-pc ];
           };
         };
 
