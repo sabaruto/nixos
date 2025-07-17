@@ -71,6 +71,9 @@ in {
 
                   # Boot configuration
                   efibootmgr
+
+                  # browser
+                  vivaldi
                 ] ++ cfg.packages;
 
               username = "${config.localModules.name}";

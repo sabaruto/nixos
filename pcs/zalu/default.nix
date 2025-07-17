@@ -28,7 +28,6 @@
       packages = with pkgs; [
         jellyfin-media-player
         krita
-        vivaldi
         kdePackages.k3b
       ];
       config.localModules = {

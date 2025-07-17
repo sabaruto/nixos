@@ -103,7 +103,6 @@ in
         lua-language-server
         markdown-oxide
         mermaid-cli
-        php84Packages.composer
         python313Packages.pip
         python313Packages.python
         spectral-language-server

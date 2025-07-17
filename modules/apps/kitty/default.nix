@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 
@@ -22,8 +23,8 @@ in
       }
     ];
 
-    programs.kitty = lib.mkForce {
-      enable = true;
-    };
+    home.packages = with pkgs;[
+      kitty
+    ];
   };
 }

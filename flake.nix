@@ -31,6 +31,10 @@
       };
     };
 
+    openaws-vpn = {
+      url = "github:t-aaronobelley/openaws-vpn-client";
+    };
+
     local-modules = {
       url = "path:modules";
       inputs = {
@@ -50,7 +54,6 @@
       self,
       agenix,
       nixpkgs,
-      nixos-wsl,
       flake-utils,
       local-modules,
       lix-module,
@@ -119,6 +122,7 @@
           };
           zk-app = import ./dev-shells/zk-app.nix { inherit nixpkgs system; };
           nodejs = import ./dev-shells/nodejs.nix { inherit nixpkgs system; };
+          openaws-vpn-client = import ./dev-shells/openaws-vpn-client.nix { inherit nixpkgs system; };
         };
       }
     );

@@ -42,15 +42,20 @@
         postman
         dconf-editor
         jwt-cli
-        inputs.agenix.packages."${system}".default
         inputs.local-packages.packages."${system}".kulala-ls
-        inputs.local-packages.packages."${system}".java-debug
+        inputs.openaws-vpn.packages."${system}".default
+        #        inputs.local-packages.packages."${system}".java-debug
         yazi
+        openvpn3
 
         xdg-utils-cxx
         weston
 
         stylua
+
+        slack
+        teams-for-linux
+        update-resolv-conf
       ];
 
       config.localModules = {
@@ -97,7 +102,13 @@
   };
 
   programs.zsh.enable = true;
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  services.resolved = {
+    enable = true;
+
+  };
+
+  services.tailscale.enable = lib.mkForce false;
+
   users = {
     defaultUserShell = pkgs.zsh;
   };

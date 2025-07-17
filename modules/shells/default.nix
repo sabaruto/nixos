@@ -41,9 +41,9 @@ in
         pgs-dev-app = ''./mvnw spring-boot:run -pl payments-gateway-service-web -Dspring-boot.run.profiles=proxy,local,secret -Dspring-boot.run.arguments="--spring.docker.compose.file=../docker-compose.yml"'';
         pgs-dev-bootstap = "./mvnw -pl :common-test-utils exec:java@Localbootstrap-dev";
 
-        # ssh connecton
-        ssh-add = "ssh-add.exe";
-        ssh = "ssh.exe";
+        # # ssh connecton
+        # ssh-add = "ssh-add.exe";
+        # ssh = "ssh.exe";
       })
     ]
 

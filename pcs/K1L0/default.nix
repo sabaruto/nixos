@@ -37,7 +37,6 @@
         supercollider
         kdePackages.k3b
         chromium
-        vivaldi
       ];
 
       config.localModules = {
