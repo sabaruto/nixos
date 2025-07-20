@@ -74,9 +74,9 @@ in
 
       (mkIf (elem "java" cfg.languages) {
         packages = with pkgs; [
-          # java
-          temurin-bin-24
-
+          # We only install java from dev environments
+          # temurin-bin-24
+          
           spring-boot-cli
           libglibutil
 
@@ -84,17 +84,8 @@ in
           maven
           gradle
 
-          # Jars
-          lombok
-
           # lsp
           jdt-language-server
-
-          # formatters
-          clang-tools
-
-          # Databases
-          postgresql
         ];
       })
     ];

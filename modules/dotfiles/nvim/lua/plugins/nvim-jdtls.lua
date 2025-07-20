@@ -65,7 +65,7 @@ return {
 			local nixos_dir = home .. "/github.com/sabaruto/nixos"
 			local jars_dir = nixos_dir .. "/tools/java/jars"
 
-			local jdtls_dir = vim.fn.glob("/nix/store/*-jdt-language-server-*/bin/jdtls")
+			local jdtls_dir = vim.split(vim.fn.glob("/nix/store/*-jdt-language-server-*/bin/jdtls"), "\n")[1]
 			local cache_dir = home .. "/.cache/jdtls"
 			local config_dir = cache_dir .. "/config"
 

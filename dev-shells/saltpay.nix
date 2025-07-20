@@ -7,10 +7,12 @@ mkShell {
   packages = [
     teleport
     checkstyle
-    # jetbrains.idea-community
+    jetbrains.idea-community
+
+    postgresql
 
     # Other java installations
-    # temurin-bin
+    temurin-bin-24
     # temurin-bin-17
     # temurin-bin-11
   ];

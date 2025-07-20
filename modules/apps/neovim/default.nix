@@ -44,9 +44,6 @@ in
         xsel
 
         # fonts
-        nerd-fonts.fira-code
-        nerd-fonts.droid-sans-mono
-        nerd-fonts.martian-mono
         nerd-fonts.lilex
 
         lua51Packages.lua
@@ -55,7 +52,6 @@ in
         lazygit
 
         # nodejs_24
-        go
         jq
         sqlite
 
@@ -75,27 +71,17 @@ in
         gnumake
 
         # lsp / formatters
-        asciidoc
-        asciidoctor
         deadnix
-        google-java-format
-        gopls
-        html-tidy
         isort
         julia
         lemminx
-        libxml2Python
         nil
         nixd
         php
-        pyright
-        sonarlint-ls
         statix
         ueberzugpp
-        uncrustify
         vale
         yamlfmt
-        yarn-berry
 
         # Builders
         bash-language-server
@@ -106,7 +92,6 @@ in
         python313Packages.pip
         python313Packages.python
         spectral-language-server
-        temurin-bin-24
         yaml-language-server
       ];
     };
