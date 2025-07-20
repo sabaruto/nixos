@@ -13,9 +13,9 @@ return {
 				nix = {
 					"deadnix"
 				},
-				java = {
-					"checkstyle"
-				},
+				-- java = {
+				-- 	"checkstyle"
+				-- },
 			},
 		},
 		config = function(_, opts)
