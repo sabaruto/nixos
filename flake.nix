@@ -15,14 +15,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.2-1.tar.gz";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
-
     agenix = {
       url = "github:ryantm/agenix";
       inputs = {
@@ -56,7 +48,6 @@
       nixpkgs,
       flake-utils,
       local-modules,
-      lix-module,
       ...
     }@inputs:
     flake-utils.lib.eachDefaultSystemPassThrough (
@@ -74,7 +65,6 @@
         };
 
         default-modules = [
-          lix-module.nixosModules.default
           local-modules.nixosModules.default
           local-modules.homeManagerModules.default
         ];
@@ -120,7 +110,6 @@
           streaming-service-merger = import ./dev-shells/streaming-service-merger.nix {
             inherit nixpkgs system;
           };
-          zk-app = import ./dev-shells/zk-app.nix { inherit nixpkgs system; };
           nodejs = import ./dev-shells/nodejs.nix { inherit nixpkgs system; };
           openaws-vpn-client = import ./dev-shells/openaws-vpn-client.nix { inherit nixpkgs system; };
         };

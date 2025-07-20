@@ -1,6 +1,6 @@
 return {
 	{
-		"obsidian-nvim/obsidian.nvim",
+		"sabaruto/obsidian.nvim",
 		version = "*", -- recommended, use latest release instead of latest commit
 		lazy = true,
 		enabled = true,
@@ -68,6 +68,10 @@ return {
 				default_tags = { "daily-notes" },
 				-- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
 				template = nil
+			},
+
+			picker = {
+				name = "mini.pick"
 			},
 
 			note_id_func = function(title)

@@ -21,12 +21,12 @@ return {
 						globalSettings = os.getenv("HOME") .. "/.m2/settings.xml"
 					},
 
-					runtimes = {
-						{
-							name = "JavaSE-24",
-							path = vim.fn.glob("/nix/store/*-temurin-bin-24.0.0")
-						}
-					}
+					-- runtimes = {
+					-- 	{
+					-- 		name = "JavaSE-24",
+					-- 		path = vim.fn.glob("/nix/store/*-temurin-bin-24.0.0")
+					-- 	}
+					-- }
 				},
 				maven = {
 					downloadSources = true,
@@ -72,7 +72,7 @@ return {
 			local cwd = vim.fn.getcwd()
 			local project_name = vim.fn.fnamemodify(cwd, ':p:h:t')
 			local workspace_dir = cache_dir .. '/workspace/' .. project_name
-			local lombok_dir = vim.fn.glob("/nix/store/*-lombok-*/share/java/lombok.jar")
+			local lombok_dir = jars_dir .. "/lombok.jar"
 			local config = {}
 
 			config.on_attach = function(_, _)

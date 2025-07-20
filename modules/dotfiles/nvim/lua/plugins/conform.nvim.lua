@@ -25,16 +25,20 @@ return {
 			lsp_format = "fallback",
 		},
 
-		-- format_on_save = {
-		-- 	timeout_ms = 20000,
-		-- 	lsp_format = "fallback"
-		-- },
+		format_on_save = {
+			timeout_ms = 20000,
+			lsp_format = "fallback"
+		},
 
 		-- Customize formatters
 		formatters = {
 			intellij = {
 				command = "idea-community",
 				stdin = false,
+				condition = function (self, ctx)
+					-- Ensure this only runs for saltpay projects
+					return string.find(vim.fn.getcwd(), "saltpay") ~= nil
+				end,
 				args = {
 					"format",
 					"-s",
