@@ -76,7 +76,7 @@ in
         packages = with pkgs; [
           # We only install java from dev environments
           # temurin-bin-24
-          
+
           spring-boot-cli
           libglibutil
 
@@ -84,8 +84,6 @@ in
           maven
           gradle
 
-          # lsp
-          jdt-language-server
         ];
       })
     ];

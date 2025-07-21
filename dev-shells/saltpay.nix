@@ -8,6 +8,7 @@ mkShell {
     teleport
     checkstyle
     jetbrains.idea-community
+    jdt-language-server
 
     postgresql
 

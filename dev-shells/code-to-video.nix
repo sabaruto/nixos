@@ -6,6 +6,7 @@ with pkgs;
 mkShell {
   packages = [
     zulu24
+    jdt-language-server
   ];
 
 }

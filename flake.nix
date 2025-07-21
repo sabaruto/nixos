@@ -27,6 +27,11 @@
       url = "github:t-aaronobelley/openaws-vpn-client";
     };
 
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     local-modules = {
       url = "path:modules";
       inputs = {
@@ -44,6 +49,7 @@
   outputs =
     {
       self,
+      nvf,
       agenix,
       nixpkgs,
       flake-utils,
@@ -65,6 +71,7 @@
         };
 
         default-modules = [
+          nvf.nixosModules.default
           local-modules.nixosModules.default
           local-modules.homeManagerModules.default
         ];
