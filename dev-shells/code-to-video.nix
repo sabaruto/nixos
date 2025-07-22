@@ -9,4 +9,7 @@ mkShell {
     jdt-language-server
   ];
 
+  shellHook = ''
+    export JDTLS_HOME=${jdt-language-server}
+  '';
 }

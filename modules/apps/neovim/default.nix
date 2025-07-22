@@ -13,78 +13,14 @@ in
   options.localModules.apps.neovim.enable = mkEnableOption "neovim";
 
   config = mkIf cfg.enable {
-    # localModules.lib.home-files = [
-    #   {
-    #     name = "nvim";
-    #     recursive = true;
-    #     source = "${dotfilesDir}/nvim";
-    #     target = ".config/nvim";
-    #   }
-    # ];
-
-    vim = {
-      utility = {
-        snacks-nvim = {
-          enable = true;
-
-          setupOpts = {
-			bigfile = { enabled = true; };
-			dashboard = {
-				enabled = true;
-			};
-			explorer = { enabled = false },
-			indent = { enabled = false },
-			input = { enabled = true },
-
-			notifier = {
-				enabled = true,
-				timeout = 3000,
-			},
-
-			picker = {enabled = true,},
-			quickfile = { enabled = true },
-			scope = { enabled = true },
-			image = { enabled = true },
-			scroll = {
-				enabled = true,
-				animate = {
-					easing = "inSine",
-				},
-
-				animate_repeat = {
-					easing = "inSine",
-				},
-			},
-
-			statuscolumn = {
-				enabled = true,
-				left = { "mark", "sign" },
-				right = { "fold", "git" }, -- priority of signs on the right (high to low)
-				folds = {
-					open = true, -- show open fold icons
-					git_hl = false, -- use Git Signs hl for fold icons
-				},
-				git = {
-					-- patterns to match Git signs
-					patterns = { "GitSign", "MiniDiffSign" },
-				},
-				refresh = 50, -- refresh at most every 50ms
-			},
-
-			words = { enabled = true },
-			styles = {
-				notification = {
-					wo = { wrap = true } -- Wrap notifications
-				},
-				terminal = {
-					wo = { winbar = vim.v.count1 .. ": %{get(b:, 'term_title', '')}" },
-				},
-			},
-			terminal = { enabled = false, },
-		};
-        };
-      };
-    };
+    localModules.lib.home-files = [
+      {
+        name = "nvim";
+        recursive = true;
+        source = "${dotfilesDir}/nvim";
+        target = ".config/nvim";
+      }
+    ];
 
     home = {
       packages = with pkgs; [

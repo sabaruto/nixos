@@ -64,10 +64,17 @@ return {
 			local home = os.getenv("HOME")
 			local nixos_dir = home .. "/github.com/sabaruto/nixos"
 			local jars_dir = nixos_dir .. "/tools/java/jars"
+			local jdtls_root = os.getenv("JDTLS_HOME")
 
-			local jdtls_dir = vim.split(vim.fn.glob("/nix/store/*-jdt-language-server-*/bin/jdtls"), "\n")[1]
+
+			local config_dir = jdtls_root .. "/share/java/jdtls/config_linux"
+			local jdtls_jar_path = vim.split(
+				vim.fn.glob(
+					jdtls_root .. "/share/java/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"
+				),
+				"\n"
+			)[1]
 			local cache_dir = home .. "/.cache/jdtls"
-			local config_dir = cache_dir .. "/config"
 
 			local cwd = vim.fn.getcwd()
 			local project_name = vim.fn.fnamemodify(cwd, ':p:h:t')
@@ -82,12 +89,23 @@ return {
 
 			config.settings = opts
 			config.cmd = {
-				jdtls_dir,
-				-- "-configuration",
-				-- config_dir,
-				"-data",
-				workspace_dir,
-				"--jvm-arg=-javaagent:" .. lombok_dir,
+				'java',
+				'-Declipse.application=org.eclipse.jdt.ls.core.id1',
+				'-Dosgi.bundles.defaultStartLevel=4',
+				'-Declipse.product=org.eclipse.jdt.ls.core.product',
+				'-Dlog.protocol=true',
+				'-Dlog.level=ALL',
+				'-Dosgi.sharedConfiguration.area=' .. config_dir,
+				'-Dosgi.sharedConfiguration.area.readOnly=true',
+				'-Dosgi.checkConfiguration=true',
+				'-Dosgi.configuration.cascaded=true',
+				'-Xmx1g',
+				'--add-modules=ALL-SYSTEM',
+				'--add-opens', 'java.base/java.util=ALL-UNNAMED',
+				'--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+				'-jar', jdtls_jar_path,
+				'-data', workspace_dir,
+				'-configuration', cache_dir .. "/config_linux"
 			}
 
 			local bundles = {}
