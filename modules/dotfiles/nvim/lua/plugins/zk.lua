@@ -1,8 +1,9 @@
 return {
 	{
 		"zk-org/zk-nvim",
+		enabled = true,
 		opts = {
-			picker = "telescope",
+			picker = "select",
 			lsp = {
 				-- `config` is passed to `vim.lsp.start(config)`
 				config = {
@@ -15,49 +16,177 @@ return {
 
 				auto_attach = {
 					enabled = true,
-				}
+				},
 			},
 		},
 		config = function(_, opts)
 			require("zk").setup(opts)
 		end,
+		ft = { "markdown" },
 		keys = {
-			{ "<leader>z",       group = "(zk)" },
+			{ "<leader>z", group = "(zk)" },
 
 			-- Global keymaps
-			{ "<leader>zn",      "<cmd>ZkNew { title = vim.fn.input('Title: ') }<cr>",                      desc = "New note (zk)" },
-			{ "<leader>zf",      "<cmd>ZkNotes { sort = { 'modified'} }<cr>",                               desc = "Open note (zk)" },
-			{ "<leader>zt",      "<cmd>ZkTags<cr>",                                                         desc = "Find related tags (zk)" },
-			{ "<leader>fz",      "<cmd>ZkNotes<cr>",                                                        desc = "Find notes (zk)" },
-			{ "<leader>sz",      "<cmd>ZkMatch<cr>",                                                        desc = "Search in notes (zk)" },
-			{ "<leader>fz",      "<cmd>'<,'>ZkMatch<cr>",                                                   desc = "Find selection in notes (zk)", mode = "v" },
-			{ "<leader>zb",      "<cmd>ZkBacklinks<cr>",                                                    desc = "Open backlinked notes (zk)", },
-			{ "<leader>zl",      "<cmd>ZkLinks<cr>",                                                        desc = "Open linked notes (zk)", },
+			{
+				"<leader>zn",
+				"<cmd>ZkNew { title = vim.fn.input('Title: ') }<cr>",
+				desc = "New note (zk)",
+			},
+			{
+				"<leader>zf",
+				"<cmd>ZkNotes { sort = { 'modified'} }<cr>",
+				desc = "Open note (zk)",
+			},
+			{
+				"<leader>zt",
+				"<cmd>ZkTags<cr>",
+				desc = "Find related tags (zk)",
+			},
+			{
+				"<leader>fz",
+				"<cmd>ZkNotes<cr>",
+				desc = "Find notes (zk)",
+			},
+			{
+				"<leader>sz",
+				"<cmd>ZkMatch<cr>",
+				desc = "Search in notes (zk)",
+			},
+			{
+				"<leader>fz",
+				"<cmd>'<,'>ZkMatch<cr>",
+				desc = "Find selection in notes (zk)",
+				mode = "v",
+			},
+			{
+				"<leader>zb",
+				"<cmd>ZkBacklinks<cr>",
+				desc = "Open backlinked notes (zk)",
+			},
+			{
+				"<leader>zl",
+				"<cmd>ZkLinks<cr>",
+				desc = "Open linked notes (zk)",
+			},
 
 			-- Groups
-			{ "<leader>zg",      desc = "groups" },
-			{ "<leader>zgp",     "<cmd>ZkNew { title = vim.fn.input('Title: '), group = 'projects' }<cr>",  desc = "New project (zk)" },
-			{ "<leader>zgr",     "<cmd>ZkNew { title = vim.fn.input('Title: '), group = 'resources' }<cr>", desc = "New resource (zk)" },
-			{ "<leader>zga",     "<cmd>ZkNew { title = vim.fn.input('Title: '), group = 'areas' }<cr>",     desc = "New area (zk)" },
-
+			{ "<leader>zg", desc = "groups" },
+			{
+				"<leader>zgp",
+				"<cmd>ZkNew { title = vim.fn.input('Title: '), group = 'projects' }<cr>",
+				desc = "New project (zk)",
+			},
+			{
+				"<leader>zgr",
+				"<cmd>ZkNew { title = vim.fn.input('Title: '), group = 'resources' }<cr>",
+				desc = "New resource (zk)",
+			},
+			{
+				"<leader>zga",
+				"<cmd>ZkNew { title = vim.fn.input('Title: '), group = 'areas' }<cr>",
+				desc = "New area (zk)",
+			},
 
 			-- Types
-			{ "<leader>zj",      "<cmd>ZkNew { group = 'journal' }<cr>",                                    desc = "New Journal Entry (zk)" },
+			{
+				"<leader>zj",
+				"<cmd>ZkNew { group = 'journal' }<cr>",
+				desc = "New Journal Entry (zk)",
+			},
 
 			-- Local keymaps
-			{ "<localleader>n",  "<cmd>ZkNew { title = vim.fn.input('Title: ') }<cr>",                      desc = "New note (zk)",                ft = "markdown" },
-			{ "<localleader>f",  "<cmd>ZkNotes { sort = { 'modified'} }<cr>",                               desc = "Open note (zk)",               ft = "markdown" },
-			{ "<localleader>t",  "<cmd>ZkTags<cr>",                                                         desc = "Find by tags (zk)",            ft = "markdown" },
-			{ "<localleader>s",  "<cmd>ZkMatch<cr>",                                                        desc = "Search in notes (zk)",         ft = "markdown" },
-			{ "<localleader>s",  "<cmd>'<,'>ZkMatch<cr>",                                                   desc = "Search in notes (zk)",         ft = "markdown", mode = "v" },
-			{ "<localleader>b",  "<cmd>ZkBacklinks<cr>",                                                    desc = "Open backlinked notes (zk)",   ft = "markdown" },
-			{ "<localleader>l",  "<cmd>ZkLinks<cr>",                                                        desc = "Open linked notes (zk)",       ft = "markdown" },
-
-			{ "<localleader>g",  desc = "groups",                                                           ft = "markdown" },
-			{ "<localleader>gp", "<cmd>ZkNew { title = vim.fn.input('Title: '), group = 'projects' }<cr>",  desc = "New project (zk)",             ft = "markdown" },
-			{ "<localleader>gr", "<cmd>ZkNew { title = vim.fn.input('Title: '), group = 'resources' }<cr>", desc = "New resource (zk)",            ft = "markdown" },
-			{ "<localleader>ga", "<cmd>ZkNew { title = vim.fn.input('Title: '), group = 'areas' }<cr>",     desc = "New area (zk)",                ft = "markdown" },
-			{ "<localleader>j",  "<cmd>ZkNew { group = 'journal' }<cr>",                                    desc = "New Journal Entry (zk)",       ft = "markdown" },
-		}
-	}
+			{
+				"<localleader>n",
+				"<cmd>ZkNew { title = vim.fn.input('Title: ') }<cr>",
+				desc = "New note (zk)",
+				ft = "markdown",
+			},
+			{
+				"<localleader>n",
+				"<cmd>'<,'>ZkNewFromContentSelection{ title = vim.fn.input('Title: ') }<cr>",
+				desc = "New note from selection (zk)",
+				ft = "markdown",
+				mode = "v",
+			},
+			{
+				"<localleader>f",
+				"<cmd>ZkNotes { sort = { 'modified'} }<cr>",
+				desc = "Open note (zk)",
+				ft = "markdown",
+			},
+			{
+				"<localleader>t",
+				"<cmd>ZkTags<cr>",
+				desc = "Find by tags (zk)",
+				ft = "markdown",
+			},
+			{
+				"<localleader>s",
+				"<cmd>'<,'>ZkMatch<cr>",
+				desc = "Search in notes (zk)",
+				ft = "markdown",
+				mode = "v",
+			},
+			{
+				"<localleader>b",
+				"<cmd>ZkBacklinks<cr>",
+				desc = "Open backlinked notes (zk)",
+				ft = "markdown",
+			},
+			{
+				"<localleader>l",
+				"<cmd>ZkLinks<cr>",
+				desc = "Open linked notes (zk)",
+				ft = "markdown",
+			},
+			{
+				"<localleader>i",
+				"<cmd>'<,'>ZkInsertLinkAtSelection<cr>",
+				desc = "Insert link into note (zk)",
+				ft = "markdown",
+			},
+			{
+				"<localleader>i",
+				"<cmd>ZkLinks<cr>",
+				desc = "Insert link into note (zk)",
+				mode = "v",
+				ft = "markdown",
+			},
+			{
+				"<localleader>g",
+				desc = "groups",
+				ft = "markdown",
+			},
+			{
+				"<localleader>gn",
+				"<cmd>ZkNew { title = vim.fn.input('Title: '), group = vim.fn.input('Group: ') }<cr>",
+				desc = "New note in group (zk)",
+				ft = "markdown",
+			},
+			{
+				"<localleader>gp",
+				"<cmd>ZkNew { title = vim.fn.input('Title: '), group = 'projects' }<cr>",
+				desc = "New project (zk)",
+				ft = "markdown",
+			},
+			{
+				"<localleader>gr",
+				"<cmd>ZkNew { title = vim.fn.input('Title: '), group = 'resources' }<cr>",
+				desc = "New resource (zk)",
+				ft = "markdown",
+			},
+			{
+				"<localleader>ga",
+				"<cmd>ZkNew { title = vim.fn.input('Title: '), group = 'areas' }<cr>",
+				desc = "New area (zk)",
+				ft = "markdown",
+			},
+			{
+				"<localleader>j",
+				"<cmd>ZkNew { group = 'journal' }<cr>",
+				desc = "New Journal Entry (zk)",
+				ft = "markdown",
+			},
+		},
+	},
 }

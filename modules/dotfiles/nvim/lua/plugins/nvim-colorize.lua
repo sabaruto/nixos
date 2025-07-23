@@ -1,3 +1,7 @@
 return {
-	{ "norcalli/nvim-colorizer.lua", config = true },
+	{
+		"norcalli/nvim-colorizer.lua",
+		event = { "BufEnter" },
+		config = true,
+	},
 }

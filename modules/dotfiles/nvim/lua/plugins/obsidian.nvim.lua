@@ -1,44 +1,36 @@
 return {
 	{
-		"sabaruto/obsidian.nvim",
-		version = "*", -- recommended, use latest release instead of latest commit
-		lazy = true,
-		enabled = true,
+		"epwalsh/obsidian.nvim",
+		branch = "main",
+		enabled = false,
 		event = {
-			"BufReadPre " .. vim.fn.expand "~" .. "/personal-library/*.md",
-			"BufNewFile " .. vim.fn.expand "~" .. "/personal-library/*.md",
+			"BufReadPre " .. vim.fn.expand("~") .. "/personal-library/*.md",
+			"BufNewFile " .. vim.fn.expand("~") .. "/personal-library/*.md",
 
-			"BufReadPre " .. vim.fn.expand "~" .. "/notes/*.md",
-			"BufNewFile " .. vim.fn.expand "~" .. "/notes/*.md",
-			"BufReadPre " .. vim.fn.expand "~" .. "/github.com/t-aaronobelley/obsidian-notes/*.md",
-			"BufNewFile " .. vim.fn.expand "~" .. "/github.com/t-aaronobelley/obsidian-notes/*.md",
-		},
-
-		ui = {
-			enable = true,
+			"BufReadPre " .. vim.fn.expand("~") .. "/notes/*.md",
+			"BufNewFile " .. vim.fn.expand("~") .. "/notes/*.md",
+			"BufReadPre " .. vim.fn.expand("~") .. "/github.com/t-aaronobelley/obsidian-notes/*.md",
+			"BufNewFile " .. vim.fn.expand("~") .. "/github.com/t-aaronobelley/obsidian-notes/*.md",
 		},
 
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"preservim/vim-markdown",
+			"nvim-telescope/telescope.nvim",
 			"folke/snacks.nvim",
 		},
 		opts = {
 			notes_dubdir = "rough_notes",
-			disable_frontmatter = true,
+			disable_frontmatter = false,
+
+			ui = {
+				enable = false,
+			},
 
 			workspaces = {
 				{
-					name = "personal library",
-					path = "~/personal-library",
-				},
-				{
 					name = "Notes",
 					path = "~/notes",
-				},
-				{
-					name = "Teya notes",
-					path = "~/github.com/t-aaronobelley/obsidian-notes"
 				},
 				{
 					name = "no-vault",
@@ -53,8 +45,7 @@ return {
 						},
 						disable_frontmatter = true,
 					},
-				}
-
+				},
 			},
 
 			daily_notes = {
@@ -67,11 +58,7 @@ return {
 				-- Optional, default tags to add to each new daily note created.
 				default_tags = { "daily-notes" },
 				-- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
-				template = nil
-			},
-
-			picker = {
-				name = "mini.pick"
+				template = nil,
 			},
 
 			note_id_func = function(title)
@@ -101,7 +88,7 @@ return {
 				},
 
 				-- Toggle check-boxes.
-				["<leader>tc"] = {
+				["<leader>Tc"] = {
 					action = function()
 						return require("obsidian").util.toggle_checkbox()
 					end,
@@ -114,7 +101,7 @@ return {
 						return require("obsidian").util.smart_action()
 					end,
 					opts = { buffer = true, expr = true },
-				}
+				},
 			},
 
 			completion = {
@@ -130,13 +117,13 @@ return {
 			wiki_link_func = "prepend_note_id",
 		},
 		keys = {
-			-- { ft = "markdown" }
-			{ "<localleader>n", "<cmd>ObsidianNew<cr>",         ft = "markdown", desc = "Create new Obsidian Page" },
-			{ "<localleader>g", "<cmd>ObsidianOpen<cr>",        ft = "markdown", desc = "Open file in Obsidian App" },
+			{ "<localleader>n", "<cmd>ObsidianNew<cr>", ft = "markdown", desc = "Create new Obsidian Page" },
+			{ "<localleader>g", "<cmd>ObsidianOpen<cr>", ft = "markdown", desc = "Open file in Obsidian App" },
 			{ "<localleader>f", "<cmd>ObsidianQuickSwitch<cr>", ft = "markdown", desc = "Open Obsidian File" },
-			{ "<localleader>l", "<cmd>ObsidianFollowLink<cr>",  ft = "markdown", desc = "Follow Obsidian Link" },
-			{ "<localleader>t", "<cmd>ObsidianTags<cr>",        ft = "markdown", desc = "Search Obsidian tags" },
-			{ "<localleader>s", "<cmd>ObsidianSearch<cr>",      ft = "markdown", desc = "Search for notes in vault" },
-		}
-	}
+			{ "<localleader>l", "<cmd>ObsidianFollowLink<cr>", ft = "markdown", desc = "Follow Obsidian Link" },
+			{ "<localleader>t", "<cmd>ObsidianTags<cr>", ft = "markdown", desc = "Search Obsidian tags" },
+			{ "<localleader>s", "<cmd>ObsidianSearch<cr>", ft = "markdown", desc = "Search for notes in vault" },
+			{ "<localleader>r", "<cmd>ObsidianRename<cr>", ft = "markdown", desc = "Rename note" },
+		},
+	},
 }

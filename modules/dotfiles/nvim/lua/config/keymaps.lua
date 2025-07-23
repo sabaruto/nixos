@@ -1,14 +1,14 @@
 -- Commands
 vim.keymap.set({ "n", "v" }, "<leader>j", ":", { remap = true, desc = "Set command line" })
-
+vim.keymap.set({ "n", "v" }, "<leader><cr>", ":", { remap = true, desc = "Set command line" })
 
 -- Copy and Paste
-vim.keymap.set('n', '<C-S-w>', ':w<CR>')      -- Save
-vim.keymap.set('v', '<C-S-C>', '"+y')         -- Copy
-vim.keymap.set('n', '<C-S-V>', '"+P')         -- Paste normal mode
-vim.keymap.set('v', '<C-S-V>', '"+P')         -- Paste visual mode
-vim.keymap.set('c', '<C-S-V>', '<C-R>+')      -- Paste command mode
-vim.keymap.set('i', '<C-S-V>', '<ESC>l"+Pli') -- Paste insert mode
+vim.keymap.set("n", "<C-S-w>", ":w<CR>") -- Save
+vim.keymap.set("v", "<C-S-C>", '"+y') -- Copy
+vim.keymap.set("n", "<C-S-V>", '"+P') -- Paste normal mode
+vim.keymap.set("v", "<C-S-V>", '"+P') -- Paste visual mode
+vim.keymap.set("c", "<C-S-V>", "<C-R>+") -- Paste command mode
+vim.keymap.set("i", "<C-S-V>", '<ESC>l"+Pli') -- Paste insert mode
 
 -- Movement
 vim.keymap.set("i", "<C-h>", "<left>", { silent = true })
@@ -60,11 +60,6 @@ vim.keymap.set({ "n" }, tl .. "c", "<cmd>tabonly<cr>", { desc = "[O]nly keep cur
 for tab_index = 1, 9, 1 do
 	vim.keymap.set({ "n" }, tl .. tab_index, "<cmd>" .. tab_index .. "tabnext<cr>", { desc = "goto tab " .. tab_index })
 end
-
--- Terminal
-
-local terml = vim.g.createmapleader("terminal", "<leader>t")
-vim.keymap.set({ "n" }, terml .. "t", "<cmd>edit term://zsh<cr>", { desc = "Start new terminal" })
 
 -- LSP
 vim.keymap.set({ "n", "x" }, "ga", vim.lsp.buf.code_action, { desc = "Goto LSP Code Actions" })

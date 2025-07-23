@@ -13,6 +13,7 @@ local function has_filename()
 		"dashboard",
 		"oil",
 		"toggleterm",
+		"neotree",
 	}
 	return not elem_in(unused_filepath_fts, vim.bo.filetype)
 end
@@ -22,6 +23,7 @@ local function is_file()
 		"trouble",
 		"dashboard",
 		"toggleterm",
+		"neotree",
 	}
 	return not elem_in(not_file_fts, vim.bo.filetype)
 end
@@ -31,6 +33,7 @@ local function in_repo()
 		"trouble",
 		"toggleterm",
 		"oil",
+		"neotree",
 	}
 	return not elem_in(not_in_repo_fts, vim.bo.filetype)
 end
@@ -49,7 +52,7 @@ local function set_keys()
 	for index = 1, 9 do
 		vim.keymap.set(
 			{ "n" },
-			tostring(index),
+			"<leader>" .. index,
 			"<cmd>LualineBuffersJump! " .. index .. "<cr>",
 			{ desc = "Go to buffer " .. index }
 		)
@@ -130,6 +133,11 @@ return {
 				always_divide_middle = false,
 				section_separators = { left = "", right = "" },
 				component_separators = { left = "", right = "" },
+				disabled_filetypes = { "neo-tree" },
+			},
+
+			extensions = {
+				"neo-tree",
 			},
 		},
 		config = function(_, opts)

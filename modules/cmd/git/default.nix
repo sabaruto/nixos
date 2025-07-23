@@ -15,7 +15,7 @@ in
     user = mkOption {
       type = types.enum [
         "sabaruto"
-        "teya"
+        "t-aaronobelley"
       ];
       default = "sabaruto";
     };
@@ -43,7 +43,7 @@ in
         };
       })
 
-      (mkIf (cfg.git.user == "teya") {
+      (mkIf (cfg.git.user == "t-aaronobelley") {
         git = {
           userName = "Theodosia Aaron-Obelley";
           userEmail = "t.aaronobelley@saltpay.co";
@@ -55,7 +55,7 @@ in
             gpg = {
               format = "ssh";
               ssh = {
-                program = "/run/current-system/sw/bin/op-ssh-sign";
+                program = "/mnt/c/Users/TheodosiaAaron-Obell/AppData/Local/1Password/app/8/op-ssh-sign-wsl";
               };
             };
 

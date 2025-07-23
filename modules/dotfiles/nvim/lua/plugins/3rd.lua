@@ -2,11 +2,17 @@ return {
 	{
 		{
 			"3rd/image.nvim",
-			enabled = true,
+			enabled = false,
 			build = false,
 			opts = {
-				-- backend = "ueberzug",
+				backend = "kitty",
 				processor = "magick_cli",
+
+				integrations = {
+					markdown = {
+						only_render_image_at_cursor = true,
+					},
+				},
 			},
 		},
 	},
@@ -15,12 +21,15 @@ return {
 		dependencies = {
 			"3rd/image.nvim",
 		},
-		enabled = true,
-
+		enabled = false,
 		opts = {
+			events = {
+				render_buffer = { "InsertLeave", "BufWinEnter", "TextChanged" },
+				clear_buffer = { "BufLeave" },
+			},
 			renderer_options = {
 				mermaid = {
-					background = "white", -- nil | "transparent" | "white" | "#hex"
+					background = nil, -- nil | "transparent" | "white" | "#hex"
 					theme = "default", -- nil | "default" | "dark" | "forest" | "neutral"
 					scale = 1, -- nil | 1 (default) | 2  | 3 | ...
 					width = nil, -- nil | 800 | 400 | ...

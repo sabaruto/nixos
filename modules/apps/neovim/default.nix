@@ -87,7 +87,6 @@ in
         bash-language-server
         cargo
         lua-language-server
-        markdown-oxide
         mermaid-cli
         python313Packages.pip
         python313Packages.python

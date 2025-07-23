@@ -15,12 +15,12 @@ return {
 			status = { virtual_text = true },
 			output = { open_on_run = true },
 			adapters = {
-				["neotest-plenary"] = ({}),
+				["neotest-plenary"] = {},
 			},
 		},
 		keys = {
 			{ "<leader>dt", "", desc = "+test" },
-			{ "<leader>td", "", desc = "+test" },
+			{ "<leader>Td", "", desc = "+test" },
 			{
 				"<leader>dtt",
 				function()
@@ -58,7 +58,7 @@ return {
 				desc = "Run Last (Neotest)",
 			},
 			{
-				"<leader>tds",
+				"<leader>Tds",
 				function()
 					require("neotest").summary.toggle()
 				end,
@@ -72,7 +72,7 @@ return {
 				desc = "Show Output (Neotest)",
 			},
 			{
-				"<leader>tdO",
+				"<leader>TdO",
 				function()
 					require("neotest").output_panel.toggle()
 				end,
@@ -86,12 +86,12 @@ return {
 				desc = "Stop (Neotest)",
 			},
 			{
-				"<leader>tdw",
+				"<leader>Tdw",
 				function()
 					require("neotest").watch.toggle(vim.fn.expand("%"))
 				end,
 				desc = "Toggle Watch (Neotest)",
 			},
 		},
-	}
+	},
 }

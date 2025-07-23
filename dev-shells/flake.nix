@@ -10,6 +10,7 @@
     { nixpkgs, flake-utils, ... }:
     flake-utils.lib.eachDefaultSystemPassThrough (system: {
       devShells."${system}" = {
+        python = import ./python.nix { inherit nixpkgs system; };
         saltpay = import ./saltpay.nix { inherit nixpkgs system; };
         nodejs = import ./nodejs.nix { inherit nixpkgs system; };
         openaws-vpn-client = import ./openaws-vpn-client.nix { inherit nixpkgs system; };

@@ -8,7 +8,6 @@
   ...
 }:
 {
-  imports = [ ./hardware-configuration.nix ];
   security.pki = {
     certificateFiles = [
       "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
@@ -23,7 +22,7 @@
     hostname = "halu";
     stateVersion = "24.11";
 
-    desktopEnvironment = "gnome";
+    desktopEnvironment = "none";
     gpu = "nvidia";
 
     system.podman.enable = true;
@@ -42,20 +41,22 @@
         postman
         dconf-editor
         jwt-cli
+        inputs.agenix.packages."${system}".default
         inputs.local-packages.packages."${system}".kulala-ls
-        inputs.openaws-vpn.packages."${system}".default
         #        inputs.local-packages.packages."${system}".java-debug
         yazi
-        openvpn3
 
         xdg-utils-cxx
         weston
 
         stylua
 
-        slack
-        teams-for-linux
-        update-resolv-conf
+        nb
+
+        #wsl
+        wsl-open
+        wslu
+        wsl-vpnkit
       ];
 
       config.localModules = {
@@ -74,11 +75,30 @@
         cmd = {
           git = {
             enable = true;
-            user = "teya";
+            user = "t-aaronobelley";
           };
         };
       };
     };
+  };
+
+  wsl = {
+    enable = true;
+    defaultUser = "t-aaronobelley";
+
+    wrapBinSh = true;
+
+    # USB access
+    usbip.enable = true;
+    useWindowsDriver = true;
+    startMenuLaunchers = true;
+    docker-desktop.enable = false;
+
+    interop = {
+      register = true;
+    };
+
+    wslConf.user.default = "t-aaronobelley";
   };
 
   xdg.portal = {
@@ -102,13 +122,7 @@
   };
 
   programs.zsh.enable = true;
-  services.resolved = {
-    enable = true;
-
-  };
-
-  services.tailscale.enable = lib.mkForce false;
-
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   users = {
     defaultUserShell = pkgs.zsh;
   };

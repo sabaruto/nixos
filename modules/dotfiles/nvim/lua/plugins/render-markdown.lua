@@ -5,7 +5,8 @@ return {
 			"nvim-treesitter/nvim-treesitter",
 		},
 		opts = {
-			preset = "lazy",
+			preset = "obsidian",
+			completions = { lsp = { enabled = true } },
 		},
 	},
 }

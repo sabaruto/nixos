@@ -1,5 +1,6 @@
 return {
 	"meatballs/notebook.nvim",
+	ft = { "markdown" },
 	opts = {
 		-- Whether to insert a blank line at the top of the notebook
 		insert_blank_line = true,
@@ -12,5 +13,5 @@ return {
 
 		-- Style for the virtual text at the top of a cell
 		virtual_text_style = { fg = "lightblue", italic = true },
-	}
+	},
 }
