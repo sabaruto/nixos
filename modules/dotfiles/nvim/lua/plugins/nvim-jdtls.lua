@@ -76,7 +76,7 @@ return {
 			local cwd = vim.fn.getcwd()
 			local project_name = vim.fn.fnamemodify(cwd, ":p:h:t")
 			local workspace_dir = cache_dir .. "/workspace/" .. project_name
-			local lombok_dir = jars_dir .. "javaagents/lombok.jar"
+			local lombok_dir = jars_dir .. "/javaagents/lombok.jar"
 			local config = {}
 
 			config.on_attach = function(_, _)
