@@ -50,8 +50,7 @@
         weston
 
         stylua
-
-        nb
+        bat
 
         #wsl
         wsl-open

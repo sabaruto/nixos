@@ -3,7 +3,7 @@ return {
 		"mfussenegger/nvim-jdtls",
 		ft = "java",
 		dependencies = {
-			"mfussenegger/nvim-dap"
+			"mfussenegger/nvim-dap",
 		},
 		opts = {
 			java = {
@@ -18,7 +18,7 @@ return {
 					updateBuildConfiguration = "interactive",
 
 					maven = {
-						globalSettings = os.getenv("HOME") .. "/.m2/settings.xml"
+						globalSettings = os.getenv("HOME") .. "/.m2/settings.xml",
 					},
 
 					-- runtimes = {
@@ -49,13 +49,13 @@ return {
 					workspace = {
 						configuration = true,
 						didChangeWatchedFiles = {
-							dynamicRegistration = true
+							dynamicRegistration = true,
 						},
 						didChangeWorkspaceFolders = {
-							dynamicRegistration = true
-						}
-					}
-				}
+							dynamicRegistration = true,
+						},
+					},
+				},
 			},
 			signatureHelp = { enabled = true },
 		},
@@ -66,20 +66,17 @@ return {
 			local jars_dir = nixos_dir .. "/tools/java/jars"
 			local jdtls_root = os.getenv("JDTLS_HOME")
 
-
 			local config_dir = jdtls_root .. "/share/java/jdtls/config_linux"
 			local jdtls_jar_path = vim.split(
-				vim.fn.glob(
-					jdtls_root .. "/share/java/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"
-				),
+				vim.fn.glob(jdtls_root .. "/share/java/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
 				"\n"
 			)[1]
 			local cache_dir = home .. "/.cache/jdtls"
 
 			local cwd = vim.fn.getcwd()
-			local project_name = vim.fn.fnamemodify(cwd, ':p:h:t')
-			local workspace_dir = cache_dir .. '/workspace/' .. project_name
-			local lombok_dir = jars_dir .. "/lombok.jar"
+			local project_name = vim.fn.fnamemodify(cwd, ":p:h:t")
+			local workspace_dir = cache_dir .. "/workspace/" .. project_name
+			local lombok_dir = jars_dir .. "javaagents/lombok.jar"
 			local config = {}
 
 			config.on_attach = function(_, _)
@@ -89,43 +86,48 @@ return {
 
 			config.settings = opts
 			config.cmd = {
-				'java',
-				'-Declipse.application=org.eclipse.jdt.ls.core.id1',
-				'-Dosgi.bundles.defaultStartLevel=4',
-				'-Declipse.product=org.eclipse.jdt.ls.core.product',
-				'-Dlog.protocol=true',
-				'-Dlog.level=ALL',
-				'-Dosgi.sharedConfiguration.area=' .. config_dir,
-				'-Dosgi.sharedConfiguration.area.readOnly=true',
-				'-Dosgi.checkConfiguration=true',
-				'-Dosgi.configuration.cascaded=true',
-				'-Xmx1g',
-				'--add-modules=ALL-SYSTEM',
-				'--add-opens', 'java.base/java.util=ALL-UNNAMED',
-				'--add-opens', 'java.base/java.lang=ALL-UNNAMED',
-				'-jar', jdtls_jar_path,
-				'-data', workspace_dir,
-				'-configuration', cache_dir .. "/config_linux"
+				"java",
+				"-Declipse.application=org.eclipse.jdt.ls.core.id1",
+				"-Dosgi.bundles.defaultStartLevel=4",
+				"-Declipse.product=org.eclipse.jdt.ls.core.product",
+				"-Dlog.protocol=true",
+				"-Dlog.level=ALL",
+				"-Dosgi.sharedConfiguration.area=" .. config_dir,
+				"-Dosgi.sharedConfiguration.area.readOnly=true",
+				"-Dosgi.checkConfiguration=true",
+				"-Dosgi.configuration.cascaded=true",
+				"-Xmx1g",
+				"--add-modules=ALL-SYSTEM",
+				"--add-opens",
+				"java.base/java.util=ALL-UNNAMED",
+				"--add-opens",
+				"java.base/java.lang=ALL-UNNAMED",
+				"-javaagent:" .. lombok_dir,
+				"-jar",
+				jdtls_jar_path,
+				"-data",
+				workspace_dir,
+				"-configuration",
+				cache_dir .. "/config_linux",
 			}
 
 			local bundles = {}
 
-			vim.list_extend(bundles,
-				vim.split(vim.fn.glob(jars_dir .. "/bundles/*.jar", 1), "\n"))
-			config['init_options'] = {
+			vim.list_extend(bundles, vim.split(vim.fn.glob(jars_dir .. "/bundles/*.jar", 1), "\n"))
+			config["init_options"] = {
 				bundles = bundles,
 			}
 
-			local extendedClientCapabilities = require('jdtls').extendedClientCapabilities
+			local extendedClientCapabilities = require("jdtls").extendedClientCapabilities
 			extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
-			config['init_options'] = {
+			config["init_options"] = {
 				bundles = bundles,
 				extendedClientCapabilities = extendedClientCapabilities,
 			}
 
 			config.on_init = function(client, _)
-				client.notify('workspace/didChangeConfiguration', { settings = config.settings })
+				client.notify("workspace/didChangeConfiguration", { settings = config.settings })
 			end
 
 			local function attach_jdtls()
