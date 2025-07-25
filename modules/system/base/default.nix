@@ -183,6 +183,17 @@ in
       LC_TIME = "en_GB.UTF-8";
     };
 
+    # Configure console keymap
+    console.keyMap = "uk";
+    security = {
+      rtkit.enable = true;
+
+      pki.certificateFiles = [
+        "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
+        ../../../secrets/apache.pem
+      ];
+    };
+
     # Configure keymap in X11
     services = {
       # Enable CUPS to print documents.
@@ -195,13 +206,7 @@ in
         layout = "gb";
         variant = "";
       };
-    };
 
-    # Configure console keymap
-    console.keyMap = "uk";
-
-    security.rtkit.enable = true;
-    services = {
       syncthing = {
         enable = true;
         openDefaultPorts = true;

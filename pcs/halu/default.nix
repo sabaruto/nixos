@@ -10,7 +10,6 @@
 {
   security.pki = {
     certificateFiles = [
-      "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
       ../../secrets/SaltPay_Root_CA_01.pem
     ];
   };
