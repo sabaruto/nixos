@@ -1,7 +1,9 @@
 return {
 	{
 		"neovim/nvim-lspconfig",
-		dependencies = { 'folke/neodev.nvim', config = true },
+		dependencies = {
+			"folke/neoconf.nvim",
+		},
 		config = function()
 			vim.lsp.enable({
 				"jsonls",
@@ -17,19 +19,19 @@ return {
 				"html",
 				"cssls",
 				"yamlls",
-				"markdown_oxide"
+				"markdown_oxide",
 			})
 
-			vim.lsp.config('*', {
-				root_markers = { '.git' },
+			vim.lsp.config("*", {
+				root_markers = { ".git" },
 				capabilities = {
 					textDocument = {
 						semanticTokens = {
 							multilineTokenSupport = true,
-						}
-					}
-				}
+						},
+					},
+				},
 			})
-		end
+		end,
 	},
 }

@@ -1,9 +1,12 @@
 return {
 	{
 		"folke/neoconf.nvim",
+		dependencies = {
+			"folke/lazydev.nvim",
+		},
 		cmd = "Neoconf",
-		opts = {},
+		config = true,
 	},
-	{ "tiagovla/scope.nvim",  config = true },
+	{ "tiagovla/scope.nvim", config = true },
 	{ "nvim-lua/plenary.nvim" },
 }

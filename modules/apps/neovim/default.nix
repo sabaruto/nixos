@@ -51,9 +51,11 @@ in
         # git improvement
         lazygit
 
-        # nodejs_24
+        nodejs_24
         jq
         sqlite
+        d2
+        playwright
 
         imagemagick
         vscode-langservers-extracted
@@ -82,6 +84,8 @@ in
         ueberzugpp
         vale
         yamlfmt
+        pyright
+        prettierd
 
         # Builders
         bash-language-server

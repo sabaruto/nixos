@@ -75,8 +75,6 @@ in
                   # Certificates
                   openssl
 
-                  obsidian
-
                   # Boot configuration
                   efibootmgr
 
