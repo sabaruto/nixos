@@ -18,7 +18,7 @@ return {
 					updateBuildConfiguration = "interactive",
 
 					maven = {
-						globalSettings = os.getenv("HOME") .. "/.m2/settings.xml",
+						userSettings = os.getenv("HOME") .. "/.m2/settings.xml",
 					},
 
 					-- runtimes = {
@@ -28,8 +28,10 @@ return {
 					-- 	}
 					-- }
 				},
-				maven = {
-					downloadSources = true,
+				import = {
+					maven = {
+						downloadSources = true,
+					},
 				},
 				implementationsCodeLens = {
 					enabled = true,
