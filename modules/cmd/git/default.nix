@@ -48,6 +48,8 @@ in
           userName = "Theodosia Aaron-Obelley";
           userEmail = "t.aaronobelley@saltpay.co";
 
+          ignores = [ ];
+
           # ignores = [
           #   # Devenv
           #   ".devenv*"
