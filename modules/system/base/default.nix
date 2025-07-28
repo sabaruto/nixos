@@ -139,6 +139,11 @@ in
         experimental-features = nix-command flakes
       '';
 
+      settings.trusted-users = [
+        "root"
+        "${config.localModules.name}"
+      ];
+
       # Perform garbage collection weekly to maintain low disk usage
       gc = {
         automatic = true;

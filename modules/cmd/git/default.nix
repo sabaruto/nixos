@@ -48,6 +48,18 @@ in
           userName = "Theodosia Aaron-Obelley";
           userEmail = "t.aaronobelley@saltpay.co";
 
+          ignores = [
+            # Devenv
+            ".devenv*"
+            "devenv.local.nix "
+
+            # direnv
+            ".direnv"
+
+            # pre-commit
+            ".pre-commit-config.yaml"
+          ];
+
           extraConfig = {
             user = {
               signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJPmcouh67CsJLDvYpp9xG5KPINQwKWrTdE/DxxjEXLN";
