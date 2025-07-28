@@ -67,6 +67,9 @@ in
         # GTK settings editor
         nwg-look
 
+        # Bluetooth GUI
+        blueberry
+
         # File manager
         nautilus
 

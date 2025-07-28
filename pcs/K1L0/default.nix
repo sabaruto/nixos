@@ -37,6 +37,7 @@
         supercollider
         kdePackages.k3b
         chromium
+        eclipses.eclipse-java
       ];
 
       config.localModules = {

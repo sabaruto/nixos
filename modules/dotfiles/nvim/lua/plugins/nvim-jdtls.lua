@@ -21,12 +21,19 @@ return {
 						userSettings = os.getenv("HOME") .. "/.m2/settings.xml",
 					},
 
-					-- runtimes = {
-					-- 	{
-					-- 		name = "JavaSE-24",
-					-- 		path = vim.fn.glob("/nix/store/*-temurin-bin-24.0.0")
-					-- 	}
-					-- }
+					runtimes = {
+						{
+							name = "JavaSE-24",
+							path = os.getenv("JAVA_HOME")
+						}
+					}
+				},
+				format = {
+					enabled = true,
+					settings = {
+						profile = "Intellij",
+						url = "~/github.com/sabaruto/nixos/tools/java/xml/profiles.xml"
+					}
 				},
 				import = {
 					maven = {
