@@ -25,6 +25,19 @@ in
         source = "${dotfilesDirectory}/dot_pictures";
         target = ".pictures";
       }
+
+      {
+        name = "direnv";
+        recursive = false;
+        source = "${dotfilesDirectory}/direnv/direnvrc";
+        target = ".config/direnv/direnvrc";
+      }
+      {
+        name = "nix";
+        recursive = true;
+        source = "${dotfilesDirectory}/nix";
+        target = ".config/nix";
+      }
     ];
 
     home.file = {

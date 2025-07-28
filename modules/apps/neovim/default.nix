@@ -56,6 +56,8 @@ in
         sqlite
         d2
         playwright
+        python313Packages.playwright
+        playwright-driver.browsers
 
         imagemagick
         vscode-langservers-extracted
@@ -97,6 +99,11 @@ in
         spectral-language-server
         yaml-language-server
       ];
+
+      sessionVariables = {
+        PLAYWRIGHT_BROWSERS_PATH = "${pkgs.playwright-driver.browsers}";
+        PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS = "true";
+      };
     };
     programs.neovim = {
       enable = true;

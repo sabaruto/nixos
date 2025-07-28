@@ -194,7 +194,6 @@ in
       ];
     };
 
-    # Configure keymap in X11
     services = {
       # Enable CUPS to print documents.
       printing.enable = true;
@@ -206,6 +205,8 @@ in
         layout = "gb";
         variant = "";
       };
+
+      lorri.enable = true;
 
       syncthing = {
         enable = true;

@@ -14,3 +14,7 @@ git-crypt-key
 
 # 1Password secrets
 op_secrets.tpl.json
+nix.conf
+
+# direnv layouts
+modules/dotfiles/direnv/layouts/**

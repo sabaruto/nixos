@@ -80,6 +80,8 @@ in
 
                   # browser
                   vivaldi
+
+                  devenv
                 ]
                 ++ cfg.packages;
 
