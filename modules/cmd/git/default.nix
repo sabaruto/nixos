@@ -48,17 +48,20 @@ in
           userName = "Theodosia Aaron-Obelley";
           userEmail = "t.aaronobelley@saltpay.co";
 
-          ignores = [
-            # Devenv
-            ".devenv*"
-            "devenv.local.nix "
-
-            # direnv
-            ".direnv"
-
-            # pre-commit
-            ".pre-commit-config.yaml"
-          ];
+          # ignores = [
+          #   # Devenv
+          #   ".devenv*"
+          #   "devenv.local.nix "
+          #
+          #   # direnv
+          #   ".direnv"
+          #
+          #   "devenv.yaml"
+          #   "devenv.nix"
+          #
+          #   # pre-commit
+          #   ".pre-commit-config.yaml"
+          # ];
 
           extraConfig = {
             user = {
