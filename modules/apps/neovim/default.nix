@@ -25,7 +25,7 @@ in
     home = {
       packages = with pkgs; [
         # GUI
-        neovide
+        # neovide
 
         # fuzzy search
         fzf

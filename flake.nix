@@ -22,9 +22,9 @@
         home-manager.follows = "home-manager";
       };
     };
-
-    openaws-vpn = {
-      url = "github:t-aaronobelley/openaws-vpn-client";
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     local-modules = {
@@ -68,6 +68,11 @@
         default-modules = [
           local-modules.nixosModules.default
           local-modules.homeManagerModules.default
+          {
+            nixpkgs.overlays = [
+              inputs.neovim-nightly-overlay.overlays.default
+            ];
+          }
         ];
       in
       {
@@ -97,6 +102,11 @@
               nixos-wsl.nixosModules.default
               local-modules.nixosModules.system
               local-modules.homeManagerModules.default
+              {
+                nixpkgs.overlays = [
+                  inputs.neovim-nightly-overlay.overlays.default
+                ];
+              }
             ];
           };
 
