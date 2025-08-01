@@ -40,6 +40,8 @@ return {
 					"xml",
 					"json",
 					"yaml",
+					"http",
+					"python",
 					"markdown",
 					"markdown_inline",
 				},

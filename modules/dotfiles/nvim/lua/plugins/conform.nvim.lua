@@ -27,15 +27,15 @@ return {
 
 		format_on_save = {
 			timeout_ms = 20000,
-			lsp_format = "fallback"
+			lsp_format = "fallback",
 		},
 
 		-- Customize formatters
 		formatters = {
 			intellij = {
-				command = "idea-community",
+				command = "idea",
 				stdin = false,
-				condition = function (self, ctx)
+				condition = function(self, ctx)
 					-- Ensure this only runs for saltpay projects
 					return string.find(vim.fn.getcwd(), "saltpay") ~= nil
 				end,
@@ -46,16 +46,12 @@ return {
 					"$FILENAME",
 				},
 			},
-			my_formatter = {
-				command = "my_cmd",
-			},
 		},
 	},
 
 	init = function()
 		-- If you want the formatexpr, here is the place to set it
 		vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-
 
 		vim.api.nvim_create_user_command("Format", function(args)
 			local range = nil

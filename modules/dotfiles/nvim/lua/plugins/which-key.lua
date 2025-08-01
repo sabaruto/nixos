@@ -19,6 +19,8 @@ return {
 					{ "<leader>s", group = "search" },
 					{ "<leader>u", group = "ui", icon = { icon = "󰙵 ", color = "cyan" } },
 					{ "<leader>x", group = "windows" },
+					{ "<leader>W", group = "Workspaces" },
+					{ "<leader>Wd", group = "Workspace Directories" },
 					{ "[", group = "prev" },
 					{ "]", group = "next" },
 					{ "g", group = "goto" },

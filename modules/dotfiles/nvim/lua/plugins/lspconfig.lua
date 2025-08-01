@@ -19,6 +19,7 @@ return {
 				"html",
 				"cssls",
 				"yamlls",
+				"sqls",
 				"markdown_oxide",
 			})
 

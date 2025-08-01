@@ -1,8 +1,8 @@
 return {
-	{ 'echasnovski/mini.ai',    version = false, config = true },
-	{ 'echasnovski/mini.pairs', version = false, config = true },
+	{ "echasnovski/mini.ai", version = false, config = true },
+	{ "echasnovski/mini.pairs", version = false, config = true },
 	{
-		'echasnovski/mini.operators',
+		"echasnovski/mini.operators",
 		version = false,
 		opts = {
 			replace = {
@@ -10,38 +10,50 @@ return {
 			},
 		},
 	},
-	{ "echasnovski/mini.surround",    version = false, config = true },
-	{ "echasnovski/mini.comment",     version = false, config = true },
-	{ "echasnovski/mini.splitjoin",   version = false, config = true },
-	{ "echasnovski/mini.icons",       version = false, config = true },
-	{ 'echasnovski/mini.indentscope', version = false, config = true },
-	{ 'echasnovski/mini.map',         version = false, config = true },
+	{ "echasnovski/mini.surround", version = false, config = true },
+	{ "echasnovski/mini.comment", version = false, config = true },
+	{ "echasnovski/mini.splitjoin", version = false, config = true },
+	{ "echasnovski/mini.icons", version = false, config = true },
+	{ "echasnovski/mini.indentscope", version = false, config = true },
+	{ "echasnovski/mini.map", version = false, config = true },
 	{
-		'echasnovski/mini.animate',
+		"echasnovski/mini.animate",
 		version = false,
 		enabled = false,
 		opts = {
 			cursor = {
 				timing = function(_, n)
 					return 125 / n
-				end
+				end,
 			},
 			scroll = {
 				enable = false,
-			}
-		}
-	},
-	{
-		'echasnovski/mini.bufremove',
-		version = false,
-		config = true,
-		keys = {
-			{ "<leader>bd", function() require("mini.bufremove").delete() end,  desc = "Delete buffer" },
-			{ "<leader>bD", function() require("mini.bufremove").wipeout() end, desc = "Wipeout buffer" },
+			},
 		},
 	},
 	{
-		'echasnovski/mini.files',
+		"echasnovski/mini.bufremove",
+		version = false,
+		config = true,
+		keys = {
+			{
+				"<leader>bd",
+				function()
+					require("mini.bufremove").delete()
+				end,
+				desc = "Delete buffer",
+			},
+			{
+				"<leader>bD",
+				function()
+					require("mini.bufremove").wipeout()
+				end,
+				desc = "Wipeout buffer",
+			},
+		},
+	},
+	{
+		"echasnovski/mini.files",
 		version = false,
 		lazy = false,
 		opts = {
@@ -53,7 +65,7 @@ return {
 				synchronize = "<leader>w",
 				reveal_cwd = "<leader>d",
 				["<rightkey>"] = "go_in",
-				["<leftkey>"] = "go_out"
+				["<leftkey>"] = "go_out",
 			},
 
 			windows = {
@@ -62,12 +74,20 @@ return {
 			},
 		},
 		keys = {
-			{ "<leader>e", "<CMD>lua require('mini.files').open(vim.api.nvim_buf_get_name(0), true)<CR>", desc = "Open mini files (current directory)" },
-			{ "<leader>E", "<CMD>lua require('mini.files').open(vim.uv.cwd(), true)<CR>",                 desc = "Open mini files (cwd)" },
-		}
+			{
+				"<leader>e",
+				"<CMD>lua require('mini.files').open(vim.api.nvim_buf_get_name(0), true)<CR>",
+				desc = "Open mini files (current directory)",
+			},
+			{
+				"<leader>E",
+				"<CMD>lua require('mini.files').open(vim.uv.cwd(), true)<CR>",
+				desc = "Open mini files (cwd)",
+			},
+		},
 	},
 	{
-		'echasnovski/mini.move',
+		"echasnovski/mini.move",
 		version = false,
 		opts = true,
 	},

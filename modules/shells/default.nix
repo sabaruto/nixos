@@ -33,6 +33,7 @@ in
         mvn-clean-install = "./mvnw clean install -Dskip.unitTests -Dskip.integrationTests=true -Dcheckstyle.skip=true";
         mvn-full-install = "./mvnw clean install";
 
+        idea = "~/.local/share/JetBrains/Toolbox/apps/intellij-idea-community-edition/bin/idea";
         # # ssh connecton
         # ssh-add = "ssh-add.exe";
         # ssh = "ssh.exe";
