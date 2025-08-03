@@ -66,7 +66,6 @@ in
         node2nix
 
         luajitPackages.luarocks-nix
-        glow
 
         # Builders
         gcc
@@ -108,7 +107,66 @@ in
     programs.neovim = {
       enable = true;
       defaultEditor = true;
-    };
+      withPython3 = true;
+      withNodeJs = true;
+      plugins = with pkgs.vimPlugins; [
+        # Treesitter
+        nvim-treesitter.withAllGrammars
+        # Icons
+        nvim-web-devicons
 
+        # Autocomplete
+        blink-cmp
+        blink-compat
+        blink-pairs
+
+        persistence-nvim
+
+        direnv-vim
+        flash-nvim
+        noice-nvim
+        snacks-nvim
+        rose-pine
+        which-key-nvim
+        better-escape-nvim
+        neo-tree-nvim
+
+        lualine-nvim
+
+        # LSP
+        nvim-lspconfig
+        nvim-java
+
+        # Formatting / diagnostics
+        conform-nvim
+        nvim-lint
+
+        # Mini
+        mini-ai
+        mini-pairs
+        mini-surround
+        mini-comment
+        mini-splitjoin
+        mini-icons
+        mini-indentscope
+        mini-files
+        mini-move
+        mini-operators
+        mini-animate
+        mini-files
+
+        # git
+        gitsigns-nvim
+
+        # telescope
+        telescope-nvim
+        telescope-fzf-native-nvim
+        telescope-ui-select-nvim
+        telescope-dap-nvim
+        telescope-media-files-nvim
+        telescope-git-conflicts-nvim
+        telescope-file-browser-nvim
+      ];
+    };
   };
 }
