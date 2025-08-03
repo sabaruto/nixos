@@ -86,7 +86,9 @@ in
         vale
         yamlfmt
         pyright
+        black
         prettierd
+        stylua
 
         # Builders
         bash-language-server
@@ -135,11 +137,16 @@ in
 
         # LSP
         nvim-lspconfig
-        nvim-java
+        nvim-jdtls
 
         # Formatting / diagnostics
         conform-nvim
         nvim-lint
+        trouble-nvim
+
+        # Markdown
+        zk-nvim
+        render-markdown-nvim
 
         # Mini
         mini-ai

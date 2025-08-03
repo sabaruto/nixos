@@ -3,7 +3,7 @@ require("nvim-treesitter").setup({
 })
 
 local treesitter = require("nvim-treesitter")
-treesitter.setup(opts)
+treesitter.setup({})
 
 vim.api.nvim_create_autocmd("User", {
 	pattern = "TSUpdate",

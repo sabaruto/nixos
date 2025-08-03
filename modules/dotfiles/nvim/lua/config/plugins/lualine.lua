@@ -65,77 +65,77 @@ local function set_keys()
 	end
 end
 
-lualine = require("lualine")
+local lualine = require("lualine")
 lualine.setup({
-			sections = {
-				lualine_a = {},
-				lualine_b = {},
-				lualine_c = {
-					{ "filename", path = 1, cond = has_filename },
-				},
-				lualine_x = { { "filesize", cond = is_file } },
-				lualine_y = { { "branch", cond = in_repo } },
-				lualine_z = {},
-			},
+	sections = {
+		lualine_a = {},
+		lualine_b = {},
+		lualine_c = {
+			{ "filename", path = 1, cond = has_filename },
+		},
+		lualine_x = { { "filesize", cond = is_file } },
+		lualine_y = { { "branch", cond = in_repo } },
+		lualine_z = {},
+	},
 
-			inactive_sections = {
-				lualine_a = {},
-				lualine_b = {},
-				lualine_c = { { "filename", path = 1, cond = has_filename } },
-				lualine_x = { { "filesize", cond = is_file } },
-				lualine_y = { { "branch", cond = in_repo } },
-				lualine_z = {},
-			},
+	inactive_sections = {
+		lualine_a = {},
+		lualine_b = {},
+		lualine_c = { { "filename", path = 1, cond = has_filename } },
+		lualine_x = { { "filesize", cond = is_file } },
+		lualine_y = { { "branch", cond = in_repo } },
+		lualine_z = {},
+	},
 
-			tabline = {
-				lualine_a = { "mode" },
-				lualine_b = { { "buffers", mode = 2, use_mode_colors = true } },
-				lualine_c = {},
-				lualine_x = {},
-				lualine_y = { { "tabs", mode = 2 } },
-				lualine_z = { "hostname" },
-			},
+	tabline = {
+		lualine_a = { "mode" },
+		lualine_b = { { "buffers", mode = 2, use_mode_colors = true } },
+		lualine_c = {},
+		lualine_x = {},
+		lualine_y = { { "tabs", mode = 2 } },
+		lualine_z = { "hostname" },
+	},
 
-			winbar = {
-				lualine_a = {
-					{ "filename", path = 4, cond = has_filename },
-					{
-						"filename",
-						path = 3,
-						cond = has_full_filename,
-					},
-				},
-				lualine_b = {
-					"diff",
-					"diagnostics",
-				},
-				lualine_c = {},
-				lualine_x = { "lsp_status" },
-				lualine_y = {
-					"progress",
-				},
-				lualine_z = { "filetype" },
+	winbar = {
+		lualine_a = {
+			{ "filename", path = 4, cond = has_filename },
+			{
+				"filename",
+				path = 3,
+				cond = has_full_filename,
 			},
+		},
+		lualine_b = {
+			"diff",
+			"diagnostics",
+		},
+		lualine_c = {},
+		lualine_x = { "lsp_status" },
+		lualine_y = {
+			"progress",
+		},
+		lualine_z = { "filetype" },
+	},
 
-			inactive_winbar = {
-				lualine_a = { { "filename", path = 4, cond = has_filename } },
-				lualine_b = {},
-				lualine_c = {},
-				lualine_x = { "filetype" },
-				lualine_y = {},
-				lualine_z = {},
-			},
+	inactive_winbar = {
+		lualine_a = { { "filename", path = 4, cond = has_filename } },
+		lualine_b = {},
+		lualine_c = {},
+		lualine_x = { "filetype" },
+		lualine_y = {},
+		lualine_z = {},
+	},
 
-			options = {
-				always_divide_middle = false,
-				section_separators = { left = "", right = "" },
-				component_separators = { left = "", right = "" },
-				disabled_filetypes = { "neo-tree" },
-			},
+	options = {
+		always_divide_middle = false,
+		section_separators = { left = "", right = "" },
+		component_separators = { left = "", right = "" },
+		disabled_filetypes = { "neo-tree" },
+	},
 
-			extensions = {
-				"neo-tree",
-			},
+	extensions = {
+		"neo-tree",
+	},
 })
 
 set_keys()

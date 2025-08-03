@@ -12,19 +12,33 @@ require("mini.operators").setup({
 	},
 })
 require("mini.files").setup({
-			mappings = {
-				go_in_plus = vim.g.rightkey,
-				go_out_plus = vim.g.leftkey,
-				go_in = "<S-" .. vim.g.rightkey .. ">",
-				go_out = "<S-" .. vim.g.leftkey .. ">",
-				synchronize = "<leader>w",
-				reveal_cwd = "<leader>d",
-				["<rightkey>"] = "go_in",
-				["<leftkey>"] = "go_out"
-			},
+	mappings = {
+		go_in_plus = vim.g.rightkey,
+		go_out_plus = vim.g.leftkey,
+		go_in = "<S-" .. vim.g.rightkey .. ">",
+		go_out = "<S-" .. vim.g.leftkey .. ">",
+		synchronize = "<leader>w",
+		reveal_cwd = "<leader>d",
+		["<rightkey>"] = "go_in",
+		["<leftkey>"] = "go_out",
+	},
 
-			windows = {
-				preview = true,
-				width_preview = 80,
-			},
+	windows = {
+		preview = true,
+		width_preview = 80,
+	},
+})
+
+local wk = require("which-key")
+wk.add({
+	{
+		"<leader>e",
+		"<CMD>lua require('mini.files').open(vim.api.nvim_buf_get_name(0), true)<CR>",
+		desc = "Open mini files (current directory)",
+	},
+	{
+		"<leader>E",
+		"<CMD>lua require('mini.files').open(vim.uv.cwd(), true)<CR>",
+		desc = "Open mini files (cwd)",
+	},
 })
