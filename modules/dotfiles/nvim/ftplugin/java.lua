@@ -1,1 +1,1 @@
-vim.cmd.runtime("ftplugin/plugings/nvim-jdtls.lua")
+vim.cmd.runtime("ftplugin/plugins/nvim-jdtls.lua")

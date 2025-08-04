@@ -146,6 +146,7 @@ in
         conform-nvim
         nvim-lint
         trouble-nvim
+        tiny-inline-diagnostic-nvim
 
         # Markdown
         zk-nvim
