@@ -117,6 +117,9 @@ in
         # Icons
         nvim-web-devicons
 
+        # folding
+        nvim-ufo
+
         # Autocomplete
         blink-cmp
         blink-compat

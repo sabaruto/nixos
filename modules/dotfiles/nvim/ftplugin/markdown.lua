@@ -1,11 +1,4 @@
-require("render-markdown").setup({
-	preset = "obsidian",
-	completions = {
-		lsp = {
-			enabled = true,
-		},
-	},
-})
+vim.cmd.runtime("ftplugin/plugins/render-markdown.lua")
 
 -- zk
 if vim.fs.root(0, { ".zk" }) then

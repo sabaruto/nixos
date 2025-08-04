@@ -48,23 +48,6 @@ local function has_full_filename()
 	return elem_in(filetypes, vim.bo.filetype)
 end
 
-local function set_keys()
-	for index = 1, 9 do
-		vim.keymap.set(
-			{ "n" },
-			"<leader>" .. index,
-			"<cmd>LualineBuffersJump! " .. index .. "<cr>",
-			{ desc = "Go to buffer " .. index }
-		)
-		vim.keymap.set(
-			{ "n", "v" },
-			"<leader>b" .. index,
-			"<cmd>LualineBuffersJump! " .. index .. "<cr>",
-			{ desc = "Go to buffer " .. index }
-		)
-	end
-end
-
 local lualine = require("lualine")
 lualine.setup({
 	sections = {
@@ -137,5 +120,3 @@ lualine.setup({
 		"neo-tree",
 	},
 })
-
-set_keys()

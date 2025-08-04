@@ -13,6 +13,7 @@ neo_tree.setup({
 		"filesystem",
 		"buffers",
 		"git_status",
+		"document_symbols",
 	},
 
 	window = {
@@ -47,5 +48,42 @@ neo_tree.setup({
 })
 
 require("which-key").add({
-	{ "<leader>t", ":Neotree toggle<CR>", desc = "Toggle Neotree" },
+	{ "<leader>t", ":Neotree toggle show last<CR>", desc = "Neotree" },
+	{ "t", ":Neotree last<CR>", desc = "Toggle Neotree" },
+	{
+		"<leader>T",
+		group = "NeoTree",
+		expand = function()
+			return {
+				{
+					"b",
+					function()
+						vim.cmd(":Neotree buffers")
+					end,
+					desc = "buffers (NeoTree)",
+				},
+				{
+					"f",
+					function()
+						vim.cmd(":Neotree filesystem")
+					end,
+					desc = "files (NeoTree)",
+				},
+				{
+					"g",
+					function()
+						vim.cmd(":Neotree git_status")
+					end,
+					desc = "git status (Neotree)",
+				},
+				{
+					"s",
+					function()
+						vim.cmd(":Neotree document_symbols")
+					end,
+					desc = "document symbols (Neotree)",
+				},
+			}
+		end,
+	},
 })

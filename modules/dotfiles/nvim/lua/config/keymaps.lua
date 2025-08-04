@@ -43,10 +43,20 @@ vim.keymap.set({ "n" }, wl .. "j", "<cmd>wincmd j<cr>", { silent = true, desc = 
 vim.keymap.set({ "n" }, wl .. "k", "<cmd>wincmd k<cr>", { silent = true, desc = "Move window up" })
 vim.keymap.set({ "n" }, wl .. "l", "<cmd>wincmd l<cr>", { silent = true, desc = "Move window right" })
 
+vim.keymap.set({ "n" }, "<c-h>", "<cmd>wincmd h<cr>", { silent = true, desc = "Move window left" })
+vim.keymap.set({ "n" }, "<c-j>", "<cmd>wincmd j<cr>", { silent = true, desc = "Move window down" })
+vim.keymap.set({ "n" }, "<c-k>", "<cmd>wincmd k<cr>", { silent = true, desc = "Move window up" })
+vim.keymap.set({ "n" }, "<c-l>", "<cmd>wincmd l<cr>", { silent = true, desc = "Move window right" })
+
 vim.keymap.set({ "n" }, wl .. "<down>", "<cmd>wincmd j<cr>", { silent = true, desc = "Move window down" })
 vim.keymap.set({ "n" }, wl .. "<left>", "<cmd>wincmd h<cr>", { silent = true, desc = "Move window left" })
 vim.keymap.set({ "n" }, wl .. "<right>", "<cmd>wincmd l<cr>", { silent = true, desc = "Move window right" })
 vim.keymap.set({ "n" }, wl .. "<up>", "<cmd>wincmd k<cr>", { silent = true, desc = "Move window up" })
+
+vim.keymap.set({ "n" }, "<c-left>", "<cmd>wincmd h<cr>", { silent = true, desc = "Move window left" })
+vim.keymap.set({ "n" }, "<c-down>", "<cmd>wincmd j<cr>", { silent = true, desc = "Move window down" })
+vim.keymap.set({ "n" }, "<c-up>", "<cmd>wincmd k<cr>", { silent = true, desc = "Move window up" })
+vim.keymap.set({ "n" }, "<c-right>", "<cmd>wincmd l<cr>", { silent = true, desc = "Move window right" })
 
 -- Tabs
 local tl = vim.g.createmapleader("tab", "<leader><tab>")
