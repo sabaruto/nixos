@@ -11,8 +11,11 @@ mkShell {
     teleport
     checkstyle
     jdt-language-server
-
+    jetbrains-toolbox
     postgresql
+
+    sqls
+    sql-formatter
   ];
 
   shellHook = ''

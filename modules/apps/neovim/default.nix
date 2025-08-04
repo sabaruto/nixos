@@ -78,6 +78,7 @@ in
         isort
         julia
         lemminx
+        jwt-cli
         nil
         nixd
         php

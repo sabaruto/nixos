@@ -35,6 +35,7 @@ in
         mvn-avro-schema = "./mvnw -pl payments-gateway-service-infra org.apache.avro:avro-maven-plugin:schema";
         mvn-full-install = "./mvnw clean install";
 
+        idea = "~/.local/share/JetBrains/Toolbox/apps/intellij-idea-community-edition/bin/idea";
         # # ssh connecton
         # ssh-add = "ssh-add.exe";
         # ssh = "ssh.exe";

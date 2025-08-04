@@ -374,13 +374,13 @@ return {
 		-- 	},
 		-- },
 
-		init = function()
-			vim.api.nvim_create_autocmd("User", {
-				pattern = "VeryLazy",
-				callback = function()
-					vim.ui.select = Snacks.picker.select
-				end,
-			})
-		end,
+		-- init = function()
+		-- 	vim.api.nvim_create_autocmd("User", {
+		-- 		pattern = "VeryLazy",
+		-- 		callback = function()
+		-- 			vim.ui.select = Snacks.picker.select
+		-- 		end,
+		-- 	})
+		-- end,
 	},
 }

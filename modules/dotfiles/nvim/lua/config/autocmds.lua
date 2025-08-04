@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	group = vim.api.nvim_create_augroup("use_4_spaces", { clear = true }),
-	pattern = { "*.json", "*.java" },
+	pattern = { "*.json", "*.java", "*.xml" },
 	callback = function()
 		vim.opt.tabstop = 4
 		vim.opt.shiftwidth = 4
@@ -60,34 +60,32 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 	end,
 })
 
-vim.api.nvim_create_autocmd({ 'BufEnter', 'InsertLeave' }, {
-	group = vim.api.nvim_create_augroup('Start lsp actions', { clear = true }),
+vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave" }, {
+	group = vim.api.nvim_create_augroup("Start lsp actions", { clear = true }),
 	callback = function()
 		vim.lsp.codelens.refresh({ bufnr = 0 })
 	end,
 })
 
-vim.api.nvim_create_autocmd('LspAttach', {
+vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
-		vim.g.remove_lsp_mapping('n', 'gra')
-		vim.g.remove_lsp_mapping('x', 'gra')
-		vim.g.remove_lsp_mapping('n', 'gri')
-		vim.g.remove_lsp_mapping('n', 'grn')
-		vim.g.remove_lsp_mapping('n', 'grr')
-		vim.g.remove_lsp_mapping('n', 'grt')
+		vim.g.remove_lsp_mapping("n", "gra")
+		vim.g.remove_lsp_mapping("x", "gra")
+		vim.g.remove_lsp_mapping("n", "gri")
+		vim.g.remove_lsp_mapping("n", "grn")
+		vim.g.remove_lsp_mapping("n", "grr")
+		vim.g.remove_lsp_mapping("n", "grt")
 
 		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 
 		-- Enable auto-completion. Note: Use CTRL-Y to select an item. |complete_CTRL-Y|
-		if client:supports_method('textDocument/completion') then
+		if client:supports_method("textDocument/completion") then
 			-- Optional: trigger autocompletion on EVERY keypress. May be slow!
 			-- local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
 			-- client.server_capabilities.completionProvider.triggerCharacters = chars
 
 			vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = false })
 		end
-
-
 
 		-- Auto-format ("lint") on save.
 		-- Usually not needed if server supports "textDocument/willSaveWaitUntil".

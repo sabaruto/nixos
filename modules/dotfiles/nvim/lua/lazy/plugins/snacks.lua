@@ -6,7 +6,7 @@ return {
 		opts = {
 			bigfile = { enabled = true },
 			dashboard = {
-				enabled = true,
+				enabled = false,
 				sections = {
 					{ section = "header" },
 					{
@@ -89,7 +89,7 @@ return {
 					wo = { winbar = vim.v.count1 .. ": %{get(b:, 'term_title', '')}" },
 				},
 			},
-			terminal = { enabled = false },
+			terminal = { enabled = true },
 		},
 		keys = {
 			{

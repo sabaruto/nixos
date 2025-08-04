@@ -1,6 +1,6 @@
 return {
 	"meatballs/notebook.nvim",
-	ft = { "markdown" },
+	ft = { "jupyter" },
 	opts = {
 		-- Whether to insert a blank line at the top of the notebook
 		insert_blank_line = true,

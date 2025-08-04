@@ -10,6 +10,7 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"mfussenegger/nvim-dap",
+			"folke/trouble.nvim",
 
 			"Snikimonkd/telescope-git-conflicts.nvim",
 			"nvim-telescope/telescope-fzf-native.nvim",
@@ -50,6 +51,15 @@ return {
 
 		config = function(_, opts)
 			local telescope = require("telescope")
+			local actions = require("telescope.actions")
+			local builtin_search = require("telescope.builtin")
+			local open_with_trouble = require("trouble.sources.telescope").add
+
+			opts["defaults"]["mappings"] = {
+				i = { ["<c-t>"] = open_with_trouble },
+				n = { ["<c-t>"] = open_with_trouble },
+			}
+
 			telescope.setup(opts)
 			telescope.load_extension("fzf")
 			telescope.load_extension("dap")
@@ -59,7 +69,6 @@ return {
 			telescope.load_extension("media_files")
 			telescope.load_extension("workspaces")
 
-			local builtin_search = require("telescope.builtin")
 			local ext_search = telescope.extensions
 
 			-- goto

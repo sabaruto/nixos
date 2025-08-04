@@ -24,16 +24,16 @@ return {
 					runtimes = {
 						{
 							name = "JavaSE-24",
-							path = os.getenv("JAVA_HOME")
-						}
-					}
+							path = os.getenv("JAVA_HOME"),
+						},
+					},
 				},
 				format = {
 					enabled = true,
 					settings = {
 						profile = "Intellij",
-						url = "~/github.com/sabaruto/nixos/tools/java/xml/profiles.xml"
-					}
+						url = "~/github.com/sabaruto/nixos/tools/java/xml/profiles-windows.xml",
+					},
 				},
 				import = {
 					maven = {

@@ -1,7 +1,9 @@
 { lib, config, ... }:
 with lib;
-let cfg = config.localModules.peripherals.kanata;
-in {
+let
+  cfg = config.localModules.peripherals.kanata;
+in
+{
   options.localModules.peripherals.kanata.enable = mkEnableOption "Kanata";
 
   config = mkIf cfg.enable {
@@ -15,7 +17,7 @@ in {
           devices = [ ];
           config = ''
             (defsrc
-              a   s   d   f   h   j   k   l
+              caps a   s   d   f   h   j   k   l
             )
             (defvar
               tap-time 200
@@ -32,7 +34,7 @@ in {
               l (tap-hold $tap-time $hold-time l rmet)
             )
             (deflayer base
-              @a  @s  @d  @f  @h  @j  @k  @l
+              esc @a  @s  @d  @f  @h  @j  @k  @l
             )
           '';
 
