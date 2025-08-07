@@ -169,6 +169,7 @@ in
 
         # git
         gitsigns-nvim
+        diffview-nvim
 
         # telescope
         telescope-nvim

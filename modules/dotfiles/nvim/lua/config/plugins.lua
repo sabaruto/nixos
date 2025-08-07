@@ -21,6 +21,7 @@ require("config.plugins.blink")
 
 require("config.plugins.tiny-inline-diagnostic-nvim")
 require("config.plugins.persistence")
+require("config.plugins.diffview")
 require("config.plugins.nvim-lint")
 require("config.plugins.conform")
 require("config.plugins.snacks")

@@ -2,28 +2,20 @@
   description = "Backoffice bff flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/c792c60b8a97daa7efe41a6e4954497ae410e0c1";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
   outputs =
-    { nixpkgs, flake-utils, ... }:
+    {
+      nixpkgs,
+      flake-utils,
+      ...
+    }:
     flake-utils.lib.eachDefaultSystemPassThrough (
       system:
       let
-        pkgs = import nixpkgs {
-          inherit system;
-        };
-
-        buildNodeJs = pkgs.callPackage "${nixpkgs}/pkgs/development/web/nodejs/nodejs.nix" {
-          python = pkgs.python3;
-        };
-
-        nodejs = buildNodeJs {
-          enableNpm = true;
-          version = "22.15.1";
-          sha256 = "sha256-wZ8Bd9IcYhdGYl5fN1kL0NeacgQ7d7U3hMul8UXnJj4=";
-        };
+        pkgs = import nixpkgs { inherit system; };
       in
       {
         devShells."${system}" = {
@@ -31,8 +23,11 @@
             with pkgs;
             mkShell {
               packages = [
-                corepack
+                yarn
                 nodejs
+                git-secrets
+                typescript
+                typescript-language-server
               ];
             };
         };

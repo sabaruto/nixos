@@ -30,6 +30,7 @@ in
       (mkIf (config.home.username == "t-aaronobelley") {
         # Installation environment
         mvn-install = "./mvnw install -Dskip.unitTests -Dskip.integrationTests=true -Djacoco.skip=true -Dcheckstyle.skip=true";
+        mvn-verify = "./mvnw verify -Djacoco.skip=true -Dcheckstyle.skip=true";
         mvn-clean-install = "./mvnw clean install -Dskip.unitTests -Dskip.integrationTests=true -Dcheckstyle.skip=true";
         mvn-avro-download = "./mvnw -pl payments-gateway-service-infra io.confluent:kafka-schema-registry-maven-plugin:download";
         mvn-avro-schema = "./mvnw -pl payments-gateway-service-infra org.apache.avro:avro-maven-plugin:schema";

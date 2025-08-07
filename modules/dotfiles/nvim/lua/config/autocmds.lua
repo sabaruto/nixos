@@ -1,6 +1,6 @@
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	group = vim.api.nvim_create_augroup("use_2_spaces", { clear = true }),
-	pattern = { "*.nix", "*.yml", "*.yaml", "*.md" },
+	pattern = { "*.nix", "*.yml", "*.yaml", "*.md", "*.ts" },
 	callback = function()
 		vim.opt.tabstop = 2
 		vim.opt.shiftwidth = 2

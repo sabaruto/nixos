@@ -1,20 +1,21 @@
 require("lspconfig")
 
 vim.lsp.enable({
-	"jsonls",
-	"lua_ls",
-	"nil_ls",
-	"vale_ls",
-	"nixd",
-	"statix",
-	"gopls",
-	"pyright",
-	"lemminx",
-	"spectral",
-	"html",
 	"cssls",
-	"yamlls",
+	"gopls",
+	"html",
+	"jsonls",
+	"lemminx",
+	"lua_ls",
 	"markdown_oxide",
+	"nil_ls",
+	"nixd",
+	"pyright",
+	"spectral",
+	"statix",
+	"ts_ls",
+	"vale_ls",
+	"yamlls",
 })
 
 vim.lsp.config("*", {

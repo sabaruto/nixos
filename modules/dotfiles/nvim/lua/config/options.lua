@@ -6,6 +6,7 @@ vim.g.downkey = "j"
 vim.g.upkey = "k"
 vim.g.rightkey = "l"
 
+vim.g.backupcopy = "yes"
 
 vim.opt.smarttab = true
 vim.opt.tabstop = 4

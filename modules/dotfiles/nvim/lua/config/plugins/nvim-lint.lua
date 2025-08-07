@@ -9,9 +9,9 @@ local opts = {
 		nix = {
 			"deadnix",
 		},
-		-- java = {
-		-- 	"checkstyle"
-		-- },
+		java = {
+			"checkstyle",
+		},
 	},
 }
 

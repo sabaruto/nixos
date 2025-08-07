@@ -81,7 +81,8 @@ in
                   # browser
                   vivaldi
 
-                  devenv
+                  # notes
+                  emanote
                 ]
                 ++ cfg.packages;
 
