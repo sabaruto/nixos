@@ -2,17 +2,14 @@
   lib,
   config,
   pkgs,
-  inputs,
-  system,
   home-manager-modules,
   ...
 }:
 {
-  security.pki = {
-    certificateFiles = [
-      ../../secrets/SaltPay_Root_CA_01.pem
-    ];
-  };
+
+  security.pki.certificateFiles = [
+    ../../secrets/SaltPay_Root_CA_01.pem
+  ];
 
   services.syncthing.enable = lib.mkForce false;
 
@@ -40,9 +37,8 @@
         postman
         dconf-editor
         jwt-cli
-        inputs.agenix.packages."${system}".default
-        inputs.local-packages.packages."${system}".kulala-ls
-        #        inputs.local-packages.packages."${system}".java-debug
+        kulala-ls
+        cspell-lsp
         yazi
 
         xdg-utils-cxx
@@ -51,10 +47,14 @@
         stylua
         bat
 
+        mongodb-cli
+        mongosh
+
         #wsl
         wsl-open
         wslu
         wsl-vpnkit
+        xsel
       ];
 
       config.localModules = {
@@ -70,12 +70,12 @@
           ];
         };
 
-        cmd = {
-          git = {
-            enable = true;
-            user = "t-aaronobelley";
-          };
+        cmd.git = {
+          enable = true;
+          user = "t-aaronobelley";
         };
+
+        apps.emanote.enable = true;
       };
     };
   };
@@ -92,9 +92,7 @@
     startMenuLaunchers = true;
     docker-desktop.enable = false;
 
-    interop = {
-      register = true;
-    };
+    interop.register = true;
 
     wslConf.user.default = "t-aaronobelley";
   };

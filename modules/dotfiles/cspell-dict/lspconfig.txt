@@ -1,0 +1,15 @@
+cspell_ls
+cssls
+getcwd
+gopls
+jsonls
+lemminx
+lspconfig
+nixd
+pyright
+statix
+yamlls
+kulala-ls
+wslu
+ctlptl
+stylua

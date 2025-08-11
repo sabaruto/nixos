@@ -15,6 +15,7 @@ vim.opt.shiftwidth = 4
 vim.opt.number = true
 vim.opt.autoindent = true
 vim.opt.termguicolors = true
+vim.cmd("setlocal spell spelllang=en_gb")
 vim.opt.conceallevel = 2
 
 vim.opt.foldlevel = 99

@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
@@ -13,11 +14,28 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    emanote = {
+      url = "github:srid/emanote";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    { home-manager, lanzaboote, ... }:
     {
+      emanote,
+      home-manager,
+      lanzaboote,
+      flake-utils,
+      ...
+    }:
+    flake-utils.lib.eachDefaultSystemPassThrough (system: {
+
+      overlays = {
+        default = _: _: {
+          emanote = emanote.packages."${system}".default;
+        };
+      };
 
       nixosModules = rec {
         peripherals = ./peripherals;
@@ -49,7 +67,12 @@
           ];
         };
 
-        apps = ./apps;
+        apps = {
+          imports = [
+            emanote.homeManagerModule
+            ./apps
+          ];
+        };
         base = ./base;
         cmd = ./cmd;
         lib = ./lib;
@@ -70,5 +93,5 @@
           ];
         };
       };
-    };
+    });
 }

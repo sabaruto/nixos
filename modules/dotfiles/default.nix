@@ -38,6 +38,18 @@ in
         source = "${dotfilesDirectory}/nix";
         target = ".config/nix";
       }
+      {
+        name = "cspell";
+        recursive = false;
+        source = "${dotfilesDirectory}/cspell.yml";
+        target = ".config/cspell.yml";
+      }
+      {
+        name = "cspell-dictionaries";
+        recursive = true;
+        source = "${dotfilesDirectory}/cspell-dict";
+        target = ".config/cspell-dict";
+      }
     ];
 
     home.file = {

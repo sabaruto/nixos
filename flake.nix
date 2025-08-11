@@ -32,6 +32,7 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
+        flake-utils.follows = "flake-utils";
       };
     };
 
@@ -71,6 +72,8 @@
           {
             nixpkgs.overlays = [
               inputs.neovim-nightly-overlay.overlays.default
+              inputs.local-modules.overlays.default
+              inputs.local-packages.overlays.default
             ];
           }
         ];
@@ -105,6 +108,8 @@
               {
                 nixpkgs.overlays = [
                   inputs.neovim-nightly-overlay.overlays.default
+                  inputs.local-modules.overlays.default
+                  inputs.local-packages.overlays.default
                 ];
               }
             ];

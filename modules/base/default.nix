@@ -80,9 +80,6 @@ in
 
                   # browser
                   vivaldi
-
-                  # notes
-                  emanote
                 ]
                 ++ cfg.packages;
 

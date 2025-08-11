@@ -16,6 +16,7 @@ in
     ./ghostty
     ./wezterm
     ./kitty
+    ./emanote
   ];
 
   options.localModules = {

@@ -52,8 +52,8 @@
 
         apps = {
           alacritty.enable = true;
-          kitty.enable = true;
           ghostty.enable = true;
+          kitty.enable = true;
           neovim.enable = true;
           wezterm.enable = true;
         };

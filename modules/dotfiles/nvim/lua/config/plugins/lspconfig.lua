@@ -2,6 +2,7 @@ require("lspconfig")
 
 vim.lsp.enable({
 	"cssls",
+	"cspell_ls",
 	"gopls",
 	"html",
 	"jsonls",
@@ -26,5 +27,31 @@ vim.lsp.config("*", {
 				multilineTokenSupport = true,
 			},
 		},
+	},
+})
+
+vim.lsp.config("cspell_ls", {
+	cmd = {
+		"cspell-lsp",
+		"--stdio",
+		"-c",
+		os.getenv("HOME") .. "/.config/cspell.yml",
+	},
+	root_markers = {
+		".git",
+		"cspell.json",
+		".cspell.json",
+		"cspell.json",
+		".cSpell.json",
+		"cSpell.json",
+		"cspell.config.js",
+		"cspell.config.cjs",
+		"cspell.config.json",
+		"cspell.config.yaml",
+		"cspell.config.yml",
+		"cspell.yaml",
+		".cspell.yaml",
+		"cspell.yml",
+		".cspell.yml",
 	},
 })

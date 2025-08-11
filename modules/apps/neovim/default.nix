@@ -8,6 +8,16 @@ with lib;
 let
   cfg = config.localModules.apps.neovim;
   dotfilesDir = config.localModules.const.dotfiles;
+
+  tree-sitter-d2 = pkgs.vimUtils.buildVimPlugin {
+    name = "tree-sitter-d2";
+    src = pkgs.fetchFromGitHub {
+      owner = "ravsii";
+      repo = "tree-sitter-d2";
+      hash = "sha256-mclMRkDsjCq4ED6J6eMBVNgYyS507cpmkfInrJYGg1g=";
+      tag = "v0.7.1";
+    };
+  };
 in
 {
   options.localModules.apps.neovim.enable = mkEnableOption "neovim";
@@ -66,6 +76,7 @@ in
         node2nix
 
         luajitPackages.luarocks-nix
+        luajitPackages.fzf-lua
 
         # Builders
         gcc
@@ -90,6 +101,7 @@ in
         black
         prettierd
         stylua
+        nodePackages.cspell
 
         # Builders
         bash-language-server
@@ -142,6 +154,8 @@ in
         # LSP
         nvim-lspconfig
         nvim-jdtls
+        cspell-nvim
+        tree-sitter-d2
 
         # Formatting / diagnostics
         conform-nvim

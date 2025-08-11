@@ -1,5 +1,7 @@
 {
-  pkgs ? import <nixpkgs> { inherit system; },
+  pkgs ? import <nixpkgs> {
+    inherit system;
+  },
   system ? builtins.currentSystem,
   nodejs ? pkgs."nodejs_24",
 }:
@@ -19,6 +21,12 @@ let
   };
 in
 import ./node-packages.nix {
-  inherit (pkgs) fetchurl;
+  inherit (pkgs)
+    fetchurl
+    nix-gitignore
+    stdenv
+    lib
+    fetchgit
+    ;
   inherit nodeEnv;
 }

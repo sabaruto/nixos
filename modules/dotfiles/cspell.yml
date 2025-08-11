@@ -1,0 +1,58 @@
+language: "en-GB"
+ignorePaths:
+  - node_modules/**
+dictionaries:
+  - companies
+  - softwareTerms
+  - cpp
+  - typescript
+  - node
+  - php
+  - go
+  - python
+
+  # custom
+  - saltpay
+  - nix
+  - usernames
+  - lspconfig
+  - misc
+dictionaryDefinitions:
+  -
+    name: saltpay 
+    path: "./cspell-dict/saltpay.txt"
+  -
+    name: nix
+    path: "./cspell-dict/nix.txt"
+  -
+    name: usernames 
+    path: "./cspell-dict/usernames.txt"
+  -
+    name: lspconfig 
+    path: "./cspell-dict/lspconfig.txt"
+  -
+    name: misc 
+    path: "./cspell-dict/misc.txt"
+words:
+  - cspell_ls
+  - cssls
+  - getcwd
+  - gopls
+  - jsonls
+  - lemminx
+  - lspconfig
+  - nixd
+  - pyright
+  - statix
+  - yamlls
+
+  # Nix
+  - nixos
+  - nixpkgs
+
+  # Direnv
+  - direnvrc
+
+  # Usernames
+  - sabaruto
+  - ekkochamber
