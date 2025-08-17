@@ -45,7 +45,7 @@ in
           fi
         ''
         (mkIf (config.localModules.cmd.oh-my-posh.enable) ''
-          eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/theme.omp.json)"
+          eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/theme.omp.yaml)"
         '')
         (mkIf (config.localModules.cmd.direnv.enable) ''
           eval "$(direnv hook zsh)"

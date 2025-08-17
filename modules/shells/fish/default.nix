@@ -2,8 +2,10 @@
 
 with lib;
 
-let cfg = config.localModules.shells;
-in {
+let
+  cfg = config.localModules.shells;
+in
+{
   options.localModules.shells.fish.enable = mkEnableOption "zsh";
 
   config = mkIf cfg.fish.enable {
@@ -12,7 +14,7 @@ in {
 
       shellInit = ''
         direnv hook fish | source
-        oh-my-posh init fish --config ~/.config/theme.omp.json | source
+        oh-my-posh init fish --config ~/.config/theme.omp.yaml | source
       '';
     };
   };

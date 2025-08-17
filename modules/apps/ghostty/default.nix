@@ -5,6 +5,9 @@
   ...
 }:
 with lib;
+let
+  dotfilesDirectory = "${config.home.homeDirectory}/github.com/sabaruto/nixos/modules/dotfiles";
+in
 {
   options.localModules.apps.ghostty.enable = mkEnableOption "Ghostty";
 
@@ -21,7 +24,7 @@ with lib;
       {
         name = "ghostty";
         recursive = true;
-        source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/ghostty";
+        source = "${dotfilesDirectory}/ghostty";
         target = ".config/ghostty";
       }
     ];

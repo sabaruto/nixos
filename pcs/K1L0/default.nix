@@ -26,7 +26,7 @@
     desktopEnvironment = "hyprland";
 
     apps.steam.enable = true;
-    peripherals.kanata.enable = true;
+    peripherals.kanata.enable = false;
 
     home-manager = {
       enable = true;
