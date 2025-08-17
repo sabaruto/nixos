@@ -4,6 +4,10 @@ vim.keymap.set({ "n", "v" }, "<leader><cr>", ":", { remap = true, desc = "Set co
 
 -- Copy and Paste
 vim.keymap.set("n", "<C-S-w>", ":w<CR>") -- Save
+vim.keymap.set("v", "<leader>y", '"+y') -- Copy
+vim.keymap.set("n", "<leader>Y", '"+y$') -- Paste normal mode
+vim.keymap.set("v", "<leader>p", '"+p') -- Paste visual mode
+vim.keymap.set("c", "<leader>P", '"+P') -- Paste command mode
 vim.keymap.set("v", "<C-S-C>", '"+y') -- Copy
 vim.keymap.set("n", "<C-S-V>", '"+P') -- Paste normal mode
 vim.keymap.set("v", "<C-S-V>", '"+P') -- Paste visual mode
