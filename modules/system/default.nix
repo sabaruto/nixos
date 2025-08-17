@@ -1,1 +1,11 @@
-{ ... }: { imports = [ ./desktop-environment ./gpu ./kernel ./base ./podman ]; }
+{ ... }:
+{
+  imports = [
+    ./base
+    ./desktop-environment
+    ./docker
+    ./gpu
+    ./kernel
+    ./podman
+  ];
+}

@@ -14,17 +14,6 @@ in
   config = mkIf cfg.enable {
     virtualisation = {
 
-      oci-containers = {
-        backend = "podman";
-        containers = {
-          container-name = {
-            image = "container-image";
-            autoStart = true;
-            ports = [ "127.0.0.1:1234:1234" ];
-          };
-        };
-      };
-
       # Enable common container config files in /etc/containers
       containers.enable = true;
 
@@ -33,6 +22,7 @@ in
 
         # Create a `docker` alias for podman, to use it as a drop-in replacement
         dockerCompat = true;
+        dockerSocket.enable = true;
 
         # Required for containers under podman-compose to be able to talk to each other.
         defaultNetwork.settings.dns_enabled = true;
@@ -40,13 +30,16 @@ in
     };
 
     hardware.nvidia-container-toolkit.enable = true;
+    users.extraGroups.podman.members = [ config.localModules.name ];
 
     # Useful other development tools
     environment.systemPackages = with pkgs; [
       dive # look into docker image layers
       podman-tui # status of containers in the terminal
-      # docker-compose # start group of containers for dev
-      podman-compose # start group of containers for dev
+      docker-compose # start group of containers for dev
+      # podman-compose # start group of containers for dev
+
+      lazydocker
     ];
   };
 }

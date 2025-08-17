@@ -18,6 +18,14 @@ let
       tag = "v0.7.1";
     };
   };
+
+  zk-nvim = pkgs.vimPlugins.zk-nvim.overrideAttrs {
+    nvimSkipModules = [
+      "zk.pickers.fzf_lua"
+      "zk.pickers.minipick"
+      "zk.pickers.snacks_picker"
+    ];
+  };
 in
 {
   options.localModules.apps.neovim.enable = mkEnableOption "neovim";
@@ -47,7 +55,7 @@ in
         # grep improvement
         ripgrep
 
-        # Coloscripts
+        # Colour scripts
         dwt1-shell-color-scripts
 
         # clipboard managers
@@ -125,8 +133,11 @@ in
       withPython3 = true;
       withNodeJs = true;
       plugins = with pkgs.vimPlugins; [
-        # Treesitter
+        # tree-sitter
         nvim-treesitter.withAllGrammars
+
+        (nvim-treesitter.withPlugins (_: [ tree-sitter-d2 ]))
+
         # Icons
         nvim-web-devicons
 
@@ -156,6 +167,7 @@ in
         nvim-jdtls
         cspell-nvim
         tree-sitter-d2
+        kulala-nvim
 
         # Formatting / diagnostics
         conform-nvim

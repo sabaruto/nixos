@@ -34,6 +34,8 @@ vim.api.nvim_create_autocmd("FileType", {
 		"yaml",
 		"markdown",
 		"markdown_inline",
+		"http",
+		"env",
 	},
 
 	callback = function()

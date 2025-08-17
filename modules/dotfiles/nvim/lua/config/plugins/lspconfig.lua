@@ -10,6 +10,7 @@ vim.lsp.enable({
 	"lua_ls",
 	"markdown_oxide",
 	"nil_ls",
+	"kulala_ls",
 	"nixd",
 	"pyright",
 	"spectral",

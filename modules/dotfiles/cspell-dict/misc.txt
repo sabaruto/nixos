@@ -14,7 +14,8 @@ springframework
 projectlombok
 lombok
 assertj
-
+mvnw
+Djacoco
 
 libXScrnSaver
 libXcomposite
@@ -71,3 +72,16 @@ speex
 
 mongosh
 xsel
+
+nvim
+lazygit
+lilex
+luajit
+luarocks
+ueberzugpp
+devicons
+lualine
+lsp
+noice
+jdtls
+amex
