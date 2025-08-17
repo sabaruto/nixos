@@ -10,12 +10,6 @@ blocks:
         style: diamond
         template: '[<p:subtle></> {{ .CurrentDate | date .Format }}]'
         type: time
-      - foreground: 'p:pine'
-        style: diamond
-        template: '{{(first (splitList ":" (now | date "15:04"))) | int}}'
-        properties:
-          time_format: '15'
-        type: time
       - foreground: 'p:rose'
         style: plain
         template: '[<p:subtle></> {{ .UserName }} :: <p:subtle></> {{ .HostName }}]'
