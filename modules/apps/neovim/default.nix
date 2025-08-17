@@ -93,23 +93,24 @@ in
         gnumake
 
         # lsp / formatters
+        black
+        cspell-lsp
         deadnix
         isort
         julia
-        lemminx
         jwt-cli
+        lemminx
         nil
         nixd
+        nodePackages.cspell
         php
+        prettierd
+        pyright
         statix
+        stylua
         ueberzugpp
         vale
         yamlfmt
-        pyright
-        black
-        prettierd
-        stylua
-        nodePackages.cspell
 
         # Builders
         bash-language-server

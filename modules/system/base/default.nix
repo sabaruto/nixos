@@ -96,6 +96,7 @@ in
 
       # Note taking
       zk
+      emanote
 
       # Boot configuration
       sbctl
