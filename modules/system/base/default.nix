@@ -151,6 +151,14 @@ in
         dates = "weekly";
         options = "--delete-older-than 7d";
       };
+
+    };
+
+    nixpkgs = {
+      # TODO: Remove once qtwebengine is fixed
+      config.permittedInsecurePackages = [
+        "qtwebengine-5.15.19"
+      ];
     };
 
     programs = {

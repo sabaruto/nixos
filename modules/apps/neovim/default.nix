@@ -19,13 +19,13 @@ let
     };
   };
 
-  zk-nvim = pkgs.vimPlugins.zk-nvim.overrideAttrs {
-    nvimSkipModules = [
-      "zk.pickers.fzf_lua"
-      "zk.pickers.minipick"
-      "zk.pickers.snacks_picker"
-    ];
-  };
+  # zk-nvim = pkgs.vimPlugins.zk-nvim.overrideAttrs {
+  #   nvimSkipModules = [
+  #     "zk.pickers.fzf_lua"
+  #     "zk.pickers.minipick"
+  #     "zk.pickers.snacks_picker"
+  #   ];
+  # };
 in
 {
   options.localModules.apps.neovim.enable = mkEnableOption "neovim";
@@ -84,7 +84,7 @@ in
         node2nix
 
         luajitPackages.luarocks-nix
-        luajitPackages.fzf-lua
+        # luajitPackages.fzf-lua
 
         # Builders
         gcc
@@ -177,7 +177,7 @@ in
         tiny-inline-diagnostic-nvim
 
         # Markdown
-        zk-nvim
+        # zk-nvim
         render-markdown-nvim
 
         # Mini

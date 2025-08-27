@@ -89,14 +89,14 @@ config.keys = {
 
 -- Movement
 local movement_keys = {
-	{ key = "LeftArrow",  mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Left") },
-	{ key = "h",          mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Left") },
-	{ key = "RightArrow", mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Right") },
-	{ key = "l",          mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Right") },
-	{ key = "UpArrow",    mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Up") },
-	{ key = "k",          mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Up") },
-	{ key = "DownArrow",  mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Down") },
-	{ key = "j",          mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Down") },
+	{ key = "LeftArrow", mods = "ALT", action = act.ActivatePaneDirection("Left") },
+	{ key = "h", mods = "ALT", action = act.ActivatePaneDirection("Left") },
+	{ key = "RightArrow", mods = "ALT", action = act.ActivatePaneDirection("Right") },
+	{ key = "l", mods = "ALT", action = act.ActivatePaneDirection("Right") },
+	{ key = "UpArrow", mods = "ALT", action = act.ActivatePaneDirection("Up") },
+	{ key = "k", mods = "ALT", action = act.ActivatePaneDirection("Up") },
+	{ key = "DownArrow", mods = "ALT", action = act.ActivatePaneDirection("Down") },
+	{ key = "j", mods = "ALT", action = act.ActivatePaneDirection("Down") },
 }
 
 for _, v in ipairs(movement_keys) do
@@ -127,37 +127,37 @@ config.key_tables = {
 	-- 'resize_pane' here corresponds to the name="resize_pane" in
 	-- the key assignments above.
 	resize_pane = {
-		{ key = "LeftArrow",  action = act.AdjustPaneSize({ "Left", 1 }) },
-		{ key = "h",          action = act.AdjustPaneSize({ "Left", 1 }) },
+		{ key = "LeftArrow", action = act.AdjustPaneSize({ "Left", 1 }) },
+		{ key = "h", action = act.AdjustPaneSize({ "Left", 1 }) },
 
 		{ key = "RightArrow", action = act.AdjustPaneSize({ "Right", 1 }) },
-		{ key = "l",          action = act.AdjustPaneSize({ "Right", 1 }) },
+		{ key = "l", action = act.AdjustPaneSize({ "Right", 1 }) },
 
-		{ key = "UpArrow",    action = act.AdjustPaneSize({ "Up", 1 }) },
-		{ key = "k",          action = act.AdjustPaneSize({ "Up", 1 }) },
+		{ key = "UpArrow", action = act.AdjustPaneSize({ "Up", 1 }) },
+		{ key = "k", action = act.AdjustPaneSize({ "Up", 1 }) },
 
-		{ key = "DownArrow",  action = act.AdjustPaneSize({ "Down", 1 }) },
-		{ key = "j",          action = act.AdjustPaneSize({ "Down", 1 }) },
+		{ key = "DownArrow", action = act.AdjustPaneSize({ "Down", 1 }) },
+		{ key = "j", action = act.AdjustPaneSize({ "Down", 1 }) },
 
 		-- Cancel the mode by pressing escape
-		{ key = "Escape",     action = "PopKeyTable" },
+		{ key = "Escape", action = "PopKeyTable" },
 	},
 
 	-- Defines the keys that are active in our activate-pane mode.
 	-- 'activate_pane' here corresponds to the name="activate_pane" in
 	-- the key assignments above.
 	activate_pane = {
-		{ key = "LeftArrow",  action = act.ActivatePaneDirection("Left") },
-		{ key = "h",          action = act.ActivatePaneDirection("Left") },
+		{ key = "LeftArrow", action = act.ActivatePaneDirection("Left") },
+		{ key = "h", action = act.ActivatePaneDirection("Left") },
 
 		{ key = "RightArrow", action = act.ActivatePaneDirection("Right") },
-		{ key = "l",          action = act.ActivatePaneDirection("Right") },
+		{ key = "l", action = act.ActivatePaneDirection("Right") },
 
-		{ key = "UpArrow",    action = act.ActivatePaneDirection("Up") },
-		{ key = "k",          action = act.ActivatePaneDirection("Up") },
+		{ key = "UpArrow", action = act.ActivatePaneDirection("Up") },
+		{ key = "k", action = act.ActivatePaneDirection("Up") },
 
-		{ key = "DownArrow",  action = act.ActivatePaneDirection("Down") },
-		{ key = "j",          action = act.ActivatePaneDirection("Down") },
+		{ key = "DownArrow", action = act.ActivatePaneDirection("Down") },
+		{ key = "j", action = act.ActivatePaneDirection("Down") },
 	},
 }
 

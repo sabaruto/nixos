@@ -1,4 +1,9 @@
-{ config, pkgs, home-manager-modules, ... }:
+{
+  config,
+  pkgs,
+  home-manager-modules,
+  ...
+}:
 
 {
   imports = [ ./hardware-configuration.nix ];
@@ -58,7 +63,13 @@
         development = {
           enable = true;
           installOnNixos = true;
-          languages = [ "nix" "lua" "java" "golang" "typescript" ];
+          languages = [
+            "nix"
+            "lua"
+            "java"
+            "golang"
+            "typescript"
+          ];
         };
       };
     };
