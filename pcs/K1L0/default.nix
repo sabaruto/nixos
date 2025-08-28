@@ -69,6 +69,8 @@
             "typescript"
           ];
         };
+
+        cronjobs.theme-switching.enable = true;
       };
     };
   };

@@ -1,4 +1,4 @@
-{ pkgs, conf-path, }:
+{ pkgs, conf-path, ... }:
 
 pkgs.writeShellScriptBin "switch-theme" ''
   mode=$1

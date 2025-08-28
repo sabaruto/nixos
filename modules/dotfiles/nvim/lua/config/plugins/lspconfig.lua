@@ -1,16 +1,17 @@
 require("lspconfig")
 
 vim.lsp.enable({
-	"cssls",
 	"cspell_ls",
+	"cssls",
 	"gopls",
 	"html",
+	"jdtls",
 	"jsonls",
+	"kulala_ls",
 	"lemminx",
 	"lua_ls",
 	"markdown_oxide",
 	"nil_ls",
-	"kulala_ls",
 	"nixd",
 	"pyright",
 	"spectral",
@@ -18,6 +19,7 @@ vim.lsp.enable({
 	"ts_ls",
 	"vale_ls",
 	"yamlls",
+	"zk",
 })
 
 vim.lsp.config("*", {
@@ -39,20 +41,20 @@ vim.lsp.config("cspell_ls", {
 		os.getenv("HOME") .. "/.config/cspell.yml",
 	},
 	root_markers = {
-		".git",
-		"cspell.json",
-		".cspell.json",
-		"cspell.json",
 		".cSpell.json",
+		".cspell.json",
+		".cspell.yaml",
+		".cspell.yml",
+		".git",
 		"cSpell.json",
-		"cspell.config.js",
 		"cspell.config.cjs",
+		"cspell.config.js",
 		"cspell.config.json",
 		"cspell.config.yaml",
 		"cspell.config.yml",
+		"cspell.json",
+		"cspell.json",
 		"cspell.yaml",
-		".cspell.yaml",
 		"cspell.yml",
-		".cspell.yml",
 	},
 })

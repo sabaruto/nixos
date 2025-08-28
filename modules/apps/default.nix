@@ -41,6 +41,12 @@ in
   };
 
   config = mkIf (cfg.enable && cfg.installOnNixos) {
+
+    programs.java = mkIf (elem "java" cfg.languages) {
+      enable = true;
+      package = pkgs.jdk24;
+    };
+
     home = mkMerge [
       {
         packages = with pkgs; [
@@ -76,7 +82,6 @@ in
       (mkIf (elem "java" cfg.languages) {
         packages = with pkgs; [
           # We only install java from dev environments
-          # temurin-bin-24
 
           spring-boot-cli
           libglibutil
@@ -85,6 +90,8 @@ in
           maven
           gradle
 
+          # LSP
+          jdt-language-server
         ];
       })
     ];

@@ -76,8 +76,8 @@ local workspace = {
 local home = os.getenv("HOME")
 local nixos_dir = home .. "/github.com/sabaruto/nixos"
 local jars_dir = nixos_dir .. "/tools/java/jars"
-local jdtls_root = os.getenv("JDTLS_HOME")
-
+local jdtls_root = vim.split(vim.fn.glob("/nix/store/*jdt-language-server-*.0"), "\n")[1]
+local data_dir = vim.fn.stdpath("data")
 local config_dir = jdtls_root .. "/share/java/jdtls/config_linux"
 local jdtls_jar_path =
 	vim.split(vim.fn.glob(jdtls_root .. "/share/java/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"), "\n")[1]
@@ -87,11 +87,6 @@ local cwd = vim.fn.getcwd()
 local project_name = vim.fn.fnamemodify(cwd, ":p:h:t")
 local workspace_dir = cache_dir .. "/workspace/" .. project_name
 local lombok_dir = jars_dir .. "/javaagents/lombok.jar"
-
-config.on_attach = function(_, _)
-	require("jdtls.setup").add_commands()
-	require("jdtls").setup_dap()
-end
 
 config.cmd = {
 	"java",
@@ -122,30 +117,23 @@ config.cmd = {
 local bundles = {}
 
 vim.list_extend(bundles, vim.split(vim.fn.glob(jars_dir .. "/bundles/*.jar", 1), "\n"))
+vim.list_extend(bundles, {
+	vim.fn.glob(data_dir .. "/mason/packages/java-test/extension/server/*.jar", true),
+	vim.fn.glob(
+		data_dir .. "/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar",
+		true
+	),
+})
 config["init_options"] = {
 	bundles = bundles,
 }
 
-local extendedClientCapabilities = require("jdtls").extendedClientCapabilities
-extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
-
 config["init_options"] = {
 	bundles = bundles,
-	extendedClientCapabilities = extendedClientCapabilities,
 }
 
 config.on_init = function(client, _)
 	client.notify("workspace/didChangeConfiguration", { settings = config.settings })
 end
 
-vim.g.attach_jdtls = function()
-	vim.print(config)
-	require("jdtls").start_or_attach(config)
-end
-
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "java",
-	callback = vim.g.attach_jdtls,
-})
-
-vim.g.attach_jdtls()
+return config
