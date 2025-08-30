@@ -64,6 +64,7 @@
           languages = [
             "nix"
             "lua"
+            "sass"
             "java"
             "golang"
             "typescript"

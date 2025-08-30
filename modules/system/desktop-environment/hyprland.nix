@@ -73,6 +73,9 @@ in
         # File manager
         nautilus
 
+        # mounting
+        udiskie
+
         # Remote desktop
         wayvnc
 

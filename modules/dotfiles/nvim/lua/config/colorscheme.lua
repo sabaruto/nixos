@@ -4,4 +4,4 @@
 -- 	vim.cmd.colorscheme("rose-pine-dawn")
 -- end
 
-vim.cmd.colorscheme("rose-pine-moon")
+vim.cmd.colorscheme("rose-pine-dawn")

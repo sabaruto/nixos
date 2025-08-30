@@ -29,6 +29,7 @@ in
           listOf (enum [
             "golang"
             "typescript"
+            "sass"
             "nix"
             "java"
             "python"
@@ -92,6 +93,11 @@ in
 
           # LSP
           jdt-language-server
+        ];
+      })
+      (mkIf (elem "sass" cfg.languages) {
+        packages = with pkgs; [
+          dart-sass
         ];
       })
     ];
