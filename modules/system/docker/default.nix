@@ -18,21 +18,29 @@ in
 
       docker = {
         enable = true;
-        rootless = {
+        enableOnBoot = true;
+
+        autoPrune = {
           enable = true;
-          setSocketVariable = true;
+          dates = "weekly";
         };
       };
     };
 
     hardware.nvidia-container-toolkit.enable = true;
-    users.extraGroups.docker.members = [ config.localModules.name ];
 
-    # Useful other development tools
-    environment.systemPackages = with pkgs; [
-      dive # look into docker image layers
-      docker-compose # start group of containers for dev
-      lazydocker
-    ];
+    users.users."${config.localModules.name}".extraGroups = [ "docker" ];
+    environment = {
+
+      variables = {
+        DOCKER_HOST = "unix:///run/docker.sock";
+      };
+
+      # Useful other development tools
+      systemPackages = with pkgs; [
+        dive # look into docker image layers
+        docker-compose # start group of containers for dev
+      ];
+    };
   };
 }

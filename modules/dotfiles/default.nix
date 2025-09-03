@@ -50,6 +50,12 @@ in
         source = "${dotfilesDirectory}/cspell-dict";
         target = ".config/cspell-dict";
       }
+      {
+        name = "moxide";
+        recursive = true;
+        source = "${dotfilesDirectory}/moxide";
+        target = ".config/moxide";
+      }
     ];
 
     home.file = {

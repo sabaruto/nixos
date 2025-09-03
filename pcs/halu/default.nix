@@ -21,7 +21,7 @@
     desktopEnvironment = "none";
     gpu = "nvidia";
 
-    system.podman.enable = true;
+    system.docker.enable = true;
 
     home-manager = {
       enable = true;

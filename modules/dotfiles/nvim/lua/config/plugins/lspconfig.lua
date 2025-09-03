@@ -19,7 +19,6 @@ vim.lsp.enable({
 	"ts_ls",
 	"vale_ls",
 	"yamlls",
-	"zk",
 })
 
 vim.lsp.config("*", {
@@ -28,6 +27,16 @@ vim.lsp.config("*", {
 		textDocument = {
 			semanticTokens = {
 				multilineTokenSupport = true,
+			},
+		},
+	},
+})
+
+vim.lsp.config("markdown_oxide", {
+	capabilities = {
+		workspace = {
+			didChangeWatchedFiles = {
+				dynamicRegistration = true,
 			},
 		},
 	},

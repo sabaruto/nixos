@@ -19,6 +19,11 @@
           mkShell {
 
             shellHook = ''
+              export MAVEN_OPTS='-Dspring-boot.run.jvmArguments=-Djavax.net.ssl.trustStore=/home/t-aaronobelley/github.com/sabaruto/nixos/secrets/truststore.jks -Djavax.net.ssl.trustStorePassword=changeit'
+              export XMLLINT_INDENT="    "
+              export TESTCONTAINERS_RYUK_DISABLED=true
+              export TESTCONTAINERS_RYUK_PRIVILEGED=true
+
               if [ ! -e ./payments-gateway-service-web/src/main/resources/application-secret.yml ]; then
                 op read "op://Gateway - Dev/application-secret.yml/notesPlain" > payments-gateway-service-web/src/main/resources/application-secret.yml
               fi
