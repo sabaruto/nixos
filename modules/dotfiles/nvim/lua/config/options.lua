@@ -1,6 +1,8 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "	"
 
+-- vim.opt.clipboard = "unnamedplus"
+
 vim.g.leftkey = "h"
 vim.g.downkey = "j"
 vim.g.upkey = "k"

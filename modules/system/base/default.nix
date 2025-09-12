@@ -43,11 +43,14 @@ in
       default = null;
       description = "size of the swap file";
     };
+
+    hostMachine = mkEnableOption "Host Machine";
   };
 
   config = {
     networking.hostName = cfg.hostname;
     system.stateVersion = cfg.stateVersion;
+    localModules.hostMachine = mkDefault true;
 
     boot.kernelPackages = mkIf (cfg.linuxVersion != null) cfg.linuxVersion;
 
@@ -70,61 +73,64 @@ in
       }
     ];
 
-    environment.systemPackages = with pkgs; [
-      # browsers
-      firefox
+    environment.systemPackages =
+      with pkgs;
+      mkMerge [
+        [
 
-      # cursors
-      google-cursor
+          # boot configuration
+          efibootmgr
 
-      # boot configuration
-      efibootmgr
+          # nixos configuration applications
+          gh
+          git
+          micro
 
-      # nixos configuration applications
-      gh
-      git
-      micro
+          # System configurations checkers
+          fwupd
+          rPackages.pcutils
+          wget
+          gnupg
+          unzip
+          usbutils
+          home-manager
 
-      # System configurations checkers
-      fwupd
-      rPackages.pcutils
-      wget
-      gnupg
-      unzip
-      usbutils
-      home-manager
+          # Note taking
+          zk
+          emanote
 
-      # Note taking
-      zk
-      emanote
+          # Boot configuration
+          sbctl
 
-      # Boot configuration
-      sbctl
+          # Python
+          poetry
 
-      # Python
-      poetry
+          # Comandline improvement
+          oh-my-zsh
+          oh-my-posh
 
-      # Communication
-      discord
+          # Images in the terminal
+          chafa
 
-      # Comandline improvement
-      oh-my-zsh
-      oh-my-posh
+          # fonts
+          nerd-fonts.fira-code
+          nerd-fonts.droid-sans-mono
+          nerd-fonts.martian-mono
 
-      # Images in the terminal
-      chafa
+          # Git encryption
+          git-crypt
+        ]
+        (mkIf config.localModules.hostMachine [
+          # Communication
+          discord
 
-      # Whatsapp
-      whatsie
+          # Whatsapp
+          whatsie
 
-      # fonts
-      nerd-fonts.fira-code
-      nerd-fonts.droid-sans-mono
-      nerd-fonts.martian-mono
-
-      # Git encryption
-      git-crypt
-    ];
+          # cursors
+          google-cursor
+        ])
+      ];
 
     # Bootloader.
     boot = {
@@ -163,7 +169,7 @@ in
 
     programs = {
       _1password.enable = true;
-      _1password-gui = {
+      _1password-gui = mkIf config.localModules.hostMachine {
         enable = true;
         polkitPolicyOwners = [ "${config.localModules.name}" ];
       };

@@ -20,6 +20,7 @@
 
     desktopEnvironment = "none";
     gpu = "nvidia";
+    hostMachine = false;
 
     system.docker.enable = true;
 
