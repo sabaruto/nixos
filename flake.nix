@@ -42,29 +42,13 @@
     };
   };
 
-  outputs =
-    {
-      self,
-      agenix,
-      nixpkgs,
-      nixos-wsl,
-      flake-utils,
-      local-modules,
-      ...
+  outputs = { self, agenix, nixpkgs, nixos-wsl, flake-utils, local-modules, ...
     }@inputs:
-    flake-utils.lib.eachDefaultSystemPassThrough (
-      system:
+    flake-utils.lib.eachDefaultSystemPassThrough (system:
       let
         inherit (self) outputs;
         home-manager-modules = [ local-modules.homeManagerModules.all ];
-        specialArgs = {
-          inherit
-            inputs
-            outputs
-            system
-            home-manager-modules
-            ;
-        };
+        specialArgs = { inherit inputs outputs system home-manager-modules; };
 
         default-modules = [
           local-modules.nixosModules.default
@@ -77,8 +61,7 @@
             ];
           }
         ];
-      in
-      {
+      in {
         nixosConfigurations = {
           zalu = nixpkgs.lib.nixosSystem {
             inherit specialArgs;
@@ -118,18 +101,20 @@
           mini-pc = nixpkgs.lib.nixosSystem {
             inherit specialArgs;
 
-            modules = default-modules + [ ./pcs/mini-pc ];
+            modules = default-modules ++ [ ./pcs/mini-pc ];
           };
         };
 
         devShells."${system}" = {
           saltpay = import ./dev-shells/saltpay.nix { inherit nixpkgs system; };
-          streaming-service-merger = import ./dev-shells/streaming-service-merger.nix {
+          streaming-service-merger =
+            import ./dev-shells/streaming-service-merger.nix {
+              inherit nixpkgs system;
+            };
+          nodejs = import ./dev-shells/nodejs.nix { inherit nixpkgs system; };
+          openaws-vpn-client = import ./dev-shells/openaws-vpn-client.nix {
             inherit nixpkgs system;
           };
-          nodejs = import ./dev-shells/nodejs.nix { inherit nixpkgs system; };
-          openaws-vpn-client = import ./dev-shells/openaws-vpn-client.nix { inherit nixpkgs system; };
         };
-      }
-    );
+      });
 }

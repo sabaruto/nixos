@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  home-manager-modules,
-  ...
-}:
+{ config, pkgs, home-manager-modules, ... }:
 
 {
   imports = [ ./hardware-configuration.nix ];
@@ -13,12 +8,7 @@
 
   programs.nix-ld = {
     enable = true;
-    libraries = with pkgs; [
-      jdk21
-      jdk24
-
-      python3Full
-    ];
+    libraries = with pkgs; [ jdk21 jdk24 ];
   };
 
   localModules = {
@@ -63,13 +53,7 @@
         development = {
           enable = true;
           installOnNixos = true;
-          languages = [
-            "nix"
-            "lua"
-            "java"
-            "golang"
-            "typescript"
-          ];
+          languages = [ "nix" "lua" "java" "golang" "typescript" ];
         };
       };
     };

@@ -1,15 +1,8 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
+{ lib, pkgs, config, ... }:
 with lib;
 
-let
-  cfg = config.localModules.home-manager;
-in
-{
+let cfg = config.localModules.home-manager;
+in {
   options.localModules.home-manager = {
     enable = mkEnableOption "Home Manager";
 
@@ -60,8 +53,7 @@ in
 
             programs.home-manager.enable = true;
             home = {
-              packages =
-                with pkgs;
+              packages = with pkgs;
                 [
                   # Music
                   spotify
@@ -80,14 +72,11 @@ in
 
                   # browser
                   vivaldi
-                ]
-                ++ cfg.packages;
+                ] ++ cfg.packages;
 
               username = "${config.localModules.name}";
               homeDirectory = mkDefault "/home/${config.localModules.name}";
-              sessionVariables = {
-                EDITOR = "nvim";
-              };
+              sessionVariables = { EDITOR = "nvim"; };
 
               stateVersion = "24.11";
             };

@@ -7,7 +7,7 @@ in {
   config = mkIf (cfg.desktopEnvironment == "gnome") {
 
     qt = {
-      enable = true;
+      enable = false;
       style = "breeze";
       platformTheme = "gnome";
     };

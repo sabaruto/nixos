@@ -16,7 +16,6 @@ in {
     environment.systemPackages = with pkgs; [
       gamescope
       avahi
-      alvr
       wine
       wivrn
       android-tools

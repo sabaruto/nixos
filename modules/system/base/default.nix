@@ -1,18 +1,11 @@
 # The base configuration for all machines
 
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}:
+{ lib, config, pkgs, ... }:
 
 with lib;
 
-let
-  cfg = config.localModules;
-in
-{
+let cfg = config.localModules;
+in {
   options.localModules = {
     name = mkOption {
       type = types.str;
@@ -58,23 +51,15 @@ in
       isNormalUser = true;
       description = "Theodosia Kalu";
       home = "/home/${config.localModules.name}";
-      extraGroups = [
-        "networkmanager"
-        "wheel"
-        "input"
-        "uinput"
-      ];
+      extraGroups = [ "networkmanager" "wheel" "input" "uinput" ];
     };
 
-    swapDevices = mkIf (cfg.swapSize != null) [
-      {
-        device = "/swapfile";
-        size = cfg.swapSize;
-      }
-    ];
+    swapDevices = mkIf (cfg.swapSize != null) [{
+      device = "/swapfile";
+      size = cfg.swapSize;
+    }];
 
-    environment.systemPackages =
-      with pkgs;
+    environment.systemPackages = with pkgs;
       mkMerge [
         [
 
@@ -124,9 +109,6 @@ in
           # Communication
           discord
 
-          # Whatsapp
-          whatsie
-
           # cursors
           google-cursor
         ])
@@ -146,10 +128,7 @@ in
         experimental-features = nix-command flakes
       '';
 
-      settings.trusted-users = [
-        "root"
-        "${config.localModules.name}"
-      ];
+      settings.trusted-users = [ "root" "${config.localModules.name}" ];
 
       # Perform garbage collection weekly to maintain low disk usage
       gc = {
@@ -160,13 +139,6 @@ in
 
     };
 
-    nixpkgs = {
-      # TODO: Remove once qtwebengine is fixed
-      config.permittedInsecurePackages = [
-        "qtwebengine-5.15.19"
-      ];
-    };
-
     programs = {
       _1password.enable = true;
       _1password-gui = mkIf config.localModules.hostMachine {
@@ -174,9 +146,7 @@ in
         polkitPolicyOwners = [ "${config.localModules.name}" ];
       };
 
-      nix-ld = {
-        enable = true;
-      };
+      nix-ld = { enable = true; };
     };
 
     # Optimise storage
@@ -238,29 +208,32 @@ in
         overrideDevices = true;
 
         settings = {
-          options = {
-            localAnnounceEnabled = true;
-          };
+          options = { localAnnounceEnabled = true; };
 
           devices = {
             "Zalu" = {
-              id = "6XEVIJF-5VEW2F5-HWEWSDV-GI2MWXV-4D5M23V-ECLUA5S-DMQXUHT-7TEAHAJ";
+              id =
+                "6XEVIJF-5VEW2F5-HWEWSDV-GI2MWXV-4D5M23V-ECLUA5S-DMQXUHT-7TEAHAJ";
               autoAcceptFolders = true;
             };
             "Pixel 7 Pro" = {
-              id = "HQXEIYG-EKDJHID-TYTZQFG-LPUFSKU-LBVVPCL-RU42WGY-PV3G3C7-EYUELA6";
+              id =
+                "HQXEIYG-EKDJHID-TYTZQFG-LPUFSKU-LBVVPCL-RU42WGY-PV3G3C7-EYUELA6";
               autoAcceptFolders = true;
             };
             "Mini PC" = {
-              id = "5CW2NA4-DBY2PYD-7F7FKHE-FPSGOW4-RXVELHT-GSYID73-AAJP35X-QK6TZA6";
+              id =
+                "5CW2NA4-DBY2PYD-7F7FKHE-FPSGOW4-RXVELHT-GSYID73-AAJP35X-QK6TZA6";
               autoAcceptFolders = true;
             };
             "Leano" = {
-              id = "JRBBVE4-VY4PYVH-7FRRSI6-BCAIDHK-ZFIPVKU-AEX6GXG-Z5Q2Z65-FNSYOQU";
+              id =
+                "JRBBVE4-VY4PYVH-7FRRSI6-BCAIDHK-ZFIPVKU-AEX6GXG-Z5Q2Z65-FNSYOQU";
               autoAcceptFolders = true;
             };
             "K1L0" = {
-              id = "ZITXG37-HZXJTGN-CX2TW5Z-WRR7MO6-EAR45VU-JHNDIAQ-Y7NEBFY-JZDVKQH";
+              id =
+                "ZITXG37-HZXJTGN-CX2TW5Z-WRR7MO6-EAR45VU-JHNDIAQ-Y7NEBFY-JZDVKQH";
               autoAcceptFolders = true;
             };
           };
@@ -269,13 +242,7 @@ in
             "ZK Notes" = {
               path = "~/notes";
               id = "zk-notes";
-              devices = [
-                "Zalu"
-                "Pixel 7 Pro"
-                "Mini PC"
-                "Leano"
-                "K1L0"
-              ];
+              devices = [ "Zalu" "Pixel 7 Pro" "Mini PC" "Leano" "K1L0" ];
             };
           };
         };
@@ -305,8 +272,6 @@ in
       powerOnBoot = true;
     };
 
-    services.blueman = {
-      enable = true;
-    };
+    services.blueman = { enable = true; };
   };
 }
