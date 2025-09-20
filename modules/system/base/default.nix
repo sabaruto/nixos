@@ -183,7 +183,7 @@ in {
 
       pki.certificateFiles = [
         "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
-        ../../../secrets/apache.pem
+        # ../../../secrets/apache.pem
       ];
     };
 
