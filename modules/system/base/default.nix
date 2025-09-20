@@ -128,8 +128,6 @@ in {
         experimental-features = nix-command flakes
       '';
 
-      settings.trusted-users = [ "root" "${config.localModules.name}" ];
-
       # Perform garbage collection weekly to maintain low disk usage
       gc = {
         automatic = true;
@@ -148,9 +146,14 @@ in {
 
       nix-ld = { enable = true; };
     };
+    nix.settings = {
 
-    # Optimise storage
-    nix.settings.auto-optimise-store = true;
+      trusted-users = [ "root" "${config.localModules.name}" ];
+      download-buffer-size = 524288000;
+
+      # Optimise storage
+      auto-optimise-store = true;
+    };
 
     # Enable networking
     networking.networkmanager.enable = true;
