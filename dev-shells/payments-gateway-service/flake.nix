@@ -23,6 +23,7 @@
               export XMLLINT_INDENT="    "
               export TESTCONTAINERS_RYUK_DISABLED=true
               export TESTCONTAINERS_RYUK_PRIVILEGED=true
+              export JDTLS_HOME=/etc/profiles/per-user/t-aaronobelley/bin/jdtls
 
               if [ ! -e ./payments-gateway-service-web/src/main/resources/application-secret.yml ]; then
                 op read "op://Gateway - Dev/application-secret.yml/notesPlain" > payments-gateway-service-web/src/main/resources/application-secret.yml

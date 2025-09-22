@@ -244,9 +244,10 @@ in
         # LSP
         nvim-lspconfig
         nvim-dap
-        nvim-java
-        nvim-java-test
-        nvim-java-dap
+        nvim-dap-ui
+        nvim-jdtls
+        # nvim-java-test
+        # nvim-java-dap
         cspell-nvim
         tree-sitter-d2
         kulala-nvim

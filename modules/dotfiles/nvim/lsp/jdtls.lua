@@ -128,12 +128,11 @@ config["init_options"] = {
 	bundles = bundles,
 }
 
-config["init_options"] = {
-	bundles = bundles,
-}
-
 config.on_init = function(client, _)
 	client.notify("workspace/didChangeConfiguration", { settings = config.settings })
 end
+
+require("jdtls").setup_dap({ hotcodereplace = "auto" })
+require("jdtls").setup.add_commands()
 
 return config

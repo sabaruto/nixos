@@ -122,9 +122,6 @@ config.cmd = {
 local bundles = {}
 
 vim.list_extend(bundles, vim.split(vim.fn.glob(jars_dir .. "/bundles/*.jar", 1), "\n"))
-config["init_options"] = {
-	bundles = bundles,
-}
 
 local extendedClientCapabilities = require("jdtls").extendedClientCapabilities
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
@@ -139,8 +136,9 @@ config.on_init = function(client, _)
 end
 
 vim.g.attach_jdtls = function()
-	vim.print(config)
 	require("jdtls").start_or_attach(config)
+	require("jdtls").setup_dap({ hotcodereplace = "auto" })
+	require("jdtls").setup.add_commands()
 end
 
 vim.api.nvim_create_autocmd("FileType", {
