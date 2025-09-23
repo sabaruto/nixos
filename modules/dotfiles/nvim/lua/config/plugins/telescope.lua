@@ -67,13 +67,7 @@ wk.add({
 		},
 		{ "<leader>fk", telescope.keymaps, desc = "Find keymaps" },
 		{ "<leader>fc", telescope.colorscheme, desc = "Find colorschemes" },
-		{
-			"<leader>fb",
-			function()
-				telescope_ext.file_browser.file_browser({ path = "%:p:h" })
-			end,
-			desc = "Find Folders / Files",
-		},
+		{ "<leader>fb", telescope.buffers, desc = "Find buffers" },
 
 		{
 			"<leader>fB",

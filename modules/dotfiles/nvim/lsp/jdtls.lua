@@ -1,3 +1,6 @@
+require("dap")
+
+local jdtls = require("jdtls")
 local config = {}
 
 config.settings = {
@@ -132,7 +135,7 @@ config.on_init = function(client, _)
 	client.notify("workspace/didChangeConfiguration", { settings = config.settings })
 end
 
-require("jdtls").setup_dap({ hotcodereplace = "auto" })
-require("jdtls").setup.add_commands()
+jdtls.setup_dap({ hotcodereplace = "auto" })
+jdtls.setup.add_commands()
 
 return config
