@@ -245,8 +245,8 @@ in
         nvim-lspconfig
         nvim-dap
         nvim-dap-ui
-        # nvim-jdtls
-        nvim-java
+        nvim-jdtls
+        # nvim-java
         nvim-java-core
         nvim-java-refactor
         nvim-java-test

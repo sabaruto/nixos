@@ -1,6 +1,3 @@
-require("dap")
-
-local jdtls = require("jdtls")
 local config = {}
 
 config.settings = {
@@ -54,26 +51,6 @@ config.settings = {
 		},
 	},
 	signatureHelp = { enabled = true },
-}
-
--- config["capabilities"]["textDocument"]["callHierarchy"] = {
--- 	dynamicRegistration = true,
--- }
-
-local textDocument = {
-	callHierarchy = {
-		dynamicRegistration = true,
-	},
-}
-
-local workspace = {
-	configuration = true,
-	didChangeWatchedFiles = {
-		dynamicRegistration = true,
-	},
-	didChangeWorkspaceFolders = {
-		dynamicRegistration = true,
-	},
 }
 
 local home = os.getenv("HOME")
@@ -134,8 +111,5 @@ config["init_options"] = {
 config.on_init = function(client, _)
 	client.notify("workspace/didChangeConfiguration", { settings = config.settings })
 end
-
-jdtls.setup_dap({ hotcodereplace = "auto" })
-jdtls.setup.add_commands()
 
 return config

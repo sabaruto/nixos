@@ -36,6 +36,9 @@
 
               if [ ! -e ./payments-gateway-service-web/certs ]; then
                 ln -srf ./certs ./payments-gateway-service-web/certs
+                ./mvnw -pl payments-gateway-service-infra io.confluent:kafka-schema-registry-maven-plugin:download
+                ./mvnw -pl payments-gateway-service-infra org.apache.avro:avro-maven-plugin:schema
+                mvn-clean-install
               fi
             '';
           };
