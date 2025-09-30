@@ -48,6 +48,8 @@
         stylua
         bat
 
+        cacert
+
         mongodb-cli
         mongosh
 
