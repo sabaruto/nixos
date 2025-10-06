@@ -5,7 +5,6 @@ vim.lsp.enable({
 	"cssls",
 	"gopls",
 	"html",
-	"jdtls",
 	"jsonls",
 	"kulala_ls",
 	"lemminx",

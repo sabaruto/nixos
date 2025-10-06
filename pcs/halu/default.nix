@@ -47,6 +47,8 @@
 
         stylua
         bat
+        postgresql
+        k6
 
         cacert
 
