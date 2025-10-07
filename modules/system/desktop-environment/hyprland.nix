@@ -59,7 +59,7 @@ in
         brightnessctl
 
         # app launcher
-        rofi-wayland
+        rofi
 
         # cursor themes
         rose-pine-hyprcursor
