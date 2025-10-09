@@ -80,7 +80,7 @@
           user = "t-aaronobelley";
         };
 
-        apps.emanote.enable = true;
+        apps.emanote.enable = false;
       };
     };
   };

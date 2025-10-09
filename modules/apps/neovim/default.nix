@@ -149,7 +149,7 @@ in
         cspell-lsp
         deadnix
         isort
-        julia
+        # julia
         jwt-cli
         lemminx
         nil
