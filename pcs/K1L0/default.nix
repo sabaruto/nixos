@@ -1,4 +1,5 @@
-{ pkgs, home-manager-modules, ... }: {
+{ pkgs, home-manager-modules, ... }:
+{
   imports = [ ./hardware-configuration.nix ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -15,7 +16,7 @@
     swapSize = 32 * 1024;
     gpu = "nvidia";
 
-    desktopEnvironment = "hyprland";
+    desktopEnvironment = "kde";
 
     apps.steam.enable = true;
     peripherals.kanata.enable = false;
@@ -26,7 +27,6 @@
 
       packages = with pkgs; [
         # Music with code
-        supercollider
         kdePackages.k3b
         chromium
         eclipses.eclipse-java
@@ -53,7 +53,14 @@
         development = {
           enable = true;
           installOnNixos = true;
-          languages = [ "nix" "lua" "sass" "java" "golang" "typescript" ];
+          languages = [
+            "nix"
+            "lua"
+            "sass"
+            "java"
+            "golang"
+            "typescript"
+          ];
         };
 
         cronjobs.theme-switching.enable = true;

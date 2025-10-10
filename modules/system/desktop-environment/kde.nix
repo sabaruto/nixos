@@ -24,7 +24,7 @@ in
     qt = {
       enable = true;
       style = "breeze";
-      platformTheme = "kde6";
+      platformTheme = "kde";
     };
 
     services = {
