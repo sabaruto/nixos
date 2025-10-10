@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, pkgs, ... }:
 with lib;
 let
   cfg = config.localModules.apps.neovim;
@@ -71,19 +66,16 @@ let
     "NIX_LD_LIBRARY_PATH=${config.home.profileDirectory}/lib/nvim-depends/lib"
     "PKG_CONFIG_PATH=${config.home.profileDirectory}/lib/nvim-depends/pkgconfig"
   ];
-in
-{
+in {
   options.localModules.apps.neovim.enable = mkEnableOption "neovim";
 
   config = mkIf cfg.enable {
-    localModules.lib.home-files = [
-      {
-        name = "nvim";
-        recursive = true;
-        source = "${dotfilesDir}/nvim";
-        target = ".config/nvim";
-      }
-    ];
+    localModules.lib.home-files = [{
+      name = "nvim";
+      recursive = true;
+      source = "${dotfilesDir}/nvim";
+      target = ".config/nvim";
+    }];
 
     home = {
       packages = with pkgs; [
@@ -175,14 +167,10 @@ in
         yaml-language-server
       ];
 
-      extraOutputsToInstall = [
-        "nvim-depends"
-      ];
+      extraOutputsToInstall = [ "nvim-depends" ];
 
-      shellAliases.nvim =
-        (concatStringsSep " " buildEnv)
-        + " SQLITE_CLIB_PATH=${pkgs.sqlite.out}/lib/libsqlite3.so "
-        + "nvim";
+      shellAliases.nvim = (concatStringsSep " " buildEnv)
+        + " SQLITE_CLIB_PATH=${pkgs.sqlite.out}/lib/libsqlite3.so " + "nvim";
 
       sessionVariables = {
         PLAYWRIGHT_BROWSERS_PATH = "${pkgs.playwright-driver.browsers}";

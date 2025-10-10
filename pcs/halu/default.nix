@@ -1,15 +1,6 @@
-{
-  lib,
-  config,
-  pkgs,
-  home-manager-modules,
-  ...
-}:
-{
+{ lib, config, pkgs, home-manager-modules, ... }: {
 
-  security.pki.certificateFiles = [
-    ../../secrets/SaltPay_Root_CA_01.pem
-  ];
+  security.pki.certificateFiles = [ ../../secrets/SaltPay_Root_CA_01.pem ];
 
   services.syncthing.enable = lib.mkForce false;
 
@@ -68,11 +59,7 @@
         development = {
           enable = true;
           installOnNixos = true;
-          languages = [
-            "nix"
-            "lua"
-            "java"
-          ];
+          languages = [ "nix" "lua" "java" ];
         };
 
         cmd.git = {
@@ -80,7 +67,11 @@
           user = "t-aaronobelley";
         };
 
+<<<<<<< HEAD
         apps.emanote.enable = false;
+=======
+        # apps.emanote.enable = true;
+>>>>>>> 72f57d2b (fix?)
       };
     };
   };
@@ -109,10 +100,7 @@
     wlr.enable = true;
     lxqt.enable = true;
 
-    configPackages = with pkgs; [
-      gnome-session
-      uwsm
-    ];
+    configPackages = with pkgs; [ gnome-session uwsm ];
 
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
@@ -241,7 +229,5 @@
 
   programs.zsh.enable = true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  users = {
-    defaultUserShell = pkgs.zsh;
-  };
+  users = { defaultUserShell = pkgs.zsh; };
 }
