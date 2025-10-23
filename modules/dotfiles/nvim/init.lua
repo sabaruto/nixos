@@ -7,5 +7,5 @@ else
 	require("config.autocmds")
 	require("config.plugins")
 	require("config.colorscheme")
-	vim.cmd("colorscheme rose-pine-dawn")
+	vim.cmd("colorscheme rose-pine-moon")
 end

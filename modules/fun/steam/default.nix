@@ -24,7 +24,7 @@ in
       gamescope
       avahi
       wine
-      wivrn
+      # wivrn
       android-tools
     ];
 
@@ -39,7 +39,7 @@ in
       };
 
       wivrn = {
-        enable = true;
+        enable = false;
         openFirewall = true;
       };
     };

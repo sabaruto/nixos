@@ -8,6 +8,8 @@
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
 
+  services.mullvad-vpn.enable = true;
+
   localModules = {
     name = "dosia";
     hostname = "K1L0";
@@ -29,7 +31,8 @@
         # Music with code
         kdePackages.k3b
         chromium
-        eclipses.eclipse-java
+        mullvad-vpn
+        mullvad-browser
       ];
 
       config.localModules = {

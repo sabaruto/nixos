@@ -1,18 +1,23 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 with lib;
 let
   cfg = config.localModules.apps.neovim;
   dotfilesDir = config.localModules.const.dotfiles;
 
-  tree-sitter-d2 = pkgs.vimUtils.buildVimPlugin {
-    name = "tree-sitter-d2";
-    src = pkgs.fetchFromGitHub {
-      owner = "ravsii";
-      repo = "tree-sitter-d2";
-      hash = "sha256-mclMRkDsjCq4ED6J6eMBVNgYyS507cpmkfInrJYGg1g=";
-      tag = "v0.7.1";
-    };
-  };
+  # tree-sitter-d2 = pkgs.vimUtils.buildVimPlugin {
+  #   name = "tree-sitter-d2";
+  #   src = pkgs.fetchFromGitHub {
+  #     owner = "ravsii";
+  #     repo = "tree-sitter-d2";
+  #     hash = "sha256-mclMRkDsjCq4ED6J6eMBVNgYyS507cpmkfInrJYGg1g=";
+  #     tag = "v0.7.1";
+  #   };
+  # };
 
   build-dependent-pkgs = with pkgs; [
     acl
@@ -66,16 +71,19 @@ let
     "NIX_LD_LIBRARY_PATH=${config.home.profileDirectory}/lib/nvim-depends/lib"
     "PKG_CONFIG_PATH=${config.home.profileDirectory}/lib/nvim-depends/pkgconfig"
   ];
-in {
+in
+{
   options.localModules.apps.neovim.enable = mkEnableOption "neovim";
 
   config = mkIf cfg.enable {
-    localModules.lib.home-files = [{
-      name = "nvim";
-      recursive = true;
-      source = "${dotfilesDir}/nvim";
-      target = ".config/nvim";
-    }];
+    localModules.lib.home-files = [
+      {
+        name = "nvim";
+        recursive = true;
+        source = "${dotfilesDir}/nvim";
+        target = ".config/nvim";
+      }
+    ];
 
     home = {
       packages = with pkgs; [
@@ -169,8 +177,10 @@ in {
 
       extraOutputsToInstall = [ "nvim-depends" ];
 
-      shellAliases.nvim = (concatStringsSep " " buildEnv)
-        + " SQLITE_CLIB_PATH=${pkgs.sqlite.out}/lib/libsqlite3.so " + "nvim";
+      shellAliases.nvim =
+        (concatStringsSep " " buildEnv)
+        + " SQLITE_CLIB_PATH=${pkgs.sqlite.out}/lib/libsqlite3.so "
+        + "nvim";
 
       sessionVariables = {
         PLAYWRIGHT_BROWSERS_PATH = "${pkgs.playwright-driver.browsers}";
@@ -202,8 +212,6 @@ in {
       plugins = with pkgs.vimPlugins; [
         # tree-sitter
         nvim-treesitter.withAllGrammars
-
-        (nvim-treesitter.withPlugins (_: [ tree-sitter-d2 ]))
 
         # Icons
         nvim-web-devicons
@@ -240,7 +248,7 @@ in {
         nvim-java-test
         nvim-java-dap
         cspell-nvim
-        tree-sitter-d2
+        # tree-sitter-d2
         kulala-nvim
         mason-nvim
         mason-lspconfig-nvim

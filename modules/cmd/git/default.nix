@@ -31,11 +31,13 @@ in
       }
 
       (mkIf (cfg.git.user == "sabaruto") {
-        git = {
-          userEmail = "theodoreaaronobelley@hotmail.co.uk";
-          userName = "sabaruto";
+        git.settings = {
+          user = {
+            email = "theodoreaaronobelley@hotmail.co.uk";
+            name = "sabaruto";
+          };
 
-          extraConfig = {
+          settings = {
             init = {
               defaultBranch = "main";
             };
@@ -45,26 +47,29 @@ in
 
       (mkIf (cfg.git.user == "t-aaronobelley") {
         git = {
-          userName = "Theodosia Aaron-Obelley";
-          userEmail = "t.aaronobelley@saltpay.co";
-
           ignores = [
             ".cmd"
           ];
-
-          extraConfig = {
+          settings = {
             user = {
-              signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJPmcouh67CsJLDvYpp9xG5KPINQwKWrTdE/DxxjEXLN";
-            };
-            gpg = {
-              format = "ssh";
-              ssh = {
-                program = "/mnt/c/Users/TheodosiaAaron-Obell/AppData/Local/1Password/app/8/op-ssh-sign-wsl";
-              };
+              name = "Theodosia Aaron-Obelley";
+              email = "t.aaronobelley@saltpay.co";
             };
 
-            commit = {
-              gpgsign = true;
+            settings = {
+              user = {
+                signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJPmcouh67CsJLDvYpp9xG5KPINQwKWrTdE/DxxjEXLN";
+              };
+              gpg = {
+                format = "ssh";
+                ssh = {
+                  program = "/mnt/c/Users/TheodosiaAaron-Obell/AppData/Local/1Password/app/8/op-ssh-sign-wsl";
+                };
+              };
+
+              commit = {
+                gpgsign = true;
+              };
             };
           };
         };

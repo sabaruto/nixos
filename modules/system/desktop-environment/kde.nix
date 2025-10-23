@@ -15,10 +15,11 @@ in
     programs.dconf.enable = true;
 
     environment.systemPackages = with pkgs.kdePackages; [
-      wayqt
+      # wayqt
       kwayland
       layer-shell-qt
       plasma-browser-integration
+      partitionmanager
     ];
 
     qt = {
