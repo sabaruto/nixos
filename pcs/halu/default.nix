@@ -106,7 +106,7 @@
     xdgOpenUsePortal = true;
 
     wlr.enable = true;
-    lxqt.enable = true;
+    # lxqt.enable = true;
 
     configPackages = with pkgs; [
       gnome-session
