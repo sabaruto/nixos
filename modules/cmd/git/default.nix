@@ -50,8 +50,11 @@ in
           ignores = [
             ".cmd"
           ];
+
           settings = {
             user = {
+              email = "t.aaronobelley@saltpay.co";
+              name = "Theodosia Aaron-Obelley";
               signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJPmcouh67CsJLDvYpp9xG5KPINQwKWrTdE/DxxjEXLN";
             };
             gpg = {
@@ -61,20 +64,8 @@ in
               };
             };
 
-            settings = {
-              user = {
-                signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJPmcouh67CsJLDvYpp9xG5KPINQwKWrTdE/DxxjEXLN";
-              };
-              gpg = {
-                format = "ssh";
-                ssh = {
-                  program = "/mnt/c/Users/TheodosiaAaron-Obell/AppData/Local/1Password/app/8/op-ssh-sign-wsl";
-                };
-              };
-
-              commit = {
-                gpgsign = true;
-              };
+            commit = {
+              gpgsign = true;
             };
           };
         };
