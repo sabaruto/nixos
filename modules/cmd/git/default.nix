@@ -52,8 +52,13 @@ in
           ];
           settings = {
             user = {
-              name = "Theodosia Aaron-Obelley";
-              email = "t.aaronobelley@saltpay.co";
+              signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJPmcouh67CsJLDvYpp9xG5KPINQwKWrTdE/DxxjEXLN";
+            };
+            gpg = {
+              format = "ssh";
+              ssh = {
+                program = "/mnt/c/Program Files/1Password/app/8/op-ssh-sign-wsl";
+              };
             };
 
             settings = {

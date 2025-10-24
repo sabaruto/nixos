@@ -1,6 +1,6 @@
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	group = vim.api.nvim_create_augroup("use_2_spaces", { clear = true }),
-	pattern = { "*.nix", "*.yml", "*.yaml", "*.md", "*.ts" },
+	pattern = { "*.nix", "*.yml", "*.yaml", "*.md", "*.ts", "*.js" },
 	callback = function()
 		vim.opt.tabstop = 2
 		vim.opt.shiftwidth = 2
@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	group = vim.api.nvim_create_augroup("use_4_spaces", { clear = true }),
-	pattern = { "*.json", "*.java", "*.xml" },
+	pattern = { "*.java", "*.xml", ".json" },
 	callback = function()
 		vim.opt.tabstop = 4
 		vim.opt.shiftwidth = 4
