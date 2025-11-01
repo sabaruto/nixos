@@ -5,9 +5,17 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
 
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.4.2";
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+      inputs = {
+        rust-overlay.follows = "rust-overlay";
+        nixpkgs.follows = "nixpkgs";
+      };
     };
 
     home-manager = {

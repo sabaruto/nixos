@@ -33,6 +33,9 @@
         chromium
         mullvad-vpn
         mullvad-browser
+        roon-server
+        roon-bridge
+        roon-tui
       ];
 
       config.localModules = {
