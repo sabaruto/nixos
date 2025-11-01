@@ -1,0 +1,1 @@
+require("vscode-config.plugins.mini")

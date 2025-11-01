@@ -1,17 +1,24 @@
 local keymap = vim.keymap.set
 local opts = {
-    noremap = true,
+  noremap = true,
     silent = true
 }
 
 -- remap leader key
 keymap("n", "<Space>", "", opts)
+keymap("n", "x", "", opts)
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.maplocalleader = "    "
 
 -- Command line key
-vim.keymap.set({ "n", "v" }, "<leader>j", ":", { remap = true, desc = "Set command line" })
-vim.keymap.set({ "n", "v" }, "<leader><cr>", ":", { remap = true, desc = "Set command line" })
+keymap({"n", "v"}, "<leader>j", ":", {
+    remap = true,
+    desc = "Set command line"
+})
+keymap({"n", "v"}, "<leader><cr>", ":", {
+    remap = true,
+    desc = "Set command line"
+})
 
 -- yank to system clipboard
 keymap({"n", "v"}, "<leader>y", '"+y', opts)
@@ -45,16 +52,35 @@ keymap("n", "<Esc>", "<Esc>:noh<CR>", opts)
 
 -- general keymaps
 keymap({"n", "v"}, "<leader>t", "<cmd>lua require('vscode').action('workbench.action.terminal.toggleTerminal')<CR>")
-keymap({"n", "v"}, "<leader>b", "<cmd>lua require('vscode').action('editor.debug.action.toggleBreakpoint')<CR>")
+
 keymap({"n", "v"}, "K", "<cmd>lua require('vscode').action('editor.action.showHover')<CR>")
+
+keymap({"n", "v"}, "<c-right>", "<cmd>lua require('vscode').action('workbench.action.focusRightGroup')<CR>")
+keymap({"n", "v"}, "<c-left>", "<cmd>lua require('vscode').action('workbench.action.focusLeftGroup')<CR>")
+keymap({"n", "v"}, "<c-down>", "<cmd>lua require('vscode').action('workbench.action.focusBelowGroup')<CR>")
+keymap({"n", "v"}, "<c-up>", "<cmd>lua require('vscode').action('workbench.action.focusAboveGroup')<CR>")
+
 keymap({"n", "v"}, "ga", "<cmd>lua require('vscode').action('editor.action.quickFix')<CR>")
-keymap({"n", "v"}, "gr", "<cmd>lua.require('vscode').action('editor.action.goToReferences')<CR>")
+keymap({"n", "v"}, "gr", "<cmd>lua require('vscode').action('editor.action.goToReferences')<CR>")
+
 keymap({"n", "v"}, "<leader>cx", "<cmd>lua require('vscode').action('workbench.actions.view.problems')<CR>")
 keymap({"n", "v"}, "<leader>cn", "<cmd>lua require('vscode').action('notifications.clearAll')<CR>")
+keymap({"n", "v"}, "<leader>cr", "<cmd>lua require('vscode').action('code-runner.run')<CR>")
+keymap({"n", "v"}, "<leader>cb", "<cmd>lua require('vscode').action('editor.debug.action.toggleBreakpoint')<CR>")
+
 keymap({"n", "v"}, "<leader>ff", "<cmd>lua require('vscode').action('workbench.action.quickOpen')<CR>")
 keymap({"n", "v"}, "<leader>fc", "<cmd>lua require('vscode').action('workbench.action.showCommands')<CR>")
-keymap({"n", "v"}, "<leader>cr", "<cmd>lua require('vscode').action('code-runner.run')<CR>")
 keymap({"n", "v"}, "<leader>fd", "<cmd>lua require('vscode').action('editor.action.formatDocument')<CR>")
+
+keymap({"n", "v"}, "<leader>e", "<cmd>lua require('vscode').action('workbench.explorer.fileView.focus')<CR>")
+
+keymap({"n", "v"}, "<C-o>", "<cmd>lua require('vscode').action('workbench.action.navigateBack')<CR>")
+keymap({"n", "v"}, "<C-i>", "<cmd>lua require('vscode').action('workbench.action.navigateForward')<CR>")
+
+keymap({"n", "v"}, "<leader>bd", "<cmd>lua require('vscode').action('workbench.action.closeActiveEditor')<cr>")
+keymap({"n", "v"}, "<leader>bo", "<cmd>lua require('vscode').action('workbench.action.closeOtherEditors')<cr>")
+
+keymap({"n", "v"}, "<leader>xd", "<cmd>lua require('vscode').action('workbench.action.closeGroup')<cr>")
 
 -- harpoon keymaps
 keymap({"n", "v"}, "<leader>ha", "<cmd>lua require('vscode').action('vscode-harpoon.addEditor')<CR>")
