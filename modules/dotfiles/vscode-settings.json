@@ -1,0 +1,113 @@
+{
+    "C_Cpp.updateChannel": "Insiders",
+    "[csharp]": {
+        "editor.defaultFormatter": "ms-dotnettools.csharp"
+    },
+    "[java]": {
+        "editor.defaultFormatter": "remimarsal.prettier-now"
+    },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true
+    },
+    "editor.minimap.maxColumn": 80,
+    "editor.suggestSelection": "first",
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.factorypath": true,
+        "**/.project": true,
+        "**/.settings": true
+    },
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "terminal.integrated.inheritEnv": false,
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.statusBar.visible": true,
+    "python.languageServer": "Pylance",
+    "editor.wordWrapColumn": 120,
+    "python.defaultInterpreterPath": "C:\\Users\\theod\\anaconda3\\envs\\django\\python.exe",
+    "workbench.startupEditor": "none",
+    "prettier.useTabs": false,
+    "diffEditor.maxFileSize": 0,
+    "editor.accessibilityPageSize": 500,
+    "editor.guides.bracketPairs": true,
+    "editor.minimap.enabled": false,
+    "notebook.output.textLineLimit": 1000,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "jupyter.interactiveWindow.creationMode": "perFile",
+    "jupyter.interactiveWindow.textEditor.executeSelection": true,
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "python.condaPath": "C:\\Users\\theod\\anaconda3",
+    "notebook.output.scrolling": true,
+    "editor.linkedEditing": true,
+    "dotnet.inlayHints.enableInlayHintsForParameters": true,
+    "window.autoDetectColorScheme": true,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "editor.formatOnSave": true,
+    "terminal.external.windowsExec": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "workbench.colorTheme": "Rosé Pine Dawn",
+    "redhat.telemetry.enabled": false,
+    "security.workspace.trust.untrustedFiles": "open",
+    "pylint.args": [
+        "--load-plugins=pylint_django",
+        "--django-settings-module=backend.streamingServices.settings"
+    ],
+    "python.missingPackage.severity": "Warning",
+    "[scss]": {
+        "editor.defaultFormatter": "vscode.css-language-features"
+    },
+    "prettier.tabWidth": 4,
+    "prettier.singleAttributePerLine": true,
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "prettier.jsxSingleQuote": true,
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [
+            80
+        ],
+        "editor.selectionHighlight": false,
+        "editor.tabCompletion": "onlySnippets",
+        "editor.wordBasedSuggestions": "off"
+    },
+    "workbench.preferredLightColorTheme": "Monokai Pro Light",
+    "editor.fontFamily": "\"Consolas\", 'Droid Sans Mono', 'monospace', monospace",
+    "terminal.integrated.fontLigatures": true,
+    "dart.openDevTools": "flutter",
+    "vs-kubernetes": {
+        "vscode-kubernetes.helm-path-linux": "/home/vscode/.local/state/vs-kubernetes/tools/helm/linux-arm64/helm",
+        "vscode-kubernetes.kubectl-path-linux": "/home/vscode/.local/state/vs-kubernetes/tools/kubectl/kubectl",
+        "vscode-kubernetes.minikube-path-linux": "/home/vscode/.local/state/vs-kubernetes/tools/minikube/linux-arm64/minikube"
+    },
+    "explorer.confirmDragAndDrop": false,
+    "files.associations": {
+        "*.env": "properties"
+    },
+    "workbench.preferredDarkColorTheme": "Rosé Pine Dawn",
+    "terminal.integrated.defaultProfile.linux": "tmux",
+    "[shellscript]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "vscode-neovim.compositeKeys": {
+        "jk": {
+            "command": "vscode-neovim.escape"
+        }
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "window.zoomLevel": 1,
+    "window.zoomPerWindow": false,
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    }
+}

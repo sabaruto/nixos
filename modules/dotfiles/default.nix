@@ -56,8 +56,13 @@ in
         source = "${dotfilesDirectory}/moxide";
         target = ".config/moxide";
       }
+      {
+        name = "vscode-settings";
+        recursive = false;
+        source = "${dotfilesDirectory}/vscode-settings.json";
+        target = ".config/Code/User/settings.json";
+      }
     ];
-
     home.file = {
       ".oh-my-zsh" = mkIf cfg.shells.zsh.enable {
         enable = true;

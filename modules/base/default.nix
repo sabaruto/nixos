@@ -83,6 +83,9 @@ in
 
                   # voyager keyboard
                   keymapp
+
+                  # vscode
+                  vscode.fhs
                 ]
                 ++ cfg.packages;
 
