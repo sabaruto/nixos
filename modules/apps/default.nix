@@ -12,11 +12,12 @@ in
 {
   imports = [
     ./alacritty
-    ./neovim
-    ./ghostty
-    ./wezterm
-    ./kitty
     ./emanote
+    ./ghostty
+    ./kitty
+    ./neovim
+    ./wezterm
+    ./zen-browser
   ];
 
   options.localModules = {

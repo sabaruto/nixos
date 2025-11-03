@@ -53,6 +53,7 @@
           kitty.enable = true;
           neovim.enable = true;
           wezterm.enable = true;
+          zen-browser.enable = true;
         };
 
         development = {

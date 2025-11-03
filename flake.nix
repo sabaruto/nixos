@@ -2,8 +2,9 @@
   description = "Local configuration flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    flake-parts.url = "github:hercules-ci/flake-parts";
     flake-utils.url = "github:numtide/flake-utils";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -12,19 +13,17 @@
 
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL/main";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    agenix = {
-      url = "github:ryantm/agenix";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        home-manager.follows = "home-manager";
       };
     };
+
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
     };
 
     local-modules = {
@@ -33,6 +32,7 @@
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
         flake-utils.follows = "flake-utils";
+        flake-parts.follows = "flake-parts";
       };
     };
 
@@ -45,7 +45,6 @@
   outputs =
     {
       self,
-      agenix,
       nixpkgs,
       nixos-wsl,
       flake-utils,
@@ -101,7 +100,6 @@
 
             modules = [
               ./pcs/halu
-              agenix.nixosModules.default
               nixos-wsl.nixosModules.default
               local-modules.nixosModules.system
               local-modules.homeManagerModules.default
@@ -124,9 +122,6 @@
 
         devShells."${system}" = {
           saltpay = import ./dev-shells/saltpay.nix { inherit nixpkgs system; };
-          streaming-service-merger = import ./dev-shells/streaming-service-merger.nix {
-            inherit nixpkgs system;
-          };
           nodejs = import ./dev-shells/nodejs.nix { inherit nixpkgs system; };
           openaws-vpn-client = import ./dev-shells/openaws-vpn-client.nix {
             inherit nixpkgs system;

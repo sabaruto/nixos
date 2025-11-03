@@ -72,62 +72,74 @@ in
         size = cfg.swapSize;
       }
     ];
+    environment = {
+      systemPackages =
+        with pkgs;
+        mkMerge [
+          [
 
-    environment.systemPackages =
-      with pkgs;
-      mkMerge [
-        [
+            # boot configuration
+            efibootmgr
 
-          # boot configuration
-          efibootmgr
+            # nixos configuration applications
+            gh
+            git
+            micro
 
-          # nixos configuration applications
-          gh
-          git
-          micro
+            # System configurations checkers
+            fwupd
+            rPackages.pcutils
+            wget
+            gnupg
+            unzip
+            usbutils
+            home-manager
 
-          # System configurations checkers
-          fwupd
-          rPackages.pcutils
-          wget
-          gnupg
-          unzip
-          usbutils
-          home-manager
+            # Note taking
+            zk
+            # emanote
 
-          # Note taking
-          zk
-          # emanote
+            # Boot configuration
+            sbctl
 
-          # Boot configuration
-          sbctl
+            # Python
+            poetry
 
-          # Python
-          poetry
+            # Comandline improvement
+            oh-my-zsh
+            oh-my-posh
 
-          # Comandline improvement
-          oh-my-zsh
-          oh-my-posh
+            # Images in the terminal
+            chafa
 
-          # Images in the terminal
-          chafa
+            # fonts
+            nerd-fonts.fira-code
+            nerd-fonts.droid-sans-mono
+            nerd-fonts.martian-mono
 
-          # fonts
-          nerd-fonts.fira-code
-          nerd-fonts.droid-sans-mono
-          nerd-fonts.martian-mono
+            # Git encryption
+            git-crypt
+          ]
 
-          # Git encryption
-          git-crypt
-        ]
-        (mkIf config.localModules.hostMachine [
-          # Communication
-          discord
+          (mkIf config.localModules.hostMachine [
+            # Communication
+            discord
 
-          # cursors
-          google-cursor
-        ])
-      ];
+            # cursors
+            google-cursor
+          ])
+        ];
+
+      etc = {
+        "1password/custom_allowed_browsers" = {
+          text = ''
+            .zen-wrapped
+            vivaldi-bin
+          '';
+          mode = "0755";
+        };
+      };
+    };
 
     # Bootloader.
     boot = {

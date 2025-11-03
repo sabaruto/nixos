@@ -2,8 +2,9 @@
   description = "Personal Modules";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    flake-parts.url = "github:hercules-ci/flake-parts";
     flake-utils.url = "github:numtide/flake-utils";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
@@ -15,6 +16,7 @@
       inputs = {
         rust-overlay.follows = "rust-overlay";
         nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
       };
     };
 
@@ -23,9 +25,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
+    };
+
     emanote = {
       url = "github:srid/emanote";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
     };
   };
 
@@ -35,6 +48,7 @@
       home-manager,
       lanzaboote,
       flake-utils,
+      zen-browser,
       ...
     }:
     flake-utils.lib.eachDefaultSystemPassThrough (system: {
@@ -78,6 +92,7 @@
         apps = {
           imports = [
             emanote.homeManagerModule
+            zen-browser.homeModules.twilight
             ./apps
           ];
         };
