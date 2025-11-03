@@ -67,6 +67,8 @@ in
 
       (mkIf (elem "golang" cfg.languages) {
         packages = with pkgs; [
+          go
+          pkg-config
           gopls
           delve
           golangci-lint

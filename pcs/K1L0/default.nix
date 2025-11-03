@@ -7,7 +7,6 @@
 
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
-
   services.mullvad-vpn.enable = true;
 
   localModules = {

@@ -21,7 +21,7 @@
     "git.autofetch": true,
     "git.confirmSync": false,
     "terminal.integrated.inheritEnv": false,
-    "workbench.iconTheme": "material-icon-theme",
+    "workbench.iconTheme": "Monokai Pro Icons",
     "workbench.statusBar.visible": true,
     "python.languageServer": "Pylance",
     "editor.wordWrapColumn": 120,
@@ -89,7 +89,7 @@
     "files.associations": {
         "*.env": "properties"
     },
-    "workbench.preferredDarkColorTheme": "Rosé Pine Dawn",
+    "workbench.preferredDarkColorTheme": "One Dark Pro",
     "terminal.integrated.defaultProfile.linux": "tmux",
     "[shellscript]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
@@ -109,5 +109,11 @@
     "window.zoomPerWindow": false,
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[nix]": {
+        "editor.defaultFormatter": "jnoortheen.nix-ide"
+    },
+    "[go]": {
+        "editor.defaultFormatter": "golang.go"
     }
 }
