@@ -7,7 +7,6 @@
 
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
-  services.mullvad-vpn.enable = true;
 
   localModules = {
     name = "dosia";
@@ -30,11 +29,11 @@
         # Music with code
         kdePackages.k3b
         chromium
-        mullvad-vpn
-        mullvad-browser
-        roon-server
+
         roon-bridge
         roon-tui
+
+        krita
       ];
 
       config.localModules = {

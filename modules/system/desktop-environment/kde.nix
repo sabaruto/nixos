@@ -20,6 +20,8 @@ in
       layer-shell-qt
       plasma-browser-integration
       partitionmanager
+      konqueror
+      wacomtablet
     ];
 
     qt = {
