@@ -22,11 +22,12 @@ in
 
     home.shellAliases = mkMerge [
       {
-        n-clean = "nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d --sudo";
+        n-clean = "sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d";
         n-debug = "nixos-rebuild switch --sudo --show-trace --verbose";
         n-gc = "sudo nix-collect-garbage --delete-old";
         n-switch = "nixos-rebuild switch --sudo";
         n-up = "nix flake update";
+        n-mini-pc-switch = "nixos-rebuild switch --flake .#mini-pc --target-host saiki@mini-pc --build-host localhost --sudo";
       }
 
       (mkIf (config.home.username == "t-aaronobelley") {
