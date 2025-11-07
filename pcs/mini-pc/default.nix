@@ -8,6 +8,7 @@
   imports = [ ./hardware-configuration.nix ];
 
   networking.firewall.allowedTCPPorts = [ 8384 ];
+  security.sudo.wheelNeedsPassword = false;
   virtualisation.docker.enable = true;
 
   users = {
