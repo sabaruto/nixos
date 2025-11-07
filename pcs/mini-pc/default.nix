@@ -10,9 +10,13 @@
     users = {
       saiki = {
         openssh.authorizedKeys.keys = [
-          "ssh-ed25519 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGXQGV1A1ihzFNBlckZniHqqSvc+hMLWp/HJxU4y2q2s saiki@mini-pc"
+          "ssh-ed25519 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGXQGV1A1ihzFNBlckZniHqqSvc+hMLWp/HJxU4y2q2s dosia"
         ];
       };
+
+      root.openssh.authorizedKeys.keys = [
+        "ssh-ed25519 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGXQGV1A1ihzFNBlckZniHqqSvc+hMLWp/HJxU4y2q2s dosia"
+      ];
 
       rtorrent = {
         isSystemUser = true;
