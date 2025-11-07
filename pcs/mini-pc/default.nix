@@ -1,4 +1,10 @@
-{ config, pkgs, home-manager-modules, ... }: {
+{
+  config,
+  pkgs,
+  home-manager-modules,
+  ...
+}:
+{
   imports = [ ./hardware-configuration.nix ];
 
   networking.firewall.allowedTCPPorts = [ 8384 ];
@@ -10,24 +16,26 @@
     users = {
       saiki = {
         openssh.authorizedKeys.keys = [
-          "ssh-ed25519 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGXQGV1A1ihzFNBlckZniHqqSvc+hMLWp/HJxU4y2q2s dosia"
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGXQGV1A1ihzFNBlckZniHqqSvc+hMLWp/HJxU4y2q2s dosia@k1l0"
         ];
       };
-
-      root.openssh.authorizedKeys.keys = [
-        "ssh-ed25519 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGXQGV1A1ihzFNBlckZniHqqSvc+hMLWp/HJxU4y2q2s dosia"
-      ];
 
       rtorrent = {
         isSystemUser = true;
         group = "servarr";
       };
 
-      sonarr = { uid = 274; };
+      sonarr = {
+        uid = 274;
+      };
 
-      radarr = { uid = 275; };
+      radarr = {
+        uid = 275;
+      };
 
-      lidarr = { uid = 306; };
+      lidarr = {
+        uid = 306;
+      };
 
       mstream = {
         uid = 307;
@@ -73,31 +81,51 @@
     sonarr = {
       enable = true;
 
-      settings = { server = { urlbase = "sonarr"; }; };
+      settings = {
+        server = {
+          urlbase = "sonarr";
+        };
+      };
     };
 
     radarr = {
       enable = true;
 
-      settings = { server = { urlbase = "radarr"; }; };
+      settings = {
+        server = {
+          urlbase = "radarr";
+        };
+      };
     };
 
     readarr = {
       enable = true;
 
-      settings = { server = { urlbase = "readarr"; }; };
+      settings = {
+        server = {
+          urlbase = "readarr";
+        };
+      };
     };
 
     lidarr = {
       enable = true;
 
-      settings = { server = { urlbase = "lidarr"; }; };
+      settings = {
+        server = {
+          urlbase = "lidarr";
+        };
+      };
     };
 
     prowlarr = {
       enable = true;
 
-      settings = { server = { urlbase = "prowlarr"; }; };
+      settings = {
+        server = {
+          urlbase = "prowlarr";
+        };
+      };
     };
 
     rtorrent = {
@@ -181,7 +209,9 @@
             git.enable = true;
           };
 
-          apps = { neovim.enable = true; };
+          apps = {
+            neovim.enable = true;
+          };
 
         };
       };
