@@ -8,8 +8,8 @@
   imports = [ ./hardware-configuration.nix ];
 
   users = {
-    defaultUserShell = pkgs.zsh;
     networking.firewall.allowedTCPPorts = [ 8384 ];
+    defaultUserShell = pkgs.zsh;
     virtualisation.docker.enable = true;
 
     users = {
