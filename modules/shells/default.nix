@@ -22,8 +22,10 @@ in
 
     home.shellAliases = mkMerge [
       {
-        n-switch = "nixos-rebuild switch --sudo";
+        n-clean = "nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d --sudo";
         n-debug = "nixos-rebuild switch --sudo --show-trace --verbose";
+        n-gc = "sudo nix-collect-garbage --delete-old";
+        n-switch = "nixos-rebuild switch --sudo";
         n-up = "nix flake update";
       }
 

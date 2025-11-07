@@ -48,7 +48,6 @@ in
   };
 
   config = {
-    networking.hostName = cfg.hostname;
     system.stateVersion = cfg.stateVersion;
     localModules.hostMachine = mkDefault true;
 
@@ -58,6 +57,7 @@ in
       isNormalUser = true;
       description = "Theodosia Kalu";
       home = "/home/${config.localModules.name}";
+
       extraGroups = [
         "networkmanager"
         "wheel"
@@ -166,6 +166,11 @@ in
 
     programs = {
       _1password.enable = true;
+      ssh.knownHosts = {
+        "mini-pc".publicKey =
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGXQGV1A1ihzFNBlckZniHqqSvc+hMLWp/HJxU4y2q2s";
+      };
+
       _1password-gui = mkIf config.localModules.hostMachine {
         enable = true;
         polkitPolicyOwners = [ "${config.localModules.name}" ];
@@ -187,29 +192,37 @@ in
       auto-optimise-store = true;
     };
 
-    # Enable networking
-    networking.networkmanager.enable = true;
+    networking = {
+      hostName = cfg.hostname;
+
+      # Enable networking
+      networkmanager.enable = true;
+    };
 
     # Set your time zone.
     time.timeZone = "Europe/London";
 
-    # Select internationalisation properties.
-    i18n.defaultLocale = "en_GB.UTF-8";
+    i18n = {
 
-    i18n.extraLocaleSettings = {
-      LC_ADDRESS = "en_GB.UTF-8";
-      LC_IDENTIFICATION = "en_GB.UTF-8";
-      LC_MEASUREMENT = "en_GB.UTF-8";
-      LC_MONETARY = "en_GB.UTF-8";
-      LC_NAME = "en_GB.UTF-8";
-      LC_NUMERIC = "en_GB.UTF-8";
-      LC_PAPER = "en_GB.UTF-8";
-      LC_TELEPHONE = "en_GB.UTF-8";
-      LC_TIME = "en_GB.UTF-8";
+      # Select internationalisation properties.
+      defaultLocale = "en_GB.UTF-8";
+
+      extraLocaleSettings = {
+        LC_ADDRESS = "en_GB.UTF-8";
+        LC_IDENTIFICATION = "en_GB.UTF-8";
+        LC_MEASUREMENT = "en_GB.UTF-8";
+        LC_MONETARY = "en_GB.UTF-8";
+        LC_NAME = "en_GB.UTF-8";
+        LC_NUMERIC = "en_GB.UTF-8";
+        LC_PAPER = "en_GB.UTF-8";
+        LC_TELEPHONE = "en_GB.UTF-8";
+        LC_TIME = "en_GB.UTF-8";
+      };
     };
 
     # Configure console keymap
     console.keyMap = "uk";
+
     security = {
       rtkit.enable = true;
 

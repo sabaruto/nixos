@@ -1,63 +1,140 @@
-{ config, pkgs, home-manager-modules, ... }: {
+{
+  config,
+  pkgs,
+  home-manager-modules,
+  ...
+}:
+{
   imports = [ ./hardware-configuration.nix ];
 
-  programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
+  users = {
+    defaultUserShell = pkgs.zsh;
+    networking.firewall.allowedTCPPorts = [ 8384 ];
+    virtualisation.docker.enable = true;
 
-  programs.nix-ld.enable = true;
-  virtualisation.docker.enable = true;
+    users = {
+      saiki = {
+        openssh.authorizedKeys.keys = [
+          "ssh-ed25519 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGXQGV1A1ihzFNBlckZniHqqSvc+hMLWp/HJxU4y2q2s saiki@mini-pc"
+        ];
+      };
 
-  programs.ssh.startAgent = true;
-  networking.firewall.allowedTCPPorts = [ 8384 ];
+      rtorrent = {
+        isSystemUser = true;
+        group = "servarr";
+      };
+
+      sonarr = {
+        uid = 274;
+      };
+
+      radarr = {
+        uid = 275;
+      };
+
+      lidarr = {
+        uid = 306;
+      };
+
+      mstream = {
+        uid = 307;
+        group = "servarr";
+      };
+    };
+
+    groups = {
+      servarr = {
+        gid = 1001;
+
+        members = [
+          "jellyfin"
+          "lidarr"
+          "nzbget"
+          "plex"
+          "prowlarr"
+          "radarr"
+          "root"
+          "sonarr"
+          config.localModules.name
+        ];
+      };
+    };
+  };
+
+  programs = {
+    zsh.enable = true;
+    nix-ld.enable = true;
+    ssh.startAgent = true;
+  };
 
   services = {
+    plex.enable = true;
+    nzbget.enable = true;
+
     jellyfin = {
       enable = true;
       openFirewall = true;
       dataDir = "/data/jellyfin";
     };
 
-    plex.enable = true;
-    nzbget.enable = true;
-
     sonarr = {
       enable = true;
 
-      settings = { server = { urlbase = "sonarr"; }; };
+      settings = {
+        server = {
+          urlbase = "sonarr";
+        };
+      };
     };
 
     radarr = {
       enable = true;
 
-      settings = { server = { urlbase = "radarr"; }; };
+      settings = {
+        server = {
+          urlbase = "radarr";
+        };
+      };
     };
+
     readarr = {
       enable = true;
 
-      settings = { server = { urlbase = "readarr"; }; };
+      settings = {
+        server = {
+          urlbase = "readarr";
+        };
+      };
     };
+
     lidarr = {
       enable = true;
 
-      settings = { server = { urlbase = "lidarr"; }; };
+      settings = {
+        server = {
+          urlbase = "lidarr";
+        };
+      };
     };
 
     prowlarr = {
       enable = true;
 
-      settings = { server = { urlbase = "prowlarr"; }; };
+      settings = {
+        server = {
+          urlbase = "prowlarr";
+        };
+      };
     };
 
     rtorrent = {
       enable = true;
       openFirewall = true;
-
       group = "servarr";
     };
 
     rutorrent = {
       enable = true;
-
       hostName = "localhost";
       group = "servarr";
     };
@@ -91,77 +168,38 @@
   };
 
   environment.systemPackages = with pkgs; [
-    jellyfin-web
     jellyfin-ffmpeg
-
+    jellyfin-web
     qbittorrent
-    qbittorrent-nox
     qbittorrent-cli
+    qbittorrent-nox
   ];
-
-  users = {
-    users = {
-      rtorrent = {
-        isSystemUser = true;
-        group = "servarr";
-      };
-
-      sonarr = { uid = 274; };
-
-      radarr = { uid = 275; };
-
-      lidarr = { uid = 306; };
-
-      mstream = {
-        uid = 307;
-        group = "servarr";
-      };
-    };
-
-    groups = {
-      servarr = {
-        gid = 1001;
-
-        members = [
-          "root"
-          "lidarr"
-          "sonarr"
-          "radarr"
-          "prowlarr"
-          "nzbget"
-          "plex"
-          "jellyfin"
-          config.localModules.name
-        ];
-      };
-    };
-  };
 
   localModules = {
     name = "saiki";
     hostname = "mini-pc";
     stateVersion = "25.11";
-
     desktopEnvironment = "none";
-
     swapSize = 8 * 1024;
     gpu = "none";
 
     home-manager = {
       enable = true;
-      username = config.localModules.name;
       modules = home-manager-modules;
+      username = config.localModules.name;
 
       packages = with pkgs; [
         docker
         docker-compose
-        transmission_4
-        rtorrent
         jellyfin
+        rtorrent
+        transmission_4
       ];
 
       config = {
         localModules = {
+          development.enable = true;
+          shells.zsh.enable = true;
 
           cmd = {
             direnv.enable = true;
@@ -170,11 +208,10 @@
             git.enable = true;
           };
 
-          shells.zsh.enable = true;
+          apps = {
+            neovim.enable = true;
+          };
 
-          apps = { neovim.enable = true; };
-
-          development.enable = true;
         };
       };
     };

@@ -58,6 +58,7 @@
         development = {
           enable = true;
           installOnNixos = true;
+
           languages = [
             "nix"
             "lua"
