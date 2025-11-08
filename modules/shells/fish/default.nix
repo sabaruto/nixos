@@ -14,7 +14,7 @@ in
 
       shellInit = ''
         direnv hook fish | source
-        oh-my-posh init fish --config ~/.config/theme.omp.yaml | source
+        oh-my-posh init fish --config ~/.config/theme.omp.json | source
       '';
     };
   };

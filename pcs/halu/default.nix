@@ -78,8 +78,6 @@
           enable = true;
           user = "t-aaronobelley";
         };
-
-        # apps.emanote.enable = true;
       };
     };
   };

@@ -17,9 +17,10 @@ in
       oh-my-zsh = {
         enable = true;
         plugins = [
-          "git"
-          "dotenv"
+          "1password"
           "direnv"
+          "dotenv"
+          "git"
           "mvn"
           "zsh-interactive-cd"
         ];

@@ -12,7 +12,6 @@ in
 {
   imports = [
     ./alacritty
-    ./emanote
     ./ghostty
     ./kitty
     ./neovim
@@ -73,6 +72,7 @@ in
           gopls
           delve
           golangci-lint
+          graphviz
         ];
       })
 

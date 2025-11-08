@@ -32,19 +32,10 @@
         home-manager.follows = "home-manager";
       };
     };
-
-    emanote = {
-      url = "github:srid/emanote";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-      };
-    };
   };
 
   outputs =
     {
-      emanote,
       home-manager,
       lanzaboote,
       flake-utils,
@@ -52,12 +43,6 @@
       ...
     }:
     flake-utils.lib.eachDefaultSystemPassThrough (system: {
-
-      overlays = {
-        default = _: _: {
-          emanote = emanote.packages."${system}".default;
-        };
-      };
 
       nixosModules = rec {
         peripherals = ./peripherals;
@@ -91,7 +76,6 @@
 
         apps = {
           imports = [
-            emanote.homeManagerModule
             zen-browser.homeModules.twilight
             ./apps
           ];

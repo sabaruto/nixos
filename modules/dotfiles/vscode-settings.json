@@ -77,7 +77,7 @@
         "editor.wordBasedSuggestions": "off"
     },
     "workbench.preferredLightColorTheme": "Monokai Pro Light",
-    "editor.fontFamily": "\"Consolas\", 'Droid Sans Mono', 'monospace', monospace",
+    "editor.fontFamily": "'Lilex Nerd Font', 'monospace', monospace",
     "terminal.integrated.fontLigatures": true,
     "dart.openDevTools": "flutter",
     "vs-kubernetes": {
