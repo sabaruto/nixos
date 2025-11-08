@@ -37,7 +37,10 @@
       ];
 
       config.localModules = {
-        shells.zsh.enable = true;
+        shells = {
+          zsh.enable = true;
+          fish.enable = true;
+        };
 
         cmd = {
           direnv.enable = true;

@@ -24,7 +24,7 @@ keymap({"n", "v"}, "<leader><cr>", ":", {
 keymap({"n", "v"}, "<leader>y", '"+y', opts)
 
 -- better saving
-vim.keymap.set({"n", "v"}, "<leader>w", "<cmd>write<cr>", {
+keymap({"n", "v"}, "<leader>w", "<cmd>write<cr>", {
     desc = "Save buffer",
     silent = true
 })

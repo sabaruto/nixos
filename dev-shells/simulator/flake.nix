@@ -9,7 +9,6 @@
   outputs =
     { nixpkgs, flake-utils, ... }:
     flake-utils.lib.eachDefaultSystemPassThrough (system: {
-
       devShells."${system}" = {
         default =
           let
