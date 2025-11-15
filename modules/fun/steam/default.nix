@@ -24,7 +24,6 @@ in
       gamescope
       avahi
       wine
-      # wivrn
       android-tools
     ];
 
@@ -44,5 +43,4 @@ in
       };
     };
   };
-
 }

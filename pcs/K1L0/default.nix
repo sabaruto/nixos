@@ -34,6 +34,8 @@
         roon-tui
 
         krita
+
+        wineWowPackages.full
       ];
 
       config.localModules = {

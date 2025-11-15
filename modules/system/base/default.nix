@@ -48,10 +48,21 @@ in
   };
 
   config = {
-    system.stateVersion = cfg.stateVersion;
-    localModules.hostMachine = mkDefault true;
+    system = {
+      inherit (cfg) stateVersion;
+    };
 
-    boot.kernelPackages = mkIf (cfg.linuxVersion != null) cfg.linuxVersion;
+    localModules.hostMachine = mkDefault true;
+    boot = {
+      kernelPackages = mkIf (cfg.linuxVersion != null) cfg.linuxVersion;
+
+      # Bootloader
+      loader = {
+        efi.canTouchEfiVariables = true;
+        systemd-boot.configurationLimit = 10;
+      };
+
+    };
 
     users.users."${cfg.name}" = {
       isNormalUser = true;
@@ -72,6 +83,7 @@ in
         size = cfg.swapSize;
       }
     ];
+
     environment = {
       systemPackages =
         with pkgs;
@@ -141,29 +153,6 @@ in
       };
     };
 
-    # Bootloader.
-    boot = {
-      loader = {
-        efi.canTouchEfiVariables = true;
-        systemd-boot.configurationLimit = 10;
-      };
-    };
-
-    nix = {
-      package = pkgs.nixVersions.latest;
-      extraOptions = ''
-        experimental-features = nix-command flakes
-      '';
-
-      # Perform garbage collection weekly to maintain low disk usage
-      gc = {
-        automatic = true;
-        dates = "weekly";
-        options = "--delete-older-than 7d";
-      };
-
-    };
-
     programs = {
       _1password.enable = true;
       ssh.knownHosts = {
@@ -180,16 +169,30 @@ in
         enable = true;
       };
     };
-    nix.settings = {
 
-      trusted-users = [
-        "root"
-        "${config.localModules.name}"
-      ];
-      download-buffer-size = 524288000;
+    nix = {
+      package = pkgs.nixVersions.latest;
+      extraOptions = ''
+        experimental-features = nix-command flakes
+      '';
 
-      # Optimise storage
-      auto-optimise-store = true;
+      # Perform garbage collection weekly to maintain low disk usage
+      gc = {
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than 7d";
+      };
+
+      settings = {
+        trusted-users = [
+          "root"
+          "${config.localModules.name}"
+        ];
+        download-buffer-size = 524288000;
+
+        # Optimise storage
+        auto-optimise-store = true;
+      };
     };
 
     networking = {
@@ -228,9 +231,11 @@ in
 
       pki.certificateFiles = [
         "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
-        # ../../../secrets/apache.pem
       ];
     };
+
+    # Allow unfree packages
+    nixpkgs.config.allowUnfree = true;
 
     services = {
       # Enable CUPS to print documents.
@@ -273,10 +278,6 @@ in
               id = "5CW2NA4-DBY2PYD-7F7FKHE-FPSGOW4-RXVELHT-GSYID73-AAJP35X-QK6TZA6";
               autoAcceptFolders = true;
             };
-            "Leano" = {
-              id = "JRBBVE4-VY4PYVH-7FRRSI6-BCAIDHK-ZFIPVKU-AEX6GXG-Z5Q2Z65-FNSYOQU";
-              autoAcceptFolders = true;
-            };
             "K1L0" = {
               id = "ZITXG37-HZXJTGN-CX2TW5Z-WRR7MO6-EAR45VU-JHNDIAQ-Y7NEBFY-JZDVKQH";
               autoAcceptFolders = true;
@@ -291,7 +292,6 @@ in
                 "Zalu"
                 "Pixel 7 Pro"
                 "Mini PC"
-                "Leano"
                 "K1L0"
               ];
             };
@@ -306,25 +306,22 @@ in
         pulse.enable = true;
         jack.enable = true;
       };
+
+      # Enable the OpenSSH daemon.
+      openssh.enable = true;
+
+      # Enable tailescale
+      tailscale.enable = true;
+
+      blueman = {
+        enable = true;
+      };
     };
-
-    # Allow unfree packages
-    nixpkgs.config.allowUnfree = true;
-
-    # Enable the OpenSSH daemon.
-    services.openssh.enable = true;
-
-    # Enable tailescale
-    services.tailscale.enable = true;
 
     # Enable bluetooth
     hardware.bluetooth = {
       enable = true;
       powerOnBoot = true;
-    };
-
-    services.blueman = {
-      enable = true;
     };
   };
 }
