@@ -8,6 +8,8 @@
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
 
+  services.roon-server.enable = true;
+
   localModules = {
     name = "dosia";
     hostname = "K1L0";
@@ -30,9 +32,7 @@
         kdePackages.k3b
         chromium
 
-        roon-bridge
         roon-tui
-
         krita
 
         wineWowPackages.full

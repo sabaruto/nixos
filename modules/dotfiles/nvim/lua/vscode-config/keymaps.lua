@@ -6,7 +6,6 @@ local opts = {
 
 -- remap leader key
 keymap("n", "<Space>", "", opts)
-keymap("n", "x", "", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "    "
 

@@ -25,7 +25,10 @@ in
       avahi
       wine
       android-tools
+      lutris
     ];
+
+    hardware.graphics.enable32Bit = true;
 
     services = {
       avahi = {
