@@ -105,7 +105,6 @@
               {
                 nixpkgs.overlays = [
                   inputs.neovim-nightly-overlay.overlays.default
-                  inputs.local-modules.overlays.default
                   inputs.local-packages.overlays.default
                 ];
               }
