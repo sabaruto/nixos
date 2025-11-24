@@ -45,7 +45,7 @@ in
 
     programs.java = mkIf (elem "java" cfg.languages) {
       enable = true;
-      package = pkgs.temurin-bin-25;
+      package = pkgs.jdk25_headless;
     };
 
     home = mkMerge [

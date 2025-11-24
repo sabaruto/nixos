@@ -7,9 +7,20 @@
 }:
 {
 
-  security.pki.certificateFiles = [ ../../secrets/SaltPay_Root_CA_01.pem ];
+  security.pki.certificateFiles = [
+    ../../secrets/SaltPay_Root_CA_01.pem
+  ];
 
   services.syncthing.enable = lib.mkForce false;
+
+  environment.variables.JAVAX_NET_SSL_TRUSTSTORE = pkgs.runCommand "cacerts-custom" { } ''
+    cp ${pkgs.jdk25_headless}/lib/openjdk/lib/security/cacerts $out
+    chmod +w $out
+    ${pkgs.jdk25_headless}/bin/keytool  -noprompt -importcert -alias teya -file ${../../secrets/SaltPay_Root_CA_01.pem} -keystore $out -storepass changeit -trustcacerts
+    ${pkgs.jdk25_headless}/bin/keytool  -noprompt -importcert -alias awsrds -file ${../../secrets/rds-ca-2019-root.pem} -keystore $out -storepass changeit -trustcacerts
+    ${pkgs.jdk25_headless}/bin/keytool  -noprompt -importcert -alias futurexcloudroottest -file ${../../secrets/futurex_cloud_root_test_ca.pem} -keystore $out -storepass changeit -trustcacerts
+    ${pkgs.jdk25_headless}/bin/keytool  -noprompt -importcert -alias futurexcloudteyatest -file ${../../secrets/futurex_cloud_teya_test_ca.pem} -keystore $out -storepass changeit -trustcacerts
+  '';
 
   localModules = {
     name = "t-aaronobelley";
@@ -53,6 +64,7 @@
 
         mongodb-cli
         mongosh
+        uv
 
         #wsl
         wsl-open
