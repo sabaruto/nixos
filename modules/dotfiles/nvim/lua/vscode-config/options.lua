@@ -1,4 +1,3 @@
-vim.cmd('syntax off')
+vim.cmd('syntax on')
 vim.cmd('filetype plugin off')
 vim.cmd('filetype indent off')
-vim.g.syntax = 'false'

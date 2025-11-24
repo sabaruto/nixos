@@ -1,7 +1,6 @@
 require("mini.ai").setup()
 require("mini.pairs").setup()
 require("mini.surround").setup()
-require("mini.comment").setup()
 require("mini.splitjoin").setup()
 require("mini.ai").setup()
 require("mini.move").setup()
