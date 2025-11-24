@@ -24,9 +24,11 @@ in
       gamescope
       avahi
       wine
-      # wivrn
       android-tools
+      lutris
     ];
+
+    hardware.graphics.enable32Bit = true;
 
     services = {
       avahi = {
@@ -44,5 +46,4 @@ in
       };
     };
   };
-
 }

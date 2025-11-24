@@ -4,7 +4,7 @@
         "editor.defaultFormatter": "ms-dotnettools.csharp"
     },
     "[java]": {
-        "editor.defaultFormatter": "remimarsal.prettier-now"
+        "editor.defaultFormatter": "redhat.java"
     },
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter",
@@ -21,7 +21,7 @@
     "git.autofetch": true,
     "git.confirmSync": false,
     "terminal.integrated.inheritEnv": false,
-    "workbench.iconTheme": "Monokai Pro Icons",
+    "workbench.iconTheme": "catppuccin-latte",
     "workbench.statusBar.visible": true,
     "python.languageServer": "Pylance",
     "editor.wordWrapColumn": 120,
@@ -76,7 +76,7 @@
         "editor.tabCompletion": "onlySnippets",
         "editor.wordBasedSuggestions": "off"
     },
-    "workbench.preferredLightColorTheme": "Monokai Pro Light",
+    "workbench.preferredLightColorTheme": "Catppuccin Latte",
     "editor.fontFamily": "'Lilex Nerd Font', 'monospace', monospace",
     "terminal.integrated.fontLigatures": true,
     "dart.openDevTools": "flutter",
@@ -91,14 +91,14 @@
     },
     "workbench.preferredDarkColorTheme": "One Dark Pro",
     "terminal.integrated.defaultProfile.linux": "tmux",
-    "[shellscript]": {
-        "editor.defaultFormatter": "foxundermoon.shell-format"
-    },
     "extensions.experimental.affinity": {
         "asvetliakov.vscode-neovim": 1
     },
     "vscode-neovim.compositeKeys": {
         "jk": {
+            "command": "vscode-neovim.escape"
+        },
+        "kj": {
             "command": "vscode-neovim.escape"
         }
     },
@@ -115,5 +115,40 @@
     },
     "[go]": {
         "editor.defaultFormatter": "golang.go"
-    }
+    },
+    "[markdown]": {
+        "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+    },
+    "nix.enableLanguageServer": true,
+    "nix.serverPath": "nil",
+    "nix.serverSettings": {
+        "nil": {
+            "formatting": {
+                "command": [
+                    "nixfmt"
+                ]
+            }
+        }
+    },
+    "git.enableSmartCommit": true,
+    "java.debug.settings.hotCodeReplace": "auto",
+    "java.debug.settings.showStaticVariables": true,
+    "java.maven.downloadSources": true,
+    "vscode-neovim.highlightGroups.highlights": {
+        "IncSearch": {
+            "backgroundColor": "theme.editor.findMatchBackground"
+        },
+        "CurSearch": {
+            "backgroundColor": "theme.editor.findMatchBackground"
+        },
+        "Search": {
+            "backgroundColor": "theme.editor.findMatchHighlightBackground"
+        },
+        "Substitute": {
+            "backgroundColor": "theme.editor.foreground",
+            "color": "theme.editor.background"
+        }
+    },
+    "jdk.telemetry.enabled": true,
+    "jdk.test.editor.enableShortcuts": true
 }

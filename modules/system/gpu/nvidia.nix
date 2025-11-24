@@ -2,8 +2,10 @@
 
 with lib;
 
-let cfg = config.localModules;
-in {
+let
+  cfg = config.localModules;
+in
+{
   config = mkIf (cfg.gpu == "nvidia") {
     # Enable nvidia video drivers
     services.xserver.videoDrivers = [ "nvidia" ];
@@ -15,6 +17,7 @@ in {
       nvidia = {
         open = true;
         package = config.boot.kernelPackages.nvidiaPackages.stable;
+        nvidiaSettings = true;
         powerManagement.enable = true;
         modesetting.enable = true;
         videoAcceleration = true;

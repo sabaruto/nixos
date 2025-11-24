@@ -91,9 +91,7 @@ in
 
               username = "${config.localModules.name}";
               homeDirectory = mkDefault "/home/${config.localModules.name}";
-              sessionVariables = {
-                EDITOR = "nvim";
-              };
+              sessionVariables.EDITOR = "nvim";
 
               stateVersion = "24.11";
             };
