@@ -16,7 +16,6 @@ in
   config.localModules.cmd = mkIf cfg.development.enable {
     direnv.enable = true;
     git.enable = true;
-    oh-my-posh.enable = true;
     tmux.enable = true;
   };
 }

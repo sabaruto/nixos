@@ -47,7 +47,7 @@
         cmd = {
           direnv.enable = true;
           git.enable = true;
-          oh-my-posh.enable = true;
+          oh-my-posh.enable = false;
           tmux.enable = true;
         };
 
