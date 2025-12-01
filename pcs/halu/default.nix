@@ -44,12 +44,12 @@
         ctlptl
         helm
         tilt
-        postman
         dconf-editor
         jwt-cli
         kulala-ls
         cspell-lsp
         yazi
+        helix
 
         xdg-utils-cxx
         weston

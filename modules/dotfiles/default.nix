@@ -62,6 +62,18 @@ in
         source = "${dotfilesDirectory}/vscode-settings.json";
         target = ".config/Code/User/settings.json";
       }
+      {
+        name = "helix";
+        recursive = true;
+        source = "${dotfilesDirectory}/helix";
+        target = ".config/helix";
+      }
+      {
+        name = "jdtls";
+        recursive = true;
+        source = "${dotfilesDirectory}/jdtls";
+        target = ".config/jdtls";
+      }
     ];
     home.file = {
       ".oh-my-zsh" = mkIf cfg.shells.zsh.enable {

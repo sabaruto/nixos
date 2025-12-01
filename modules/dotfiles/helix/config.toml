@@ -1,0 +1,10 @@
+[editor.cursor-shape]
+insert = "bar"
+select = "underline"
+
+[keys.normal]
+"space" = {"w" = ":write", q = { q = ":quit", w = ":write-quit", "!" = ":quit!"}}
+[keys.insert]
+j = {k = "normal_mode"}
+
+k = {j = "normal_mode"}
