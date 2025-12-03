@@ -21,21 +21,22 @@ vim.api.nvim_create_autocmd("User", {
 
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = {
-		"c",
-		"lua",
-		"nix",
-		"vim",
 		"bash",
-		"regex",
-		"vimdoc",
+		"c",
+		"env",
+		"go",
+		"http",
 		"java",
-		"xml",
 		"json",
-		"yaml",
+		"lua",
 		"markdown",
 		"markdown_inline",
-		"http",
-		"env",
+		"nix",
+		"regex",
+		"vim",
+		"vimdoc",
+		"xml",
+		"yaml",
 	},
 
 	callback = function()

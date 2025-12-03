@@ -68,9 +68,7 @@
     "[dart]": {
         "editor.formatOnSave": true,
         "editor.formatOnType": true,
-        "editor.rulers": [
-            80
-        ],
+        "editor.rulers": [80],
         "editor.selectionHighlight": false,
         "editor.tabCompletion": "onlySnippets",
         "editor.wordBasedSuggestions": "off"
@@ -89,7 +87,6 @@
         "*.env": "properties"
     },
     "workbench.preferredDarkColorTheme": "One Dark Pro",
-    "terminal.integrated.defaultProfile.linux": "tmux",
     "extensions.experimental.affinity": {
         "asvetliakov.vscode-neovim": 1
     },
@@ -102,7 +99,7 @@
         }
     },
     "[jsonc]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "window.zoomLevel": 1,
     "window.zoomPerWindow": false,
@@ -123,9 +120,7 @@
     "nix.serverSettings": {
         "nil": {
             "formatting": {
-                "command": [
-                    "nixfmt"
-                ]
+                "command": ["nixfmt"]
             }
         }
     },
@@ -152,5 +147,9 @@
     "jdk.test.editor.enableShortcuts": true,
     "[lua]": {
         "editor.defaultFormatter": "sumneko.lua"
-    }
+    },
+    "gopls": {
+        "ui.semanticTokens": true
+    },
+    "go.delveConfig": {}
 }

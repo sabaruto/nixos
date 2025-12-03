@@ -1,7 +1,5 @@
 {
-    "Lua.diagnostics.globals": [
-        "vim"
-    ],
+    "Lua.diagnostics.globals": ["vim"],
     "workbench.colorCustomizations": {
         "editorCursor.foreground": "#e9dbb7",
         "activityBarBadge.background": "#e9dbb7",

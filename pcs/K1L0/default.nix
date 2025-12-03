@@ -36,6 +36,7 @@
         krita
 
         wineWowPackages.full
+        helix
       ];
 
       config.localModules = {

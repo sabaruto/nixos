@@ -1,3 +1,4 @@
+theme = "rose_pine_moon"
 [editor.cursor-shape]
 insert = "bar"
 select = "underline"

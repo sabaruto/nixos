@@ -27,7 +27,7 @@ config.settings = {
 			enabled = true,
 			settings = {
 				profile = "Intellij",
-				url = "~/github.com/sabaruto/nixos/tools/java/xml/profiles.xml",
+				url = "~/.config/jdlts/xml/profiles.xml",
 			},
 		},
 		import = {
@@ -54,7 +54,7 @@ config.settings = {
 }
 
 local home = os.getenv("HOME")
-local nixos_dir = home .. "/github.com/sabaruto/nixos"
+local nixos_dir = home .. "/.config/jdtls/"
 local jars_dir = nixos_dir .. "/tools/java/jars"
 local jdtls_root = vim.split(vim.fn.glob("/nix/store/*jdt-language-server-*.0"), "\n")[1]
 local data_dir = vim.fn.stdpath("data")
