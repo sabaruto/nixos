@@ -1,6 +1,6 @@
 [language-server.jdtls]
 command = "jdtls"
-args = ["-configuration", "~/.cache/jdtls"]
+args = ["--jvm-arg=-javaagent:/home/t-aaronobelley/.config/jdtls/jars/javaagents/lombok.jar", "-configuration", "/home/t-aaronobelley/.cache/jdtls/", "-data", "/home/t-aaronobelley/jdtls/workspace"]
 
 [[language]]
 name = "java"
@@ -8,3 +8,12 @@ scope = "source.java"
 file-types = ["java"]
 roots = ["pom.xml", "build.gradle", ".git"]
 language-servers = ["jdtls"]
+
+[language-server.lemminx]
+command = "lemminx"
+
+
+[[language]]
+name = "xml"
+language-servers = ["lemminx"]
+auto-format = false
