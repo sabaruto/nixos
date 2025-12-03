@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 
 with lib;
 let
@@ -8,6 +8,11 @@ in
   options.localModules.shells.zsh.enable = mkEnableOption "zsh";
 
   config = mkIf cfg.zsh.enable {
+
+    home.packages = with pkgs;[
+      fzf
+    ];
+
     programs.zsh = {
       enable = true;
       enableCompletion = true;
@@ -39,11 +44,7 @@ in
           HIST_STAMPS="dd/mm/yyyy"
 
           source $ZSH/oh-my-zsh.sh
-          if [[ -n $SSH_CONNECTION ]]; then
-            export EDITOR='vim'
-          else
-            export EDITOR='nvim'
-          fi
+          export EDITOR="hx"
         ''
         (mkIf (config.localModules.cmd.oh-my-posh.enable) ''
           eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/theme.omp.json)"

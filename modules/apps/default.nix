@@ -14,6 +14,7 @@ in
     ./alacritty
     ./ghostty
     ./kitty
+    ./helix
     ./neovim
     ./wezterm
     ./zen-browser
@@ -45,7 +46,7 @@ in
 
     programs.java = mkIf (elem "java" cfg.languages) {
       enable = true;
-      package = pkgs.jdk25_headless;
+      package = pkgs.javaPackages.compiler.temurin-bin.jdk-25;
     };
 
     home = mkMerge [
@@ -57,8 +58,11 @@ in
           # find hash of packages
           nix-prefetch
 
+          # git help
+          lazygit
+
           # nix formatter
-          nixfmt-rfc-style
+          nixfmt
           nixd
 
           lua-language-server
@@ -76,19 +80,28 @@ in
         ];
       })
 
+      (mkIf (elem "typescript" cfg.languages) {
+        packages = with pkgs; [
+          nodejs
+          typescript-language-server
+        ];
+      })
+
       (mkIf (elem "python" cfg.languages) {
         packages = with pkgs; [
-          python3Full
-          python312Packages.debugpy
+          python315
+          python313Packages.debugpy
         ];
       })
 
       (mkIf (elem "java" cfg.languages) {
         packages = with pkgs; [
-          # We only install java from dev environments
-
           spring-boot-cli
           libglibutil
+          lombok
+
+          libxml2
+          lemminx
 
           # project builders
           maven
@@ -114,7 +127,6 @@ in
 
     localModules.apps = mkIf cfg.enable {
       kitty.enable = true;
-      neovim.enable = true;
       wezterm.enable = true;
       alacritty.enable = true;
     };

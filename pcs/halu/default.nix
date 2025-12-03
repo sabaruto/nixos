@@ -13,14 +13,17 @@
 
   services.syncthing.enable = lib.mkForce false;
 
-  environment.variables.JAVAX_NET_SSL_TRUSTSTORE = pkgs.runCommand "cacerts-custom" { } ''
-    cp ${pkgs.jdk25_headless}/lib/openjdk/lib/security/cacerts $out
-    chmod +w $out
-    ${pkgs.jdk25_headless}/bin/keytool  -noprompt -importcert -alias teya -file ${../../secrets/SaltPay_Root_CA_01.pem} -keystore $out -storepass changeit -trustcacerts
-    ${pkgs.jdk25_headless}/bin/keytool  -noprompt -importcert -alias awsrds -file ${../../secrets/rds-ca-2019-root.pem} -keystore $out -storepass changeit -trustcacerts
-    ${pkgs.jdk25_headless}/bin/keytool  -noprompt -importcert -alias futurexcloudroottest -file ${../../secrets/futurex_cloud_root_test_ca.pem} -keystore $out -storepass changeit -trustcacerts
-    ${pkgs.jdk25_headless}/bin/keytool  -noprompt -importcert -alias futurexcloudteyatest -file ${../../secrets/futurex_cloud_teya_test_ca.pem} -keystore $out -storepass changeit -trustcacerts
-  '';
+  environment.variables = {
+    JAVAX_NET_SSL_TRUSTSTORE = pkgs.runCommand "cacerts-custom" { } ''
+      cp ${pkgs.jdk25_headless}/lib/openjdk/lib/security/cacerts $out
+      chmod +w $out
+      ${pkgs.jdk25_headless}/bin/keytool  -noprompt -importcert -alias teya -file ${../../secrets/SaltPay_Root_CA_01.pem} -keystore $out -storepass changeit -trustcacerts
+      ${pkgs.jdk25_headless}/bin/keytool  -noprompt -importcert -alias awsrds -file ${../../secrets/rds-ca-2019-root.pem} -keystore $out -storepass changeit -trustcacerts
+      ${pkgs.jdk25_headless}/bin/keytool  -noprompt -importcert -alias futurexcloudroottest -file ${../../secrets/futurex_cloud_root_test_ca.pem} -keystore $out -storepass changeit -trustcacerts
+      ${pkgs.jdk25_headless}/bin/keytool  -noprompt -importcert -alias futurexcloudteyatest -file ${../../secrets/futurex_cloud_teya_test_ca.pem} -keystore $out -storepass changeit -trustcacerts
+    '';
+    EDITOR = "helix";
+  };
 
   localModules = {
     name = "t-aaronobelley";
@@ -49,7 +52,6 @@
         kulala-ls
         cspell-lsp
         yazi
-        helix
 
         xdg-utils-cxx
         weston
@@ -71,6 +73,7 @@
         wslu
         wsl-vpnkit
         xsel
+        newman
       ];
 
       config.localModules = {
@@ -83,6 +86,7 @@
             "nix"
             "lua"
             "java"
+            "typescript"
           ];
         };
 
@@ -90,6 +94,8 @@
           enable = true;
           user = "t-aaronobelley";
         };
+
+        apps.helix.enable = true;
       };
     };
   };

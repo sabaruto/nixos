@@ -1,12 +1,14 @@
 [language-server.jdtls]
 command = "jdtls"
-args = ["--jvm-arg=-javaagent:/home/t-aaronobelley/.config/jdtls/jars/javaagents/lombok.jar", "-configuration", "/home/t-aaronobelley/.cache/jdtls/", "-data", "/home/t-aaronobelley/jdtls/workspace"]
+args = ["-configuration", "/home/t-aaronobelley/.cache/jdtls/config_linux", "-data", "/home/t-aaronobelley/.cache/jdtls/workspace"]
 
 [[language]]
 name = "java"
 scope = "source.java"
+injection-regex = "java"
 file-types = ["java"]
-roots = ["pom.xml", "build.gradle", ".git"]
+roots = ["pom.xml", "build.gradle"]
+indent = { tab-width = 4, unit = "    " }
 language-servers = ["jdtls"]
 
 [language-server.lemminx]
@@ -15,5 +17,15 @@ command = "lemminx"
 
 [[language]]
 name = "xml"
-language-servers = ["lemminx"]
 auto-format = false
+file-types = [ "xml", "svg", "xsd", "xslt", "xsl" ]
+formatter = { command = "xmllint", args = ["--format", "-"] }
+language-servers = [ "xml" ]
+
+[[language]]
+name = "nix"
+formatter = { command = "nixfmt" }
+
+[[language]]
+name = "toml"
+formatter = { command = "taplo", args = ["fmt", "-"]}

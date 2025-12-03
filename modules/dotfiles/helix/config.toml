@@ -1,11 +1,23 @@
-theme = "rose_pine_dawn"
+theme = "base16"
+
+[editor]
+bufferline = "always"
+popup-border = "all"
+completion-replace = true
+shell = ["zsh", "-c"]
+default-yank-register = "+"
+insert-final-newline = false
+
+[editor.lsp]
+display-inlay-hints = true
+display-messages = true
 
 [editor.cursor-shape]
 insert = "bar"
 select = "underline"
 
 [keys.normal]
-"space" = {"w" = ":write", q = { q = ":quit", w = ":write-quit", "!" = ":quit!"}}
+"space" = {"w" = ":write", q = { q = ":quit-all", w = ":write-quit-all", "!" = ":quit!", "a" = ":write-quit-all"}}
 
 [keys.insert]
 j = {k = "normal_mode"}

@@ -18,7 +18,7 @@ config.settings = {
 
 			runtimes = {
 				{
-					name = "JavaSE-24",
+					name = "JavaSE-25",
 					path = os.getenv("JAVA_HOME"),
 				},
 			},
@@ -54,44 +54,22 @@ config.settings = {
 }
 
 local home = os.getenv("HOME")
-local nixos_dir = home .. "/.config/jdtls/"
-local jars_dir = nixos_dir .. "/tools/java/jars"
-local jdtls_root = vim.split(vim.fn.glob("/nix/store/*jdt-language-server-*.0"), "\n")[1]
+local config_dir = home .. "/.config/jdtls/"
+local jars_dir = config_dir .. "/jars"
 local data_dir = vim.fn.stdpath("data")
-local config_dir = jdtls_root .. "/share/java/jdtls/config_linux"
-local jdtls_jar_path =
-	vim.split(vim.fn.glob(jdtls_root .. "/share/java/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"), "\n")[1]
 local cache_dir = home .. "/.cache/jdtls"
 
 local cwd = vim.fn.getcwd()
 local project_name = vim.fn.fnamemodify(cwd, ":p:h:t")
 local workspace_dir = cache_dir .. "/workspace/" .. project_name
-local lombok_dir = jars_dir .. "/javaagents/lombok.jar"
 
 config.cmd = {
-	"java",
-	"-Declipse.application=org.eclipse.jdt.ls.core.id1",
-	"-Dosgi.bundles.defaultStartLevel=4",
-	"-Declipse.product=org.eclipse.jdt.ls.core.product",
-	"-Dlog.protocol=true",
-	"-Dlog.level=ALL",
-	"-Dosgi.sharedConfiguration.area=" .. config_dir,
-	"-Dosgi.sharedConfiguration.area.readOnly=true",
-	"-Dosgi.checkConfiguration=true",
-	"-Dosgi.configuration.cascaded=true",
-	"-Xmx1g",
-	"--add-modules=ALL-SYSTEM",
-	"--add-opens",
-	"java.base/java.util=ALL-UNNAMED",
-	"--add-opens",
-	"java.base/java.lang=ALL-UNNAMED",
-	"-javaagent:" .. lombok_dir,
-	"-jar",
-	jdtls_jar_path,
+	"jdtls",
+	"--jvm-arg=-javaagent:" .. home .. "/.config/jdtls/jars/javaagents/lombok.jar",
+	"-configuration",
+	home .. "/.cache/jdtls",
 	"-data",
 	workspace_dir,
-	"-configuration",
-	cache_dir .. "/config_linux",
 }
 
 local bundles = {}
