@@ -15,14 +15,17 @@
 
   environment.variables = {
     JAVAX_NET_SSL_TRUSTSTORE = pkgs.runCommand "cacerts-custom" { } ''
-      cp ${pkgs.jdk25_headless}/lib/openjdk/lib/security/cacerts $out
+      cp ${pkgs.javaPackages.compiler.temurin-bin.jdk-25}/lib/security/cacerts $out
       chmod +w $out
-      ${pkgs.jdk25_headless}/bin/keytool  -noprompt -importcert -alias teya -file ${../../secrets/SaltPay_Root_CA_01.pem} -keystore $out -storepass changeit -trustcacerts
-      ${pkgs.jdk25_headless}/bin/keytool  -noprompt -importcert -alias awsrds -file ${../../secrets/rds-ca-2019-root.pem} -keystore $out -storepass changeit -trustcacerts
-      ${pkgs.jdk25_headless}/bin/keytool  -noprompt -importcert -alias futurexcloudroottest -file ${../../secrets/futurex_cloud_root_test_ca.pem} -keystore $out -storepass changeit -trustcacerts
-      ${pkgs.jdk25_headless}/bin/keytool  -noprompt -importcert -alias futurexcloudteyatest -file ${../../secrets/futurex_cloud_teya_test_ca.pem} -keystore $out -storepass changeit -trustcacerts
+      ${pkgs.javaPackages.compiler.temurin-bin.jdk-25}/bin/keytool  -noprompt -importcert -alias teya -file ${../../secrets/SaltPay_Root_CA_01.pem} -keystore $out -storepass changeit -trustcacerts
+      ${pkgs.javaPackages.compiler.temurin-bin.jdk-25}/bin/keytool  -noprompt -importcert -alias awsrds -file ${../../secrets/rds-ca-2019-root.pem} -keystore $out -storepass changeit -trustcacerts
+      ${pkgs.javaPackages.compiler.temurin-bin.jdk-25}/bin/keytool  -noprompt -importcert -alias futurexcloudroottest -file ${../../secrets/futurex_cloud_root_test_ca.pem} -keystore $out -storepass changeit -trustcacerts
+      ${pkgs.javaPackages.compiler.temurin-bin.jdk-25}/bin/keytool  -noprompt -importcert -alias futurexcloudteyatest -file ${../../secrets/futurex_cloud_teya_test_ca.pem} -keystore $out -storepass changeit -trustcacerts
     '';
-    EDITOR = "helix";
+    PLAYWRIGHT_BROWSERS_PATH = pkgs.playwright-driver.browsers;
+    PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS = "true";
+    PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "true";
+    PLAYWRIGHT_NODEJS_PATH = "/etc/profiles/per-user/t-aaronobelley/bin/node";
   };
 
   localModules = {
@@ -74,8 +77,9 @@
         wsl-vpnkit
         xsel
         newman
+        playwright-driver.browsers
+        nodejs
       ];
-
       config.localModules = {
         shells.zsh.enable = true;
 

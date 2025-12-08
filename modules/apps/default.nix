@@ -65,6 +65,7 @@ in
           # nix formatter
           nixfmt
           nixd
+          fd
 
           lua-language-server
         ];
