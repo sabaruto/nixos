@@ -1,4 +1,4 @@
-theme = "base16"
+theme = "rose_pine_moon"
 
 [editor]
 bufferline = "always"
@@ -9,8 +9,7 @@ default-yank-register = "+"
 insert-final-newline = false
 
 [editor.lsp]
-display-inlay-hints = true
-display-messages = true
+display-progress-messages = true
 
 [editor.cursor-shape]
 insert = "bar"

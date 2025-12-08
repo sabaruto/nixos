@@ -45,6 +45,13 @@ in
 
           source $ZSH/oh-my-zsh.sh
           export EDITOR="hx"
+          function y() {
+          	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+          	yazi "$@" --cwd-file="$tmp"
+          	IFS= read -r -d \'\' cwd < "$tmp"
+          	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+          	rm -f -- "$tmp"
+          }
         ''
         (mkIf (config.localModules.cmd.oh-my-posh.enable) ''
           eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/theme.omp.json)"

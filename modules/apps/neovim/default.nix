@@ -121,7 +121,6 @@ in
         # git improvement
         lazygit
 
-        nodejs_24
         jq
         sqlite
         d2

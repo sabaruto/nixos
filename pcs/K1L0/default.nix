@@ -6,7 +6,12 @@
   hardware.bluetooth.enable = true;
 
   users.defaultUserShell = pkgs.zsh;
-  programs.zsh.enable = true;
+  programs = {
+    zsh.enable = true;
+    yazi = {
+      enable = true;
+    };
+  };
 
   services.roon-server.enable = true;
 
@@ -34,9 +39,7 @@
 
         roon-tui
         krita
-
         wineWowPackages.full
-        helix
       ];
 
       config.localModules = {
@@ -55,9 +58,11 @@
         apps = {
           alacritty.enable = true;
           ghostty.enable = true;
+          helix.enable = true;
           kitty.enable = true;
           neovim.enable = true;
           wezterm.enable = true;
+          zed.enable = true;
           zen-browser.enable = true;
         };
 

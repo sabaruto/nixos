@@ -13,10 +13,11 @@ in
   imports = [
     ./alacritty
     ./ghostty
-    ./kitty
     ./helix
+    ./kitty
     ./neovim
     ./wezterm
+    ./zed
     ./zen-browser
   ];
 
