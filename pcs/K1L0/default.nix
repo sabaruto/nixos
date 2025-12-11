@@ -40,6 +40,7 @@
         roon-tui
         krita
         wineWowPackages.full
+        godot-mono
       ];
 
       config.localModules = {
