@@ -7,13 +7,15 @@
 }:
 {
 
+  imports = [ ./hardware-configuration.nix ];
+
   security.pki.certificateFiles = [
     ../../secrets/SaltPay_Root_CA_01.pem
   ];
 
   services.syncthing.enable = lib.mkForce false;
 
-  environment.variables = {
+  environment.variables = rec {
     JAVAX_NET_SSL_TRUSTSTORE = pkgs.runCommand "cacerts-custom" { } ''
       cp ${pkgs.javaPackages.compiler.temurin-bin.jdk-25}/lib/security/cacerts $out
       chmod +w $out
@@ -26,6 +28,7 @@
     PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS = "true";
     PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "true";
     PLAYWRIGHT_NODEJS_PATH = "/etc/profiles/per-user/t-aaronobelley/bin/node";
+    MAVEN_OPTS = "-Dspring-boot.run.jvmArguments=-Djavax.net.ssl.trustStore=${JAVAX_NET_SSL_TRUSTSTORE} -Djavax.net.ssl.trustStorePassword=changeit";
   };
 
   localModules = {
@@ -78,7 +81,7 @@
         xsel
         newman
         playwright-driver.browsers
-        nodejs
+        markdown-oxide
       ];
       config.localModules = {
         shells.zsh.enable = true;

@@ -84,7 +84,7 @@ in
 
       (mkIf (elem "typescript" cfg.languages) {
         packages = with pkgs; [
-          nodejs
+          nodejs_24
           typescript-language-server
         ];
       })

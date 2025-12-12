@@ -6,111 +6,111 @@
 // To see the default key bindings run `zed: open default keymap`
 // from the command palette.
 [
-  {
-    "bindings": {
-      "ctrl-w": null,
-      "ctrl-left": "workspace::ActivatePaneLeft",
-      "ctrl-right": "workspace::ActivatePaneRight",
-      "ctrl-up": "workspace::ActivatePaneUp",
-      "ctrl-down": "workspace::ActivatePaneDown"
+    {
+        "bindings": {
+            "ctrl-w": null,
+            "ctrl-left": "workspace::ActivatePaneLeft",
+            "ctrl-right": "workspace::ActivatePaneRight",
+            "ctrl-up": "workspace::ActivatePaneUp",
+            "ctrl-down": "workspace::ActivatePaneDown"
+        }
+    },
+    {
+        "context": "Workspace",
+        "bindings": {
+            // "shift shift": "file_finder::Toggle"
+        }
+    },
+    {
+        "context": "Editor && vim_mode == normal",
+        "bindings": {
+            "space /": "workspace::NewSearch",
+            "space a": "editor::ToggleCodeActions",
+            "space e": "workspace::ToggleLeftDock",
+            "space f": "file_finder::Toggle",
+            "space t": "workspace::ToggleBottomDock"
+        }
+    },
+    {
+        "context": "Editor && vim_mode == insert",
+        "bindings": {
+            "j k": ["workspace::SendKeystrokes", "escape"],
+            "k j": ["workspace::SendKeystrokes", "escape"]
+        }
+    },
+    {
+        "context": "Editor && vim_mode == visual",
+        "bindings": {
+            "g s": "editor::SortLinesCaseSensitive",
+            "g S": "vim::JoinLines"
+        }
+    },
+    {
+        "context": "VimControl && !menu",
+        "bindings": {
+            "space W": "workspace::SaveAll",
+            "space enter": ["workspace::SendKeystrokes", ":"],
+            "space j": ["workspace::SendKeystrokes", ":"],
+            "space q q": "zed::Quit",
+            "space w": "workspace::Save",
+            "s": "vim::PushSneak",
+            "shift-s": "vim::PushSneakBackward"
+        }
+    },
+    {
+        "context": "vim_operator == a || vim_operator == i || vim_operator == cs",
+        "bindings": {
+            // mini.ai plugin behavior
+            "Q": "vim::MiniQuotes",
+            "B": "vim::MiniBrackets"
+        }
+    },
+    {
+        "context": "EmptyPane || SharedScreen",
+        "bindings": {
+            "space f": "file_finder::Toggle"
+        }
+    },
+    {
+        "context": "((VimControl && !menu) || (!Editor && !Terminal))",
+        "bindings": {
+            "space b d": "pane::CloseActiveItem"
+        }
+    },
+    {
+        "context": "(VimControl && !menu)",
+        "bindings": {
+            "space r": "editor::Rename"
+        }
+    },
+    {
+        "context": "(ProjectPanel && not_editing)",
+        "bindings": {
+            "a": "project_panel::NewFile"
+        }
+    },
+    {
+        "context": "(ProjectPanel && not_editing)",
+        "bindings": {
+            "d": null
+        }
+    },
+    {
+        "context": "((vim_mode == helix_normal || vim_mode == helix_select) && !menu)",
+        "bindings": {
+            "space w q": null
+        }
+    },
+    {
+        "context": "((VimControl && !menu) || (!Editor && !Terminal))",
+        "bindings": {
+            "ctrl-w q": "pane::CloseAllItems"
+        }
+    },
+    {
+        "context": "((VimControl) && !menu)",
+        "bindings": {
+            "g r": "editor::FindAllReferences"
+        }
     }
-  },
-  {
-    "context": "Workspace",
-    "bindings": {
-      // "shift shift": "file_finder::Toggle"
-    }
-  },
-  {
-    "context": "Editor && vim_mode == normal",
-    "bindings": {
-      "space /": "workspace::NewSearch",
-      "space a": "editor::ToggleCodeActions",
-      "space e": "workspace::ToggleLeftDock",
-      "space f": "file_finder::Toggle",
-      "space t": "workspace::ToggleBottomDock"
-    }
-  },
-  {
-    "context": "Editor && vim_mode == insert",
-    "bindings": {
-      "j k": ["workspace::SendKeystrokes", "escape"],
-      "k j": ["workspace::SendKeystrokes", "escape"]
-    }
-  },
-  {
-    "context": "Editor && vim_mode == visual",
-    "bindings": {
-      "g s": "editor::SortLinesCaseSensitive",
-      "g S": "vim::JoinLines"
-    }
-  },
-  {
-    "context": "VimControl && !menu",
-    "bindings": {
-      "space W": "workspace::SaveAll",
-      "space enter": ["workspace::SendKeystrokes", ":"],
-      "space j": ["workspace::SendKeystrokes", ":"],
-      "space q q": "zed::Quit",
-      "space w": "workspace::Save",
-      "s": "vim::PushSneak",
-      "shift-s": "vim::PushSneakBackward"
-    }
-  },
-  {
-    "context": "vim_operator == a || vim_operator == i || vim_operator == cs",
-    "bindings": {
-      // mini.ai plugin behavior
-      "Q": "vim::MiniQuotes",
-      "B": "vim::MiniBrackets"
-    }
-  },
-  {
-    "context": "EmptyPane || SharedScreen",
-    "bindings": {
-      "space f": "file_finder::Toggle"
-    }
-  },
-  {
-    "context": "((VimControl && !menu) || (!Editor && !Terminal))",
-    "bindings": {
-      "space b d": "pane::CloseActiveItem"
-    }
-  },
-  {
-    "context": "(VimControl && !menu)",
-    "bindings": {
-      "space r": "editor::Rename"
-    }
-  },
-  {
-    "context": "(ProjectPanel && not_editing)",
-    "bindings": {
-      "a": "project_panel::NewFile"
-    }
-  },
-  {
-    "context": "(ProjectPanel && not_editing)",
-    "bindings": {
-      "d": null
-    }
-  },
-  {
-    "context": "((vim_mode == helix_normal || vim_mode == helix_select) && !menu)",
-    "bindings": {
-      "space w q": null
-    }
-  },
-  {
-    "context": "((VimControl && !menu) || (!Editor && !Terminal))",
-    "bindings": {
-      "ctrl-w q": "pane::CloseAllItems"
-    }
-  },
-  {
-    "context": "((VimControl) && !menu)",
-    "bindings": {
-      "g r": "editor::FindAllReferences"
-    }
-  }
 ]
