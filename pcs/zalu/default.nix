@@ -13,6 +13,13 @@
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
 
+  services.udev = {
+    enable = true;
+    extraRules = ''
+      KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+      '';
+  };
+
   environment.variables =
     let
       makePluginPath =
@@ -55,10 +62,15 @@
         musescore
         wineWowPackages.full
         wgnord
+        kicad
       ];
       config.localModules = {
         shells.zsh.enable = true;
-
+        apps = {
+          helix.enable = true;
+          zed.enable = true;
+        };
+        
         development = {
           enable = true;
           installOnNixos = true;
