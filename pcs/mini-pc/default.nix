@@ -1,7 +1,7 @@
 {
   config,
-  pkgs,
   home-manager-modules,
+  pkgs,
   ...
 }:
 {

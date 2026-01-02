@@ -7,20 +7,35 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-    "icon_theme": {
-        "mode": "system",
-        "light": "Catppuccin Latte",
-        "dark": "Catppuccin Mocha"
-    },
-    "disable_ai": true,
-    "vim_mode": true,
-    "buffer_font_fallbacks": ["Courier New", "monospace"],
-    "buffer_font_family": "Lilex Nerd Font",
-    "ui_font_size": 16,
-    "buffer_font_size": 15,
-    "theme": {
-        "mode": "system",
-        "light": "Catppuccin Latte",
-        "dark": "Catppuccin Mocha"
+  "icon_theme": {
+    "mode": "system",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Mocha"
+  },
+  "disable_ai": true,
+  "vim_mode": true,
+  "buffer_font_fallbacks": ["Courier New", "monospace"],
+  "buffer_font_family": "Lilex Nerd Font",
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "theme": {
+    "mode": "system",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Mocha"
+  },
+
+  "file_types": {
+    "Arduino": ["cpp", "h", "hpp"]
+  },
+
+  "lsp": {
+    "arduino-language-server": {
+      "binary": {
+        "arguments": [
+          "-fqbn",
+          "esp32:esp32:esp32s3:CDCOnBoot=cdc,CPUFreq=240,DFUOnBoot=default,FlashMode=qio,FlashSize=16M,MSCOnBoot=default,PSRAM=opi,PartitionScheme=app3M_fat9M_16MB,USBMode=hwcdc"
+        ]
+      }
     }
+  }
 }

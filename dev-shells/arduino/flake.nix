@@ -52,7 +52,7 @@
           with pkgs;
           mkShell {
             packages = [
-              arduino-ide
+              arduino
               arduino-cli
             ];
           };

@@ -1,11 +1,29 @@
-{ pkgs, home-manager-modules, ... }:
+{
+  config,
+  home-manager-modules,
+  pkgs,
+  ...
+}:
 {
   imports = [ ./hardware-configuration.nix ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  hardware.bluetooth.enable = true;
+  hardware = {
+    bluetooth.enable = true;
+    keyboard.qmk.enable = true;
+  };
 
-  users.defaultUserShell = pkgs.zsh;
+  users = {
+    defaultUserShell = pkgs.zsh;
+
+    groups = {
+      dialout = {
+        members = [
+          config.localModules.name
+        ];
+      };
+    };
+  };
   programs = {
     zsh.enable = true;
     yazi = {
@@ -13,7 +31,14 @@
     };
   };
 
-  services.roon-server.enable = true;
+  services = {
+    roon-server.enable = true;
+
+    udev = {
+      enable = true;
+      packages = with pkgs; [ via ];
+    };
+  };
 
   localModules = {
     name = "dosia";
@@ -41,6 +66,16 @@
         krita
         wineWowPackages.full
         godot-mono
+        uv
+
+        via
+        qmk
+
+        # Arduino
+        arduino-ide
+        arduino-core
+
+        devenv
       ];
 
       config.localModules = {
